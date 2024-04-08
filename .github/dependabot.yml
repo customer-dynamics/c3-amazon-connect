@@ -9,3 +9,17 @@ updates:
     directory: '/'
     schedule:
       interval: 'daily'
+
+  # Lambda functions
+  - package-ecosystem: 'npm'
+    directory: 'lib/lambda/c3-create-payment-request'
+    schedule:
+      interval: 'daily'
+  - package-ecosystem: 'npm'
+    directory: 'lib/lambda/c3-report-customer-activity'
+    schedule:
+      interval: 'daily'
+  - package-ecosystem: 'npm'
+    directory: 'lib/lambda/c3-tokenize-transaction'
+    schedule:
+      interval: 'daily'
