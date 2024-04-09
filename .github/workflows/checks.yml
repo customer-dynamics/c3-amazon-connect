@@ -21,3 +21,6 @@ jobs:
 
       - name: Build
         run: npm run build
+
+      - name: Synthesize CDK app
+        run: cdk synth
