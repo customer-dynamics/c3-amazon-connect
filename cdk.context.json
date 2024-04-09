@@ -1,3 +1,5 @@
 {
-	"amazonConnectInstanceArn": ""
+	"amazonConnectInstanceArn": "",
+	"c3ApiKey": "",
+	"vendorId": ""
 }
