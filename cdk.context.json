@@ -1,5 +1,7 @@
 {
 	"amazonConnectInstanceArn": "",
+	"amazonConnectSecurityKeyId": "",
+	"amazonConnectSecurityKeyCertificateContent": "",
 	"c3Env": "prod",
 	"c3ApiKey": "",
 	"c3VendorId": "",

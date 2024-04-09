@@ -3,6 +3,7 @@
 !lib/lambda/**/*.js
 *.d.ts
 node_modules
+.context-values.json
 
 # CDK asset staging directory
 .cdk.staging
