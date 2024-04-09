@@ -10,6 +10,7 @@ export class C3AmazonConnectStack extends Stack {
 		super(scope, id, props);
 
 		// Validate context variables.
+		console.log('Validating context variables...');
 		const amazonConnectInstanceArn = this.node.tryGetContext(
 			'amazonConnectInstanceArn',
 		);
@@ -46,7 +47,7 @@ export class C3AmazonConnectStack extends Stack {
 			architecture: Architecture.ARM_64,
 			runtime: Runtime.NODEJS_20_X,
 			timeout: Duration.seconds(10),
-			handler: 'index.js',
+			handler: 'index.handler',
 			environment: {
 				C3_API_KEY: c3ApiKey,
 				C3_VENDOR_ID: c3VendorId,
@@ -57,6 +58,7 @@ export class C3AmazonConnectStack extends Stack {
 			},
 		};
 
+		console.log('Creating function c3CreatePaymentRequest...');
 		const createPaymentRequestFunction = new Function(
 			this,
 			'c3CreatePaymentRequest',
@@ -69,46 +71,49 @@ export class C3AmazonConnectStack extends Stack {
 			},
 		);
 
-		const reportCustomerActivityFunction = new Function(
-			this,
-			'c3ReportCustomerActivity',
-			{
-				...commonLambdaProps,
-				description:
-					'Reports customer payment activity through C3 to the agent.',
-				code: Code.fromAsset(
-					path.join(__dirname, 'lambda/c3-report-customer-activity'),
-				),
-			},
-		);
+		// console.log('Creating function c3ReportCustomerActivity...');
+		// const reportCustomerActivityFunction = new Function(
+		// 	this,
+		// 	'c3ReportCustomerActivity',
+		// 	{
+		// 		...commonLambdaProps,
+		// 		description:
+		// 			'Reports customer payment activity through C3 to the agent.',
+		// 		code: Code.fromAsset(
+		// 			path.join(__dirname, 'lambda/c3-report-customer-activity'),
+		// 		),
+		// 	},
+		// );
 
-		const tokenizeTransactionFunction = new Function(
-			this,
-			'c3TokenizeTransaction',
-			{
-				...commonLambdaProps,
-				description:
-					'Tokenizes customer payment details and submits to C3 for processing.',
-				code: Code.fromAsset(
-					path.join(__dirname, 'lambda/c3-tokenize-transaction'),
-				),
-			},
-		);
+		// console.log('Creating function c3TokenizeTransaction...');
+		// const tokenizeTransactionFunction = new Function(
+		// 	this,
+		// 	'c3TokenizeTransaction',
+		// 	{
+		// 		...commonLambdaProps,
+		// 		description:
+		// 			'Tokenizes customer payment details and submits to C3 for processing.',
+		// 		code: Code.fromAsset(
+		// 			path.join(__dirname, 'lambda/c3-tokenize-transaction'),
+		// 		),
+		// 	},
+		// );
 
 		// Create the Amazon Connect flows.
-		const baseDTMFPaymentFlowModule = new CfnContactFlowModule(
-			this,
-			'c3BaseDTMFPaymentFlowModule',
-			{
-				name: 'C3 Base DTMF Payment',
-				description: 'Flow module for collecting payments with C3 using DTMF.',
-				content: getBaseDtmfPaymentFlowModuleContent(
-					createPaymentRequestFunction.functionArn,
-					reportCustomerActivityFunction.functionArn,
-					tokenizeTransactionFunction.functionArn,
-				),
-				instanceArn: amazonConnectInstanceArn,
-			},
-		);
+		// console.log('Creating flow module c3BaseDTMFPaymentFlowModule...');
+		// const baseDTMFPaymentFlowModule = new CfnContactFlowModule(
+		// 	this,
+		// 	'c3BaseDTMFPaymentFlowModule',
+		// 	{
+		// 		name: 'C3 Base DTMF Payment',
+		// 		description: 'Flow module for collecting payments with C3 using DTMF.',
+		// 		content: getBaseDtmfPaymentFlowModuleContent(
+		// 			createPaymentRequestFunction.functionArn,
+		// 			reportCustomerActivityFunction.functionArn,
+		// 			tokenizeTransactionFunction.functionArn,
+		// 		),
+		// 		instanceArn: amazonConnectInstanceArn,
+		// 	},
+		// );
 	}
 }
