@@ -16,17 +16,28 @@ export class C3AmazonConnectStack extends Stack {
 		if (!amazonConnectInstanceArn) {
 			throw new Error('amazonConnectInstanceArn context variable is required.');
 		}
+		const c3ApiKey = this.node.tryGetContext('c3ApiKey');
+		if (!c3ApiKey) {
+			throw new Error('c3ApiKey context variable is required.');
+		}
 
 		// Create the Lambda functions.
+		const commonLambdaProps = {
+			architecture: Architecture.ARM_64,
+			runtime: Runtime.NODEJS_20_X,
+			timeout: Duration.seconds(10),
+			handler: 'index.js',
+			environment: {
+				C3_API_KEY: c3ApiKey,
+			},
+		};
+
 		const createPaymentRequestFunction = new Function(
 			this,
 			'c3CreatePaymentRequest',
 			{
+				...commonLambdaProps,
 				description: 'Creates a payment request through the C3 API.',
-				architecture: Architecture.ARM_64,
-				timeout: Duration.seconds(10),
-				runtime: Runtime.NODEJS_20_X,
-				handler: 'index.js',
 				code: Code.fromAsset(
 					path.join(__dirname, 'lambda/c3-create-payment-request'),
 				),
@@ -37,12 +48,9 @@ export class C3AmazonConnectStack extends Stack {
 			this,
 			'c3ReportCustomerActivity',
 			{
+				...commonLambdaProps,
 				description:
 					'Reports customer payment activity through C3 to the agent.',
-				architecture: Architecture.ARM_64,
-				timeout: Duration.seconds(10),
-				runtime: Runtime.NODEJS_20_X,
-				handler: 'index.js',
 				code: Code.fromAsset(
 					path.join(__dirname, 'lambda/c3-report-customer-activity'),
 				),
@@ -53,12 +61,9 @@ export class C3AmazonConnectStack extends Stack {
 			this,
 			'c3TokenizeTransaction',
 			{
+				...commonLambdaProps,
 				description:
 					'Tokenizes customer payment details and submits to C3 for processing.',
-				architecture: Architecture.ARM_64,
-				timeout: Duration.seconds(10),
-				runtime: Runtime.NODEJS_20_X,
-				handler: 'index.js',
 				code: Code.fromAsset(
 					path.join(__dirname, 'lambda/c3-tokenize-transaction'),
 				),
