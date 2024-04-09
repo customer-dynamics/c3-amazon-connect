@@ -1,9 +1,13 @@
 import { Duration, Stack, StackProps } from 'aws-cdk-lib';
-import { CfnContactFlowModule } from 'aws-cdk-lib/aws-connect';
+import {
+	CfnContactFlowModule,
+	CfnIntegrationAssociation,
+} from 'aws-cdk-lib/aws-connect';
 import { Architecture, Code, Function, Runtime } from 'aws-cdk-lib/aws-lambda';
 import { Construct } from 'constructs';
 import path = require('path');
-import { getBaseDtmfPaymentFlowModuleContent } from './connect/flows';
+
+import { getBaseDtmfPaymentFlowModuleContent } from './connect/content-transformations.js';
 
 export class C3AmazonConnectStack extends Stack {
 	constructor(scope: Construct, id: string, props?: StackProps) {
@@ -99,21 +103,52 @@ export class C3AmazonConnectStack extends Stack {
 			},
 		);
 
+		const lambdaFunctions = [
+			createPaymentRequestFunction,
+			reportCustomerActivityFunction,
+			tokenizeTransactionFunction,
+		];
+		for (const lambdaFunction of lambdaFunctions) {
+			// Allow Amazon Connect to invoke the Lambda functions.
+			// console.log('Adding Amazon Connect permissions for function...');
+			// lambdaFunction.addToRolePolicy(
+			// 	new PolicyStatement({
+			// 		actions: ['lambda:InvokeFunction'],
+			// 		resources: [lambdaFunction.functionArn],
+			// 		effect: Effect.ALLOW,
+			// 		principals: [new ServicePrincipal('connect.amazonaws.com')],
+			// 	}),
+			// );
+
+			// Create an integration between the Lambda functions and Amazon Connect.
+			console.log(
+				'Creating Amazon Connect integration association for function...',
+			);
+			new CfnIntegrationAssociation(
+				this,
+				`ConnectIntegration${lambdaFunctions.indexOf(lambdaFunction) + 1}`,
+				{
+					instanceId: amazonConnectInstanceArn,
+					integrationType: 'LAMBDA_FUNCTION',
+					integrationArn: lambdaFunction.functionArn,
+				},
+			);
+		}
+
 		// Create the Amazon Connect flows.
-		// console.log('Creating flow module c3BaseDTMFPaymentFlowModule...');
-		// const baseDTMFPaymentFlowModule = new CfnContactFlowModule(
-		// 	this,
-		// 	'c3BaseDTMFPaymentFlowModule',
-		// 	{
-		// 		name: 'C3 Base DTMF Payment',
-		// 		description: 'Flow module for collecting payments with C3 using DTMF.',
-		// 		content: getBaseDtmfPaymentFlowModuleContent(
-		// 			createPaymentRequestFunction.functionArn,
-		// 			reportCustomerActivityFunction.functionArn,
-		// 			tokenizeTransactionFunction.functionArn,
-		// 		),
-		// 		instanceArn: amazonConnectInstanceArn,
-		// 	},
-		// );
+		console.log('Creating flow module c3BaseDTMFPaymentFlowModule...');
+		const baseDtmfPaymentFlowModuleContent =
+			getBaseDtmfPaymentFlowModuleContent(
+				createPaymentRequestFunction.functionArn,
+				reportCustomerActivityFunction.functionArn,
+				tokenizeTransactionFunction.functionArn,
+			);
+
+		new CfnContactFlowModule(this, 'c3BaseDTMFPaymentFlowModule', {
+			name: 'C3 Base DTMF Payment',
+			description: 'Flow module for collecting payments with C3 using DTMF.',
+			content: baseDtmfPaymentFlowModuleContent,
+			instanceArn: amazonConnectInstanceArn,
+		});
 	}
 }
