@@ -23,3 +23,7 @@ updates:
     directory: 'lib/lambda/c3-tokenize-transaction'
     schedule:
       interval: 'daily'
+  - package-ecosystem: 'npm'
+    directory: 'lib/lambda/c3-submit-payment'
+    schedule:
+      interval: 'daily'
