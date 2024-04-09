@@ -1,5 +1,9 @@
 {
 	"amazonConnectInstanceArn": "",
+	"c3Env": "prod",
 	"c3ApiKey": "",
-	"vendorId": ""
+	"c3VendorId": "",
+	"logoUrl": "",
+	"supportPhone": "",
+	"supportEmail": ""
 }

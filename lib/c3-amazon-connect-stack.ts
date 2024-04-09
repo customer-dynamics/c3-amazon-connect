@@ -16,9 +16,29 @@ export class C3AmazonConnectStack extends Stack {
 		if (!amazonConnectInstanceArn) {
 			throw new Error('amazonConnectInstanceArn context variable is required.');
 		}
+		const c3Env = this.node.tryGetContext('c3Env');
+		if (!c3Env) {
+			throw new Error('c3Env context variable is required.');
+		}
 		const c3ApiKey = this.node.tryGetContext('c3ApiKey');
 		if (!c3ApiKey) {
 			throw new Error('c3ApiKey context variable is required.');
+		}
+		const c3VendorId = this.node.tryGetContext('c3VendorId');
+		if (!c3VendorId) {
+			throw new Error('c3VendorId context variable is required.');
+		}
+		const logoUrl = this.node.tryGetContext('logoUrl');
+		if (!logoUrl) {
+			throw new Error('logoUrl context variable is required.');
+		}
+		const supportPhone = this.node.tryGetContext('supportPhone');
+		if (!supportPhone) {
+			throw new Error('supportPhone context variable is required.');
+		}
+		const supportEmail = this.node.tryGetContext('supportEmail');
+		if (!supportEmail) {
+			throw new Error('supportEmail context variable is required.');
 		}
 
 		// Create the Lambda functions.
@@ -29,6 +49,11 @@ export class C3AmazonConnectStack extends Stack {
 			handler: 'index.js',
 			environment: {
 				C3_API_KEY: c3ApiKey,
+				C3_VENDOR_ID: c3VendorId,
+				C3_ENV: c3Env,
+				LOGO_URL: logoUrl,
+				SUPPORT_PHONE: supportPhone,
+				SUPPORT_EMAIL: supportEmail,
 			},
 		};
 
