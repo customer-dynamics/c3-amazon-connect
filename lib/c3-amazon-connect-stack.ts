@@ -21,6 +21,22 @@ export class C3AmazonConnectStack extends Stack {
 		if (!amazonConnectInstanceArn) {
 			throw new Error('amazonConnectInstanceArn context variable is required.');
 		}
+		const amazonConnectSecurityKeyId = this.node.tryGetContext(
+			'amazonConnectSecurityKeyId',
+		);
+		if (!amazonConnectSecurityKeyId) {
+			throw new Error(
+				'amazonConnectSecurityKeyId context variable is required.',
+			);
+		}
+		const amazonConnectSecurityKeyCertificateContent = this.node.tryGetContext(
+			'amazonConnectSecurityKeyCertificateContent',
+		);
+		if (!amazonConnectSecurityKeyCertificateContent) {
+			throw new Error(
+				'amazonConnectSecurityKeyCertificateContent context variable is required.',
+			);
+		}
 		const c3Env = this.node.tryGetContext('c3Env');
 		if (!c3Env) {
 			throw new Error('c3Env context variable is required.');
@@ -142,6 +158,8 @@ export class C3AmazonConnectStack extends Stack {
 				createPaymentRequestFunction.functionArn,
 				reportCustomerActivityFunction.functionArn,
 				tokenizeTransactionFunction.functionArn,
+				amazonConnectSecurityKeyId,
+				amazonConnectSecurityKeyCertificateContent,
 			);
 
 		new CfnContactFlowModule(this, 'c3BaseDTMFPaymentFlowModule', {
