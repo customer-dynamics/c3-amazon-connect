@@ -15,120 +15,71 @@ export function getBaseDtmfPaymentFlowModuleContent(
 		Version: '2019-10-30',
 		StartAction: 'Create Payment Request',
 		Metadata: {
-			entryPointPosition: {
-				x: 40,
-				y: 40,
-			},
+			entryPointPosition: { x: 40, y: 40 },
 			ActionMetadata: {
 				'Complete Payment': {
-					position: {
-						x: 1910.4,
-						y: 19.2,
-					},
+					position: { x: 1910.4, y: 19.2 },
 					isFriendlyName: true,
 					dynamicMetadata: {},
 				},
 				'Get Security Code': {
-					position: {
-						x: 1469.6,
-						y: 20,
-					},
+					position: { x: 1469.6, y: 20 },
 					isFriendlyName: true,
 					conditionMetadata: [],
 					countryCodePrefix: '+1',
 				},
 				'Report Security Code Entered': {
-					position: {
-						x: 1696.8,
-						y: 20,
-					},
+					position: { x: 1696.8, y: 20 },
 					isFriendlyName: true,
 					dynamicMetadata: {},
 				},
 				'Payment Success': {
-					position: {
-						x: 2153.6,
-						y: 21.6,
-					},
+					position: { x: 2153.6, y: 21.6 },
 					isFriendlyName: true,
 				},
 				'fe955f82-d4e7-400e-843d-d28dfa98d42a': {
-					position: {
-						x: 2455.2,
-						y: 22.4,
-					},
-				},
-				'Create Payment Request': {
-					position: {
-						x: 144.8,
-						y: 21.6,
-					},
-					isFriendlyName: true,
-					parameters: {
-						LambdaInvocationAttributes: {
-							'Subject ID': {
-								useDynamic: true,
-							},
-						},
-					},
-					dynamicMetadata: {
-						'Subject ID': true,
-					},
-				},
-				'Internal Error': {
-					position: {
-						x: 357.6,
-						y: 248,
-					},
-					isFriendlyName: true,
+					position: { x: 2455.2, y: 22.4 },
 				},
 				'3752e184-d8ec-429c-97fe-cd5ed81a74fa': {
-					position: {
-						x: 587.2,
-						y: 628.8,
-					},
-				},
-				'Record Payment Request': {
-					position: {
-						x: 364,
-						y: 19.2,
-					},
-					isFriendlyName: true,
-					dynamicParams: [],
+					position: { x: 587.2, y: 628.8 },
 				},
 				'Get & Encrypt Card Number': {
-					position: {
-						x: 586.4,
-						y: 23.2,
-					},
+					position: { x: 586.4, y: 23.2 },
 					isFriendlyName: true,
 					conditionMetadata: [],
 					countryCodePrefix: '+1',
 				},
 				'Report Expiration Entered': {
-					position: {
-						x: 1252,
-						y: 21.6,
-					},
+					position: { x: 1252, y: 21.6 },
 					isFriendlyName: true,
 					dynamicMetadata: {},
 				},
 				'Report Card Entered': {
-					position: {
-						x: 814.4,
-						y: 24.8,
-					},
+					position: { x: 814.4, y: 24.8 },
 					isFriendlyName: true,
 					dynamicMetadata: {},
 				},
 				'Get Expiration Date': {
-					position: {
-						x: 1032.8,
-						y: 24,
-					},
+					position: { x: 1032.8, y: 24 },
 					isFriendlyName: true,
 					conditionMetadata: [],
 					countryCodePrefix: '+1',
+				},
+				'Internal Error': {
+					position: { x: 357.6, y: 248 },
+					isFriendlyName: true,
+				},
+				'Record Payment Request': {
+					position: { x: 364, y: 19.2 },
+					isFriendlyName: true,
+					dynamicParams: [],
+				},
+				'Create Payment Request': {
+					position: { x: 144, y: 20 },
+					isFriendlyName: true,
+					parameters: {
+						LambdaFunctionARN: { displayName: 'c3CreatePaymentRequest' },
+					},
 				},
 			},
 			Annotations: [
@@ -138,14 +89,8 @@ export function getBaseDtmfPaymentFlowModuleContent(
 					content: "An error here shouldn't stop the payment flow.",
 					actionId: 'Report Card Entered',
 					isFolded: true,
-					position: {
-						x: 1037.1666666666667,
-						y: 237.66666666666666,
-					},
-					size: {
-						height: 295,
-						width: 300,
-					},
+					position: { x: 1037.1666666666667, y: 237.66666666666666 },
+					size: { height: 295, width: 300 },
 				},
 				{
 					type: 'default',
@@ -153,14 +98,8 @@ export function getBaseDtmfPaymentFlowModuleContent(
 					content: "An error here shouldn't stop the payment flow.",
 					actionId: 'Report Expiration Entered',
 					isFolded: true,
-					position: {
-						x: 1584.1666666666667,
-						y: 233.66666666666666,
-					},
-					size: {
-						height: 295,
-						width: 300,
-					},
+					position: { x: 1584.1666666666667, y: 233.66666666666666 },
+					size: { height: 295, width: 300 },
 				},
 				{
 					type: 'default',
@@ -168,14 +107,8 @@ export function getBaseDtmfPaymentFlowModuleContent(
 					content: "An error here shouldn't stop the payment flow.",
 					actionId: 'Report Security Code Entered',
 					isFolded: true,
-					position: {
-						x: 2140.1666666666665,
-						y: 231.66666666666666,
-					},
-					size: {
-						height: 295,
-						width: 300,
-					},
+					position: { x: 2140.1666666666665, y: 231.66666666666666 },
+					size: { height: 295, width: 300 },
 				},
 			],
 			name: 'Base DTMF Payment',
@@ -187,80 +120,50 @@ export function getBaseDtmfPaymentFlowModuleContent(
 			{
 				Parameters: {
 					InvocationTimeLimitSeconds: '3',
-					ResponseValidation: {
-						ResponseType: 'STRING_MAP',
-					},
+					ResponseValidation: { ResponseType: 'STRING_MAP' },
 				},
 				Identifier: 'Complete Payment',
 				Type: 'InvokeLambdaFunction',
 				Transitions: {
 					NextAction: 'Payment Success',
-					Errors: [
-						{
-							NextAction: '',
-							ErrorType: 'NoMatchingError',
-						},
-					],
+					Errors: [{ NextAction: '', ErrorType: 'NoMatchingError' }],
 				},
 			},
 			{
 				Parameters: {
 					StoreInput: 'True',
 					InputTimeLimitSeconds: '5',
-					DTMFConfiguration: {
-						DisableCancelKey: 'False',
-					},
-					InputValidation: {
-						CustomValidation: {
-							MaximumLength: '20',
-						},
-					},
+					DTMFConfiguration: { DisableCancelKey: 'False' },
+					InputValidation: { CustomValidation: { MaximumLength: '20' } },
 				},
 				Identifier: 'Get Security Code',
 				Type: 'GetParticipantInput',
 				Transitions: {
 					NextAction: 'Report Security Code Entered',
-					Errors: [
-						{
-							NextAction: '',
-							ErrorType: 'NoMatchingError',
-						},
-					],
+					Errors: [{ NextAction: '', ErrorType: 'NoMatchingError' }],
 				},
 			},
 			{
 				Parameters: {
 					InvocationTimeLimitSeconds: '3',
-					ResponseValidation: {
-						ResponseType: 'STRING_MAP',
-					},
+					ResponseValidation: { ResponseType: 'STRING_MAP' },
 				},
 				Identifier: 'Report Security Code Entered',
 				Type: 'InvokeLambdaFunction',
 				Transitions: {
 					NextAction: 'Complete Payment',
 					Errors: [
-						{
-							NextAction: 'Complete Payment',
-							ErrorType: 'NoMatchingError',
-						},
+						{ NextAction: 'Complete Payment', ErrorType: 'NoMatchingError' },
 					],
 				},
 			},
 			{
-				Parameters: {
-					Text: 'Your payment was processed successfully.',
-				},
+				Parameters: { Text: 'Your payment was processed successfully.' },
 				Identifier: 'Payment Success',
 				Type: 'MessageParticipant',
 				Transitions: {
 					NextAction: 'fe955f82-d4e7-400e-843d-d28dfa98d42a',
-					Errors: [
-						{
-							NextAction: '',
-							ErrorType: 'NoMatchingError',
-						},
-					],
+					Errors: [{ NextAction: '', ErrorType: 'NoMatchingError' }],
 				},
 			},
 			{
@@ -270,25 +173,73 @@ export function getBaseDtmfPaymentFlowModuleContent(
 				Transitions: {},
 			},
 			{
+				Parameters: {},
+				Identifier: '3752e184-d8ec-429c-97fe-cd5ed81a74fa',
+				Type: 'EndFlowModuleExecution',
+				Transitions: {},
+			},
+			{
+				Parameters: {
+					StoreInput: 'True',
+					InputTimeLimitSeconds: '5',
+					Text: 'Please enter your card number. Press the pound key when complete.',
+					DTMFConfiguration: {
+						DisableCancelKey: 'False',
+						InputTerminationSequence: '#',
+					},
+					InputValidation: { CustomValidation: { MaximumLength: '20' } },
+				},
+				Identifier: 'Get & Encrypt Card Number',
+				Type: 'GetParticipantInput',
+				Transitions: {
+					NextAction: 'Report Card Entered',
+					Errors: [{ NextAction: '', ErrorType: 'NoMatchingError' }],
+				},
+			},
+			{
 				Parameters: {
 					InvocationTimeLimitSeconds: '3',
-					LambdaInvocationAttributes: {
-						'Subject ID': '$.Customer.Attributes.ID',
-					},
-					ResponseValidation: {
-						ResponseType: 'JSON',
-					},
+					ResponseValidation: { ResponseType: 'STRING_MAP' },
 				},
-				Identifier: 'Create Payment Request',
+				Identifier: 'Report Expiration Entered',
 				Type: 'InvokeLambdaFunction',
 				Transitions: {
-					NextAction: 'Record Payment Request',
+					NextAction: 'Get Security Code',
 					Errors: [
-						{
-							NextAction: 'Internal Error',
-							ErrorType: 'NoMatchingError',
-						},
+						{ NextAction: 'Get Security Code', ErrorType: 'NoMatchingError' },
 					],
+				},
+			},
+			{
+				Parameters: {
+					InvocationTimeLimitSeconds: '3',
+					ResponseValidation: { ResponseType: 'STRING_MAP' },
+				},
+				Identifier: 'Report Card Entered',
+				Type: 'InvokeLambdaFunction',
+				Transitions: {
+					NextAction: 'Get Expiration Date',
+					Errors: [
+						{ NextAction: 'Get Expiration Date', ErrorType: 'NoMatchingError' },
+					],
+				},
+			},
+			{
+				Parameters: {
+					StoreInput: 'True',
+					InputTimeLimitSeconds: '5',
+					Text: "Please enter your card's expiration date, followed by the pound key.",
+					DTMFConfiguration: {
+						DisableCancelKey: 'False',
+						InputTerminationSequence: '#',
+					},
+					InputValidation: { CustomValidation: { MaximumLength: '20' } },
+				},
+				Identifier: 'Get Expiration Date',
+				Type: 'GetParticipantInput',
+				Transitions: {
+					NextAction: 'Report Expiration Entered',
+					Errors: [{ NextAction: '', ErrorType: 'NoMatchingError' }],
 				},
 			},
 			{
@@ -308,117 +259,29 @@ export function getBaseDtmfPaymentFlowModuleContent(
 				},
 			},
 			{
-				Parameters: {},
-				Identifier: '3752e184-d8ec-429c-97fe-cd5ed81a74fa',
-				Type: 'EndFlowModuleExecution',
-				Transitions: {},
-			},
-			{
-				Parameters: {
-					Attributes: {},
-					TargetContact: 'Current',
-				},
+				Parameters: { Attributes: {}, TargetContact: 'Current' },
 				Identifier: 'Record Payment Request',
 				Type: 'UpdateContactAttributes',
 				Transitions: {
 					NextAction: 'Get & Encrypt Card Number',
 					Errors: [
-						{
-							NextAction: 'Internal Error',
-							ErrorType: 'NoMatchingError',
-						},
+						{ NextAction: 'Internal Error', ErrorType: 'NoMatchingError' },
 					],
 				},
 			},
 			{
 				Parameters: {
-					StoreInput: 'True',
-					InputTimeLimitSeconds: '5',
-					Text: 'Please enter your card number. Press the pound key when complete.',
-					DTMFConfiguration: {
-						DisableCancelKey: 'False',
-						InputTerminationSequence: '#',
-					},
-					InputValidation: {
-						CustomValidation: {
-							MaximumLength: '20',
-						},
-					},
-				},
-				Identifier: 'Get & Encrypt Card Number',
-				Type: 'GetParticipantInput',
-				Transitions: {
-					NextAction: 'Report Card Entered',
-					Errors: [
-						{
-							NextAction: '',
-							ErrorType: 'NoMatchingError',
-						},
-					],
-				},
-			},
-			{
-				Parameters: {
+					LambdaFunctionARN: createPaymentRequestLambdaArn,
 					InvocationTimeLimitSeconds: '3',
-					ResponseValidation: {
-						ResponseType: 'STRING_MAP',
-					},
+					LambdaInvocationAttributes: {},
+					ResponseValidation: { ResponseType: 'JSON' },
 				},
-				Identifier: 'Report Expiration Entered',
+				Identifier: 'Create Payment Request',
 				Type: 'InvokeLambdaFunction',
 				Transitions: {
-					NextAction: 'Get Security Code',
+					NextAction: 'Record Payment Request',
 					Errors: [
-						{
-							NextAction: 'Get Security Code',
-							ErrorType: 'NoMatchingError',
-						},
-					],
-				},
-			},
-			{
-				Parameters: {
-					InvocationTimeLimitSeconds: '3',
-					ResponseValidation: {
-						ResponseType: 'STRING_MAP',
-					},
-				},
-				Identifier: 'Report Card Entered',
-				Type: 'InvokeLambdaFunction',
-				Transitions: {
-					NextAction: 'Get Expiration Date',
-					Errors: [
-						{
-							NextAction: 'Get Expiration Date',
-							ErrorType: 'NoMatchingError',
-						},
-					],
-				},
-			},
-			{
-				Parameters: {
-					StoreInput: 'True',
-					InputTimeLimitSeconds: '5',
-					Text: "Please enter your card's expiration date, followed by the pound key.",
-					DTMFConfiguration: {
-						DisableCancelKey: 'False',
-						InputTerminationSequence: '#',
-					},
-					InputValidation: {
-						CustomValidation: {
-							MaximumLength: '20',
-						},
-					},
-				},
-				Identifier: 'Get Expiration Date',
-				Type: 'GetParticipantInput',
-				Transitions: {
-					NextAction: 'Report Expiration Entered',
-					Errors: [
-						{
-							NextAction: '',
-							ErrorType: 'NoMatchingError',
-						},
+						{ NextAction: 'Internal Error', ErrorType: 'NoMatchingError' },
 					],
 				},
 			},
@@ -427,19 +290,10 @@ export function getBaseDtmfPaymentFlowModuleContent(
 			InputParameters: [],
 			OutputParameters: [],
 			Transitions: [
-				{
-					DisplayName: 'Success',
-					ReferenceName: 'Success',
-					Description: '',
-				},
-				{
-					DisplayName: 'Error',
-					ReferenceName: 'Error',
-					Description: '',
-				},
+				{ DisplayName: 'Success', ReferenceName: 'Success', Description: '' },
+				{ DisplayName: 'Error', ReferenceName: 'Error', Description: '' },
 			],
 		},
 	};
-
 	return `${contentJson}`;
 }
