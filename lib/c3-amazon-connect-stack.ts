@@ -111,18 +111,25 @@ export class C3AmazonConnectStack extends Stack {
 			'c3TokenizeTransaction',
 			{
 				...commonLambdaProps,
-				description:
-					'Tokenizes customer payment details and submits to C3 for processing.',
+				description: 'Tokenizes customer payment details.',
 				code: Code.fromAsset(
 					path.join(__dirname, 'lambda/c3-tokenize-transaction'),
 				),
 			},
 		);
 
+		console.log('Creating function c3SubmitPayment...');
+		const submitPaymentFunction = new Function(this, 'c3SubmitPayment', {
+			...commonLambdaProps,
+			description: 'Submits tokenized payment info to C3 for processing.',
+			code: Code.fromAsset(path.join(__dirname, 'lambda/c3-submit-payment')),
+		});
+
 		const lambdaFunctions = [
 			createPaymentRequestFunction,
 			reportCustomerActivityFunction,
 			tokenizeTransactionFunction,
+			submitPaymentFunction,
 		];
 		for (const lambdaFunction of lambdaFunctions) {
 			// Allow Amazon Connect to invoke the Lambda functions.
@@ -158,6 +165,7 @@ export class C3AmazonConnectStack extends Stack {
 				createPaymentRequestFunction.functionArn,
 				reportCustomerActivityFunction.functionArn,
 				tokenizeTransactionFunction.functionArn,
+				submitPaymentFunction.functionArn,
 				amazonConnectSecurityKeyId,
 				amazonConnectSecurityKeyCertificateContent,
 			);
