@@ -19,10 +19,13 @@ jobs:
       - name: Install dependencies
         run: npm ci --no-audit --prefer-offline
 
-      - name: Build
+      - name: Check formatting
+        run: npx prettier@$(node -p "require('./package.json').devDependencies['prettier']") --check .
+
+      - name: Build CDK app
         run: npm run build
 
-      - name: Synthesize CDK app
+      - name: Synthesize CloudFormation templates
         run: npx cdk synth
           --context amazonConnectInstanceArn=placeholder
           --context amazonConnectSecurityKeyId=placeholder
