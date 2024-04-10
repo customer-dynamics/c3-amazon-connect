@@ -33,6 +33,7 @@ In order to facilitate this process, you will need to provide some values to the
 | `c3Env`                                      | The C3 environment to be used. Valid options are `"prod"`, `"staging"`, and `"dev"`.                                                                                                                                                                                  |
 | `c3ApiKey`                                   | The C3 API key issued to your vendor.                                                                                                                                                                                                                                 |
 | `c3VendorId`                                 | The C3 ID identifying your vendor.                                                                                                                                                                                                                                    |
+| `c3PaymentGateway`                           | The payment gateway used for your vendor. Currently, only `"zift"` is supported.                                                                                                                                                                                      |
 | `logoUrl`                                    | An public image URL to be used as the logo for your company. This will be displayed in the receipt email sent to customers.                                                                                                                                           |
 | `supportPhone`                               | The phone number to which customers can call for inquiries. This will be displayed in the receipt email sent to customers.                                                                                                                                            |
 | `supportEmail`                               | The email address to which customers can send inquiries. This will be displayed in the receipt email sent to customers.                                                                                                                                               |
@@ -61,4 +62,4 @@ cdk deploy
 
 ### Setting Up Your Flows
 
-Once the stack has been deployed, you will need to configure your Amazon Connect flows to utilize the resources that have been deployed. The following steps will guide you through the process of setting up your flows.
+Once the stack has been deployed, you will need to configure your Amazon Connect flows to utilize the resources that have been deployed. The following steps will guide you through the process of setting up your flows
