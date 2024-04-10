@@ -1,7 +1,6 @@
 import { App } from 'aws-cdk-lib';
 import { C3AmazonConnectStack } from '../lib/c3-amazon-connect-stack';
 import { Template } from 'aws-cdk-lib/assertions';
-import { readFileSync } from 'fs';
 
 const mockContext = {
 	amazonConnectInstanceArn: 'placeholder',
@@ -15,54 +14,65 @@ const mockContext = {
 	supportEmail: 'placeholder',
 };
 
-test('Lambdas using arm64', () => {
+describe('C3AmazonConnectStack', () => {
 	const app = new App({
 		context: mockContext,
 	});
 	const stack = new C3AmazonConnectStack(app, 'MyTestStack');
 	const template = Template.fromStack(stack);
-	template.hasResourceProperties('AWS::Lambda::Function', {
-		Architectures: ['arm64'],
-	});
-});
 
-test('Lambdas using latest Node', () => {
-	const app = new App({
-		context: mockContext,
-	});
-	const stack = new C3AmazonConnectStack(app, 'MyTestStack');
-	const template = Template.fromStack(stack);
-	template.hasResourceProperties('AWS::Lambda::Function', {
-		Runtime: 'nodejs20.x',
-	});
-});
+	// Lambda functions
+	describe('Lambda functions', () => {
+		it('Using arm64', () => {
+			template.hasResourceProperties('AWS::Lambda::Function', {
+				Architectures: ['arm64'],
+			});
+		});
 
-test('Flow module content has all replacements', () => {
-	const app = new App({
-		context: mockContext,
-	});
-	const stack = new C3AmazonConnectStack(app, 'MyTestStack');
-	const template = Template.fromStack(stack);
-	const flowModules = template.findResources('AWS::Connect::ContactFlowModule');
-	for (const flowModuleName of Object.keys(flowModules)) {
-		const flowModule = flowModules[flowModuleName];
-		const flowModuleContent = JSON.stringify(flowModule.Properties.Content);
-		expect(flowModuleContent).not.toContain('<');
-		expect(flowModuleContent).not.toContain('>');
-	}
-});
+		it('Using latest Node', () => {
+			template.hasResourceProperties('AWS::Lambda::Function', {
+				Runtime: 'nodejs20.x',
+			});
+		});
 
-test('Flow content has all replacements', () => {
-	const app = new App({
-		context: mockContext,
+		xit('Using code signing', () => {});
+
+		it('Has permissions to be invoked by Amazon Connect', () => {
+			template.hasResourceProperties('AWS::Lambda::Permission', {
+				Action: 'lambda:InvokeFunction',
+				Principal: 'connect.amazonaws.com',
+			});
+		});
 	});
-	const stack = new C3AmazonConnectStack(app, 'MyTestStack');
-	const template = Template.fromStack(stack);
-	const flowModules = template.findResources('AWS::Connect::ContactFlow');
-	for (const flowModuleName of Object.keys(flowModules)) {
-		const flowModule = flowModules[flowModuleName];
-		const flowModuleContent = JSON.stringify(flowModule.Properties.Content);
-		expect(flowModuleContent).not.toContain('<');
-		expect(flowModuleContent).not.toContain('>');
-	}
+
+	// Amazon Connect flow modules
+	describe('Amazon Connect flow modules', () => {
+		const flowModules = template.findResources(
+			'AWS::Connect::ContactFlowModule',
+		);
+		it(`Doesn't contain unreplaced placeholders`, () => {
+			for (const flowModuleName of Object.keys(flowModules)) {
+				const flowModule = flowModules[flowModuleName];
+				const flowModuleContent = JSON.stringify(flowModule.Properties.Content);
+				expect(flowModuleContent).not.toContain('<');
+				expect(flowModuleContent).not.toContain('>');
+			}
+		});
+	});
+
+	// Amazon Connect flows
+	describe('Amazon Connect flows', () => {
+		const flows = template.findResources('AWS::Connect::ContactFlow');
+		it(`Doesn't contain unreplaced placeholders`, () => {
+			for (const flowName of Object.keys(flows)) {
+				const flow = flows[flowName];
+				const flowModuleContent = JSON.stringify(flow.Properties.Content);
+				expect(flowModuleContent).not.toContain('<');
+				expect(flowModuleContent).not.toContain('>');
+			}
+		});
+	});
+
+	// Amazon Connect views
+	describe('Amazon Connect views', () => {});
 });
