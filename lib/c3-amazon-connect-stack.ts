@@ -1,3 +1,5 @@
+import { existsSync, mkdirSync, writeFileSync } from 'fs';
+import { join } from 'path';
 import { Duration, SecretValue, Stack, StackProps } from 'aws-cdk-lib';
 import {
 	CfnContactFlowModule,
@@ -10,11 +12,10 @@ import {
 	Function,
 	Runtime,
 } from 'aws-cdk-lib/aws-lambda';
+import { PolicyStatement, ServicePrincipal } from 'aws-cdk-lib/aws-iam';
 import { SigningProfile, Platform } from 'aws-cdk-lib/aws-signer';
 import { Secret } from 'aws-cdk-lib/aws-secretsmanager';
-import { PolicyStatement } from 'aws-cdk-lib/aws-iam';
 import { Construct } from 'constructs';
-import path = require('path');
 
 import { getBaseDtmfPaymentFlowModuleContent } from './connect/content-transformations.js';
 
@@ -66,7 +67,7 @@ export class C3AmazonConnectStack extends Stack {
 	/**
 	 * Ensures that all required context variables are set. Throws an error if any are missing.
 	 */
-	validateContextVariables() {
+	validateContextVariables(): void {
 		console.log('Validating context variables...');
 		if (!this.amazonConnectInstanceArn) {
 			throw new Error('amazonConnectInstanceArn context variable is required.');
@@ -90,6 +91,9 @@ export class C3AmazonConnectStack extends Stack {
 		if (!this.c3VendorId) {
 			throw new Error('c3VendorId context variable is required.');
 		}
+		if (!this.c3PaymentGateway) {
+			throw new Error('c3PaymentGateway context variable is required.');
+		}
 		if (!GATEWAYS.includes(this.c3PaymentGateway)) {
 			throw new Error(
 				`c3PaymentGateway context variable must be one of ${GATEWAYS.join(
@@ -111,23 +115,21 @@ export class C3AmazonConnectStack extends Stack {
 	/**
 	 * Creates the Lambda functions and integrates them with Amazon Connect.
 	 */
-	createLambdaFunctions() {
-		// Create the Lambda functions.
-
-		//Setup code signing
+	createLambdaFunctions(): void {
+		// Set up code signing.
 		const signingProfile = new SigningProfile(this, 'SigningProfile', {
 			platform: Platform.AWS_LAMBDA_SHA384_ECDSA,
 		});
-
 		const codeSigningConfig = new CodeSigningConfig(this, 'CodeSigningConfig', {
 			signingProfiles: [signingProfile],
 		});
 
+		// Create the Lambda functions.
 		const commonLambdaProps = {
 			codeSigningConfig,
 			architecture: Architecture.ARM_64,
 			runtime: Runtime.NODEJS_20_X,
-			timeout: Duration.seconds(10),
+			timeout: Duration.seconds(8),
 			handler: 'index.handler',
 			environment: {
 				C3_API_KEY: this.c3ApiKey,
@@ -147,7 +149,7 @@ export class C3AmazonConnectStack extends Stack {
 				...commonLambdaProps,
 				description: 'Creates a payment request through the C3 API.',
 				code: Code.fromAsset(
-					path.join(__dirname, 'lambda/c3-create-payment-request'),
+					join(__dirname, 'lambda/c3-create-payment-request'),
 				),
 			},
 		);
@@ -161,26 +163,31 @@ export class C3AmazonConnectStack extends Stack {
 				description:
 					'Reports customer payment activity through C3 to the agent.',
 				code: Code.fromAsset(
-					path.join(__dirname, 'lambda/c3-report-customer-activity'),
+					join(__dirname, 'lambda/c3-report-customer-activity'),
 				),
 			},
 		);
 
-		console.log('Creating function c3TokenizeTransaction...');
-		//secrets needed for working with the gateway
+		// Secrets needed for working with the gateway
+		console.log('Creating decryption secrets for Amazon Connect...');
 		const privateKeySM = new Secret(this, 'privateKeySM', {
 			secretName: 'CONNECT_INPUT_DECRYPTION_KEY',
 			secretStringValue: SecretValue.unsafePlainText('update with key text'),
+			description: 'The key for decrypting payment information for C3.',
 		});
 
 		const privateKeyIdSM = new Secret(this, 'privateKeyIdSM', {
 			secretName: 'CONNECT_INPUT_KEY_ID',
 			secretStringValue: SecretValue.unsafePlainText('update with key id'),
+			description: 'The private key for decrypting payment information for C3.',
 		});
+
+		console.log('Creating policy for decrypting...');
 		const tokenizeDecryptPolicy = new PolicyStatement();
 		tokenizeDecryptPolicy.addActions('kms:Decrypt');
 		tokenizeDecryptPolicy.addResources('*');
 
+		console.log('Creating policy for secrets manager...');
 		const tokenizePolicySM = new PolicyStatement();
 		tokenizePolicySM.addActions('secretsmanager:GetSecretValue');
 		tokenizePolicySM.addResources(
@@ -188,17 +195,20 @@ export class C3AmazonConnectStack extends Stack {
 			privateKeyIdSM.secretArn,
 		);
 
-		//Gateway Specific secrets
-		//Zift
+		// Gateway-specific secrets.
+		// Zift
 		if (this.c3PaymentGateway === 'Zift') {
+			console.log('Creating Zift secrets...');
 			const ziftUserNameSM = new Secret(this, 'ziftUserNameSM', {
 				secretName: 'ZIFT_USER_NAME',
 				secretStringValue: SecretValue.unsafePlainText('update with user name'),
+				description: 'The username for your Zift account.',
 			});
 
 			const ziftPasswordSM = new Secret(this, 'ziftPasswordSM', {
 				secretName: 'ZIFT_PASSWORD',
 				secretStringValue: SecretValue.unsafePlainText('update with password'),
+				description: 'The password for your Zift account.',
 			});
 
 			const ziftAccountIdSM = new Secret(this, 'ziftAccountIdSM', {
@@ -206,6 +216,7 @@ export class C3AmazonConnectStack extends Stack {
 				secretStringValue: SecretValue.unsafePlainText(
 					'update with account id',
 				),
+				description: 'The account ID for your Zift account.',
 			});
 			tokenizePolicySM.addResources(
 				ziftUserNameSM.secretArn,
@@ -214,35 +225,33 @@ export class C3AmazonConnectStack extends Stack {
 			);
 		}
 
-		//AuthNet
+		// Authorize.net
 		if (this.c3PaymentGateway === 'AuthNet') {
-			//Not Yet Implemented
+			// Not Yet Implemented
 		}
 
+		console.log('Creating function c3TokenizeTransaction...');
 		this.tokenizeTransactionFunction = new Function(
 			this,
 			'c3TokenizeTransaction',
 			{
 				...commonLambdaProps,
 				description: 'Tokenizes customer payment details.',
-				code: Code.fromAsset(
-					path.join(__dirname, 'lambda/c3-tokenize-transaction'),
-				),
+				code: Code.fromAsset(join(__dirname, 'lambda/c3-tokenize-transaction')),
 				initialPolicy: [tokenizePolicySM, tokenizeDecryptPolicy],
 			},
 		);
-		//End Tokenize Function
 
 		console.log('Creating function c3SubmitPayment...');
 		this.submitPaymentFunction = new Function(this, 'c3SubmitPayment', {
 			...commonLambdaProps,
 			description: 'Submits tokenized payment info to C3 for processing.',
-			code: Code.fromAsset(path.join(__dirname, 'lambda/c3-submit-payment')),
+			code: Code.fromAsset(join(__dirname, 'lambda/c3-submit-payment')),
 			environment: {
 				...commonLambdaProps.environment,
 				GATEWAY_URL: this.getGatewayUrl(),
 				C3_PAYMENT_GATEWAY: this.c3PaymentGateway,
-			}
+			},
 		});
 
 		const lambdaFunctions = [
@@ -253,15 +262,13 @@ export class C3AmazonConnectStack extends Stack {
 		];
 		for (const lambdaFunction of lambdaFunctions) {
 			// Allow Amazon Connect to invoke the Lambda functions.
-			// console.log('Adding Amazon Connect permissions for function...');
-			// lambdaFunction.addToRolePolicy(
-			// 	new PolicyStatement({
-			// 		actions: ['lambda:InvokeFunction'],
-			// 		resources: [lambdaFunction.functionArn],
-			// 		effect: Effect.ALLOW,
-			// 		principals: [new ServicePrincipal('connect.amazonaws.com')],
-			// 	}),
-			// );
+			console.log('Adding Amazon Connect permissions for function...');
+			lambdaFunction.addPermission('AllowAmazonConnectInvoke', {
+				principal: new ServicePrincipal('connect.amazonaws.com'),
+				sourceArn: this.amazonConnectInstanceArn,
+				sourceAccount: this.account,
+				action: 'lambda:InvokeFunction',
+			});
 
 			// Create an integration between the Lambda functions and Amazon Connect.
 			console.log(
@@ -282,18 +289,24 @@ export class C3AmazonConnectStack extends Stack {
 	/**
 	 * Creates the Amazon Connect flows.
 	 */
-	createAmazonConnectFlows() {
+	createAmazonConnectFlows(): void {
 		console.log('Creating flow module c3BaseDTMFPaymentFlowModule...');
 		const baseDtmfPaymentFlowModuleContent =
 			getBaseDtmfPaymentFlowModuleContent(
-				this.createPaymentRequestFunction.functionArn,
-				this.reportCustomerActivityFunction.functionArn,
-				this.tokenizeTransactionFunction.functionArn,
-				this.submitPaymentFunction.functionArn,
+				this.createPaymentRequestFunction,
+				this.reportCustomerActivityFunction,
+				this.tokenizeTransactionFunction,
+				this.submitPaymentFunction,
 				this.amazonConnectSecurityKeyId,
 				this.amazonConnectSecurityKeyCertificateContent,
 			);
-
+		if (!existsSync('./exports')) {
+			mkdirSync('./exports');
+		}
+		writeFileSync(
+			'./exports/c3BaseDTMFPaymentFlowModule',
+			baseDtmfPaymentFlowModuleContent,
+		);
 		new CfnContactFlowModule(this, 'c3BaseDTMFPaymentFlowModule', {
 			name: 'C3 Base DTMF Payment',
 			description: 'Flow module for collecting payments with C3 using DTMF.',
@@ -302,6 +315,11 @@ export class C3AmazonConnectStack extends Stack {
 		});
 	}
 
+	/**
+	 * Gets the URL used for the payment gateway.
+	 *
+	 * @returns The payment gateway URL.
+	 */
 	getGatewayUrl() {
 		switch (this.c3PaymentGateway) {
 			case 'Zift':
@@ -313,7 +331,7 @@ export class C3AmazonConnectStack extends Stack {
 			case 'AuthNet':
 				return 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX?';
 			default:
-				throw new Error('Invalid payment gateway');
+				throw new Error(`Invalid payment gateway: ${this.c3PaymentGateway}`);
 		}
 	}
 }
