@@ -5,6 +5,7 @@
 	"c3Env": "prod",
 	"c3ApiKey": "",
 	"c3VendorId": "",
+	"c3PaymentGateway": "",
 	"logoUrl": "",
 	"supportPhone": "",
 	"supportEmail": ""
