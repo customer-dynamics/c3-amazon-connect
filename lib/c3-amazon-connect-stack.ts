@@ -10,58 +10,88 @@ import path = require('path');
 import { getBaseDtmfPaymentFlowModuleContent } from './connect/content-transformations.js';
 
 export class C3AmazonConnectStack extends Stack {
+	amazonConnectInstanceArn: string;
+	amazonConnectSecurityKeyId: string;
+	amazonConnectSecurityKeyCertificateContent: string;
+	c3Env: string;
+	c3ApiKey: string;
+	c3VendorId: string;
+	logoUrl: string;
+	supportPhone: string;
+	supportEmail: string;
+
+	// Resources
+	createPaymentRequestFunction: Function;
+	reportCustomerActivityFunction: Function;
+	tokenizeTransactionFunction: Function;
+	submitPaymentFunction: Function;
+
 	constructor(scope: Construct, id: string, props?: StackProps) {
 		super(scope, id, props);
 
-		// Validate context variables.
-		console.log('Validating context variables...');
-		const amazonConnectInstanceArn = this.node.tryGetContext(
+		this.amazonConnectInstanceArn = this.node.tryGetContext(
 			'amazonConnectInstanceArn',
 		);
-		if (!amazonConnectInstanceArn) {
-			throw new Error('amazonConnectInstanceArn context variable is required.');
-		}
-		const amazonConnectSecurityKeyId = this.node.tryGetContext(
+		this.amazonConnectSecurityKeyId = this.node.tryGetContext(
 			'amazonConnectSecurityKeyId',
 		);
-		if (!amazonConnectSecurityKeyId) {
+		this.amazonConnectSecurityKeyCertificateContent = this.node.tryGetContext(
+			'amazonConnectSecurityKeyCertificateContent',
+		);
+		this.c3Env = this.node.tryGetContext('c3Env');
+		this.c3ApiKey = this.node.tryGetContext('c3ApiKey');
+		this.c3VendorId = this.node.tryGetContext('c3VendorId');
+		this.logoUrl = this.node.tryGetContext('logoUrl');
+		this.supportPhone = this.node.tryGetContext('supportPhone');
+		this.supportEmail = this.node.tryGetContext('supportEmail');
+
+		this.validateContextVariables();
+		this.createLambdaFunctions();
+		this.createAmazonConnectFlows();
+	}
+
+	/**
+	 * Ensures that all required context variables are set. Throws an error if any are missing.
+	 */
+	validateContextVariables() {
+		console.log('Validating context variables...');
+		if (!this.amazonConnectInstanceArn) {
+			throw new Error('amazonConnectInstanceArn context variable is required.');
+		}
+		if (!this.amazonConnectSecurityKeyId) {
 			throw new Error(
 				'amazonConnectSecurityKeyId context variable is required.',
 			);
 		}
-		const amazonConnectSecurityKeyCertificateContent = this.node.tryGetContext(
-			'amazonConnectSecurityKeyCertificateContent',
-		);
-		if (!amazonConnectSecurityKeyCertificateContent) {
+		if (!this.amazonConnectSecurityKeyCertificateContent) {
 			throw new Error(
 				'amazonConnectSecurityKeyCertificateContent context variable is required.',
 			);
 		}
-		const c3Env = this.node.tryGetContext('c3Env');
-		if (!c3Env) {
+		if (!this.c3Env) {
 			throw new Error('c3Env context variable is required.');
 		}
-		const c3ApiKey = this.node.tryGetContext('c3ApiKey');
-		if (!c3ApiKey) {
+		if (!this.c3ApiKey) {
 			throw new Error('c3ApiKey context variable is required.');
 		}
-		const c3VendorId = this.node.tryGetContext('c3VendorId');
-		if (!c3VendorId) {
+		if (!this.c3VendorId) {
 			throw new Error('c3VendorId context variable is required.');
 		}
-		const logoUrl = this.node.tryGetContext('logoUrl');
-		if (!logoUrl) {
+		if (!this.logoUrl) {
 			throw new Error('logoUrl context variable is required.');
 		}
-		const supportPhone = this.node.tryGetContext('supportPhone');
-		if (!supportPhone) {
+		if (!this.supportPhone) {
 			throw new Error('supportPhone context variable is required.');
 		}
-		const supportEmail = this.node.tryGetContext('supportEmail');
-		if (!supportEmail) {
+		if (!this.supportEmail) {
 			throw new Error('supportEmail context variable is required.');
 		}
+	}
 
+	/**
+	 * Creates the Lambda functions and integrates them with Amazon Connect.
+	 */
+	createLambdaFunctions() {
 		// Create the Lambda functions.
 		const commonLambdaProps = {
 			architecture: Architecture.ARM_64,
@@ -69,17 +99,17 @@ export class C3AmazonConnectStack extends Stack {
 			timeout: Duration.seconds(10),
 			handler: 'index.handler',
 			environment: {
-				C3_API_KEY: c3ApiKey,
-				C3_VENDOR_ID: c3VendorId,
-				C3_ENV: c3Env,
-				LOGO_URL: logoUrl,
-				SUPPORT_PHONE: supportPhone,
-				SUPPORT_EMAIL: supportEmail,
+				C3_API_KEY: this.c3ApiKey,
+				C3_VENDOR_ID: this.c3VendorId,
+				C3_ENV: this.c3Env,
+				LOGO_URL: this.logoUrl,
+				SUPPORT_PHONE: this.supportPhone,
+				SUPPORT_EMAIL: this.supportEmail,
 			},
 		};
 
 		console.log('Creating function c3CreatePaymentRequest...');
-		const createPaymentRequestFunction = new Function(
+		this.createPaymentRequestFunction = new Function(
 			this,
 			'c3CreatePaymentRequest',
 			{
@@ -92,7 +122,7 @@ export class C3AmazonConnectStack extends Stack {
 		);
 
 		console.log('Creating function c3ReportCustomerActivity...');
-		const reportCustomerActivityFunction = new Function(
+		this.reportCustomerActivityFunction = new Function(
 			this,
 			'c3ReportCustomerActivity',
 			{
@@ -106,7 +136,7 @@ export class C3AmazonConnectStack extends Stack {
 		);
 
 		console.log('Creating function c3TokenizeTransaction...');
-		const tokenizeTransactionFunction = new Function(
+		this.tokenizeTransactionFunction = new Function(
 			this,
 			'c3TokenizeTransaction',
 			{
@@ -119,17 +149,17 @@ export class C3AmazonConnectStack extends Stack {
 		);
 
 		console.log('Creating function c3SubmitPayment...');
-		const submitPaymentFunction = new Function(this, 'c3SubmitPayment', {
+		this.submitPaymentFunction = new Function(this, 'c3SubmitPayment', {
 			...commonLambdaProps,
 			description: 'Submits tokenized payment info to C3 for processing.',
 			code: Code.fromAsset(path.join(__dirname, 'lambda/c3-submit-payment')),
 		});
 
 		const lambdaFunctions = [
-			createPaymentRequestFunction,
-			reportCustomerActivityFunction,
-			tokenizeTransactionFunction,
-			submitPaymentFunction,
+			this.createPaymentRequestFunction,
+			this.reportCustomerActivityFunction,
+			this.tokenizeTransactionFunction,
+			this.submitPaymentFunction,
 		];
 		for (const lambdaFunction of lambdaFunctions) {
 			// Allow Amazon Connect to invoke the Lambda functions.
@@ -151,30 +181,34 @@ export class C3AmazonConnectStack extends Stack {
 				this,
 				`ConnectIntegration${lambdaFunctions.indexOf(lambdaFunction) + 1}`,
 				{
-					instanceId: amazonConnectInstanceArn,
+					instanceId: this.amazonConnectInstanceArn,
 					integrationType: 'LAMBDA_FUNCTION',
 					integrationArn: lambdaFunction.functionArn,
 				},
 			);
 		}
+	}
 
-		// Create the Amazon Connect flows.
+	/**
+	 * Creates the Amazon Connect flows.
+	 */
+	createAmazonConnectFlows() {
 		console.log('Creating flow module c3BaseDTMFPaymentFlowModule...');
 		const baseDtmfPaymentFlowModuleContent =
 			getBaseDtmfPaymentFlowModuleContent(
-				createPaymentRequestFunction.functionArn,
-				reportCustomerActivityFunction.functionArn,
-				tokenizeTransactionFunction.functionArn,
-				submitPaymentFunction.functionArn,
-				amazonConnectSecurityKeyId,
-				amazonConnectSecurityKeyCertificateContent,
+				this.createPaymentRequestFunction.functionArn,
+				this.reportCustomerActivityFunction.functionArn,
+				this.tokenizeTransactionFunction.functionArn,
+				this.submitPaymentFunction.functionArn,
+				this.amazonConnectSecurityKeyId,
+				this.amazonConnectSecurityKeyCertificateContent,
 			);
 
 		new CfnContactFlowModule(this, 'c3BaseDTMFPaymentFlowModule', {
 			name: 'C3 Base DTMF Payment',
 			description: 'Flow module for collecting payments with C3 using DTMF.',
 			content: baseDtmfPaymentFlowModuleContent,
-			instanceArn: amazonConnectInstanceArn,
+			instanceArn: this.amazonConnectInstanceArn,
 		});
 	}
 }
