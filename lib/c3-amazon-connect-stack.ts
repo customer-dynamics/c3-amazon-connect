@@ -196,10 +196,10 @@ export class C3AmazonConnectStack extends Stack {
 		console.log('Creating flow module c3BaseDTMFPaymentFlowModule...');
 		const baseDtmfPaymentFlowModuleContent =
 			getBaseDtmfPaymentFlowModuleContent(
-				this.createPaymentRequestFunction.functionArn,
-				this.reportCustomerActivityFunction.functionArn,
-				this.tokenizeTransactionFunction.functionArn,
-				this.submitPaymentFunction.functionArn,
+				this.createPaymentRequestFunction,
+				this.reportCustomerActivityFunction,
+				this.tokenizeTransactionFunction,
+				this.submitPaymentFunction,
 				this.amazonConnectSecurityKeyId,
 				this.amazonConnectSecurityKeyCertificateContent,
 			);

@@ -1,3 +1,4 @@
+import { Function } from 'aws-cdk-lib/aws-lambda';
 import * as flowModuleJson from './flows/modules/c3-base-dtmf-payment-flow-module.json';
 
 /**
@@ -12,10 +13,10 @@ import * as flowModuleJson from './flows/modules/c3-base-dtmf-payment-flow-modul
  * @returns A string representing the content for the base DTMF payment flow module.
  */
 export function getBaseDtmfPaymentFlowModuleContent(
-	createPaymentRequestLambdaArn: string,
-	reportCustomerActivityLambdaArn: string,
-	tokenizeTransactionLambdaArn: string,
-	submitPaymentLambdaArn: string,
+	createPaymentRequestLambdaFunction: Function,
+	reportCustomerActivityLambdaFunction: Function,
+	tokenizeTransactionLambdaFunction: Function,
+	submitPaymentLambdaFunction: Function,
 	amazonConnectSecurityKeyId: string,
 	amazonConnectSecurityKeyCertificateContent: string,
 ) {
@@ -27,19 +28,19 @@ export function getBaseDtmfPaymentFlowModuleContent(
 	// Replace Lambda placeholders with actual ARNs.
 	transformedContent = transformedContent.replace(
 		/<createPaymentRequestLambdaArn>/g,
-		createPaymentRequestLambdaArn,
+		createPaymentRequestLambdaFunction.functionArn,
 	);
 	transformedContent = transformedContent.replace(
 		/<reportCustomerActivityLambdaArn>/g,
-		reportCustomerActivityLambdaArn,
+		reportCustomerActivityLambdaFunction.functionArn,
 	);
 	transformedContent = transformedContent.replace(
 		/<tokenizeTransactionLambdaArn>/g,
-		tokenizeTransactionLambdaArn,
+		tokenizeTransactionLambdaFunction.functionArn,
 	);
 	transformedContent = transformedContent.replace(
 		/<submitPaymentLambdaArn>/g,
-		submitPaymentLambdaArn,
+		submitPaymentLambdaFunction.functionArn,
 	);
 
 	// Replace Amazon Connect security key placeholders with actual values.
