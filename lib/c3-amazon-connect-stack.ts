@@ -168,6 +168,7 @@ export class C3AmazonConnectStack extends Stack {
 			lambdaFunction.addPermission('AllowAmazonConnectInvoke', {
 				principal: new ServicePrincipal('connect.amazonaws.com'),
 				sourceArn: this.amazonConnectInstanceArn,
+				sourceAccount: this.account,
 				action: 'lambda:InvokeFunction',
 			});
 
