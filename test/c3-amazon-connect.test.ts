@@ -9,6 +9,7 @@ const mockContext = {
 	c3Env: 'prod',
 	c3ApiKey: 'placeholder',
 	c3VendorId: 'placeholder',
+	c3PaymentGateway: 'Zift',
 	logoUrl: 'placeholder',
 	supportPhone: 'placeholder',
 	supportEmail: 'placeholder',
@@ -35,7 +36,13 @@ describe('C3AmazonConnectStack', () => {
 			});
 		});
 
-		xit('Using code signing', () => {});
+		it('Using code signing', () => {
+			template.hasResourceProperties('AWS::Lambda::Function', {
+				CodeSigningConfigArn: {
+					'Fn::GetAtt': ['CodeSigningConfigD8D41C10', 'CodeSigningConfigArn'],
+				},
+			});
+		});
 
 		it('Has permissions to be invoked by Amazon Connect', () => {
 			template.hasResourceProperties('AWS::Lambda::Permission', {
