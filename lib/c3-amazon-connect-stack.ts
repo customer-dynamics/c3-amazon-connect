@@ -98,7 +98,7 @@ export class C3AmazonConnectStack extends Stack {
 		const commonLambdaProps = {
 			architecture: Architecture.ARM_64,
 			runtime: Runtime.NODEJS_20_X,
-			timeout: Duration.seconds(10),
+			timeout: Duration.seconds(8),
 			handler: 'index.handler',
 			environment: {
 				C3_API_KEY: this.c3ApiKey,
