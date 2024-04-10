@@ -26,29 +26,29 @@ export function getBaseDtmfPaymentFlowModuleContent(
 
 	// Replace Lambda placeholders with actual ARNs.
 	transformedContent = transformedContent.replace(
-		'<createPaymentRequestLambdaArn>',
+		/<createPaymentRequestLambdaArn>/g,
 		createPaymentRequestLambdaArn,
 	);
 	transformedContent = transformedContent.replace(
-		'<reportCustomerActivityLambdaArn>',
+		/<reportCustomerActivityLambdaArn>/g,
 		reportCustomerActivityLambdaArn,
 	);
 	transformedContent = transformedContent.replace(
-		'<tokenizeTransactionLambdaArn>',
+		/<tokenizeTransactionLambdaArn>/g,
 		tokenizeTransactionLambdaArn,
 	);
 	transformedContent = transformedContent.replace(
-		'<submitPaymentLambdaArn>',
+		/<submitPaymentLambdaArn>/g,
 		submitPaymentLambdaArn,
 	);
 
 	// Replace Amazon Connect security key placeholders with actual values.
 	transformedContent = transformedContent.replace(
-		'<amazonConnectSecurityKeyId>',
+		/<amazonConnectSecurityKeyId>/g,
 		amazonConnectSecurityKeyId,
 	);
 	transformedContent = transformedContent.replace(
-		'<amazonConnectSecurityKeyCertificateContent>',
+		/<amazonConnectSecurityKeyCertificateContent>/g,
 		amazonConnectSecurityKeyCertificateContent,
 	);
 
