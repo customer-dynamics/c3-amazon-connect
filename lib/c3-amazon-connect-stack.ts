@@ -4,6 +4,7 @@ import {
 	CfnIntegrationAssociation,
 } from 'aws-cdk-lib/aws-connect';
 import { Architecture, Code, Function, Runtime } from 'aws-cdk-lib/aws-lambda';
+import { ServicePrincipal } from 'aws-cdk-lib/aws-iam';
 import { Construct } from 'constructs';
 import path = require('path');
 
@@ -163,15 +164,12 @@ export class C3AmazonConnectStack extends Stack {
 		];
 		for (const lambdaFunction of lambdaFunctions) {
 			// Allow Amazon Connect to invoke the Lambda functions.
-			// console.log('Adding Amazon Connect permissions for function...');
-			// lambdaFunction.addToRolePolicy(
-			// 	new PolicyStatement({
-			// 		actions: ['lambda:InvokeFunction'],
-			// 		resources: [lambdaFunction.functionArn],
-			// 		effect: Effect.ALLOW,
-			// 		principals: [new ServicePrincipal('connect.amazonaws.com')],
-			// 	}),
-			// );
+			console.log('Adding Amazon Connect permissions for function...');
+			lambdaFunction.addPermission('AllowAmazonConnectInvoke', {
+				principal: new ServicePrincipal('connect.amazonaws.com'),
+				sourceArn: this.amazonConnectInstanceArn,
+				action: 'lambda:InvokeFunction',
+			});
 
 			// Create an integration between the Lambda functions and Amazon Connect.
 			console.log(
