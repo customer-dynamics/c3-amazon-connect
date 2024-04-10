@@ -9,6 +9,7 @@ import { Construct } from 'constructs';
 import path = require('path');
 
 import { getBaseDtmfPaymentFlowModuleContent } from './connect/content-transformations.js';
+import { existsSync, mkdirSync, writeFileSync } from 'fs';
 
 export class C3AmazonConnectStack extends Stack {
 	amazonConnectInstanceArn: string;
@@ -54,7 +55,7 @@ export class C3AmazonConnectStack extends Stack {
 	/**
 	 * Ensures that all required context variables are set. Throws an error if any are missing.
 	 */
-	validateContextVariables() {
+	validateContextVariables(): void {
 		console.log('Validating context variables...');
 		if (!this.amazonConnectInstanceArn) {
 			throw new Error('amazonConnectInstanceArn context variable is required.');
@@ -92,7 +93,7 @@ export class C3AmazonConnectStack extends Stack {
 	/**
 	 * Creates the Lambda functions and integrates them with Amazon Connect.
 	 */
-	createLambdaFunctions() {
+	createLambdaFunctions(): void {
 		// Create the Lambda functions.
 		const commonLambdaProps = {
 			architecture: Architecture.ARM_64,
@@ -191,7 +192,7 @@ export class C3AmazonConnectStack extends Stack {
 	/**
 	 * Creates the Amazon Connect flows.
 	 */
-	createAmazonConnectFlows() {
+	createAmazonConnectFlows(): void {
 		console.log('Creating flow module c3BaseDTMFPaymentFlowModule...');
 		const baseDtmfPaymentFlowModuleContent =
 			getBaseDtmfPaymentFlowModuleContent(
@@ -202,7 +203,13 @@ export class C3AmazonConnectStack extends Stack {
 				this.amazonConnectSecurityKeyId,
 				this.amazonConnectSecurityKeyCertificateContent,
 			);
-
+		if (!existsSync('./exports')) {
+			mkdirSync('./exports');
+		}
+		writeFileSync(
+			'./exports/c3BaseDTMFPaymentFlowModule',
+			baseDtmfPaymentFlowModuleContent,
+		);
 		new CfnContactFlowModule(this, 'c3BaseDTMFPaymentFlowModule', {
 			name: 'C3 Base DTMF Payment',
 			description: 'Flow module for collecting payments with C3 using DTMF.',
