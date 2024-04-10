@@ -23,4 +23,12 @@ jobs:
         run: npm run build
 
       - name: Synthesize CDK app
-        run: npx cdk synth
+        run: npx cdk synth \
+          --context amazonConnectInstanceArn=placeholder \
+          --context amazonConnectSecurityKeyId=placeholder \
+          --context amazonConnectSecurityKeyCertificateContent=placeholder \
+          --context c3ApiKey=placeholder \
+          --context c3VendorId=placeholder \
+          --context logoUrl=placeholder \
+          --context supportPhone=placeholder \
+          --context supportEmail=placeholder \
