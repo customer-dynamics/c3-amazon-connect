@@ -187,12 +187,14 @@ export class C3AmazonConnectStack extends Stack {
 			secretStringValue: SecretValue.unsafePlainText('update with key text'),
 			description: 'The key for decrypting payment information for C3.',
 		});
+		privateKeySM.grantRead(this.tokenizeTransactionFunction);
 
 		const privateKeyIdSM = new Secret(this, 'privateKeyIdSM', {
 			secretName: 'CONNECT_INPUT_KEY_ID',
 			secretStringValue: SecretValue.unsafePlainText('update with key id'),
 			description: 'The private key for decrypting payment information for C3.',
 		});
+		privateKeyIdSM.grantRead(this.tokenizeTransactionFunction);
 
 		console.log('Creating policy for decrypting...');
 		const tokenizeDecryptPolicy = new PolicyStatement();
@@ -218,12 +220,14 @@ export class C3AmazonConnectStack extends Stack {
 				secretStringValue: SecretValue.unsafePlainText('update with user name'),
 				description: 'The username for your Zift account.',
 			});
+			ziftUserNameSM.grantRead(this.tokenizeTransactionFunction)
 
 			const ziftPasswordSM = new Secret(this, 'ziftPasswordSM', {
 				secretName: 'ZIFT_PASSWORD',
 				secretStringValue: SecretValue.unsafePlainText('update with password'),
 				description: 'The password for your Zift account.',
 			});
+			ziftPasswordSM.grantRead(this.tokenizeTransactionFunction);
 
 			const ziftAccountIdSM = new Secret(this, 'ziftAccountIdSM', {
 				secretName: 'ZIFT_ACCOUNT_ID',
@@ -232,7 +236,12 @@ export class C3AmazonConnectStack extends Stack {
 				),
 				description: 'The account ID for your Zift account.',
 			});
-			
+			ziftAccountIdSM.grantRead(this.tokenizeTransactionFunction);
+			tokenizePolicySM.addResources(
+				ziftUserNameSM.secretArn,
+				ziftPasswordSM.secretArn,
+				ziftAccountIdSM.secretArn,
+			);
 		}
 
 		// Authorize.net
