@@ -17,6 +17,7 @@ export function getBaseDtmfPaymentFlowModuleContent(
 	reportCustomerActivityLambdaFunction: Function,
 	tokenizeTransactionLambdaFunction: Function,
 	submitPaymentLambdaFunction: Function,
+	emailReceiptLambdaFunction: Function,
 	amazonConnectSecurityKeyId: string,
 	amazonConnectSecurityKeyCertificateContent: string,
 ) {
@@ -41,6 +42,10 @@ export function getBaseDtmfPaymentFlowModuleContent(
 	transformedContent = transformedContent.replace(
 		/<submitPaymentLambdaArn>/g,
 		submitPaymentLambdaFunction.functionArn,
+	);
+	transformedContent = transformedContent.replace(
+		/<emailReceiptLambdaArn>/g,
+		emailReceiptLambdaFunction.functionArn,
 	);
 
 	// Replace Amazon Connect security key placeholders with actual values.

@@ -38,6 +38,7 @@ export class C3AmazonConnectStack extends Stack {
 	reportCustomerActivityFunction: Function;
 	tokenizeTransactionFunction: Function;
 	submitPaymentFunction: Function;
+	emailReceiptFunction: Function;
 
 	constructor(scope: Construct, id: string, props?: StackProps) {
 		super(scope, id, props);
@@ -254,11 +255,19 @@ export class C3AmazonConnectStack extends Stack {
 			},
 		});
 
+		console.log('Creating function c3EmailReceipt...');
+		this.emailReceiptFunction = new Function(this, 'c3EmailReceipt', {
+			...commonLambdaProps,
+			description: 'Creates a payment request through the C3 API.',
+			code: Code.fromAsset(join(__dirname, 'lambda/c3-email-receipt')),
+		});
+
 		const lambdaFunctions = [
 			this.createPaymentRequestFunction,
 			this.reportCustomerActivityFunction,
 			this.tokenizeTransactionFunction,
 			this.submitPaymentFunction,
+			this.emailReceiptFunction,
 		];
 		for (const lambdaFunction of lambdaFunctions) {
 			// Allow Amazon Connect to invoke the Lambda functions.
@@ -297,6 +306,7 @@ export class C3AmazonConnectStack extends Stack {
 				this.reportCustomerActivityFunction,
 				this.tokenizeTransactionFunction,
 				this.submitPaymentFunction,
+				this.emailReceiptFunction,
 				this.amazonConnectSecurityKeyId,
 				this.amazonConnectSecurityKeyCertificateContent,
 			);
