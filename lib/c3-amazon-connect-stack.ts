@@ -239,9 +239,11 @@ export class C3AmazonConnectStack extends Stack {
 				...commonLambdaProps,
 				description: 'Tokenizes customer payment details.',
 				code: Code.fromAsset(join(__dirname, 'lambda/c3-tokenize-transaction')),
-				initialPolicy: [tokenizePolicySM, tokenizeDecryptPolicy],
+				initialPolicy: [tokenizeDecryptPolicy],
 			},
 		);
+		tokenizePolicySM.addPrincipals(this.tokenizeTransactionFunction.grantPrincipal);
+		this.tokenizeTransactionFunction.addToRolePolicy(tokenizePolicySM);
 
 		console.log('Creating function c3SubmitPayment...');
 		this.submitPaymentFunction = new Function(this, 'c3SubmitPayment', {
