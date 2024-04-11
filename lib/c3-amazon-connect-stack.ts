@@ -190,7 +190,7 @@ export class C3AmazonConnectStack extends Stack {
 
 		console.log('Creating policy for secrets manager...');
 		const tokenizePolicySM = new PolicyStatement();
-		tokenizePolicySM.addActions('secretsmanager:GetSecretValue');
+		tokenizePolicySM.addActions('secretsmanager:GetSecretValue', 'secretsmanager:BatchGetSecretValue');
 		tokenizePolicySM.addResources(
 			privateKeySM.secretArn,
 			privateKeyIdSM.secretArn,
