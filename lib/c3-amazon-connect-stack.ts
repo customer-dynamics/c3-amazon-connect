@@ -169,6 +169,17 @@ export class C3AmazonConnectStack extends Stack {
 			},
 		);
 
+
+		console.log('Creating function c3TokenizeTransaction...');
+		this.tokenizeTransactionFunction = new Function(
+			this,
+			'c3TokenizeTransaction',
+			{
+				...commonLambdaProps,
+				description: 'Tokenizes customer payment details.',
+				code: Code.fromAsset(join(__dirname, 'lambda/c3-tokenize-transaction')),
+			},
+		);
 		// Secrets needed for working with the gateway
 		console.log('Creating decryption secrets for Amazon Connect...');
 		const privateKeySM = new Secret(this, 'privateKeySM', {
@@ -187,6 +198,8 @@ export class C3AmazonConnectStack extends Stack {
 		const tokenizeDecryptPolicy = new PolicyStatement();
 		tokenizeDecryptPolicy.addActions('kms:Decrypt');
 		tokenizeDecryptPolicy.addResources('*');
+
+		this.tokenizeTransactionFunction.addToRolePolicy(tokenizeDecryptPolicy);
 
 		console.log('Creating policy for secrets manager...');
 		const tokenizePolicySM = new PolicyStatement();
@@ -219,11 +232,7 @@ export class C3AmazonConnectStack extends Stack {
 				),
 				description: 'The account ID for your Zift account.',
 			});
-			tokenizePolicySM.addResources(
-				ziftUserNameSM.secretArn,
-				ziftPasswordSM.secretArn,
-				ziftAccountIdSM.secretArn,
-			);
+			
 		}
 
 		// Authorize.net
@@ -231,19 +240,8 @@ export class C3AmazonConnectStack extends Stack {
 			// Not Yet Implemented
 		}
 
-		console.log('Creating function c3TokenizeTransaction...');
-		this.tokenizeTransactionFunction = new Function(
-			this,
-			'c3TokenizeTransaction',
-			{
-				...commonLambdaProps,
-				description: 'Tokenizes customer payment details.',
-				code: Code.fromAsset(join(__dirname, 'lambda/c3-tokenize-transaction')),
-				initialPolicy: [tokenizeDecryptPolicy],
-			},
-		);
-		tokenizePolicySM.addPrincipals(this.tokenizeTransactionFunction.grantPrincipal);
 		this.tokenizeTransactionFunction.addToRolePolicy(tokenizePolicySM);
+
 
 		console.log('Creating function c3SubmitPayment...');
 		this.submitPaymentFunction = new Function(this, 'c3SubmitPayment', {
