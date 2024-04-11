@@ -27,3 +27,7 @@ updates:
     directory: 'lib/lambda/c3-submit-payment'
     schedule:
       interval: 'daily'
+  - package-ecosystem: 'npm'
+    directory: 'lib/lambda/c3-email-receipt'
+    schedule:
+      interval: 'daily'
