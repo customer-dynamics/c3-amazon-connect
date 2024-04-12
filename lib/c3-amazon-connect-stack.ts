@@ -169,7 +169,6 @@ export class C3AmazonConnectStack extends Stack {
 			},
 		);
 
-
 		console.log('Creating function c3TokenizeTransaction...');
 		this.tokenizeTransactionFunction = new Function(
 			this,
@@ -205,7 +204,10 @@ export class C3AmazonConnectStack extends Stack {
 
 		console.log('Creating policy for secrets manager...');
 		const tokenizePolicySM = new PolicyStatement();
-		tokenizePolicySM.addActions('secretsmanager:GetSecretValue', 'secretsmanager:BatchGetSecretValue');
+		tokenizePolicySM.addActions(
+			'secretsmanager:GetSecretValue',
+			'secretsmanager:BatchGetSecretValue',
+		);
 		tokenizePolicySM.addResources(
 			privateKeySM.secretArn,
 			privateKeyIdSM.secretArn,
@@ -220,7 +222,7 @@ export class C3AmazonConnectStack extends Stack {
 				secretStringValue: SecretValue.unsafePlainText('update with user name'),
 				description: 'The username for your Zift account.',
 			});
-			ziftUserNameSM.grantRead(this.tokenizeTransactionFunction)
+			ziftUserNameSM.grantRead(this.tokenizeTransactionFunction);
 
 			const ziftPasswordSM = new Secret(this, 'ziftPasswordSM', {
 				secretName: 'ZIFT_PASSWORD',
@@ -250,7 +252,6 @@ export class C3AmazonConnectStack extends Stack {
 		}
 
 		this.tokenizeTransactionFunction.addToRolePolicy(tokenizePolicySM);
-
 
 		console.log('Creating function c3SubmitPayment...');
 		this.submitPaymentFunction = new Function(this, 'c3SubmitPayment', {
