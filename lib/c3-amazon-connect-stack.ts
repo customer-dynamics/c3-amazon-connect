@@ -177,6 +177,10 @@ export class C3AmazonConnectStack extends Stack {
 				...commonLambdaProps,
 				description: 'Tokenizes customer payment details.',
 				code: Code.fromAsset(join(__dirname, 'lambda/c3-tokenize-transaction')),
+				environment: {
+					...commonLambdaProps.environment,
+					CONNECT_KEY_ID: this.amazonConnectSecurityKeyId,
+				}
 			},
 		);
 		// Secrets needed for working with the gateway
@@ -185,12 +189,6 @@ export class C3AmazonConnectStack extends Stack {
 			secretName: 'C3_CONNECT_INPUT_DECRYPTION_KEY',
 			secretStringValue: SecretValue.unsafePlainText('update with key text'),
 			description: 'The key for decrypting payment information for C3.',
-		});
-
-		const privateKeyIdSM = new Secret(this, 'privateKeyIdSM', {
-			secretName: 'C3_CONNECT_INPUT_KEY_ID',
-			secretStringValue: SecretValue.unsafePlainText('update with key id'),
-			description: 'The private key for decrypting payment information for C3.',
 		});
 
 		console.log('Creating policy for decrypting...');
@@ -212,7 +210,6 @@ export class C3AmazonConnectStack extends Stack {
 		tokenizePolicySM.addActions('secretsmanager:GetSecretValue', 'secretsmanager:DescribeSecret');
 		tokenizePolicySM.addResources(
 			privateKeySM.secretArn,
-			privateKeyIdSM.secretArn,
 		);
 
 		// Gateway-specific secrets.
