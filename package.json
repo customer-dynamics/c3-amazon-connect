@@ -8,11 +8,12 @@
 		"style:check": "npx prettier --check .",
 		"style:fix": "npx prettier --write .",
 		"lint": "npx eslint .",
-		"build": "tsc",
+		"build": "tsc && npm run build:lambdas",
 		"watch": "tsc -w",
 		"test": "jest",
 		"cdk": "cdk",
-		"deploy": "npm run build && cdk deploy"
+		"deploy": "npm run build && cdk deploy",
+		"build:lambdas": "npm --prefix ./lib/lambda/c3-create-payment-request install && npm --prefix ./lib/lambda/c3-email-receipt install && npm --prefix ./lib/lambda/c3-report-customer-activity install && npm --prefix ./lib/lambda/c3-submit-payment install && npm --prefix ./lib/lambda/c3-tokenize-transaction install"
 	},
 	"devDependencies": {
 		"@types/jest": "^29.5.12",
