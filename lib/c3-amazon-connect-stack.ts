@@ -180,6 +180,8 @@ export class C3AmazonConnectStack extends Stack {
 				environment: {
 					...commonLambdaProps.environment,
 					CONNECT_KEY_ID: this.amazonConnectSecurityKeyId,
+					C3_PAYMENT_GATEWAY: this.c3PaymentGateway,
+					GATEWAY_URL: this.getGatewayUrl(),
 				},
 			},
 		);
