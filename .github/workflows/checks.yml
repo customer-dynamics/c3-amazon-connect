@@ -21,20 +21,38 @@ jobs:
       - name: Check formatting
         run: npx prettier@$(node -p "require('./package.json').devDependencies['prettier']") --check .
 
+      - name: Use placeholder context values
+        uses: DamianReeves/write-file-action@v1.3
+        path: cdk.context.json
+        write-mode: overwrite
+        contents: |
+        {
+          "amazonConnect": {
+            "instanceArn": "placeholder",
+            "securityKeyId": "placeholder",
+            "securityKeyCertificateContent": "placeholder"
+          },
+          "c3": {
+            "env": "dev",
+            "vendorId": "placeholder",
+            "paymentGateway": "Zift",
+            "apiKey": "placeholder"
+          },
+          "logoUrl": "placeholder",
+          "supportPhone": "placeholder",
+          "supportEmail": "placeholder",
+          "features": {
+            "agentInitiatedDTMF": true,
+            "agentInitiatedDigital": true,
+            "selfServiceDTMF": true
+          }
+        }
+            
       - name: Build CDK app
         run: npm run build
 
       - name: Synthesize CloudFormation templates
         run: npx cdk synth
-          --context amazonConnectInstanceArn=placeholder
-          --context amazonConnectSecurityKeyId=placeholder
-          --context amazonConnectSecurityKeyCertificateContent=placeholder
-          --context c3ApiKey=placeholder
-          --context c3VendorId=placeholder
-          --context c3PaymentGateway=Zift
-          --context logoUrl=placeholder
-          --context supportPhone=placeholder
-          --context supportEmail=placeholder
 
       - name: Run tests
         run: npm test
