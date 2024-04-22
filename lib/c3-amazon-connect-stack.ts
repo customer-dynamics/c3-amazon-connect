@@ -16,6 +16,7 @@ import { PolicyStatement, ServicePrincipal } from 'aws-cdk-lib/aws-iam';
 import { SigningProfile, Platform } from 'aws-cdk-lib/aws-signer';
 import { Secret } from 'aws-cdk-lib/aws-secretsmanager';
 import { Construct } from 'constructs';
+import { CfnApplication } from 'aws-cdk-lib/aws-appintegrations';
 
 import { getBaseDtmfPaymentFlowModuleContent } from './connect/content-transformations.js';
 import {
@@ -59,12 +60,19 @@ export class C3AmazonConnectStack extends Stack {
 		this.validateContextVariables();
 		this.createLambdaFunctions();
 		this.createAmazonConnectFlows();
+
+		if (
+			this.featuresContext.agentInitiatedDTMF ||
+			this.featuresContext.agentInitiatedDigital
+		) {
+			this.create3rdPartyApp();
+		}
 	}
 
 	/**
 	 * Ensures that all required context variables are set. Throws an error if any are missing.
 	 */
-	validateContextVariables(): void {
+	private validateContextVariables(): void {
 		if (!this.logoUrl) {
 			throw new Error('logoUrl context variable is required.');
 		}
@@ -79,7 +87,7 @@ export class C3AmazonConnectStack extends Stack {
 	/**
 	 * Creates the Lambda functions and integrates them with Amazon Connect.
 	 */
-	createLambdaFunctions(): void {
+	private createLambdaFunctions(): void {
 		// Set up code signing.
 		const signingProfile = new SigningProfile(this, 'SigningProfile', {
 			platform: Platform.AWS_LAMBDA_SHA384_ECDSA,
@@ -268,7 +276,7 @@ export class C3AmazonConnectStack extends Stack {
 	/**
 	 * Creates the Amazon Connect flows.
 	 */
-	createAmazonConnectFlows(): void {
+	private createAmazonConnectFlows(): void {
 		console.log('Creating flow module c3BaseDTMFPaymentFlowModule...');
 		const baseDtmfPaymentFlowModuleContent =
 			getBaseDtmfPaymentFlowModuleContent(
@@ -296,11 +304,39 @@ export class C3AmazonConnectStack extends Stack {
 	}
 
 	/**
+	 * Creates a 3rd party application to be used for agent-initiated payments and associates it with your Amazon Connect instance.
+	 *
+	 * This is required in order for an agent to initiate a payment while on a call with a customer.
+	 */
+	private create3rdPartyApp(): void {
+		// Create the app.
+		const instanceId = this.amazonConnectContext.instanceArn.split('/')[1];
+		const application = new CfnApplication(this, 'C3AmazonConnectApp', {
+			name: 'C3 Payment',
+			namespace: 'c3-payment',
+			description: 'Agent application for collecting payments with C3.',
+			applicationSourceConfig: {
+				externalUrlConfig: {
+					accessUrl: `https://${this.c3Context.vendorId}.dev.c2a.link/agent-workspace?instanceId=${instanceId}`,
+					approvedOrigins: [], // Don't allow any other origins.
+				},
+			},
+		});
+
+		// Associate the app with the Amazon Connect instance.
+		new CfnIntegrationAssociation(this, `ConnectIntegrationC3App`, {
+			instanceId: this.amazonConnectContext.instanceArn,
+			integrationType: 'APPLICATION',
+			integrationArn: application.attrApplicationArn,
+		});
+	}
+
+	/**
 	 * Gets the URL used for the payment gateway.
 	 *
 	 * @returns The payment gateway URL.
 	 */
-	getGatewayUrl() {
+	private getGatewayUrl() {
 		switch (this.c3Context.paymentGateway) {
 			case C3PaymentGateway.Zift:
 				return 'https://secure.zift.io/gates/xurl?';
