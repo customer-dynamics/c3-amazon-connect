@@ -19,7 +19,7 @@ import { Construct } from 'constructs';
 
 import { getBaseDtmfPaymentFlowModuleContent } from './connect/content-transformations.js';
 
-const GATEWAYS = ['Nexio', 'NMI', 'Zift', 'AuthNet'];
+const GATEWAYS = ['Zift'];
 
 export class C3AmazonConnectStack extends Stack {
 	amazonConnectInstanceArn: string;
@@ -246,11 +246,6 @@ export class C3AmazonConnectStack extends Stack {
 				ziftPasswordSM.secretArn,
 				ziftAccountIdSM.secretArn,
 			);
-		}
-
-		// Authorize.net
-		if (this.c3PaymentGateway === 'AuthNet') {
-			// Not Yet Implemented
 		}
 
 		this.tokenizeTransactionFunction.addToRolePolicy(tokenizePolicySM);
