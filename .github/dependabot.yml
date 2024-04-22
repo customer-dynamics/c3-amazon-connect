@@ -5,7 +5,14 @@
 
 version: 2
 updates:
+  # Main dependencies
   - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'daily'
+
+  # GitHub Actions
+  - package-ecosystem: 'github-actions'
     directory: '/'
     schedule:
       interval: 'daily'
