@@ -26,28 +26,28 @@ jobs:
         path: cdk.context.json
         write-mode: overwrite
         contents: |
-        {
-          "amazonConnect": {
-            "instanceArn": "placeholder",
-            "securityKeyId": "placeholder",
-            "securityKeyCertificateContent": "placeholder"
-          },
-          "c3": {
-            "env": "dev",
-            "vendorId": "placeholder",
-            "paymentGateway": "Zift",
-            "apiKey": "placeholder"
-          },
-          "logoUrl": "placeholder",
-          "supportPhone": "placeholder",
-          "supportEmail": "placeholder",
-          "features": {
-            "agentInitiatedDTMF": true,
-            "agentInitiatedDigital": true,
-            "selfServiceDTMF": true
+          {
+            "amazonConnect": {
+              "instanceArn": "placeholder",
+              "securityKeyId": "placeholder",
+              "securityKeyCertificateContent": "placeholder"
+            },
+            "c3": {
+              "env": "dev",
+              "vendorId": "placeholder",
+              "paymentGateway": "Zift",
+              "apiKey": "placeholder"
+            },
+            "logoUrl": "placeholder",
+            "supportPhone": "placeholder",
+            "supportEmail": "placeholder",
+            "features": {
+              "agentInitiatedDTMF": true,
+              "agentInitiatedDigital": true,
+              "selfServiceDTMF": true
+            }
           }
-        }
-            
+
       - name: Build CDK app
         run: npm run build
 
