@@ -1,12 +1,21 @@
 {
-	"amazonConnectInstanceArn": "",
-	"amazonConnectSecurityKeyId": "",
-	"amazonConnectSecurityKeyCertificateContent": "",
-	"c3Env": "prod",
-	"c3ApiKey": "",
-	"c3VendorId": "",
-	"c3PaymentGateway": "",
+	"amazonConnect": {
+		"instanceArn": "",
+		"securityKeyId": "",
+		"securityKeyCertificateContent": ""
+	},
+	"c3": {
+		"env": "prod",
+		"vendorId": "",
+		"paymentGateway": "",
+		"apiKey": ""
+	},
 	"logoUrl": "",
 	"supportPhone": "",
-	"supportEmail": ""
+	"supportEmail": "",
+	"features": {
+		"agentInitiatedDTMF": true,
+		"agentInitiatedDigital": true,
+		"selfServiceDTMF": true
+	}
 }
