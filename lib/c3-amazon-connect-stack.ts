@@ -26,6 +26,7 @@ import {
 import { C3Context, validateC3Context } from './models/c3-context.js';
 import { C3PaymentGateway } from './models/enums/c3-payment-gateway.js';
 import { FeaturesContext } from './models/features-context.js';
+import { Zift } from './payment-gateways/zift.js';
 
 export class C3AmazonConnectStack extends Stack {
 	private amazonConnectContext: AmazonConnectContext;
@@ -61,6 +62,7 @@ export class C3AmazonConnectStack extends Stack {
 		this.createLambdaFunctions();
 		this.createAmazonConnectFlows();
 
+		// Create resources for agent-initiated payments.
 		if (
 			this.featuresContext.agentInitiatedDTMF ||
 			this.featuresContext.agentInitiatedDigital
@@ -189,35 +191,8 @@ export class C3AmazonConnectStack extends Stack {
 		);
 		tokenizePolicySM.addResources(privateKeySM.secretArn);
 
-		// Gateway-specific secrets.
-		// Zift
-		if (this.c3Context.paymentGateway === C3PaymentGateway.Zift) {
-			console.log('Creating Zift secrets...');
-			const ziftUserNameSM = new Secret(this, 'ziftUserNameSM', {
-				secretName: 'ZIFT_USER_NAME',
-				secretStringValue: SecretValue.unsafePlainText('update with user name'),
-				description: 'The username for your Zift account.',
-			});
-
-			const ziftPasswordSM = new Secret(this, 'ziftPasswordSM', {
-				secretName: 'ZIFT_PASSWORD',
-				secretStringValue: SecretValue.unsafePlainText('update with password'),
-				description: 'The password for your Zift account.',
-			});
-
-			const ziftAccountIdSM = new Secret(this, 'ziftAccountIdSM', {
-				secretName: 'ZIFT_ACCOUNT_ID',
-				secretStringValue: SecretValue.unsafePlainText(
-					'update with account id',
-				),
-				description: 'The account ID for your Zift account.',
-			});
-			tokenizePolicySM.addResources(
-				ziftUserNameSM.secretArn,
-				ziftPasswordSM.secretArn,
-				ziftAccountIdSM.secretArn,
-			);
-		}
+		// Create secrets for payment gateway.
+		new Zift(this, tokenizePolicySM);
 
 		this.tokenizeTransactionFunction.addToRolePolicy(tokenizePolicySM);
 
