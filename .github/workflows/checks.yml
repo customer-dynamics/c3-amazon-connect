@@ -21,6 +21,9 @@ jobs:
       - name: Check formatting
         run: npx prettier@$(node -p "require('./package.json').devDependencies['prettier']") --check .
 
+      - name: Build CDK app
+        run: npm run build
+
       - name: Use placeholder context values
         uses: DamianReeves/write-file-action@v1.3
         with:
@@ -48,9 +51,6 @@ jobs:
                 "selfServiceDTMF": true
               }
             }
-
-      - name: Build CDK app
-        run: npm run build
 
       - name: Synthesize CloudFormation templates
         run: npx cdk synth
