@@ -180,7 +180,7 @@ export class C3AmazonConnectStack extends Stack {
 				environment: {
 					...commonLambdaProps.environment,
 					CONNECT_KEY_ID: this.amazonConnectSecurityKeyId,
-				}
+				},
 			},
 		);
 		// Secrets needed for working with the gateway
@@ -200,17 +200,21 @@ export class C3AmazonConnectStack extends Stack {
 
 		console.log('Create batch get secrets policy');
 		const tokenizeBatchPolicySM = new PolicyStatement();
-		tokenizeBatchPolicySM.addActions('secretsmanager:BatchGetSecretValue', 'secretsmanager:ListSecrets');
+		tokenizeBatchPolicySM.addActions(
+			'secretsmanager:BatchGetSecretValue',
+			'secretsmanager:ListSecrets',
+		);
 		tokenizeBatchPolicySM.addResources('*');
 
 		this.tokenizeTransactionFunction.addToRolePolicy(tokenizeBatchPolicySM);
 
 		console.log('Creating policy for secrets manager...');
 		const tokenizePolicySM = new PolicyStatement();
-		tokenizePolicySM.addActions('secretsmanager:GetSecretValue', 'secretsmanager:DescribeSecret');
-		tokenizePolicySM.addResources(
-			privateKeySM.secretArn,
+		tokenizePolicySM.addActions(
+			'secretsmanager:GetSecretValue',
+			'secretsmanager:DescribeSecret',
 		);
+		tokenizePolicySM.addResources(privateKeySM.secretArn);
 
 		// Gateway-specific secrets.
 		// Zift
