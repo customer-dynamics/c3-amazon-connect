@@ -1,6 +1,6 @@
 import { AmazonConnectContext } from './amazon-connect-context';
 import { C3Context } from './c3-context';
-import { Features } from './features';
+import { FeaturesContext } from './features-context';
 
 export interface Context {
 	amazonConnect: AmazonConnectContext;
@@ -8,5 +8,5 @@ export interface Context {
 	logoUrl: string;
 	supportPhone: string;
 	supportEmail: string;
-	features: Features;
+	features: FeaturesContext;
 }
