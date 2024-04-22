@@ -1,18 +1,30 @@
 import { App } from 'aws-cdk-lib';
 import { C3AmazonConnectStack } from '../lib/c3-amazon-connect-stack';
 import { Template } from 'aws-cdk-lib/assertions';
+import { Context } from '../lib/models/context';
+import { C3PaymentGateway } from '../lib/models/enums/c3-payment-gateway';
+import { C3Environment } from '../lib/models/enums/c3-environment';
 
-const mockContext = {
-	amazonConnectInstanceArn: 'placeholder',
-	amazonConnectSecurityKeyId: 'placeholder',
-	amazonConnectSecurityKeyCertificateContent: 'placeholder',
-	c3Env: 'prod',
-	c3ApiKey: 'placeholder',
-	c3VendorId: 'placeholder',
-	c3PaymentGateway: 'Zift',
+const mockContext: Context = {
+	amazonConnect: {
+		instanceArn: 'placeholder',
+		securityKeyId: 'placeholder',
+		securityKeyCertificateContent: 'placeholder',
+	},
+	c3: {
+		env: C3Environment.Prod,
+		apiKey: 'placeholder',
+		vendorId: 'placeholder',
+		paymentGateway: C3PaymentGateway.Zift,
+	},
 	logoUrl: 'placeholder',
 	supportPhone: 'placeholder',
 	supportEmail: 'placeholder',
+	features: {
+		agentInitiatedDTMF: true,
+		agentInitiatedDigital: true,
+		selfServiceDTMF: true,
+	},
 };
 
 describe('C3AmazonConnectStack', () => {
