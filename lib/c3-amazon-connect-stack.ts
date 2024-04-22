@@ -309,6 +309,7 @@ export class C3AmazonConnectStack extends Stack {
 	 * This is required in order for an agent to initiate a payment while on a call with a customer.
 	 */
 	private create3rdPartyApp(): void {
+		console.log('Creating 3rd party application...');
 		// Create the app.
 		const instanceId = this.amazonConnectContext.instanceArn.split('/')[1];
 		const application = new CfnApplication(this, 'C3AmazonConnectApp', {
