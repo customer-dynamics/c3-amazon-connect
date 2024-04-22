@@ -18,7 +18,7 @@ export function validateC3Context(c3Context: C3Context): void {
 		throw new Error('C3 context variables are required.');
 	} else if (!c3Context.env) {
 		throw new Error('c3.env context variable is required.');
-	} else if (Object.values(C3Environment).includes(c3Context.env)) {
+	} else if (!Object.values(C3Environment).includes(c3Context.env)) {
 		throw new Error(
 			`c3.env context variable is invalid. Must be one of: ${Object.values(C3Environment).join(', ')}`,
 		);
@@ -27,7 +27,7 @@ export function validateC3Context(c3Context: C3Context): void {
 	} else if (!c3Context.paymentGateway) {
 		throw new Error('c3.paymentGateway context variable is required.');
 	} else if (
-		Object.values(C3PaymentGateway).includes(c3Context.paymentGateway)
+		!Object.values(C3PaymentGateway).includes(c3Context.paymentGateway)
 	) {
 		throw new Error(
 			`c3.paymentGateway context variable is invalid. Must be one of: ${Object.values(C3PaymentGateway).join(', ')}`,
