@@ -24,10 +24,12 @@ import {
 } from './models/amazon-connect-context.js';
 import { C3Context, validateC3Context } from './models/c3-context.js';
 import { C3PaymentGateway } from './models/enums/c3-payment-gateway.js';
+import { FeaturesContext } from './models/features-context.js';
 
 export class C3AmazonConnectStack extends Stack {
 	private amazonConnectContext: AmazonConnectContext;
 	private c3Context: C3Context;
+	private featuresContext: FeaturesContext;
 
 	logoUrl: string;
 	supportPhone: string;
@@ -43,16 +45,17 @@ export class C3AmazonConnectStack extends Stack {
 	constructor(scope: Construct, id: string, props?: StackProps) {
 		super(scope, id, props);
 
+		// Validate inputs.
 		this.amazonConnectContext = this.node.tryGetContext('amazonConnect');
 		validateAmazonConnectContext(this.amazonConnectContext);
-
 		this.c3Context = this.node.tryGetContext('c3');
 		validateC3Context(this.c3Context);
-
+		this.featuresContext = this.node.tryGetContext('features');
 		this.logoUrl = this.node.tryGetContext('logoUrl');
 		this.supportPhone = this.node.tryGetContext('supportPhone');
 		this.supportEmail = this.node.tryGetContext('supportEmail');
 
+		// Create resources.
 		this.validateContextVariables();
 		this.createLambdaFunctions();
 		this.createAmazonConnectFlows();
