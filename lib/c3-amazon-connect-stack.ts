@@ -18,17 +18,17 @@ import { Secret } from 'aws-cdk-lib/aws-secretsmanager';
 import { Construct } from 'constructs';
 
 import { getBaseDtmfPaymentFlowModuleContent } from './connect/content-transformations.js';
-
-const GATEWAYS = ['Zift'];
+import {
+	AmazonConnectContext,
+	validateAmazonConnectContext,
+} from './models/amazon-connect-context.js';
+import { C3Context, validateC3Context } from './models/c3-context.js';
+import { C3PaymentGateway } from './models/enums/c3-payment-gateway.js';
 
 export class C3AmazonConnectStack extends Stack {
-	amazonConnectInstanceArn: string;
-	amazonConnectSecurityKeyId: string;
-	amazonConnectSecurityKeyCertificateContent: string;
-	c3Env: string;
-	c3ApiKey: string;
-	c3VendorId: string;
-	c3PaymentGateway: string;
+	private amazonConnectContext: AmazonConnectContext;
+	private c3Context: C3Context;
+
 	logoUrl: string;
 	supportPhone: string;
 	supportEmail: string;
@@ -43,19 +43,12 @@ export class C3AmazonConnectStack extends Stack {
 	constructor(scope: Construct, id: string, props?: StackProps) {
 		super(scope, id, props);
 
-		this.amazonConnectInstanceArn = this.node.tryGetContext(
-			'amazonConnectInstanceArn',
-		);
-		this.amazonConnectSecurityKeyId = this.node.tryGetContext(
-			'amazonConnectSecurityKeyId',
-		);
-		this.amazonConnectSecurityKeyCertificateContent = this.node.tryGetContext(
-			'amazonConnectSecurityKeyCertificateContent',
-		);
-		this.c3Env = this.node.tryGetContext('c3Env');
-		this.c3ApiKey = this.node.tryGetContext('c3ApiKey');
-		this.c3VendorId = this.node.tryGetContext('c3VendorId');
-		this.c3PaymentGateway = this.node.tryGetContext('c3PaymentGateway');
+		this.amazonConnectContext = this.node.tryGetContext('amazonConnect');
+		validateAmazonConnectContext(this.amazonConnectContext);
+
+		this.c3Context = this.node.tryGetContext('c3');
+		validateC3Context(this.c3Context);
+
 		this.logoUrl = this.node.tryGetContext('logoUrl');
 		this.supportPhone = this.node.tryGetContext('supportPhone');
 		this.supportEmail = this.node.tryGetContext('supportEmail');
@@ -69,39 +62,6 @@ export class C3AmazonConnectStack extends Stack {
 	 * Ensures that all required context variables are set. Throws an error if any are missing.
 	 */
 	validateContextVariables(): void {
-		console.log('Validating context variables...');
-		if (!this.amazonConnectInstanceArn) {
-			throw new Error('amazonConnectInstanceArn context variable is required.');
-		}
-		if (!this.amazonConnectSecurityKeyId) {
-			throw new Error(
-				'amazonConnectSecurityKeyId context variable is required.',
-			);
-		}
-		if (!this.amazonConnectSecurityKeyCertificateContent) {
-			throw new Error(
-				'amazonConnectSecurityKeyCertificateContent context variable is required.',
-			);
-		}
-		if (!this.c3Env) {
-			throw new Error('c3Env context variable is required.');
-		}
-		if (!this.c3ApiKey) {
-			throw new Error('c3ApiKey context variable is required.');
-		}
-		if (!this.c3VendorId) {
-			throw new Error('c3VendorId context variable is required.');
-		}
-		if (!this.c3PaymentGateway) {
-			throw new Error('c3PaymentGateway context variable is required.');
-		}
-		if (!GATEWAYS.includes(this.c3PaymentGateway)) {
-			throw new Error(
-				`c3PaymentGateway context variable must be one of ${GATEWAYS.join(
-					', ',
-				)}.`,
-			);
-		}
 		if (!this.logoUrl) {
 			throw new Error('logoUrl context variable is required.');
 		}
@@ -133,9 +93,9 @@ export class C3AmazonConnectStack extends Stack {
 			timeout: Duration.seconds(8),
 			handler: 'index.handler',
 			environment: {
-				C3_API_KEY: this.c3ApiKey,
-				C3_VENDOR_ID: this.c3VendorId,
-				C3_ENV: this.c3Env,
+				C3_API_KEY: this.c3Context.apiKey,
+				C3_VENDOR_ID: this.c3Context.vendorId,
+				C3_ENV: this.c3Context.env,
 				LOGO_URL: this.logoUrl,
 				SUPPORT_PHONE: this.supportPhone,
 				SUPPORT_EMAIL: this.supportEmail,
@@ -179,8 +139,8 @@ export class C3AmazonConnectStack extends Stack {
 				code: Code.fromAsset(join(__dirname, 'lambda/c3-tokenize-transaction')),
 				environment: {
 					...commonLambdaProps.environment,
-					CONNECT_KEY_ID: this.amazonConnectSecurityKeyId,
-					C3_PAYMENT_GATEWAY: this.c3PaymentGateway,
+					CONNECT_KEY_ID: this.amazonConnectContext.securityKeyId,
+					C3_PAYMENT_GATEWAY: this.c3Context.paymentGateway,
 					GATEWAY_URL: this.getGatewayUrl(),
 				},
 			},
@@ -220,7 +180,7 @@ export class C3AmazonConnectStack extends Stack {
 
 		// Gateway-specific secrets.
 		// Zift
-		if (this.c3PaymentGateway === 'Zift') {
+		if (this.c3Context.paymentGateway === C3PaymentGateway.Zift) {
 			console.log('Creating Zift secrets...');
 			const ziftUserNameSM = new Secret(this, 'ziftUserNameSM', {
 				secretName: 'ZIFT_USER_NAME',
@@ -258,7 +218,7 @@ export class C3AmazonConnectStack extends Stack {
 			environment: {
 				...commonLambdaProps.environment,
 				GATEWAY_URL: this.getGatewayUrl(),
-				C3_PAYMENT_GATEWAY: this.c3PaymentGateway,
+				C3_PAYMENT_GATEWAY: this.c3Context.paymentGateway,
 			},
 		});
 
@@ -281,7 +241,7 @@ export class C3AmazonConnectStack extends Stack {
 			console.log('Adding Amazon Connect permissions for function...');
 			lambdaFunction.addPermission('AllowAmazonConnectInvoke', {
 				principal: new ServicePrincipal('connect.amazonaws.com'),
-				sourceArn: this.amazonConnectInstanceArn,
+				sourceArn: this.amazonConnectContext.instanceArn,
 				sourceAccount: this.account,
 				action: 'lambda:InvokeFunction',
 			});
@@ -294,7 +254,7 @@ export class C3AmazonConnectStack extends Stack {
 				this,
 				`ConnectIntegration${lambdaFunctions.indexOf(lambdaFunction) + 1}`,
 				{
-					instanceId: this.amazonConnectInstanceArn,
+					instanceId: this.amazonConnectContext.instanceArn,
 					integrationType: 'LAMBDA_FUNCTION',
 					integrationArn: lambdaFunction.functionArn,
 				},
@@ -314,8 +274,8 @@ export class C3AmazonConnectStack extends Stack {
 				this.tokenizeTransactionFunction,
 				this.submitPaymentFunction,
 				this.emailReceiptFunction,
-				this.amazonConnectSecurityKeyId,
-				this.amazonConnectSecurityKeyCertificateContent,
+				this.amazonConnectContext.securityKeyId,
+				this.amazonConnectContext.securityKeyCertificateContent,
 			);
 		if (!existsSync('./exports')) {
 			mkdirSync('./exports');
@@ -328,7 +288,7 @@ export class C3AmazonConnectStack extends Stack {
 			name: 'C3 Base DTMF Payment',
 			description: 'Flow module for collecting payments with C3 using DTMF.',
 			content: baseDtmfPaymentFlowModuleContent,
-			instanceArn: this.amazonConnectInstanceArn,
+			instanceArn: this.amazonConnectContext.instanceArn,
 		});
 	}
 
@@ -338,17 +298,13 @@ export class C3AmazonConnectStack extends Stack {
 	 * @returns The payment gateway URL.
 	 */
 	getGatewayUrl() {
-		switch (this.c3PaymentGateway) {
-			case 'Zift':
+		switch (this.c3Context.paymentGateway) {
+			case C3PaymentGateway.Zift:
 				return 'https://secure.zift.io/gates/xurl?';
-			case 'Nexio':
-				return 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX?';
-			case 'NMI':
-				return 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX?';
-			case 'AuthNet':
-				return 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX?';
 			default:
-				throw new Error(`Invalid payment gateway: ${this.c3PaymentGateway}`);
+				throw new Error(
+					`Invalid payment gateway: ${this.c3Context.paymentGateway}`,
+				);
 		}
 	}
 }
