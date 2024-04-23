@@ -1,8 +1,8 @@
 import { Function } from 'aws-cdk-lib/aws-lambda';
-import * as flowModuleJson from './flows/modules/c3-base-dtmf-payment-flow-module.json';
+import * as flowModuleJson from './flows/modules/c3-dtmf-payment-flow-module.json';
 
 /**
- * Gets the content for the base DTMF payment flow module.
+ * Gets the content for the DTMF payment flow module.
  *
  * @param createPaymentRequestLambdaArn The ARN of the Lambda function that creates a payment request.
  * @param tokenizeTransactionLambdaArn The ARN of the Lambda function that tokenizes a transaction.
@@ -11,7 +11,7 @@ import * as flowModuleJson from './flows/modules/c3-base-dtmf-payment-flow-modul
  * @param amazonConnectSecurityKeyCertificateContent The security key certificate content for Amazon Connect.
  * @returns A string representing the content for the base DTMF payment flow module.
  */
-export function getBaseDtmfPaymentFlowModuleContent(
+export function getDtmfPaymentFlowModuleContent(
 	createPaymentRequestLambdaFunction: Function,
 	tokenizeTransactionLambdaFunction: Function,
 	submitPaymentLambdaFunction: Function,
