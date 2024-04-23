@@ -68,11 +68,10 @@ export class AgentInitiatedPaymentDTMF {
 			'c3ReportCustomerActivity',
 			{
 				...commonLambdaProps,
-				functionName: 'C3 Report Customer Activity',
 				description:
 					'Reports customer activity through C3 to the agent workspace.',
 				code: Code.fromAsset(
-					join(__dirname, 'lambda/c3-report-customer-activity'),
+					join(__dirname, '../lambda/c3-report-customer-activity'),
 				),
 				environment: {
 					C3_ENV: c3Env.env,
@@ -266,7 +265,6 @@ export class AgentInitiatedPaymentDTMF {
 	private createIAMRole(): void {
 		console.log('Creating IAM role for DTMF...');
 		new Role(this.stack, 'c3AgentInitiatedDTMFRole', {
-			roleName: 'C3 Agent Initiated DTMF Role',
 			assumedBy: new ServicePrincipal('connect.amazonaws.com'),
 		});
 	}

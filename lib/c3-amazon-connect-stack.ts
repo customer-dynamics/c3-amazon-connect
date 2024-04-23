@@ -179,7 +179,6 @@ export class C3AmazonConnectStack extends Stack {
 			'c3CreatePaymentRequest',
 			{
 				...commonLambdaProps,
-				functionName: 'C3 Create Payment Request',
 				description: 'Creates a payment request through the C3 API.',
 				code: Code.fromAsset(
 					join(__dirname, 'lambda/c3-create-payment-request'),
@@ -219,7 +218,6 @@ export class C3AmazonConnectStack extends Stack {
 			'c3TokenizeTransaction',
 			{
 				...commonLambdaProps,
-				functionName: 'C3 Tokenize Transaction',
 				description: 'Tokenizes customer payment details.',
 				code: Code.fromAsset(join(__dirname, 'lambda/c3-tokenize-transaction')),
 				environment: {
@@ -268,7 +266,6 @@ export class C3AmazonConnectStack extends Stack {
 		console.log('Creating function c3SubmitPayment...');
 		this.submitPaymentFunction = new Function(this, 'c3SubmitPayment', {
 			...commonLambdaProps,
-			functionName: 'C3 Submit Payment',
 			description: 'Submits tokenized payment info to C3 for processing.',
 			code: Code.fromAsset(join(__dirname, 'lambda/c3-submit-payment')),
 			environment: {
@@ -298,7 +295,6 @@ export class C3AmazonConnectStack extends Stack {
 		console.log('Creating function c3EmailReceipt...');
 		this.emailReceiptFunction = new Function(this, 'c3EmailReceipt', {
 			...commonLambdaProps,
-			functionName: 'C3 Email Receipt',
 			description: 'Creates a payment request through the C3 API.',
 			code: Code.fromAsset(join(__dirname, 'lambda/c3-email-receipt')),
 			environment: {
