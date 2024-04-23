@@ -17,6 +17,7 @@ export class Zift {
 		private stack: Stack,
 		private tokenizeTransactionPolicy: PolicyStatement,
 	) {
+		console.log('Creating resources for Zift...');
 		this.createUsernameSecret();
 		this.createPasswordSecret();
 		this.createAccountIdSecret();
@@ -71,6 +72,7 @@ export class Zift {
 	 * This is necessary for the Zift secret values to be retrieved by the tokenize transaction function.
 	 */
 	private addSecretsToTokenizeTransactionPolicy(): void {
+		console.log('Adding Zift secrets to tokenize transaction policy...');
 		this.tokenizeTransactionPolicy.addResources(
 			this.usernameSecret.secretArn,
 			this.passwordSecret.secretArn,
