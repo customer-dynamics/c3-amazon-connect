@@ -52,13 +52,22 @@ Build the project:
 npm run build
 ```
 
-Then deploy the stack to the same region as your Amazon Connect instance:
+Bootstrap the CDK:
 
-> **Note:** This command will deploy to the region specified in the default profile for your AWS CLI configuration. If you would like to deploy to a different profile, you can specify the profile using the `--profile` flag.
+```bash
+cdk bootstrap
+```
+
+This command will deploy the necessary resources to your AWS account to facilitate the deployment of the C3 stack. This only needs to be done once per AWS account.
+
+Then deploy the stack to the same region as your Amazon Connect instance:
 
 ```bash
 cdk deploy
 ```
+
+> [!NOTE]
+> This command will deploy to the region specified in the default profile for your AWS CLI configuration. If you would like to deploy to a different profile, you can specify the profile using the `--profile` flag.
 
 ### Setting Up Your Flows
 
