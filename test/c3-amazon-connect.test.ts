@@ -91,7 +91,4 @@ describe('C3AmazonConnectStack', () => {
 			}
 		});
 	});
-
-	// Amazon Connect views
-	describe('Amazon Connect views', () => {});
 });
