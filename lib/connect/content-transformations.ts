@@ -1,13 +1,15 @@
 import { Function } from 'aws-cdk-lib/aws-lambda';
 import * as flowModuleJson from './flows/modules/c3-dtmf-payment-flow-module.json';
-import * as flowJson from './flows/c3-dtmf-payment-flow.json';
+import * as dtmfPaymentFlowJson from './flows/c3-dtmf-payment-flow.json';
+import * as agentHoldFlowJson from './flows/c3-agent-hold-flow.json';
+import { CfnContactFlow } from 'aws-cdk-lib/aws-connect';
 
 /**
  * Gets the content for the DTMF payment flow module.
  *
- * @param createPaymentRequestLambdaArn The ARN of the Lambda function that creates a payment request.
- * @param tokenizeTransactionLambdaArn The ARN of the Lambda function that tokenizes a transaction.
- * @param submitPaymentLambdaArn The ARN of the Lambda function that submits a payment.
+ * @param createPaymentRequestLambdaArn The Lambda function that creates a payment request.
+ * @param tokenizeTransactionLambdaArn The Lambda function that tokenizes a transaction.
+ * @param submitPaymentLambdaArn The Lambda function that submits a payment.
  * @param amazonConnectSecurityKeyId The security key ID for Amazon Connect.
  * @param amazonConnectSecurityKeyCertificateContent The security key certificate content for Amazon Connect.
  * @returns A string representing the content for the base DTMF payment flow module.
@@ -52,22 +54,23 @@ export function getDTMFPaymentFlowModuleContent(
 		/<amazonConnectSecurityKeyCertificateContent>/g,
 		amazonConnectSecurityKeyCertificateContent,
 	);
-
 	return transformedContent;
 }
 
 /**
  * Gets the content for the DTMF payment flow.
  *
- * @param reportCustomerActivityLambdaArn The ARN of the Lambda function that reports customer activity.
- * @param createPaymentRequestLambdaArn The ARN of the Lambda function that creates a payment request.
- * @param tokenizeTransactionLambdaArn The ARN of the Lambda function that tokenizes a transaction.
- * @param submitPaymentLambdaArn The ARN of the Lambda function that submits a payment.
+ * @param agentHoldFlow The agent hold flow.
+ * @param reportCustomerActivityLambdaArn The Lambda function that reports customer activity.
+ * @param createPaymentRequestLambdaArn The Lambda function that creates a payment request.
+ * @param tokenizeTransactionLambdaArn The Lambda function that tokenizes a transaction.
+ * @param submitPaymentLambdaArn The Lambda function that submits a payment.
  * @param amazonConnectSecurityKeyId The security key ID for Amazon Connect.
  * @param amazonConnectSecurityKeyCertificateContent The security key certificate content for Amazon Connect.
  * @returns A string representing the content for the base DTMF payment flow.
  */
 export function getDTMFPaymentFlowContent(
+	agentHoldFlow: CfnContactFlow,
 	reportCustomerActivityLambdaFunction: Function,
 	createPaymentRequestLambdaFunction: Function,
 	tokenizeTransactionLambdaFunction: Function,
@@ -76,10 +79,16 @@ export function getDTMFPaymentFlowContent(
 	amazonConnectSecurityKeyId: string,
 	amazonConnectSecurityKeyCertificateContent: string,
 ) {
-	let transformedContent = JSON.stringify(flowJson);
+	let transformedContent = JSON.stringify(dtmfPaymentFlowJson);
 
 	// Don't escape quotes.
 	transformedContent = transformedContent.replace('\\', '');
+
+	// Replace agent hold flow placeholder with actual ARN.
+	transformedContent = transformedContent.replace(
+		/<agentHoldFlowArn>/g,
+		agentHoldFlow.ref,
+	);
 
 	// Replace Lambda placeholders with actual ARNs.
 	transformedContent = transformedContent.replace(
@@ -112,6 +121,18 @@ export function getDTMFPaymentFlowContent(
 		/<amazonConnectSecurityKeyCertificateContent>/g,
 		amazonConnectSecurityKeyCertificateContent,
 	);
+	return transformedContent;
+}
 
+/**
+ * Gets the content for the agent hold flow.
+ *
+ * @returns A string representing the content for the agent hold flow.
+ */
+export function getAgentHoldFlowContent() {
+	let transformedContent = JSON.stringify(agentHoldFlowJson);
+
+	// Don't escape quotes.
+	transformedContent = transformedContent.replace('\\', '');
 	return transformedContent;
 }
