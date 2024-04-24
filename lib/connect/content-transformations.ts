@@ -11,7 +11,7 @@ import * as flowModuleJson from './flows/modules/c3-dtmf-payment-flow-module.jso
  * @param amazonConnectSecurityKeyCertificateContent The security key certificate content for Amazon Connect.
  * @returns A string representing the content for the base DTMF payment flow module.
  */
-export function getDtmfPaymentFlowModuleContent(
+export function getDTMFPaymentFlowModuleContent(
 	createPaymentRequestLambdaFunction: Function,
 	tokenizeTransactionLambdaFunction: Function,
 	submitPaymentLambdaFunction: Function,

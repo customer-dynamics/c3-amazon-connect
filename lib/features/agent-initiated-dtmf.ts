@@ -59,13 +59,13 @@ export class AgentInitiatedPaymentDTMF {
 	 * agent with visibility into the customer's progress through the payment process.
 	 */
 	private createReportCustomerActivityFunction(): void {
-		console.log('Creating function c3ReportCustomerActivity...');
+		console.log('Creating function C3ReportCustomerActivity...');
 
 		// Create function.
 		const c3Env = this.stack.node.tryGetContext('c3') as C3Context;
 		this.reportCustomerActivityFunction = new Function(
 			this.stack,
-			'c3ReportCustomerActivity',
+			'C3ReportCustomerActivity',
 			{
 				...commonLambdaProps,
 				description:
@@ -88,14 +88,14 @@ export class AgentInitiatedPaymentDTMF {
 	 * This flow is required to collect DTMF payments from customers. It is initiated by the agent and guides the customer through the payment process.
 	 */
 	private createFlow(): void {
-		console.log('Creating flow c3DtmfPaymentFlow...');
+		console.log('Creating flow C3DTMFPaymentFlow...');
 		// TODO: Get content
 		const c3PaymentFlowContent = '{}';
 		if (!existsSync('./exports')) {
 			mkdirSync('./exports');
 		}
-		writeFileSync('./exports/c3DtmfPaymentFlow', c3PaymentFlowContent);
-		this.contactFlow = new CfnContactFlow(this.stack, 'c3DtmfPaymentFlow', {
+		writeFileSync('./exports/C3DTMFPaymentFlow', c3PaymentFlowContent);
+		this.contactFlow = new CfnContactFlow(this.stack, 'C3DTMFPaymentFlow', {
 			name: 'C3 DTMF Payment Flow',
 			description:
 				'Flow module for collecting payments with C3 using DTMF through a quick connect.',
@@ -114,7 +114,7 @@ export class AgentInitiatedPaymentDTMF {
 		console.log('Creating hours of operation...');
 		this.hoursOfOperation = new CfnHoursOfOperation(
 			this.stack,
-			'c3DtmfHoursOfOperation',
+			'C3DTMFHoursOfOperation',
 			{
 				instanceArn: this.amazonConnectInstanceArn,
 				name: 'C3 DTMF Hours of Operation',
@@ -211,7 +211,7 @@ export class AgentInitiatedPaymentDTMF {
 	 */
 	private createQueue(): void {
 		console.log('Creating DTMF quick connect queue...');
-		this.queue = new CfnQueue(this.stack, 'c3DtmfQuickConnectQueue', {
+		this.queue = new CfnQueue(this.stack, 'C3DTMFQuickConnectQueue', {
 			name: 'C3 DTMF Quick Connect Queue',
 			description: 'Queue for handling DTMF quick connect transfers with C3.',
 			instanceArn: this.amazonConnectInstanceArn,
@@ -226,7 +226,7 @@ export class AgentInitiatedPaymentDTMF {
 	 */
 	private createQuickConnect(): void {
 		console.log('Creating quick connect...');
-		new CfnQuickConnect(this.stack, 'c3DtmfQuickConnect', {
+		new CfnQuickConnect(this.stack, 'C3DTMFQuickConnect', {
 			instanceArn: this.amazonConnectInstanceArn,
 			name: 'C3 DTMF Quick Connect',
 			description: 'Quick connect for collecting DTMF payments with C3.',
@@ -247,7 +247,7 @@ export class AgentInitiatedPaymentDTMF {
 	 */
 	private createIAMPolicy(): void {
 		console.log('Creating IAM policy for DTMF...');
-		new Policy(this.stack, 'c3AgentInitiatedDTMFPolicy', {
+		new Policy(this.stack, 'C3AgentInitiatedDTMFPolicy', {
 			policyName: 'C3 Agent Initiated DTMF Policy',
 			statements: [
 				new PolicyStatement({
@@ -264,7 +264,7 @@ export class AgentInitiatedPaymentDTMF {
 	 */
 	private createIAMRole(): void {
 		console.log('Creating IAM role for DTMF...');
-		new Role(this.stack, 'c3AgentInitiatedDTMFRole', {
+		new Role(this.stack, 'C3AgentInitiatedDTMFRole', {
 			assumedBy: new ServicePrincipal('connect.amazonaws.com'),
 		});
 	}
