@@ -51,7 +51,10 @@ describe('C3AmazonConnectStack', () => {
 		it('Using code signing', () => {
 			template.hasResourceProperties('AWS::Lambda::Function', {
 				CodeSigningConfigArn: {
-					'Fn::GetAtt': ['CodeSigningConfigD8D41C10', 'CodeSigningConfigArn'],
+					'Fn::GetAtt': [
+						'C3CodeSigningConfigFA211695', // FIXME: This identifier at the end always changes
+						'CodeSigningConfigArn',
+					],
 				},
 			});
 		});
