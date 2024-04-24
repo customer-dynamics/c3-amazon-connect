@@ -42,7 +42,7 @@ export function associateLambdaFunctionsWithConnect(
 		);
 		new CfnIntegrationAssociation(
 			stack,
-			`ConnectIntegrationFunction${integrationNumber}`,
+			`C3ConnectIntegrationFunction${integrationNumber}`,
 			{
 				instanceId: instanceArn,
 				integrationType: 'LAMBDA_FUNCTION',
