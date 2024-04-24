@@ -10,6 +10,7 @@ export const commonLambdaProps = {
 	runtime: Runtime.NODEJS_20_X,
 	timeout: Duration.seconds(8),
 	handler: 'index.handler',
+	memorySize: 256,
 };
 
 /**
