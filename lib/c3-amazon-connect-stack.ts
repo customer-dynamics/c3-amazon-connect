@@ -91,7 +91,12 @@ export class C3AmazonConnectStack extends Stack {
 			new AgentInitiatedPaymentDTMF(
 				this,
 				this.amazonConnectContext.instanceArn,
+				this.amazonConnectContext,
 				this.codeSigningConfig,
+				this.createPaymentRequestFunction,
+				this.tokenizeTransactionFunction,
+				this.submitPaymentFunction,
+				this.emailReceiptFunction,
 			);
 		}
 	}
