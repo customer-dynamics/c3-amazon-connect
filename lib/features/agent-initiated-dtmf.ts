@@ -6,11 +6,11 @@ import {
 	CfnQuickConnect,
 } from 'aws-cdk-lib/aws-connect';
 import {
+	AccountPrincipal,
 	Effect,
-	Policy,
+	ManagedPolicy,
 	PolicyStatement,
 	Role,
-	ServicePrincipal,
 } from 'aws-cdk-lib/aws-iam';
 import { Code, CodeSigningConfig, Function } from 'aws-cdk-lib/aws-lambda';
 import { existsSync, mkdirSync, writeFileSync } from 'fs';
@@ -36,6 +36,7 @@ export class AgentInitiatedPaymentDTMF {
 	private dtmfPaymentFlow: CfnContactFlow;
 	private hoursOfOperation: CfnHoursOfOperation;
 	private queue: CfnQueue;
+	private iamRole: Role;
 
 	/**
 	 * Creates the necessary resources to facilitate agent-initiated payments collected through DTMF.
@@ -60,8 +61,8 @@ export class AgentInitiatedPaymentDTMF {
 		this.createHoursOfOperation();
 		this.createQueue();
 		this.createQuickConnect();
-		this.createIAMPolicy();
 		this.createIAMRole();
+		this.createIAMPolicy();
 	}
 
 	/**
@@ -283,14 +284,30 @@ export class AgentInitiatedPaymentDTMF {
 	}
 
 	/**
-	 * Creates an IAM policy allowing xyz to update contact attributes for any contact on your instance.
+	 * Creates an IAM role allowing C3 to update contact attributes in your Amazon Connect instance.
 	 *
-	 * This is required for the IAM role to be defined.
+	 * This role is required so that the payment request details entered by an agent can be stored in the contact attributes and made
+	 * available to the DTMF flow. Because 3rd party apps in the agent workspace currently do not support *setting* contact attributes
+	 * (only *getting* them), we are required to use a Lambda function within our C3 environment to set them. This role sets up
+	 * cross-account permissions for the Lambda function to achieve this.
+	 *
+	 * If the 3rd party app SDK is updated to support setting contact attributes, this role will no longer be necessary.
+	 */
+	private createIAMRole(): void {
+		console.log('Creating IAM role for DTMF...');
+		this.iamRole = new Role(this.stack, 'C3AgentInitiatedDTMFRole', {
+			description:
+				'Role that allows C3 to update contact attributes in your Amazon Connect instance.',
+			assumedBy: new AccountPrincipal('815407490078'), // TODO: This will have to be dynamically set because prod C3 is a different account.
+		});
+	}
+
+	/**
+	 * Creates an IAM policy allowing C3 to update contact attributes for any contact on your instance.
 	 */
 	private createIAMPolicy(): void {
 		console.log('Creating IAM policy for DTMF...');
-		new Policy(this.stack, 'C3AgentInitiatedDTMFPolicy', {
-			policyName: 'C3 Agent Initiated DTMF Policy',
+		new ManagedPolicy(this.stack, 'C3AgentInitiatedDTMFPolicy', {
 			statements: [
 				new PolicyStatement({
 					actions: ['connect:UpdateContactAttributes'],
@@ -298,16 +315,7 @@ export class AgentInitiatedPaymentDTMF {
 					effect: Effect.ALLOW,
 				}),
 			],
-		});
-	}
-
-	/**
-	 * Creates the IAM role allowing Amazon Connect to assume the IAM policy created previously.
-	 */
-	private createIAMRole(): void {
-		console.log('Creating IAM role for DTMF...');
-		new Role(this.stack, 'C3AgentInitiatedDTMFRole', {
-			assumedBy: new ServicePrincipal('connect.amazonaws.com'),
+			roles: [this.iamRole],
 		});
 	}
 }
