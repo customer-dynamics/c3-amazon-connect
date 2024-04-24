@@ -31,7 +31,7 @@ export class Zift {
 	 */
 	private createUsernameSecret(): void {
 		console.log('Creating Zift username secret...');
-		this.usernameSecret = new Secret(this.stack, 'c3ZiftUsername', {
+		this.usernameSecret = new Secret(this.stack, 'C3ZiftUsername', {
 			secretName: 'ZIFT_USERNAME',
 			secretStringValue: SecretValue.unsafePlainText('<Your Zift username>'),
 			description: 'The username for your Zift account used by C3.',
@@ -45,7 +45,7 @@ export class Zift {
 	 */
 	private createPasswordSecret(): void {
 		console.log('Creating Zift password secret...');
-		this.passwordSecret = new Secret(this.stack, 'c3ZiftPassword', {
+		this.passwordSecret = new Secret(this.stack, 'C3ZiftPassword', {
 			secretName: 'ZIFT_PASSWORD',
 			secretStringValue: SecretValue.unsafePlainText('<Your Zift password>'),
 			description: 'The password for your Zift account used by C3.',
@@ -59,7 +59,7 @@ export class Zift {
 	 */
 	private createAccountIdSecret(): void {
 		console.log('Creating Zift account ID secret...');
-		this.accountIdSecret = new Secret(this.stack, 'c3ZiftAccountId', {
+		this.accountIdSecret = new Secret(this.stack, 'C3ZiftAccountId', {
 			secretName: 'ZIFT_ACCOUNT_ID',
 			secretStringValue: SecretValue.unsafePlainText('<Your Zift account ID>'),
 			description: 'The account ID for your Zift account used by C3.',

@@ -128,12 +128,16 @@ export class C3AmazonConnectStack extends Stack {
 	 */
 	private createCodeSigningConfig(): void {
 		console.log('Creating code signing config...');
-		const signingProfile = new SigningProfile(this, 'SigningProfile', {
+		const signingProfile = new SigningProfile(this, 'C3SigningProfile', {
 			platform: Platform.AWS_LAMBDA_SHA384_ECDSA,
 		});
-		this.codeSigningConfig = new CodeSigningConfig(this, 'CodeSigningConfig', {
-			signingProfiles: [signingProfile],
-		});
+		this.codeSigningConfig = new CodeSigningConfig(
+			this,
+			'C3CodeSigningConfig',
+			{
+				signingProfiles: [signingProfile],
+			},
+		);
 	}
 
 	/**
@@ -143,7 +147,7 @@ export class C3AmazonConnectStack extends Stack {
 	 */
 	private createC3ApiKeySecret(): void {
 		console.log('Creating secret for C3 API key...');
-		this.c3ApiKeySecret = new Secret(this, 'c3ApiKey', {
+		this.c3ApiKeySecret = new Secret(this, 'C3APIKey', {
 			secretName: 'C3_API_KEY',
 			secretStringValue: SecretValue.unsafePlainText('<Your C3 API key>'),
 			description: 'The API key used for C3 payments.',
@@ -158,7 +162,7 @@ export class C3AmazonConnectStack extends Stack {
 	 */
 	private createPrivateKeySecret(): void {
 		console.log('Creating private key secret...');
-		this.privateKeySecret = new Secret(this, 'c3PrivateKey', {
+		this.privateKeySecret = new Secret(this, 'C3PrivateKey', {
 			secretName: 'C3_PRIVATE_KEY',
 			secretStringValue: SecretValue.unsafePlainText(
 				'<The content of your private key>',
@@ -173,10 +177,10 @@ export class C3AmazonConnectStack extends Stack {
 	 * This function is necessary for your payment flow to create a payment request through the C3 API.
 	 */
 	private createCreatePaymentRequestFunction(): void {
-		console.log('Creating function c3CreatePaymentRequest...');
+		console.log('Creating function C3CreatePaymentRequest...');
 		this.createPaymentRequestFunction = new Function(
 			this,
-			'c3CreatePaymentRequest',
+			'C3CreatePaymentRequest',
 			{
 				...commonLambdaProps,
 				description: 'Creates a payment request through the C3 API.',
@@ -212,10 +216,10 @@ export class C3AmazonConnectStack extends Stack {
 	 * This function is necessary for your payment flow to take the encrypted payment details and tokenize them for processing.
 	 */
 	private createTokenizeTransactionFunction(): void {
-		console.log('Creating function c3TokenizeTransaction...');
+		console.log('Creating function C3TokenizeTransaction...');
 		this.tokenizeTransactionFunction = new Function(
 			this,
-			'c3TokenizeTransaction',
+			'C3TokenizeTransaction',
 			{
 				...commonLambdaProps,
 				description: 'Tokenizes customer payment details.',
@@ -263,8 +267,8 @@ export class C3AmazonConnectStack extends Stack {
 	 * This function is necessary for your payment flow to submit the tokenized payment details to C3 for processing.
 	 */
 	private createSubmitPaymentFunction(): void {
-		console.log('Creating function c3SubmitPayment...');
-		this.submitPaymentFunction = new Function(this, 'c3SubmitPayment', {
+		console.log('Creating function C3SubmitPayment...');
+		this.submitPaymentFunction = new Function(this, 'C3SubmitPayment', {
 			...commonLambdaProps,
 			description: 'Submits tokenized payment info to C3 for processing.',
 			code: Code.fromAsset(join(__dirname, 'lambda/c3-submit-payment')),
@@ -292,8 +296,8 @@ export class C3AmazonConnectStack extends Stack {
 	 * This function is necessary for your payment flow to send an email receipt to the customer using C3 after the payment has been processed.
 	 */
 	private createEmailReceiptFunction(): void {
-		console.log('Creating function c3EmailReceipt...');
-		this.emailReceiptFunction = new Function(this, 'c3EmailReceipt', {
+		console.log('Creating function C3EmailReceipt...');
+		this.emailReceiptFunction = new Function(this, 'C3EmailReceipt', {
 			...commonLambdaProps,
 			description: 'Creates a payment request through the C3 API.',
 			code: Code.fromAsset(join(__dirname, 'lambda/c3-email-receipt')),
@@ -338,7 +342,7 @@ export class C3AmazonConnectStack extends Stack {
 		});
 
 		// Associate the app with the Amazon Connect instance.
-		new CfnIntegrationAssociation(this, `ConnectIntegrationC3App`, {
+		new CfnIntegrationAssociation(this, `C3ConnectIntegrationApp`, {
 			instanceId: this.amazonConnectContext.instanceArn,
 			integrationType: 'APPLICATION',
 			integrationArn: application.attrApplicationArn,

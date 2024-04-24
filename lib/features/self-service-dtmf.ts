@@ -1,5 +1,5 @@
 import { Stack } from 'aws-cdk-lib';
-import { getDtmfPaymentFlowModuleContent } from '../connect/content-transformations';
+import { getDTMFPaymentFlowModuleContent } from '../connect/content-transformations';
 import { CfnContactFlowModule } from 'aws-cdk-lib/aws-connect';
 import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import { AmazonConnectContext } from '../models/amazon-connect-context';
@@ -33,7 +33,7 @@ export class SelfServicePaymentDTMF {
 	 */
 	private createFlowModule(): void {
 		console.log('Creating DTMF flow module...');
-		const dtmfPaymentFlowModuleContent = getDtmfPaymentFlowModuleContent(
+		const dtmfPaymentFlowModuleContent = getDTMFPaymentFlowModuleContent(
 			this.createPaymentRequestFunction,
 			this.tokenizeTransactionFunction,
 			this.submitPaymentFunction,
@@ -45,10 +45,10 @@ export class SelfServicePaymentDTMF {
 			mkdirSync('./exports');
 		}
 		writeFileSync(
-			'./exports/c3DtmfPaymentFlowModule',
+			'./exports/C3DTMFPaymentFlowModule',
 			dtmfPaymentFlowModuleContent,
 		);
-		new CfnContactFlowModule(this.stack, 'c3DtmfPaymentFlowModule', {
+		new CfnContactFlowModule(this.stack, 'C3DTMFPaymentFlowModule', {
 			name: 'C3 DTMF Payment Flow Module',
 			description:
 				'Flow module for collecting payments with C3 using DTMF in an inbound queue.',
