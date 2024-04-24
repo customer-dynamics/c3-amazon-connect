@@ -1,39 +1,39 @@
 {
-  "Version": "2019-10-30",
-  "StartAction": "1a34ecf3-77ff-46a7-b210-38a1a980127b",
-  "Metadata": {
-    "entryPointPosition": {
-      "x": 66.4,
-      "y": 11.2
-    },
-    "ActionMetadata": {
-      "1a34ecf3-77ff-46a7-b210-38a1a980127b": {
-        "position": {
-          "x": 224,
-          "y": 52.8
-        },
-        "audio": []
-      }
-    },
-    "Annotations": [],
-    "name": "Default agent hold",
-    "description": "Audio played for the agent when on hold",
-    "type": "agentHold",
-    "status": "published",
-    "hash": {}
-  },
-  "Actions": [
-    {
-      "Parameters": {
-        "Messages": [
-          {
-            "Text": "You are on hold. "
-          }
-        ]
-      },
-      "Identifier": "1a34ecf3-77ff-46a7-b210-38a1a980127b",
-      "Type": "MessageParticipantIteratively",
-      "Transitions": {}
-    }
-  ]
+	"Version": "2019-10-30",
+	"StartAction": "1a34ecf3-77ff-46a7-b210-38a1a980127b",
+	"Metadata": {
+		"entryPointPosition": {
+			"x": 66.4,
+			"y": 11.2
+		},
+		"ActionMetadata": {
+			"1a34ecf3-77ff-46a7-b210-38a1a980127b": {
+				"position": {
+					"x": 224,
+					"y": 52.8
+				},
+				"audio": []
+			}
+		},
+		"Annotations": [],
+		"name": "Default agent hold",
+		"description": "Audio played for the agent when on hold",
+		"type": "agentHold",
+		"status": "published",
+		"hash": {}
+	},
+	"Actions": [
+		{
+			"Parameters": {
+				"Messages": [
+					{
+						"Text": "You are on hold. "
+					}
+				]
+			},
+			"Identifier": "1a34ecf3-77ff-46a7-b210-38a1a980127b",
+			"Type": "MessageParticipantIteratively",
+			"Transitions": {}
+		}
+	]
 }
