@@ -21,6 +21,8 @@ import {
 	associateLambdaFunctionsWithConnect,
 	commonLambdaProps,
 } from '../helpers/lambda';
+import { getDTMFPaymentFlowContent } from '../connect/content-transformations';
+import { AmazonConnectContext } from '../models/amazon-connect-context';
 
 /**
  * Class for creating the necessary resources to facilitate agent-initiated payments collected through DTMF.
@@ -37,7 +39,12 @@ export class AgentInitiatedPaymentDTMF {
 	constructor(
 		private stack: Stack,
 		private amazonConnectInstanceArn: string,
+		private amazonConnectContext: AmazonConnectContext,
 		private codeSigningConfig: CodeSigningConfig,
+		private createPaymentRequestFunction: Function,
+		private tokenizeTransactionFunction: Function,
+		private submitPaymentFunction: Function,
+		private emailReceiptFunction: Function,
 	) {
 		console.log('Creating resources for agent-initiated DTMF payments...');
 		this.createReportCustomerActivityFunction();
@@ -89,8 +96,15 @@ export class AgentInitiatedPaymentDTMF {
 	 */
 	private createFlow(): void {
 		console.log('Creating flow C3DTMFPaymentFlow...');
-		// TODO: Get content
-		const c3PaymentFlowContent = '{}';
+		const c3PaymentFlowContent = getDTMFPaymentFlowContent(
+			this.reportCustomerActivityFunction,
+			this.createPaymentRequestFunction,
+			this.tokenizeTransactionFunction,
+			this.submitPaymentFunction,
+			this.emailReceiptFunction,
+			this.amazonConnectContext.securityKeyId,
+			this.amazonConnectContext.securityKeyCertificateContent,
+		);
 		if (!existsSync('./exports')) {
 			mkdirSync('./exports');
 		}
