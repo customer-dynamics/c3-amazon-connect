@@ -21,7 +21,10 @@ import {
 	associateLambdaFunctionsWithConnect,
 	commonLambdaProps,
 } from '../helpers/lambda';
-import { getDTMFPaymentFlowContent } from '../connect/content-transformations';
+import {
+	getAgentHoldFlowContent,
+	getDTMFPaymentFlowContent,
+} from '../connect/content-transformations';
 import { AmazonConnectContext } from '../models/amazon-connect-context';
 
 /**
@@ -29,7 +32,8 @@ import { AmazonConnectContext } from '../models/amazon-connect-context';
  */
 export class AgentInitiatedPaymentDTMF {
 	private reportCustomerActivityFunction: Function;
-	private contactFlow: CfnContactFlow;
+	private agentHoldFlow: CfnContactFlow;
+	private dtmfPaymentFlow: CfnContactFlow;
 	private hoursOfOperation: CfnHoursOfOperation;
 	private queue: CfnQueue;
 
@@ -51,7 +55,8 @@ export class AgentInitiatedPaymentDTMF {
 		associateLambdaFunctionsWithConnect(this.stack, [
 			this.reportCustomerActivityFunction,
 		]);
-		this.createFlow();
+		this.createAgentHoldFlow();
+		this.createDTMFFlow();
 		this.createHoursOfOperation();
 		this.createQueue();
 		this.createQuickConnect();
@@ -90,13 +95,36 @@ export class AgentInitiatedPaymentDTMF {
 	}
 
 	/**
+	 * Creates a flow for the agent experience while they are on hold.
+	 *
+	 * This flow is required to provide the agent with audible updates while they are on hold.
+	 */
+	private createAgentHoldFlow(): void {
+		console.log('Creating flow C3AgentHoldFlow...');
+		const c3AgentHoldFlow = getAgentHoldFlowContent();
+		if (!existsSync('./exports')) {
+			mkdirSync('./exports');
+		}
+		writeFileSync('./exports/C3AgentHoldFlow', c3AgentHoldFlow);
+		this.agentHoldFlow = new CfnContactFlow(this.stack, 'C3AgentHoldFlow', {
+			name: 'C3 Agent Hold Flow',
+			description:
+				'Flow for the agent experience while they are on hold during payment collection.',
+			content: c3AgentHoldFlow,
+			instanceArn: this.amazonConnectInstanceArn,
+			type: 'AGENT_HOLD',
+		});
+	}
+
+	/**
 	 * Creates a flow for agent-initiated DTMF payments.
 	 *
 	 * This flow is required to collect DTMF payments from customers. It is initiated by the agent and guides the customer through the payment process.
 	 */
-	private createFlow(): void {
+	private createDTMFFlow(): void {
 		console.log('Creating flow C3DTMFPaymentFlow...');
 		const c3PaymentFlowContent = getDTMFPaymentFlowContent(
+			this.agentHoldFlow,
 			this.reportCustomerActivityFunction,
 			this.createPaymentRequestFunction,
 			this.tokenizeTransactionFunction,
@@ -109,7 +137,7 @@ export class AgentInitiatedPaymentDTMF {
 			mkdirSync('./exports');
 		}
 		writeFileSync('./exports/C3DTMFPaymentFlow', c3PaymentFlowContent);
-		this.contactFlow = new CfnContactFlow(this.stack, 'C3DTMFPaymentFlow', {
+		this.dtmfPaymentFlow = new CfnContactFlow(this.stack, 'C3DTMFPaymentFlow', {
 			name: 'C3 DTMF Payment Flow',
 			description:
 				'Flow module for collecting payments with C3 using DTMF through a quick connect.',
@@ -247,7 +275,7 @@ export class AgentInitiatedPaymentDTMF {
 			quickConnectConfig: {
 				quickConnectType: 'QUEUE',
 				queueConfig: {
-					contactFlowArn: this.contactFlow.attrContactFlowArn,
+					contactFlowArn: this.dtmfPaymentFlow.attrContactFlowArn,
 					queueArn: this.queue.attrQueueArn,
 				},
 			},

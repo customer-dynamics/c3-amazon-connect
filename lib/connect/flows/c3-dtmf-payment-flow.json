@@ -422,7 +422,7 @@
         },
         "contactFlow": {
           "text": "Default agent hold",
-          "id": "arn:aws:connect:us-west-2:815407490078:instance/4c1f1fba-d5f1-41c5-9e09-496456e58932/contact-flow/1ee9fbaf-d96e-4a3b-a56d-95d37121fabe"
+          "id": "<agentHoldFlowArn>"
         },
         "customerOrAgent": false
       },
@@ -1293,7 +1293,7 @@
     {
       "Parameters": {
         "EventHooks": {
-          "AgentHold": "arn:aws:connect:us-west-2:815407490078:instance/4c1f1fba-d5f1-41c5-9e09-496456e58932/contact-flow/1ee9fbaf-d96e-4a3b-a56d-95d37121fabe"
+          "AgentHold": "<agentHoldFlowArn>"
         }
       },
       "Identifier": "60f08ab6-8a8e-49f3-8e28-df3d56ca05a1",
