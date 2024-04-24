@@ -40,7 +40,7 @@ describe('Agent Initiated DTMF', () => {
 	describe('Amazon Connect', () => {
 		describe('DTMF flow', () => {
 			it('Has contact flow', () => {
-				template.resourceCountIs('AWS::Connect::ContactFlow', 1);
+				template.resourceCountIs('AWS::Connect::ContactFlow', 2);
 			});
 		});
 
