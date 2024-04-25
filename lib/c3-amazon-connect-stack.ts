@@ -264,7 +264,7 @@ export class C3AmazonConnectStack extends Stack {
 					`Invalid payment gateway specified: ${this.c3Context.paymentGateway}`,
 				);
 		}
-		this.createPaymentRequestFunction.addToRolePolicy(secretsPolicy);
+		this.tokenizeTransactionFunction.addToRolePolicy(secretsPolicy);
 	}
 
 	/**
@@ -293,7 +293,7 @@ export class C3AmazonConnectStack extends Stack {
 			],
 			resources: [this.c3ApiKeySecret.secretArn],
 		});
-		this.createPaymentRequestFunction.addToRolePolicy(secretsPolicy);
+		this.submitPaymentFunction.addToRolePolicy(secretsPolicy);
 	}
 
 	/**
@@ -322,7 +322,7 @@ export class C3AmazonConnectStack extends Stack {
 			],
 			resources: [this.c3ApiKeySecret.secretArn],
 		});
-		this.createPaymentRequestFunction.addToRolePolicy(secretsPolicy);
+		this.emailReceiptFunction.addToRolePolicy(secretsPolicy);
 	}
 
 	/**
