@@ -14,7 +14,7 @@ import {
 } from './models/amazon-connect-context';
 import { C3Context, validateC3Context } from './models/c3-context';
 import { FeaturesContext } from './models/features-context';
-import { Zift } from './payment-gateways/zift';
+import { Zift, ZIFT_URL } from './payment-gateways/zift';
 import { AgentInitiatedPaymentDTMF } from './features/agent-initiated-dtmf';
 import { SelfServicePaymentDTMF } from './features/self-service-dtmf';
 import {
@@ -232,6 +232,7 @@ export class C3AmazonConnectStack extends Stack {
 				environment: {
 					C3_PAYMENT_GATEWAY: this.c3Context.paymentGateway,
 					CONNECT_SECURITY_KEY_ID: this.amazonConnectContext.securityKeyId,
+					ZIFT_URL
 				},
 				codeSigningConfig: this.codeSigningConfig,
 			},
