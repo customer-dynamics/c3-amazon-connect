@@ -245,10 +245,19 @@ export class C3AmazonConnectStack extends Stack {
 		});
 		this.tokenizeTransactionFunction.addToRolePolicy(decryptPolicy);
 
-		// Create a policy for getting secret values.
-		const secretsPolicy = new PolicyStatement({
+		// Create a policy to allowing list and batch get of secrets.
+		const batchGetSecretsPolicy = new PolicyStatement({
 			actions: [
 				'secretsmanager:BatchGetSecretValue',
+				'secretsmanager:ListSecrets',
+			],
+			resources: ['*'],
+		});
+		this.tokenizeTransactionFunction.addToRolePolicy(batchGetSecretsPolicy);
+
+		// Create a policy for getting secret values.
+		const getSecretValuePolicy = new PolicyStatement({
+			actions: [
 				'secretsmanager:GetSecretValue',
 			],
 			resources: [this.privateKeySecret.secretArn],
@@ -257,14 +266,14 @@ export class C3AmazonConnectStack extends Stack {
 		// Create additional payment gateway secrets and add to policy.
 		switch (this.c3Context.paymentGateway) {
 			case C3PaymentGateway.Zift:
-				new Zift(this, secretsPolicy);
+				new Zift(this, getSecretValuePolicy);
 				break;
 			default:
 				throw new Error(
 					`Invalid payment gateway specified: ${this.c3Context.paymentGateway}`,
 				);
 		}
-		this.tokenizeTransactionFunction.addToRolePolicy(secretsPolicy);
+		this.tokenizeTransactionFunction.addToRolePolicy(getSecretValuePolicy);
 	}
 
 	/**
