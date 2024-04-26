@@ -26,6 +26,7 @@ import {
 	getDTMFPaymentFlowContent,
 } from '../connect/content-transformations';
 import { AmazonConnectContext } from '../models/amazon-connect-context';
+import { Secret } from 'aws-cdk-lib/aws-secretsmanager';
 
 /**
  * Class for creating the necessary resources to facilitate agent-initiated payments collected through DTMF.
@@ -46,6 +47,7 @@ export class AgentInitiatedPaymentDTMF {
 		private amazonConnectInstanceArn: string,
 		private amazonConnectContext: AmazonConnectContext,
 		private codeSigningConfig: CodeSigningConfig,
+		private c3ApiKeySecret: Secret,
 		private createPaymentRequestFunction: Function,
 		private tokenizeTransactionFunction: Function,
 		private submitPaymentFunction: Function,
@@ -92,6 +94,18 @@ export class AgentInitiatedPaymentDTMF {
 				codeSigningConfig: this.codeSigningConfig,
 			},
 		);
+
+		// Create the policies for getting secret values.
+		const batchGetSecretsPolicy = new PolicyStatement({
+			actions: ['secretsmanager:BatchGetSecretValue'],
+			resources: ['*'],
+		});
+		const getSecretValuePolicy = new PolicyStatement({
+			actions: ['secretsmanager:GetSecretValue'],
+			resources: [this.c3ApiKeySecret.secretArn],
+		});
+		this.submitPaymentFunction.addToRolePolicy(batchGetSecretsPolicy);
+		this.submitPaymentFunction.addToRolePolicy(getSecretValuePolicy);
 	}
 
 	/**

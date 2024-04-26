@@ -93,6 +93,7 @@ export class C3AmazonConnectStack extends Stack {
 				this.amazonConnectContext.instanceArn,
 				this.amazonConnectContext,
 				this.codeSigningConfig,
+				this.c3ApiKeySecret,
 				this.createPaymentRequestFunction,
 				this.tokenizeTransactionFunction,
 				this.submitPaymentFunction,
@@ -203,15 +204,17 @@ export class C3AmazonConnectStack extends Stack {
 			},
 		);
 
-		// Create a policy for getting secret values.
-		const secretsPolicy = new PolicyStatement({
-			actions: [
-				'secretsmanager:BatchGetSecretValue',
-				'secretsmanager:GetSecretValue',
-			],
+		// Create the policies for getting secret values.
+		const batchGetSecretsPolicy = new PolicyStatement({
+			actions: ['secretsmanager:BatchGetSecretValue'],
+			resources: ['*'],
+		});
+		const getSecretValuePolicy = new PolicyStatement({
+			actions: ['secretsmanager:GetSecretValue'],
 			resources: [this.c3ApiKeySecret.secretArn],
 		});
-		this.createPaymentRequestFunction.addToRolePolicy(secretsPolicy);
+		this.createPaymentRequestFunction.addToRolePolicy(batchGetSecretsPolicy);
+		this.createPaymentRequestFunction.addToRolePolicy(getSecretValuePolicy);
 	}
 
 	/**
@@ -244,17 +247,11 @@ export class C3AmazonConnectStack extends Stack {
 		});
 		this.tokenizeTransactionFunction.addToRolePolicy(decryptPolicy);
 
-		// Create a policy to allowing list and batch get of secrets.
+		// Create the policies for getting secret values.
 		const batchGetSecretsPolicy = new PolicyStatement({
-			actions: [
-				'secretsmanager:BatchGetSecretValue',
-				'secretsmanager:ListSecrets',
-			],
+			actions: ['secretsmanager:BatchGetSecretValue'],
 			resources: ['*'],
 		});
-		this.tokenizeTransactionFunction.addToRolePolicy(batchGetSecretsPolicy);
-
-		// Create a policy for getting secret values.
 		const getSecretValuePolicy = new PolicyStatement({
 			actions: ['secretsmanager:GetSecretValue'],
 			resources: [this.privateKeySecret.secretArn],
@@ -270,6 +267,7 @@ export class C3AmazonConnectStack extends Stack {
 					`Invalid payment gateway specified: ${this.c3Context.paymentGateway}`,
 				);
 		}
+		this.tokenizeTransactionFunction.addToRolePolicy(batchGetSecretsPolicy);
 		this.tokenizeTransactionFunction.addToRolePolicy(getSecretValuePolicy);
 	}
 
@@ -290,15 +288,17 @@ export class C3AmazonConnectStack extends Stack {
 			codeSigningConfig: this.codeSigningConfig,
 		});
 
-		// Create a policy for getting secret values.
-		const secretsPolicy = new PolicyStatement({
-			actions: [
-				'secretsmanager:BatchGetSecretValue',
-				'secretsmanager:GetSecretValue',
-			],
+		// Create the policies for getting secret values.
+		const batchGetSecretsPolicy = new PolicyStatement({
+			actions: ['secretsmanager:BatchGetSecretValue'],
+			resources: ['*'],
+		});
+		const getSecretValuePolicy = new PolicyStatement({
+			actions: ['secretsmanager:GetSecretValue'],
 			resources: [this.c3ApiKeySecret.secretArn],
 		});
-		this.submitPaymentFunction.addToRolePolicy(secretsPolicy);
+		this.submitPaymentFunction.addToRolePolicy(batchGetSecretsPolicy);
+		this.submitPaymentFunction.addToRolePolicy(getSecretValuePolicy);
 	}
 
 	/**
@@ -318,15 +318,17 @@ export class C3AmazonConnectStack extends Stack {
 			codeSigningConfig: this.codeSigningConfig,
 		});
 
-		// Create a policy for getting secret values.
-		const secretsPolicy = new PolicyStatement({
-			actions: [
-				'secretsmanager:BatchGetSecretValue',
-				'secretsmanager:GetSecretValue',
-			],
+		// Create the policies for getting secret values.
+		const batchGetSecretsPolicy = new PolicyStatement({
+			actions: ['secretsmanager:BatchGetSecretValue'],
+			resources: ['*'],
+		});
+		const getSecretValuePolicy = new PolicyStatement({
+			actions: ['secretsmanager:GetSecretValue'],
 			resources: [this.c3ApiKeySecret.secretArn],
 		});
-		this.emailReceiptFunction.addToRolePolicy(secretsPolicy);
+		this.emailReceiptFunction.addToRolePolicy(batchGetSecretsPolicy);
+		this.emailReceiptFunction.addToRolePolicy(getSecretValuePolicy);
 	}
 
 	/**
