@@ -81,4 +81,4 @@ export class Zift {
 	}
 }
 
-export const ZIFT_URL = 'https://secure.zift.io/gates/json?'
+export const ZIFT_URL = 'https://secure.zift.io/gates/json?';
