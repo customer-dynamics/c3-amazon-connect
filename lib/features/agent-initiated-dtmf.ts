@@ -104,8 +104,8 @@ export class AgentInitiatedPaymentDTMF {
 			actions: ['secretsmanager:GetSecretValue'],
 			resources: [this.c3ApiKeySecret.secretArn],
 		});
-		this.submitPaymentFunction.addToRolePolicy(batchGetSecretsPolicy);
-		this.submitPaymentFunction.addToRolePolicy(getSecretValuePolicy);
+		this.reportCustomerActivityFunction.addToRolePolicy(batchGetSecretsPolicy);
+		this.reportCustomerActivityFunction.addToRolePolicy(getSecretValuePolicy);
 	}
 
 	/**
