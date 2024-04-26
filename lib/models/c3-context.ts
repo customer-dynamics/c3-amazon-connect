@@ -5,7 +5,6 @@ export interface C3Context {
 	env: C3Environment;
 	vendorId: string;
 	paymentGateway: C3PaymentGateway;
-	apiKey: string;
 }
 
 /**
@@ -32,7 +31,5 @@ export function validateC3Context(c3Context: C3Context): void {
 		throw new Error(
 			`c3.paymentGateway context variable is invalid. Must be one of: ${Object.values(C3PaymentGateway).join(', ')}`,
 		);
-	} else if (!c3Context.apiKey) {
-		throw new Error('c3.apiKey context variable is required.');
 	}
 }

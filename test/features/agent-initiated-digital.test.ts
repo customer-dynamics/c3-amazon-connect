@@ -13,7 +13,6 @@ const mockContext: Context = {
 	},
 	c3: {
 		env: C3Environment.Prod,
-		apiKey: 'placeholder',
 		vendorId: 'placeholder',
 		paymentGateway: C3PaymentGateway.Zift,
 	},
