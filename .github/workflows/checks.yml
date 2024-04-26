@@ -39,7 +39,7 @@ jobs:
               "c3": {
                 "env": "dev",
                 "vendorId": "placeholder",
-                "paymentGateway": "Zift",
+                "paymentGateway": "Zift"
               },
               "logoUrl": "placeholder",
               "supportPhone": "placeholder",
