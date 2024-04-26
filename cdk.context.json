@@ -7,8 +7,7 @@
 	"c3": {
 		"env": "prod",
 		"vendorId": "",
-		"paymentGateway": "",
-		"apiKey": ""
+		"paymentGateway": ""
 	},
 	"logoUrl": "",
 	"supportPhone": "",
