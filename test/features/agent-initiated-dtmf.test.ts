@@ -74,8 +74,8 @@ describe('Agent Initiated DTMF', () => {
 			template.resourceCountIs('AWS::IAM::Role', NUMBER_OF_LAMBDAS + 1);
 		});
 		it('Has a created policy', () => {
-			// Cross org policy, 2 secrets policies, and kms policy
-			template.resourceCountIs('AWS::IAM::Policy', 4);
+			// Cross org policy, 3 secrets policies, and kms policy
+			template.resourceCountIs('AWS::IAM::Policy', 5);
 		});
 	});
 });
