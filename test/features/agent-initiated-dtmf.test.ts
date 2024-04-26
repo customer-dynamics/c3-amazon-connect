@@ -13,7 +13,6 @@ const mockContext: Context = {
 	},
 	c3: {
 		env: C3Environment.Prod,
-		apiKey: 'placeholder',
 		vendorId: 'placeholder',
 		paymentGateway: C3PaymentGateway.Zift,
 	},
@@ -74,8 +73,8 @@ describe('Agent Initiated DTMF', () => {
 		it('Has a created role', () => {
 			template.resourceCountIs('AWS::IAM::Role', NUMBER_OF_LAMBDAS + 1);
 		});
-		xit('Has a created policy', () => {
-			// Cross org policy, 2 secrets policies, and ???
+		it('Has a created policy', () => {
+			// Cross org policy, 2 secrets policies, and kms policy
 			template.resourceCountIs('AWS::IAM::Policy', 4);
 		});
 	});

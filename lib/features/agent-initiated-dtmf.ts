@@ -88,7 +88,6 @@ export class AgentInitiatedPaymentDTMF {
 				),
 				environment: {
 					C3_ENV: c3Env.env,
-					C3_API_KEY: c3Env.apiKey,
 				},
 				codeSigningConfig: this.codeSigningConfig,
 			},

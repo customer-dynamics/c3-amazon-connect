@@ -40,7 +40,6 @@ jobs:
                 "env": "dev",
                 "vendorId": "placeholder",
                 "paymentGateway": "Zift",
-                "apiKey": "placeholder"
               },
               "logoUrl": "placeholder",
               "supportPhone": "placeholder",

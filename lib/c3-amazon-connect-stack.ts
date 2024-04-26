@@ -195,7 +195,6 @@ export class C3AmazonConnectStack extends Stack {
 				environment: {
 					C3_VENDOR_ID: this.c3Context.vendorId,
 					C3_ENV: this.c3Context.env,
-					C3_API_KEY: this.c3Context.apiKey,
 					LOGO_URL: this.logoUrl,
 					SUPPORT_PHONE: this.supportPhone,
 					SUPPORT_EMAIL: this.supportEmail,
@@ -287,7 +286,6 @@ export class C3AmazonConnectStack extends Stack {
 			code: Code.fromAsset(join(__dirname, 'lambda/c3-submit-payment')),
 			environment: {
 				C3_ENV: this.c3Context.env,
-				C3_API_KEY: this.c3Context.apiKey,
 			},
 			codeSigningConfig: this.codeSigningConfig,
 		});
@@ -316,7 +314,6 @@ export class C3AmazonConnectStack extends Stack {
 			code: Code.fromAsset(join(__dirname, 'lambda/c3-email-receipt')),
 			environment: {
 				C3_ENV: this.c3Context.env,
-				C3_API_KEY: this.c3Context.apiKey,
 			},
 			codeSigningConfig: this.codeSigningConfig,
 		});
