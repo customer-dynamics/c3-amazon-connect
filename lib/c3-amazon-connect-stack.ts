@@ -341,21 +341,33 @@ export class C3AmazonConnectStack extends Stack {
 	 */
 	private create3rdPartyApp(): void {
 		console.log('Creating 3rd party application...');
-		// Create the app.
 		const instanceId = this.amazonConnectContext.instanceArn.split('/')[1];
+
+		// Set params for DTMF IVR features.
 		const region = this.amazonConnectContext.instanceArn.split(':')[3];
 		const externalRoleArn =
 			this.agentInitiatedDTMFResources?.iamRole?.roleArn || '';
 		const agentInitiatedDTMFParams = externalRoleArn
 			? `&externalRoleArn=${externalRoleArn}`
 			: '';
+
+		// Add parameters to the URL if the features are not configured.
+		let configuredFeatureParams = '';
+		if (!this.featuresContext.agentInitiatedDTMF) {
+			configuredFeatureParams += '&ivrNotConfigured=true';
+		}
+		if (!this.featuresContext.agentInitiatedDigital) {
+			configuredFeatureParams += '&webLinkNotConfigured=true';
+		}
+
+		// Create the app.
 		const application = new CfnApplication(this, 'C3ConnectApp', {
 			name: 'C3 Payment',
 			namespace: 'c3-payment',
 			description: 'Agent application for collecting payments with C3.',
 			applicationSourceConfig: {
 				externalUrlConfig: {
-					accessUrl: `https://${this.c3Context.vendorId}.dev.c2a.link/agent-workspace?instanceId=${instanceId}&region=${region}${agentInitiatedDTMFParams}`,
+					accessUrl: `https://${this.c3Context.vendorId}.dev.c2a.link/agent-workspace?instanceId=${instanceId}&region=${region}${agentInitiatedDTMFParams}${configuredFeatureParams}`,
 					approvedOrigins: [], // Don't allow any other origins.
 				},
 			},
