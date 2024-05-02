@@ -69,14 +69,6 @@ export class C3AmazonConnectStack extends Stack {
 			]);
 		}
 
-		// Create resources needed for agent-initiated payment requests.
-		if (
-			this.featuresContext.agentInitiatedDTMF ||
-			this.featuresContext.agentInitiatedDigital
-		) {
-			this.create3rdPartyApp();
-		}
-
 		// Create resources needed for each feature.
 		if (this.featuresContext.selfServiceDTMF) {
 			new SelfServicePaymentDTMF(
@@ -101,6 +93,14 @@ export class C3AmazonConnectStack extends Stack {
 				this.submitPaymentFunction,
 				this.emailReceiptFunction,
 			);
+		}
+
+		// Create resources needed for agent-initiated payment requests.
+		if (
+			this.featuresContext.agentInitiatedDTMF ||
+			this.featuresContext.agentInitiatedDigital
+		) {
+			this.create3rdPartyApp();
 		}
 	}
 
