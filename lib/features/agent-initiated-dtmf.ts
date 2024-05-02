@@ -32,12 +32,12 @@ import { Secret } from 'aws-cdk-lib/aws-secretsmanager';
  * Class for creating the necessary resources to facilitate agent-initiated payments collected through DTMF.
  */
 export class AgentInitiatedPaymentDTMF {
+	public iamRole: Role;
 	private reportCustomerActivityFunction: Function;
 	private agentHoldFlow: CfnContactFlow;
 	private dtmfPaymentFlow: CfnContactFlow;
 	private hoursOfOperation: CfnHoursOfOperation;
 	private queue: CfnQueue;
-	private iamRole: Role;
 
 	/**
 	 * Creates the necessary resources to facilitate agent-initiated payments collected through DTMF.

@@ -41,6 +41,8 @@ export class C3AmazonConnectStack extends Stack {
 	private submitPaymentFunction: Function;
 	private emailReceiptFunction: Function;
 
+	private agentInitiatedDTMFResources: AgentInitiatedPaymentDTMF;
+
 	constructor(scope: Construct, id: string, props?: StackProps) {
 		super(scope, id, props);
 		this.validateContextVariables();
@@ -88,7 +90,7 @@ export class C3AmazonConnectStack extends Stack {
 			);
 		}
 		if (this.featuresContext.agentInitiatedDTMF) {
-			new AgentInitiatedPaymentDTMF(
+			this.agentInitiatedDTMFResources = new AgentInitiatedPaymentDTMF(
 				this,
 				this.amazonConnectContext.instanceArn,
 				this.amazonConnectContext,
@@ -341,13 +343,19 @@ export class C3AmazonConnectStack extends Stack {
 		console.log('Creating 3rd party application...');
 		// Create the app.
 		const instanceId = this.amazonConnectContext.instanceArn.split('/')[1];
+		const region = this.amazonConnectContext.instanceArn.split(':')[3];
+		const externalRoleArn =
+			this.agentInitiatedDTMFResources?.iamRole?.roleArn || '';
+		const agentInitiatedDTMFParams = externalRoleArn
+			? `&externalRoleArn=${externalRoleArn}`
+			: '';
 		const application = new CfnApplication(this, 'C3ConnectApp', {
 			name: 'C3 Payment',
 			namespace: 'c3-payment',
 			description: 'Agent application for collecting payments with C3.',
 			applicationSourceConfig: {
 				externalUrlConfig: {
-					accessUrl: `https://${this.c3Context.vendorId}.dev.c2a.link/agent-workspace?instanceId=${instanceId}`,
+					accessUrl: `https://${this.c3Context.vendorId}.dev.c2a.link/agent-workspace?instanceId=${instanceId}&region=${region}${agentInitiatedDTMFParams}`,
 					approvedOrigins: [], // Don't allow any other origins.
 				},
 			},
