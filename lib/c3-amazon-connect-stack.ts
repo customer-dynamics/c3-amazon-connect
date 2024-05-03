@@ -362,7 +362,7 @@ export class C3AmazonConnectStack extends Stack {
 
 		// Create the app.
 		const application = new CfnApplication(this, 'C3ConnectApp', {
-			name: 'C3 Payment',
+			name: 'Payment Request',
 			namespace: 'c3-payment',
 			description: 'Agent application for collecting payments with C3.',
 			applicationSourceConfig: {

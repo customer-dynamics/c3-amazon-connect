@@ -284,7 +284,7 @@ export class AgentInitiatedPaymentDTMF {
 		console.log('Creating quick connect...');
 		new CfnQuickConnect(this.stack, 'C3DTMFQuickConnect', {
 			instanceArn: this.amazonConnectInstanceArn,
-			name: 'C3 Payment',
+			name: 'Payment IVR',
 			description: 'Quick connect for collecting DTMF payments with C3.',
 			quickConnectConfig: {
 				quickConnectType: 'QUEUE',
