@@ -10,6 +10,11 @@ updates:
     directory: '/'
     schedule:
       interval: 'daily'
+    groups:
+      # Update all CDK dependencies together
+      cdk:
+        patterns:
+          - 'aws-cdk*'
 
   # GitHub Actions
   - package-ecosystem: 'github-actions'
