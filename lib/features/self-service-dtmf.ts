@@ -51,7 +51,7 @@ export class SelfServicePaymentDTMF {
 		new CfnContactFlowModule(this.stack, 'C3DTMFPaymentFlowModule', {
 			name: 'C3 DTMF Payment Flow Module',
 			description:
-				'Flow module for collecting payments with C3 using DTMF in an inbound queue.',
+				'Flow module to collect payments through a self-service IVR using C3.',
 			content: dtmfPaymentFlowModuleContent,
 			instanceArn: this.amazonConnectInstanceArn,
 		});

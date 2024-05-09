@@ -152,9 +152,9 @@ export class AgentInitiatedPaymentDTMF {
 		}
 		writeFileSync('./exports/C3DTMFPaymentFlow', c3PaymentFlowContent);
 		this.dtmfPaymentFlow = new CfnContactFlow(this.stack, 'C3DTMFPaymentFlow', {
-			name: 'C3 DTMF Payment Flow',
+			name: 'Agent-Assisted Payment IVR',
 			description:
-				'Flow module for collecting payments with C3 using DTMF through a quick connect.',
+				'Flow for collecting payments with C3 through a quick connect IVR.',
 			content: c3PaymentFlowContent,
 			instanceArn: this.amazonConnectInstanceArn,
 			type: 'QUEUE_TRANSFER',
