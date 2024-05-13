@@ -1,0 +1,20 @@
+name: Dependabot auto merge
+
+on:
+  # This must be `pull_request_target` for Dependabot-triggered PRs:
+  # https://github.blog/changelog/2021-02-19-github-actions-workflows-triggered-by-dependabot-prs-will-run-with-read-only-permissions/
+  pull_request_target:
+    types: [opened, reopened]
+    branches: [dev]
+
+jobs:
+  auto-merge:
+    name: Auto merge
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ahmadnassri/action-dependabot-auto-merge@v2
+        with:
+          target: minor
+          github-token: ${{ secrets.DEPENDABOT_PAT }}
+          command: squash and merge
