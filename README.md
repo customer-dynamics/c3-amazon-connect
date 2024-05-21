@@ -8,7 +8,7 @@ C3 for Amazon Connect is a collection of resources to help you collect payments 
 
 ### 📞 Amazon Connect Integration
 
-C3 for Amazon Connect integrates seamlessly with Amazon Connect to provide a secure payment experience for your customers. Collect payments over the phone with confidence through a secure DTMF IVR solution.
+C3 for Amazon Connect integrates seamlessly with Amazon Connect to provide a secure payment experience for your customers. Collect payments over the phone with confidence through a secure IVR solution.
 
 ### ✅ PCI DSS Compliance
 

@@ -23,24 +23,24 @@ import {
 } from '../helpers/lambda';
 import {
 	getAgentHoldFlowContent,
-	getDTMFPaymentFlowContent,
+	getIVRPaymentFlowContent,
 } from '../connect/content-transformations';
 import { AmazonConnectContext } from '../models/amazon-connect-context';
 import { Secret } from 'aws-cdk-lib/aws-secretsmanager';
 
 /**
- * Class for creating the necessary resources to facilitate agent-initiated payments collected through DTMF.
+ * Class for creating the necessary resources to facilitate agent-assisted payments collected through IVR.
  */
-export class AgentInitiatedPaymentDTMF {
+export class AgentAssistedPaymentIVR {
 	public iamRole: Role;
 	private reportCustomerActivityFunction: Function;
 	private agentHoldFlow: CfnContactFlow;
-	private dtmfPaymentFlow: CfnContactFlow;
+	private ivrPaymentFlow: CfnContactFlow;
 	private hoursOfOperation: CfnHoursOfOperation;
 	private queue: CfnQueue;
 
 	/**
-	 * Creates the necessary resources to facilitate agent-initiated payments collected through DTMF.
+	 * Creates the necessary resources to facilitate agent-assisted payments collected through IVR.
 	 */
 	constructor(
 		private stack: Stack,
@@ -53,13 +53,13 @@ export class AgentInitiatedPaymentDTMF {
 		private submitPaymentFunction: Function,
 		private emailReceiptFunction: Function,
 	) {
-		console.log('Creating resources for agent-initiated DTMF payments...');
+		console.log('Creating resources for agent-assisted IVR payments...');
 		this.createReportCustomerActivityFunction();
 		associateLambdaFunctionsWithConnect(this.stack, [
 			this.reportCustomerActivityFunction,
 		]);
 		this.createAgentHoldFlow();
-		this.createDTMFFlow();
+		this.createIVRFlow();
 		this.createHoursOfOperation();
 		this.createQueue();
 		this.createQuickConnect();
@@ -131,13 +131,13 @@ export class AgentInitiatedPaymentDTMF {
 	}
 
 	/**
-	 * Creates a flow for agent-initiated DTMF payments.
+	 * Creates a flow for agent-assisted IVR payments.
 	 *
-	 * This flow is required to collect DTMF payments from customers. It is initiated by the agent and guides the customer through the payment process.
+	 * This flow is required to collect payments from customers through IVR. It is initiated by the agent and guides the customer through the payment process.
 	 */
-	private createDTMFFlow(): void {
-		console.log('Creating flow C3DTMFPaymentFlow...');
-		const c3PaymentFlowContent = getDTMFPaymentFlowContent(
+	private createIVRFlow(): void {
+		console.log('Creating flow C3IVRPaymentFlow...');
+		const c3PaymentFlowContent = getIVRPaymentFlowContent(
 			this.agentHoldFlow,
 			this.reportCustomerActivityFunction,
 			this.createPaymentRequestFunction,
@@ -150,8 +150,8 @@ export class AgentInitiatedPaymentDTMF {
 		if (!existsSync('./exports')) {
 			mkdirSync('./exports');
 		}
-		writeFileSync('./exports/C3DTMFPaymentFlow', c3PaymentFlowContent);
-		this.dtmfPaymentFlow = new CfnContactFlow(this.stack, 'C3DTMFPaymentFlow', {
+		writeFileSync('./exports/C3IVRPaymentFlow', c3PaymentFlowContent);
+		this.ivrPaymentFlow = new CfnContactFlow(this.stack, 'C3IVRPaymentFlow', {
 			name: 'Agent-Assisted Payment IVR',
 			description:
 				'Flow for collecting payments with C3 through a quick connect IVR.',
@@ -162,7 +162,7 @@ export class AgentInitiatedPaymentDTMF {
 	}
 
 	/**
-	 * Creates hours of operation for handling DTMF payments.
+	 * Creates hours of operation for handling IVR payments.
 	 *
 	 * These hours of operation are required because a queue must have hours of operation defined. This allows the payment queue to be available 24/7.
 	 */
@@ -170,12 +170,12 @@ export class AgentInitiatedPaymentDTMF {
 		console.log('Creating hours of operation...');
 		this.hoursOfOperation = new CfnHoursOfOperation(
 			this.stack,
-			'C3DTMFHoursOfOperation',
+			'C3IVRHoursOfOperation',
 			{
 				instanceArn: this.amazonConnectInstanceArn,
-				name: 'C3 DTMF Hours of Operation',
+				name: 'C3 IVR Hours of Operation',
 				description:
-					'Hours of operation for handling DTMF payment requests with C3.',
+					'Hours of operation for handling IVR payment requests with C3.',
 				timeZone: 'America/New_York',
 				config: [
 					{
@@ -261,15 +261,15 @@ export class AgentInitiatedPaymentDTMF {
 	}
 
 	/**
-	 * Creates the queue for handling DTMF payments.
+	 * Creates the queue for handling IVR payments.
 	 *
-	 * This queue is required so that an agent can transfer a customer to the DTMF payment flow using a quick connect.
+	 * This queue is required so that an agent can transfer a customer to the IVR payment flow using a quick connect.
 	 */
 	private createQueue(): void {
-		console.log('Creating DTMF quick connect queue...');
-		this.queue = new CfnQueue(this.stack, 'C3DTMFQuickConnectQueue', {
-			name: 'C3 DTMF Quick Connect Queue',
-			description: 'Queue for handling DTMF quick connect transfers with C3.',
+		console.log('Creating IVR quick connect queue...');
+		this.queue = new CfnQueue(this.stack, 'C3IVRQuickConnectQueue', {
+			name: 'C3 IVR Quick Connect Queue',
+			description: 'Queue for handling IVR quick connect transfers with C3.',
 			instanceArn: this.amazonConnectInstanceArn,
 			hoursOfOperationArn: this.hoursOfOperation.attrHoursOfOperationArn,
 		});
@@ -278,18 +278,18 @@ export class AgentInitiatedPaymentDTMF {
 	/**
 	 * Creates a quick connect to let agents collect payment.
 	 *
-	 * This quick connect is required so that an agent can transfer a customer to collect payments using DTMF.
+	 * This quick connect is required so that an agent can transfer a customer to collect payments through an IVR.
 	 */
 	private createQuickConnect(): void {
 		console.log('Creating quick connect...');
-		new CfnQuickConnect(this.stack, 'C3DTMFQuickConnect', {
+		new CfnQuickConnect(this.stack, 'C3IVRQuickConnect', {
 			instanceArn: this.amazonConnectInstanceArn,
 			name: 'Payment IVR',
-			description: 'Quick connect for collecting DTMF payments with C3.',
+			description: 'Quick connect for collecting IVR payments with C3.',
 			quickConnectConfig: {
 				quickConnectType: 'QUEUE',
 				queueConfig: {
-					contactFlowArn: this.dtmfPaymentFlow.attrContactFlowArn,
+					contactFlowArn: this.ivrPaymentFlow.attrContactFlowArn,
 					queueArn: this.queue.attrQueueArn,
 				},
 			},
@@ -300,15 +300,15 @@ export class AgentInitiatedPaymentDTMF {
 	 * Creates an IAM role allowing C3 to update contact attributes in your Amazon Connect instance.
 	 *
 	 * This role is required so that the payment request details entered by an agent can be stored in the contact attributes and made
-	 * available to the DTMF flow. Because 3rd party apps in the agent workspace currently do not support *setting* contact attributes
+	 * available to the IVR flow. Because 3rd party apps in the agent workspace currently do not support *setting* contact attributes
 	 * (only *getting* them), we are required to use a Lambda function within our C3 environment to set them. This role sets up
 	 * cross-account permissions for the Lambda function to achieve this.
 	 *
 	 * If the 3rd party app SDK is updated to support setting contact attributes, this role will no longer be necessary.
 	 */
 	private createIAMRole(): void {
-		console.log('Creating IAM role for DTMF...');
-		this.iamRole = new Role(this.stack, 'C3AgentInitiatedDTMFRole', {
+		console.log('Creating IAM role for agent-assisted IVR...');
+		this.iamRole = new Role(this.stack, 'C3AgentAssistedIVRRole', {
 			description:
 				'Role that allows C3 to update contact attributes in your Amazon Connect instance.',
 			assumedBy: new AccountPrincipal('815407490078'), // TODO: This will have to be dynamically set because prod C3 is a different account.
@@ -319,8 +319,8 @@ export class AgentInitiatedPaymentDTMF {
 	 * Creates an IAM policy allowing C3 to update contact attributes for any contact on your instance.
 	 */
 	private createIAMPolicy(): void {
-		console.log('Creating IAM policy for DTMF...');
-		new ManagedPolicy(this.stack, 'C3AgentInitiatedDTMFPolicy', {
+		console.log('Creating IAM policy for agent-assisted IVR...');
+		new ManagedPolicy(this.stack, 'C3AgentAssistedIVRPolicy', {
 			statements: [
 				new PolicyStatement({
 					actions: ['connect:UpdateContactAttributes'],

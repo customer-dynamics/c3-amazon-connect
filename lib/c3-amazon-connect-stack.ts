@@ -15,8 +15,7 @@ import {
 import { C3Context, validateC3Context } from './models/c3-context';
 import { FeaturesContext } from './models/features-context';
 import { Zift } from './payment-gateways/zift';
-import { AgentInitiatedPaymentDTMF } from './features/agent-initiated-dtmf';
-import { SelfServicePaymentDTMF } from './features/self-service-dtmf';
+import { AgentAssistedPaymentIVR, SelfServicePaymentIVR } from './features';
 import {
 	associateLambdaFunctionsWithConnect,
 	commonLambdaProps,
@@ -41,7 +40,7 @@ export class C3AmazonConnectStack extends Stack {
 	private submitPaymentFunction: Function;
 	private emailReceiptFunction: Function;
 
-	private agentInitiatedDTMFResources: AgentInitiatedPaymentDTMF;
+	private agentInitiatedIVRResources: AgentAssistedPaymentIVR;
 
 	constructor(scope: Construct, id: string, props?: StackProps) {
 		super(scope, id, props);
@@ -51,10 +50,10 @@ export class C3AmazonConnectStack extends Stack {
 		this.createCodeSigningConfig();
 		this.createC3ApiKeySecret();
 
-		// Create resources needed for DTMF payments.
+		// Create resources needed for IVR payments.
 		if (
-			this.featuresContext.selfServiceDTMF ||
-			this.featuresContext.agentInitiatedDTMF
+			this.featuresContext.selfServiceIVR ||
+			this.featuresContext.agentInitiatedIVR
 		) {
 			this.createPrivateKeySecret();
 			this.createCreatePaymentRequestFunction();
@@ -70,8 +69,8 @@ export class C3AmazonConnectStack extends Stack {
 		}
 
 		// Create resources needed for each feature.
-		if (this.featuresContext.selfServiceDTMF) {
-			new SelfServicePaymentDTMF(
+		if (this.featuresContext.selfServiceIVR) {
+			new SelfServicePaymentIVR(
 				this,
 				this.amazonConnectContext.instanceArn,
 				this.amazonConnectContext,
@@ -81,8 +80,8 @@ export class C3AmazonConnectStack extends Stack {
 				this.emailReceiptFunction,
 			);
 		}
-		if (this.featuresContext.agentInitiatedDTMF) {
-			this.agentInitiatedDTMFResources = new AgentInitiatedPaymentDTMF(
+		if (this.featuresContext.agentInitiatedIVR) {
+			this.agentInitiatedIVRResources = new AgentAssistedPaymentIVR(
 				this,
 				this.amazonConnectContext.instanceArn,
 				this.amazonConnectContext,
@@ -97,7 +96,7 @@ export class C3AmazonConnectStack extends Stack {
 
 		// Create resources needed for agent-initiated payment requests.
 		if (
-			this.featuresContext.agentInitiatedDTMF ||
+			this.featuresContext.agentInitiatedIVR ||
 			this.featuresContext.agentInitiatedDigital
 		) {
 			this.create3rdPartyApp();
@@ -343,17 +342,17 @@ export class C3AmazonConnectStack extends Stack {
 		console.log('Creating 3rd party application...');
 		const instanceId = this.amazonConnectContext.instanceArn.split('/')[1];
 
-		// Set params for DTMF IVR features.
+		// Set params for IVR features.
 		const region = this.amazonConnectContext.instanceArn.split(':')[3];
 		const externalRoleArn =
-			this.agentInitiatedDTMFResources?.iamRole?.roleArn || '';
-		const agentInitiatedDTMFParams = externalRoleArn
+			this.agentInitiatedIVRResources?.iamRole?.roleArn || '';
+		const agentInitiatedIVRParams = externalRoleArn
 			? `&externalRoleArn=${externalRoleArn}`
 			: '';
 
 		// Add parameters to the URL if the features are not configured.
 		let configuredFeatureParams = '';
-		if (!this.featuresContext.agentInitiatedDTMF) {
+		if (!this.featuresContext.agentInitiatedIVR) {
 			configuredFeatureParams += '&ivrNotConfigured=true';
 		}
 		if (!this.featuresContext.agentInitiatedDigital) {
@@ -367,7 +366,7 @@ export class C3AmazonConnectStack extends Stack {
 			description: 'Agent application for collecting payments with C3.',
 			applicationSourceConfig: {
 				externalUrlConfig: {
-					accessUrl: `https://${this.c3Context.vendorId}.dev.c2a.link/agent-workspace?instanceId=${instanceId}&region=${region}${agentInitiatedDTMFParams}${configuredFeatureParams}`,
+					accessUrl: `https://${this.c3Context.vendorId}.dev.c2a.link/agent-workspace?instanceId=${instanceId}&region=${region}${agentInitiatedIVRParams}${configuredFeatureParams}`,
 					approvedOrigins: [], // Don't allow any other origins.
 				},
 			},

@@ -45,9 +45,9 @@ jobs:
               "supportPhone": "placeholder",
               "supportEmail": "placeholder",
               "features": {
-                "agentInitiatedDTMF": true,
+                "agentAssistedIVR": true,
                 "agentInitiatedDigital": true,
-                "selfServiceDTMF": true
+                "selfServiceIVR": true
               }
             }
 
