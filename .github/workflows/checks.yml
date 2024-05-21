@@ -46,7 +46,7 @@ jobs:
               "supportEmail": "placeholder",
               "features": {
                 "agentAssistedIVR": true,
-                "agentInitiatedDigital": true,
+                "agentAssistedDigital": true,
                 "selfServiceIVR": true
               }
             }

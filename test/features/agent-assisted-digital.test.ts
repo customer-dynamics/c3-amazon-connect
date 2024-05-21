@@ -20,16 +20,16 @@ const mockContext: Context = {
 	supportPhone: 'placeholder',
 	supportEmail: 'placeholder',
 	features: {
-		agentInitiatedIVR: true,
-		agentInitiatedDigital: false,
+		agentAssistedIVR: false,
+		agentAssistedDigital: true,
 		selfServiceIVR: false,
 	},
 };
 
-const NUMBER_OF_LAMBDAS = 5;
+const NUMBER_OF_LAMBDAS = 0;
 
-// Verify created resources for agent-initiated IVR.
-describe('Agent Initiated IVR', () => {
+// Verify created resources for agent-assisted IVR.
+describe('Self-Service Digital', () => {
 	const app = new App({
 		context: mockContext,
 	});
@@ -37,22 +37,22 @@ describe('Agent Initiated IVR', () => {
 	const template = Template.fromStack(stack);
 
 	describe('Amazon Connect', () => {
-		describe('IVR flow', () => {
-			it('Has contact flow', () => {
-				template.resourceCountIs('AWS::Connect::ContactFlow', 2);
+		describe('IVR contact flow', () => {
+			it('Has no contact flow', () => {
+				template.resourceCountIs('AWS::Connect::ContactFlow', 0);
 			});
 		});
 
-		describe('C3 Quick Connect', () => {
-			it('Has quick connect', () => {
-				template.resourceCountIs('AWS::Connect::QuickConnect', 1);
+		describe('IVR flow module', () => {
+			it('Has no contact flow module', () => {
+				template.resourceCountIs('AWS::Connect::ContactFlowModule', 0);
 			});
 		});
 	});
 
 	// Lambda functions
 	describe('Lambda functions', () => {
-		it('Has 5 created functions', () => {
+		it('Has 0 created functions', () => {
 			template.resourceCountIs('AWS::Lambda::Function', NUMBER_OF_LAMBDAS);
 		});
 	});
@@ -65,17 +65,6 @@ describe('Agent Initiated IVR', () => {
 				'AWS::Connect::IntegrationAssociation',
 				NUMBER_OF_LAMBDAS + 1,
 			);
-		});
-	});
-
-	// IAM
-	describe('IAM', () => {
-		it('Has a created role', () => {
-			template.resourceCountIs('AWS::IAM::Role', NUMBER_OF_LAMBDAS + 1);
-		});
-		it('Has a created policy', () => {
-			// Cross org policy, 3 secrets policies, and kms policy
-			template.resourceCountIs('AWS::IAM::Policy', 5);
 		});
 	});
 });

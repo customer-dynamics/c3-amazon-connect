@@ -20,15 +20,15 @@ const mockContext: Context = {
 	supportPhone: 'placeholder',
 	supportEmail: 'placeholder',
 	features: {
-		agentInitiatedIVR: false,
-		agentInitiatedDigital: false,
+		agentAssistedIVR: false,
+		agentAssistedDigital: false,
 		selfServiceIVR: true,
 	},
 };
 
 const NUMBER_OF_LAMBDAS = 4;
 
-// Verify created resources for agent-initiated IVR.
+// Verify created resources for agent-assisted IVR.
 describe('Self-Service IVR', () => {
 	const app = new App({
 		context: mockContext,

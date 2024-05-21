@@ -40,7 +40,7 @@ export class C3AmazonConnectStack extends Stack {
 	private submitPaymentFunction: Function;
 	private emailReceiptFunction: Function;
 
-	private agentInitiatedIVRResources: AgentAssistedPaymentIVR;
+	private agentAssistedIVRResources: AgentAssistedPaymentIVR;
 
 	constructor(scope: Construct, id: string, props?: StackProps) {
 		super(scope, id, props);
@@ -53,7 +53,7 @@ export class C3AmazonConnectStack extends Stack {
 		// Create resources needed for IVR payments.
 		if (
 			this.featuresContext.selfServiceIVR ||
-			this.featuresContext.agentInitiatedIVR
+			this.featuresContext.agentAssistedIVR
 		) {
 			this.createPrivateKeySecret();
 			this.createCreatePaymentRequestFunction();
@@ -80,8 +80,8 @@ export class C3AmazonConnectStack extends Stack {
 				this.emailReceiptFunction,
 			);
 		}
-		if (this.featuresContext.agentInitiatedIVR) {
-			this.agentInitiatedIVRResources = new AgentAssistedPaymentIVR(
+		if (this.featuresContext.agentAssistedIVR) {
+			this.agentAssistedIVRResources = new AgentAssistedPaymentIVR(
 				this,
 				this.amazonConnectContext.instanceArn,
 				this.amazonConnectContext,
@@ -94,10 +94,10 @@ export class C3AmazonConnectStack extends Stack {
 			);
 		}
 
-		// Create resources needed for agent-initiated payment requests.
+		// Create resources needed for agent-assisted payment requests.
 		if (
-			this.featuresContext.agentInitiatedIVR ||
-			this.featuresContext.agentInitiatedDigital
+			this.featuresContext.agentAssistedIVR ||
+			this.featuresContext.agentAssistedDigital
 		) {
 			this.create3rdPartyApp();
 		}
@@ -333,7 +333,7 @@ export class C3AmazonConnectStack extends Stack {
 	}
 
 	/**
-	 * Creates a 3rd party application to be used for agent-initiated payments and associates it with your Amazon Connect instance.
+	 * Creates a 3rd party application to be used for agent-assisted payments and associates it with your Amazon Connect instance.
 	 *
 	 * This app is required in order for an agent to initiate a payment while on a call with a customer. Once created, it will show as
 	 * an app in the agent workspace. NOTE: You will also have to enable this app to viewed on the security profile for your agents.
@@ -345,17 +345,17 @@ export class C3AmazonConnectStack extends Stack {
 		// Set params for IVR features.
 		const region = this.amazonConnectContext.instanceArn.split(':')[3];
 		const externalRoleArn =
-			this.agentInitiatedIVRResources?.iamRole?.roleArn || '';
-		const agentInitiatedIVRParams = externalRoleArn
+			this.agentAssistedIVRResources?.iamRole?.roleArn || '';
+		const agentAssistedIVRParams = externalRoleArn
 			? `&externalRoleArn=${externalRoleArn}`
 			: '';
 
 		// Add parameters to the URL if the features are not configured.
 		let configuredFeatureParams = '';
-		if (!this.featuresContext.agentInitiatedIVR) {
+		if (!this.featuresContext.agentAssistedIVR) {
 			configuredFeatureParams += '&ivrNotConfigured=true';
 		}
-		if (!this.featuresContext.agentInitiatedDigital) {
+		if (!this.featuresContext.agentAssistedDigital) {
 			configuredFeatureParams += '&webLinkNotConfigured=true';
 		}
 
@@ -366,7 +366,7 @@ export class C3AmazonConnectStack extends Stack {
 			description: 'Agent application for collecting payments with C3.',
 			applicationSourceConfig: {
 				externalUrlConfig: {
-					accessUrl: `https://${this.c3Context.vendorId}.dev.c2a.link/agent-workspace?instanceId=${instanceId}&region=${region}${agentInitiatedIVRParams}${configuredFeatureParams}`,
+					accessUrl: `https://${this.c3Context.vendorId}.dev.c2a.link/agent-workspace?instanceId=${instanceId}&region=${region}${agentAssistedIVRParams}${configuredFeatureParams}`,
 					approvedOrigins: [], // Don't allow any other origins.
 				},
 			},
