@@ -21,15 +21,15 @@ const mockContext: Context = {
 	supportEmail: 'placeholder',
 	features: {
 		agentAssistedIVR: false,
-		agentAssistedDigital: true,
+		agentAssistedLink: true,
 		selfServiceIVR: false,
 	},
 };
 
 const NUMBER_OF_LAMBDAS = 0;
 
-// Verify created resources for agent-assisted IVR.
-describe('Self-Service Digital', () => {
+// Verify created resources for agent-assisted Link.
+describe('Self-Service Link', () => {
 	const app = new App({
 		context: mockContext,
 	});

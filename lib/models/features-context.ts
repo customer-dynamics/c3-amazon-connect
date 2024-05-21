@@ -1,5 +1,5 @@
 export interface FeaturesContext {
 	agentAssistedIVR: boolean;
-	agentAssistedDigital: boolean;
+	agentAssistedLink: boolean;
 	selfServiceIVR: boolean;
 }

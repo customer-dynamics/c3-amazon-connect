@@ -97,7 +97,7 @@ export class C3AmazonConnectStack extends Stack {
 		// Create resources needed for agent-assisted payment requests.
 		if (
 			this.featuresContext.agentAssistedIVR ||
-			this.featuresContext.agentAssistedDigital
+			this.featuresContext.agentAssistedLink
 		) {
 			this.create3rdPartyApp();
 		}
@@ -355,7 +355,7 @@ export class C3AmazonConnectStack extends Stack {
 		if (!this.featuresContext.agentAssistedIVR) {
 			configuredFeatureParams += '&ivrNotConfigured=true';
 		}
-		if (!this.featuresContext.agentAssistedDigital) {
+		if (!this.featuresContext.agentAssistedLink) {
 			configuredFeatureParams += '&webLinkNotConfigured=true';
 		}
 

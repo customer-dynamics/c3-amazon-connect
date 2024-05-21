@@ -21,7 +21,7 @@ const mockContext: Context = {
 	supportEmail: 'placeholder',
 	features: {
 		agentAssistedIVR: false,
-		agentAssistedDigital: false,
+		agentAssistedLink: false,
 		selfServiceIVR: true,
 	},
 };
