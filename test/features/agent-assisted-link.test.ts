@@ -28,7 +28,7 @@ const mockContext: Context = {
 
 const NUMBER_OF_LAMBDAS = 0;
 
-// Verify created resources for agent-assisted Link.
+// Verify created resources for agent-assisted links.
 describe('Self-Service Link', () => {
 	const app = new App({
 		context: mockContext,
