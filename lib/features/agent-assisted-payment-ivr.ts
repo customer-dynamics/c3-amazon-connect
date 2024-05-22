@@ -47,6 +47,7 @@ export class AgentAssistedPaymentIVR {
 		private amazonConnectInstanceArn: string,
 		private amazonConnectContext: AmazonConnectContext,
 		private codeSigningConfig: CodeSigningConfig,
+		private c3BaseUrl: string,
 		private c3ApiKeySecret: Secret,
 		private createPaymentRequestFunction: Function,
 		private tokenizeTransactionFunction: Function,
@@ -77,7 +78,7 @@ export class AgentAssistedPaymentIVR {
 		console.log('Creating function C3ReportCustomerActivity...');
 
 		// Create function.
-		const c3Env = this.stack.node.tryGetContext('c3') as C3Context;
+		const c3Context = this.stack.node.tryGetContext('c3') as C3Context;
 		this.reportCustomerActivityFunction = new Function(
 			this.stack,
 			'C3ReportCustomerActivity',
@@ -89,7 +90,8 @@ export class AgentAssistedPaymentIVR {
 					join(__dirname, '../lambda/c3-report-customer-activity'),
 				),
 				environment: {
-					C3_ENV: c3Env.env,
+					C3_ENV: c3Context.env,
+					C3_BASE_URL: this.c3BaseUrl,
 				},
 				codeSigningConfig: this.codeSigningConfig,
 			},
