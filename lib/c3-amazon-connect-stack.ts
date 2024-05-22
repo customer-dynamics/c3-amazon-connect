@@ -137,12 +137,15 @@ export class C3AmazonConnectStack extends Stack {
 		switch (this.c3Context.env) {
 			case 'prod':
 				this.c3BaseUrl = 'https://api.call2action.link';
+				break;
 			case 'staging':
 				this.c3BaseUrl =
 					'https://mstp8ccw53.execute-api.us-west-2.amazonaws.com/staging';
+				break;
 			case 'dev':
 				this.c3BaseUrl =
 					'https://xr1n4f5p34.execute-api.us-west-2.amazonaws.com/dev';
+				break;
 			default:
 				throw new Error(`Invalid environment: ${this.c3Context.env}`);
 		}
