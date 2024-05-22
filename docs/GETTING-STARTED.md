@@ -39,18 +39,6 @@ In order to facilitate this process, you will need to provide some values to the
 
 Once these values are provided, ensure that you have the AWS CDK installed and configured on your machine. Please reference the [Getting started with the AWS CDK](https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html) documentation for more information.
 
-With the CDK installed and configured, install the necessary dependencies:
-
-```bash
-npm i
-```
-
-Build the project:
-
-```bash
-npm run build
-```
-
 Bootstrap the CDK:
 
 ```bash
@@ -62,7 +50,7 @@ This command will deploy the necessary resources to your AWS account to facilita
 Then deploy the stack to the same region as your Amazon Connect instance:
 
 ```bash
-cdk deploy
+npm run deploy
 ```
 
 > [!NOTE]
