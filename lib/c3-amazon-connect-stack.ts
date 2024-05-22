@@ -41,6 +41,7 @@ export class C3AmazonConnectStack extends Stack {
 	private tokenizeTransactionFunction: Function;
 	private submitPaymentFunction: Function;
 	private emailReceiptFunction: Function;
+
 	private agentAssistedIVRResources: AgentAssistedPaymentIVR;
 
 	constructor(scope: Construct, id: string, props?: StackProps) {

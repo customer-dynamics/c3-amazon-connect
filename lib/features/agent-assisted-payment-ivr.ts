@@ -308,10 +308,13 @@ export class AgentAssistedPaymentIVR {
 	 */
 	private createIAMRole(): void {
 		console.log('Creating IAM role for agent-assisted IVR...');
+		const c3Context = this.stack.node.tryGetContext('c3') as C3Context;
+		const c3AWSAccountId =
+			c3Context.env === 'prod' ? '426101528791' : '815407490078';
 		this.iamRole = new Role(this.stack, 'C3AgentAssistedIVRRole', {
 			description:
 				'Role that allows C3 to update contact attributes in your Amazon Connect instance.',
-			assumedBy: new AccountPrincipal('815407490078'), // TODO: This will have to be dynamically set because prod C3 is a different account.
+			assumedBy: new AccountPrincipal(c3AWSAccountId),
 		});
 	}
 
