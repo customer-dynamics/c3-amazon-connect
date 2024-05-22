@@ -23,6 +23,8 @@ import {
 import { C3PaymentGateway } from './models/enums/c3-payment-gateway';
 
 export class C3AmazonConnectStack extends Stack {
+	private c3BaseUrl: string;
+
 	// Context variables.
 	private amazonConnectContext: AmazonConnectContext;
 	private c3Context: C3Context;
@@ -39,12 +41,12 @@ export class C3AmazonConnectStack extends Stack {
 	private tokenizeTransactionFunction: Function;
 	private submitPaymentFunction: Function;
 	private emailReceiptFunction: Function;
-
 	private agentAssistedIVRResources: AgentAssistedPaymentIVR;
 
 	constructor(scope: Construct, id: string, props?: StackProps) {
 		super(scope, id, props);
 		this.validateContextVariables();
+		this.setC3BaseUrl();
 
 		// Create resources needed for all features.
 		this.createCodeSigningConfig();
@@ -129,6 +131,24 @@ export class C3AmazonConnectStack extends Stack {
 	}
 
 	/**
+	 * Sets the base URL for the C3 API based on the environment.
+	 */
+	private setC3BaseUrl(): void {
+		switch (this.c3Context.env) {
+			case 'prod':
+				this.c3BaseUrl = 'https://api.call2action.link';
+			case 'staging':
+				this.c3BaseUrl =
+					'https://mstp8ccw53.execute-api.us-west-2.amazonaws.com/staging';
+			case 'dev':
+				this.c3BaseUrl =
+					'https://xr1n4f5p34.execute-api.us-west-2.amazonaws.com/dev';
+			default:
+				throw new Error(`Invalid environment: ${this.c3Context.env}`);
+		}
+	}
+
+	/**
 	 * Creates a code signing profile and configuration for the Lambda functions.
 	 *
 	 * This signing profile and configuration is necessary for extra security when Lambdas are working with sensitive data.
@@ -196,7 +216,7 @@ export class C3AmazonConnectStack extends Stack {
 				),
 				environment: {
 					C3_VENDOR_ID: this.c3Context.vendorId,
-					C3_ENV: this.c3Context.env,
+					C3_BASE_URL: this.c3BaseUrl,
 					LOGO_URL: this.logoUrl,
 					SUPPORT_PHONE: this.supportPhone,
 					SUPPORT_EMAIL: this.supportEmail,
@@ -280,6 +300,7 @@ export class C3AmazonConnectStack extends Stack {
 			code: Code.fromAsset(join(__dirname, 'lambda/c3-submit-payment')),
 			environment: {
 				C3_ENV: this.c3Context.env,
+				C3_BASE_URL: this.c3BaseUrl,
 			},
 			codeSigningConfig: this.codeSigningConfig,
 		});
@@ -305,6 +326,7 @@ export class C3AmazonConnectStack extends Stack {
 			code: Code.fromAsset(join(__dirname, 'lambda/c3-email-receipt')),
 			environment: {
 				C3_ENV: this.c3Context.env,
+				C3_BASE_URL: this.c3BaseUrl,
 			},
 			codeSigningConfig: this.codeSigningConfig,
 		});
