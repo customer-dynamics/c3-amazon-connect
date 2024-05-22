@@ -331,16 +331,11 @@ export class C3AmazonConnectStack extends Stack {
 			codeSigningConfig: this.codeSigningConfig,
 		});
 
-		// Create the policies for getting secret values.
-		const batchGetSecretsPolicy = new PolicyStatement({
-			actions: ['secretsmanager:BatchGetSecretValue'],
-			resources: ['*'],
-		});
+		// Create the policy for getting secret values.
 		const getSecretValuePolicy = new PolicyStatement({
 			actions: ['secretsmanager:GetSecretValue'],
 			resources: [this.c3ApiKeySecret.secretArn],
 		});
-		this.emailReceiptFunction.addToRolePolicy(batchGetSecretsPolicy);
 		this.emailReceiptFunction.addToRolePolicy(getSecretValuePolicy);
 	}
 
