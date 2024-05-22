@@ -15,8 +15,7 @@ import {
 import { C3Context, validateC3Context } from './models/c3-context';
 import { FeaturesContext } from './models/features-context';
 import { Zift } from './payment-gateways/zift';
-import { AgentInitiatedPaymentDTMF } from './features/agent-initiated-dtmf';
-import { SelfServicePaymentDTMF } from './features/self-service-dtmf';
+import { AgentAssistedPaymentIVR, SelfServicePaymentIVR } from './features';
 import {
 	associateLambdaFunctionsWithConnect,
 	commonLambdaProps,
@@ -24,6 +23,8 @@ import {
 import { C3PaymentGateway } from './models/enums/c3-payment-gateway';
 
 export class C3AmazonConnectStack extends Stack {
+	private c3BaseUrl: string;
+
 	// Context variables.
 	private amazonConnectContext: AmazonConnectContext;
 	private c3Context: C3Context;
@@ -41,20 +42,21 @@ export class C3AmazonConnectStack extends Stack {
 	private submitPaymentFunction: Function;
 	private emailReceiptFunction: Function;
 
-	private agentInitiatedDTMFResources: AgentInitiatedPaymentDTMF;
+	private agentAssistedIVRResources: AgentAssistedPaymentIVR;
 
 	constructor(scope: Construct, id: string, props?: StackProps) {
 		super(scope, id, props);
 		this.validateContextVariables();
+		this.setC3BaseUrl();
 
 		// Create resources needed for all features.
 		this.createCodeSigningConfig();
 		this.createC3ApiKeySecret();
 
-		// Create resources needed for DTMF payments.
+		// Create resources needed for IVR payments.
 		if (
-			this.featuresContext.selfServiceDTMF ||
-			this.featuresContext.agentInitiatedDTMF
+			this.featuresContext.selfServiceIVR ||
+			this.featuresContext.agentAssistedIVR
 		) {
 			this.createPrivateKeySecret();
 			this.createCreatePaymentRequestFunction();
@@ -70,8 +72,8 @@ export class C3AmazonConnectStack extends Stack {
 		}
 
 		// Create resources needed for each feature.
-		if (this.featuresContext.selfServiceDTMF) {
-			new SelfServicePaymentDTMF(
+		if (this.featuresContext.selfServiceIVR) {
+			new SelfServicePaymentIVR(
 				this,
 				this.amazonConnectContext.instanceArn,
 				this.amazonConnectContext,
@@ -81,12 +83,13 @@ export class C3AmazonConnectStack extends Stack {
 				this.emailReceiptFunction,
 			);
 		}
-		if (this.featuresContext.agentInitiatedDTMF) {
-			this.agentInitiatedDTMFResources = new AgentInitiatedPaymentDTMF(
+		if (this.featuresContext.agentAssistedIVR) {
+			this.agentAssistedIVRResources = new AgentAssistedPaymentIVR(
 				this,
 				this.amazonConnectContext.instanceArn,
 				this.amazonConnectContext,
 				this.codeSigningConfig,
+				this.c3BaseUrl,
 				this.c3ApiKeySecret,
 				this.createPaymentRequestFunction,
 				this.tokenizeTransactionFunction,
@@ -95,10 +98,10 @@ export class C3AmazonConnectStack extends Stack {
 			);
 		}
 
-		// Create resources needed for agent-initiated payment requests.
+		// Create resources needed for agent-assisted payment requests.
 		if (
-			this.featuresContext.agentInitiatedDTMF ||
-			this.featuresContext.agentInitiatedDigital
+			this.featuresContext.agentAssistedIVR ||
+			this.featuresContext.agentAssistedLink
 		) {
 			this.create3rdPartyApp();
 		}
@@ -126,6 +129,27 @@ export class C3AmazonConnectStack extends Stack {
 		}
 		if (!this.supportEmail) {
 			throw new Error('supportEmail context variable is required.');
+		}
+	}
+
+	/**
+	 * Sets the base URL for the C3 API based on the environment.
+	 */
+	private setC3BaseUrl(): void {
+		switch (this.c3Context.env) {
+			case 'prod':
+				this.c3BaseUrl = 'https://api.call2action.link';
+				break;
+			case 'staging':
+				this.c3BaseUrl =
+					'https://mstp8ccw53.execute-api.us-west-2.amazonaws.com/staging';
+				break;
+			case 'dev':
+				this.c3BaseUrl =
+					'https://xr1n4f5p34.execute-api.us-west-2.amazonaws.com/dev';
+				break;
+			default:
+				throw new Error(`Invalid environment: ${this.c3Context.env}`);
 		}
 	}
 
@@ -197,7 +221,7 @@ export class C3AmazonConnectStack extends Stack {
 				),
 				environment: {
 					C3_VENDOR_ID: this.c3Context.vendorId,
-					C3_ENV: this.c3Context.env,
+					C3_BASE_URL: this.c3BaseUrl,
 					LOGO_URL: this.logoUrl,
 					SUPPORT_PHONE: this.supportPhone,
 					SUPPORT_EMAIL: this.supportEmail,
@@ -206,16 +230,11 @@ export class C3AmazonConnectStack extends Stack {
 			},
 		);
 
-		// Create the policies for getting secret values.
-		const batchGetSecretsPolicy = new PolicyStatement({
-			actions: ['secretsmanager:BatchGetSecretValue'],
-			resources: ['*'],
-		});
+		// Create the policy for getting secret values.
 		const getSecretValuePolicy = new PolicyStatement({
 			actions: ['secretsmanager:GetSecretValue'],
 			resources: [this.c3ApiKeySecret.secretArn],
 		});
-		this.createPaymentRequestFunction.addToRolePolicy(batchGetSecretsPolicy);
 		this.createPaymentRequestFunction.addToRolePolicy(getSecretValuePolicy);
 	}
 
@@ -249,11 +268,6 @@ export class C3AmazonConnectStack extends Stack {
 		});
 		this.tokenizeTransactionFunction.addToRolePolicy(decryptPolicy);
 
-		// Create the policies for getting secret values.
-		const batchGetSecretsPolicy = new PolicyStatement({
-			actions: ['secretsmanager:BatchGetSecretValue'],
-			resources: ['*'],
-		});
 		const getSecretValuePolicy = new PolicyStatement({
 			actions: ['secretsmanager:GetSecretValue'],
 			resources: [this.privateKeySecret.secretArn],
@@ -269,7 +283,6 @@ export class C3AmazonConnectStack extends Stack {
 					`Invalid payment gateway specified: ${this.c3Context.paymentGateway}`,
 				);
 		}
-		this.tokenizeTransactionFunction.addToRolePolicy(batchGetSecretsPolicy);
 		this.tokenizeTransactionFunction.addToRolePolicy(getSecretValuePolicy);
 	}
 
@@ -285,21 +298,16 @@ export class C3AmazonConnectStack extends Stack {
 			description: 'Submits tokenized payment info to C3 for processing.',
 			code: Code.fromAsset(join(__dirname, 'lambda/c3-submit-payment')),
 			environment: {
-				C3_ENV: this.c3Context.env,
+				C3_BASE_URL: this.c3BaseUrl,
 			},
 			codeSigningConfig: this.codeSigningConfig,
 		});
 
-		// Create the policies for getting secret values.
-		const batchGetSecretsPolicy = new PolicyStatement({
-			actions: ['secretsmanager:BatchGetSecretValue'],
-			resources: ['*'],
-		});
+		// Create the policy for getting secret values.
 		const getSecretValuePolicy = new PolicyStatement({
 			actions: ['secretsmanager:GetSecretValue'],
 			resources: [this.c3ApiKeySecret.secretArn],
 		});
-		this.submitPaymentFunction.addToRolePolicy(batchGetSecretsPolicy);
 		this.submitPaymentFunction.addToRolePolicy(getSecretValuePolicy);
 	}
 
@@ -315,26 +323,21 @@ export class C3AmazonConnectStack extends Stack {
 			description: 'Creates a payment request through the C3 API.',
 			code: Code.fromAsset(join(__dirname, 'lambda/c3-email-receipt')),
 			environment: {
-				C3_ENV: this.c3Context.env,
+				C3_BASE_URL: this.c3BaseUrl,
 			},
 			codeSigningConfig: this.codeSigningConfig,
 		});
 
-		// Create the policies for getting secret values.
-		const batchGetSecretsPolicy = new PolicyStatement({
-			actions: ['secretsmanager:BatchGetSecretValue'],
-			resources: ['*'],
-		});
+		// Create the policy for getting secret values.
 		const getSecretValuePolicy = new PolicyStatement({
 			actions: ['secretsmanager:GetSecretValue'],
 			resources: [this.c3ApiKeySecret.secretArn],
 		});
-		this.emailReceiptFunction.addToRolePolicy(batchGetSecretsPolicy);
 		this.emailReceiptFunction.addToRolePolicy(getSecretValuePolicy);
 	}
 
 	/**
-	 * Creates a 3rd party application to be used for agent-initiated payments and associates it with your Amazon Connect instance.
+	 * Creates a 3rd party application to be used for agent-assisted payments and associates it with your Amazon Connect instance.
 	 *
 	 * This app is required in order for an agent to initiate a payment while on a call with a customer. Once created, it will show as
 	 * an app in the agent workspace. NOTE: You will also have to enable this app to viewed on the security profile for your agents.
@@ -343,21 +346,21 @@ export class C3AmazonConnectStack extends Stack {
 		console.log('Creating 3rd party application...');
 		const instanceId = this.amazonConnectContext.instanceArn.split('/')[1];
 
-		// Set params for DTMF IVR features.
+		// Set params for IVR features.
 		const region = this.amazonConnectContext.instanceArn.split(':')[3];
 		const externalRoleArn =
-			this.agentInitiatedDTMFResources?.iamRole?.roleArn || '';
-		const agentInitiatedDTMFParams = externalRoleArn
+			this.agentAssistedIVRResources?.iamRole?.roleArn || '';
+		const agentAssistedIVRParams = externalRoleArn
 			? `&externalRoleArn=${externalRoleArn}`
 			: '';
 
 		// Add parameters to the URL if the features are not configured.
 		let configuredFeatureParams = '';
-		if (!this.featuresContext.agentInitiatedDTMF) {
-			configuredFeatureParams += '&ivrNotConfigured=true';
+		if (!this.featuresContext.agentAssistedIVR) {
+			configuredFeatureParams += '&noIvr=true';
 		}
-		if (!this.featuresContext.agentInitiatedDigital) {
-			configuredFeatureParams += '&webLinkNotConfigured=true';
+		if (!this.featuresContext.agentAssistedLink) {
+			configuredFeatureParams += '&noLink=true';
 		}
 
 		// Create the app.
@@ -365,9 +368,10 @@ export class C3AmazonConnectStack extends Stack {
 			name: 'Payment Request',
 			namespace: 'c3-payment',
 			description: 'Agent application for collecting payments with C3.',
+			permissions: ['User.Details.View', 'Contact.Details.View'],
 			applicationSourceConfig: {
 				externalUrlConfig: {
-					accessUrl: `https://${this.c3Context.vendorId}.dev.c2a.link/agent-workspace?instanceId=${instanceId}&region=${region}${agentInitiatedDTMFParams}${configuredFeatureParams}`,
+					accessUrl: `https://${this.c3Context.vendorId}.dev.c2a.link/agent-workspace?instanceId=${instanceId}&region=${region}${agentAssistedIVRParams}${configuredFeatureParams}`,
 					approvedOrigins: [], // Don't allow any other origins.
 				},
 			},

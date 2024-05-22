@@ -20,16 +20,16 @@ const mockContext: Context = {
 	supportPhone: 'placeholder',
 	supportEmail: 'placeholder',
 	features: {
-		agentInitiatedDTMF: false,
-		agentInitiatedDigital: false,
-		selfServiceDTMF: true,
+		agentAssistedIVR: false,
+		agentAssistedLink: false,
+		selfServiceIVR: true,
 	},
 };
 
 const NUMBER_OF_LAMBDAS = 4;
 
-// Verify created resources for agent-initiated DTMF.
-describe('Self-Service DTMF', () => {
+// Verify created resources for agent-assisted IVR.
+describe('Self-Service IVR', () => {
 	const app = new App({
 		context: mockContext,
 	});
@@ -37,7 +37,7 @@ describe('Self-Service DTMF', () => {
 	const template = Template.fromStack(stack);
 
 	describe('Amazon Connect', () => {
-		describe('DTMF flow module', () => {
+		describe('IVR flow module', () => {
 			it('Has contact flow module', () => {
 				template.resourceCountIs('AWS::Connect::ContactFlowModule', 1);
 			});

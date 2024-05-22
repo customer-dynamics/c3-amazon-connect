@@ -32,24 +32,12 @@ In order to facilitate this process, you will need to provide some values to the
 | `amazonConnectSecurityKeyCertificateContent` | The full content of the certificate associated with your Amazon Connect security key. Begins with `-----BEGIN CERTIFICATE-----` and ends with`-----END CERTIFICATE-----`. Please note, this must be contained within a single string with newlines denoted with `\n`. |
 | `c3Env`                                      | The C3 environment to be used. Valid options are `"prod"`, `"staging"`, and `"dev"`.                                                                                                                                                                                  |
 | `c3VendorId`                                 | The C3 ID identifying your vendor.                                                                                                                                                                                                                                    |
-| `c3PaymentGateway`                           | The payment gateway used for your vendor. Currently, only `"zift"` is supported.                                                                                                                                                                                      |
+| `c3PaymentGateway`                           | The payment gateway used for your vendor. Currently, only `"Zift"` is supported.                                                                                                                                                                                      |
 | `logoUrl`                                    | An public image URL to be used as the logo for your company. This will be displayed in the receipt email sent to customers.                                                                                                                                           |
 | `supportPhone`                               | The phone number to which customers can call for inquiries. This will be displayed in the receipt email sent to customers.                                                                                                                                            |
 | `supportEmail`                               | The email address to which customers can send inquiries. This will be displayed in the receipt email sent to customers.                                                                                                                                               |
 
 Once these values are provided, ensure that you have the AWS CDK installed and configured on your machine. Please reference the [Getting started with the AWS CDK](https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html) documentation for more information.
-
-With the CDK installed and configured, install the necessary dependencies:
-
-```bash
-npm i
-```
-
-Build the project:
-
-```bash
-npm run build
-```
 
 Bootstrap the CDK:
 
@@ -62,7 +50,7 @@ This command will deploy the necessary resources to your AWS account to facilita
 Then deploy the stack to the same region as your Amazon Connect instance:
 
 ```bash
-cdk deploy
+npm run deploy
 ```
 
 > [!NOTE]

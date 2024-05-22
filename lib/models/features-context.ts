@@ -1,5 +1,5 @@
 export interface FeaturesContext {
-	agentInitiatedDTMF: boolean;
-	agentInitiatedDigital: boolean;
-	selfServiceDTMF: boolean;
+	agentAssistedIVR: boolean;
+	agentAssistedLink: boolean;
+	selfServiceIVR: boolean;
 }

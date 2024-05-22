@@ -20,16 +20,16 @@ const mockContext: Context = {
 	supportPhone: 'placeholder',
 	supportEmail: 'placeholder',
 	features: {
-		agentInitiatedDTMF: false,
-		agentInitiatedDigital: true,
-		selfServiceDTMF: false,
+		agentAssistedIVR: true,
+		agentAssistedLink: false,
+		selfServiceIVR: false,
 	},
 };
 
-const NUMBER_OF_LAMBDAS = 0;
+const NUMBER_OF_LAMBDAS = 5;
 
-// Verify created resources for agent-initiated DTMF.
-describe('Self-Service Digital', () => {
+// Verify created resources for agent-assisted IVR.
+describe('Agent Assisted IVR', () => {
 	const app = new App({
 		context: mockContext,
 	});
@@ -37,22 +37,22 @@ describe('Self-Service Digital', () => {
 	const template = Template.fromStack(stack);
 
 	describe('Amazon Connect', () => {
-		describe('DTMF contact flow', () => {
-			it('Has no contact flow', () => {
-				template.resourceCountIs('AWS::Connect::ContactFlow', 0);
+		describe('IVR flow', () => {
+			it('Has contact flow', () => {
+				template.resourceCountIs('AWS::Connect::ContactFlow', 2);
 			});
 		});
 
-		describe('DTMF flow module', () => {
-			it('Has no contact flow module', () => {
-				template.resourceCountIs('AWS::Connect::ContactFlowModule', 0);
+		describe('C3 Quick Connect', () => {
+			it('Has quick connect', () => {
+				template.resourceCountIs('AWS::Connect::QuickConnect', 1);
 			});
 		});
 	});
 
 	// Lambda functions
 	describe('Lambda functions', () => {
-		it('Has 0 created functions', () => {
+		it('Has 5 created functions', () => {
 			template.resourceCountIs('AWS::Lambda::Function', NUMBER_OF_LAMBDAS);
 		});
 	});
@@ -65,6 +65,17 @@ describe('Self-Service Digital', () => {
 				'AWS::Connect::IntegrationAssociation',
 				NUMBER_OF_LAMBDAS + 1,
 			);
+		});
+	});
+
+	// IAM
+	describe('IAM', () => {
+		it('Has a created role', () => {
+			template.resourceCountIs('AWS::IAM::Role', NUMBER_OF_LAMBDAS + 1);
+		});
+		it('Has a created policy', () => {
+			// Cross org policy, 3 secrets policies, and kms policy
+			template.resourceCountIs('AWS::IAM::Policy', 5);
 		});
 	});
 });

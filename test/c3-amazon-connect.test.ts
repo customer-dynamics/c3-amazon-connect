@@ -20,9 +20,9 @@ const mockContext: Context = {
 	supportPhone: 'placeholder',
 	supportEmail: 'placeholder',
 	features: {
-		agentInitiatedDTMF: true,
-		agentInitiatedDigital: true,
-		selfServiceDTMF: true,
+		agentAssistedIVR: true,
+		agentAssistedLink: true,
+		selfServiceIVR: true,
 	},
 };
 

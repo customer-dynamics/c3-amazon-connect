@@ -1,20 +1,20 @@
 import { Function } from 'aws-cdk-lib/aws-lambda';
-import * as flowModuleJson from './flows/modules/c3-dtmf-payment-flow-module.json';
-import * as dtmfPaymentFlowJson from './flows/c3-dtmf-payment-flow.json';
+import * as flowModuleJson from './flows/modules/c3-ivr-payment-flow-module.json';
+import * as ivrPaymentFlowJson from './flows/c3-ivr-payment-flow.json';
 import * as agentHoldFlowJson from './flows/c3-agent-hold-flow.json';
 import { CfnContactFlow } from 'aws-cdk-lib/aws-connect';
 
 /**
- * Gets the content for the DTMF payment flow module.
+ * Gets the content for the IVR payment flow module.
  *
  * @param createPaymentRequestLambdaArn The Lambda function that creates a payment request.
  * @param tokenizeTransactionLambdaArn The Lambda function that tokenizes a transaction.
  * @param submitPaymentLambdaArn The Lambda function that submits a payment.
  * @param amazonConnectSecurityKeyId The security key ID for Amazon Connect.
  * @param amazonConnectSecurityKeyCertificateContent The security key certificate content for Amazon Connect.
- * @returns A string representing the content for the base DTMF payment flow module.
+ * @returns A string representing the content for the base IVR payment flow module.
  */
-export function getDTMFPaymentFlowModuleContent(
+export function getIVRPaymentFlowModuleContent(
 	createPaymentRequestLambdaFunction: Function,
 	tokenizeTransactionLambdaFunction: Function,
 	submitPaymentLambdaFunction: Function,
@@ -58,7 +58,7 @@ export function getDTMFPaymentFlowModuleContent(
 }
 
 /**
- * Gets the content for the DTMF payment flow.
+ * Gets the content for the IVR payment flow.
  *
  * @param agentHoldFlow The agent hold flow.
  * @param reportCustomerActivityLambdaArn The Lambda function that reports customer activity.
@@ -67,9 +67,9 @@ export function getDTMFPaymentFlowModuleContent(
  * @param submitPaymentLambdaArn The Lambda function that submits a payment.
  * @param amazonConnectSecurityKeyId The security key ID for Amazon Connect.
  * @param amazonConnectSecurityKeyCertificateContent The security key certificate content for Amazon Connect.
- * @returns A string representing the content for the base DTMF payment flow.
+ * @returns A string representing the content for the base IVR payment flow.
  */
-export function getDTMFPaymentFlowContent(
+export function getIVRPaymentFlowContent(
 	agentHoldFlow: CfnContactFlow,
 	reportCustomerActivityLambdaFunction: Function,
 	createPaymentRequestLambdaFunction: Function,
@@ -79,7 +79,7 @@ export function getDTMFPaymentFlowContent(
 	amazonConnectSecurityKeyId: string,
 	amazonConnectSecurityKeyCertificateContent: string,
 ) {
-	let transformedContent = JSON.stringify(dtmfPaymentFlowJson);
+	let transformedContent = JSON.stringify(ivrPaymentFlowJson);
 
 	// Don't escape quotes.
 	transformedContent = transformedContent.replace('\\', '');

@@ -1,16 +1,16 @@
 import { Stack } from 'aws-cdk-lib';
-import { getDTMFPaymentFlowModuleContent } from '../connect/content-transformations';
+import { getIVRPaymentFlowModuleContent } from '../connect/content-transformations';
 import { CfnContactFlowModule } from 'aws-cdk-lib/aws-connect';
 import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import { AmazonConnectContext } from '../models/amazon-connect-context';
 import { Function } from 'aws-cdk-lib/aws-lambda';
 
 /**
- * Class for creating the necessary resources to facilitate self-service payments collected through DTMF.
+ * Class for creating the necessary resources to facilitate self-service payments collected through IVR.
  */
-export class SelfServicePaymentDTMF {
+export class SelfServicePaymentIVR {
 	/**
-	 * Creates the necessary resources to facilitate self-service payments collected through DTMF.
+	 * Creates the necessary resources to facilitate self-service payments collected through IVR.
 	 */
 	constructor(
 		private stack: Stack,
@@ -21,19 +21,19 @@ export class SelfServicePaymentDTMF {
 		private submitPaymentFunction: Function,
 		private emailReceiptFunction: Function,
 	) {
-		console.log('Creating resources for self-service DTMF payments...');
+		console.log('Creating resources for self-service IVR payments...');
 		this.createFlowModule();
 	}
 
 	/**
-	 * Creates a flow module for self-service payments collected through DTMF.
+	 * Creates a flow module for self-service payments collected through IVR.
 	 *
-	 * This flow module contains the core process for collecting card information through DTMF. It is to be invoked by your
+	 * This flow module contains the core process for collecting card information through IVR. It is to be invoked by your
 	 * inbound contact flow when the required information is present in contact attributes.
 	 */
 	private createFlowModule(): void {
-		console.log('Creating DTMF flow module...');
-		const dtmfPaymentFlowModuleContent = getDTMFPaymentFlowModuleContent(
+		console.log('Creating IVR flow module...');
+		const ivrPaymentFlowModuleContent = getIVRPaymentFlowModuleContent(
 			this.createPaymentRequestFunction,
 			this.tokenizeTransactionFunction,
 			this.submitPaymentFunction,
@@ -45,14 +45,14 @@ export class SelfServicePaymentDTMF {
 			mkdirSync('./exports');
 		}
 		writeFileSync(
-			'./exports/C3DTMFPaymentFlowModule',
-			dtmfPaymentFlowModuleContent,
+			'./exports/C3IVRPaymentFlowModule',
+			ivrPaymentFlowModuleContent,
 		);
-		new CfnContactFlowModule(this.stack, 'C3DTMFPaymentFlowModule', {
-			name: 'C3 DTMF Payment Flow Module',
+		new CfnContactFlowModule(this.stack, 'C3IVRPaymentFlowModule', {
+			name: 'C3 IVR Payment Flow Module',
 			description:
 				'Flow module to collect payments through a self-service IVR using C3.',
-			content: dtmfPaymentFlowModuleContent,
+			content: ivrPaymentFlowModuleContent,
 			instanceArn: this.amazonConnectInstanceArn,
 		});
 	}
