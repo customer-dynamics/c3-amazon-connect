@@ -298,7 +298,6 @@ export class C3AmazonConnectStack extends Stack {
 			description: 'Submits tokenized payment info to C3 for processing.',
 			code: Code.fromAsset(join(__dirname, 'lambda/c3-submit-payment')),
 			environment: {
-				C3_ENV: this.c3Context.env,
 				C3_BASE_URL: this.c3BaseUrl,
 			},
 			codeSigningConfig: this.codeSigningConfig,
@@ -324,7 +323,6 @@ export class C3AmazonConnectStack extends Stack {
 			description: 'Creates a payment request through the C3 API.',
 			code: Code.fromAsset(join(__dirname, 'lambda/c3-email-receipt')),
 			environment: {
-				C3_ENV: this.c3Context.env,
 				C3_BASE_URL: this.c3BaseUrl,
 			},
 			codeSigningConfig: this.codeSigningConfig,
