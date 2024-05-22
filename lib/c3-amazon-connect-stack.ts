@@ -359,10 +359,10 @@ export class C3AmazonConnectStack extends Stack {
 		// Add parameters to the URL if the features are not configured.
 		let configuredFeatureParams = '';
 		if (!this.featuresContext.agentAssistedIVR) {
-			configuredFeatureParams += '&ivrNotConfigured=true';
+			configuredFeatureParams += '&noIvr=true';
 		}
 		if (!this.featuresContext.agentAssistedLink) {
-			configuredFeatureParams += '&webLinkNotConfigured=true';
+			configuredFeatureParams += '&noLink=true';
 		}
 
 		// Create the app.
