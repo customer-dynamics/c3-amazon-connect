@@ -375,6 +375,7 @@ export class C3AmazonConnectStack extends Stack {
 			name: 'Payment Request',
 			namespace: 'c3-payment',
 			description: 'Agent application for collecting payments with C3.',
+			permissions: ['User.Details.View', 'Contact.Details.View'],
 			applicationSourceConfig: {
 				externalUrlConfig: {
 					accessUrl: `https://${this.c3Context.vendorId}.dev.c2a.link/agent-workspace?instanceId=${instanceId}&region=${region}${agentAssistedIVRParams}${configuredFeatureParams}`,
