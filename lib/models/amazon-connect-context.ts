@@ -24,5 +24,17 @@ export function validateAmazonConnectContext(
 		throw new Error(
 			'amazonConnect.securityKeyCertificateContent context variable is required.',
 		);
+	} else if (
+		amazonConnectContext.securityKeyCertificateContent.includes('\n')
+	) {
+		throw new Error(
+			'Newline characters (\\n) must be escaped in amazonConnect.securityKeyCertificateContent context variable.',
+		);
+	} else if (
+		!amazonConnectContext.securityKeyCertificateContent.includes('\\n')
+	) {
+		throw new Error(
+			'amazonConnect.securityKeyCertificateContent context variable must be a multi-line string.',
+		);
 	}
 }
