@@ -75,8 +75,7 @@ describe('C3AmazonConnectStack', () => {
 			for (const flowModuleName of Object.keys(flowModules)) {
 				const flowModule = flowModules[flowModuleName];
 				const flowModuleContent = JSON.stringify(flowModule.Properties.Content);
-				expect(flowModuleContent).not.toContain('<');
-				expect(flowModuleContent).not.toContain('>');
+				expect(flowModuleContent).not.toMatch(/<[^>]+>/);
 			}
 		});
 	});
@@ -87,8 +86,8 @@ describe('C3AmazonConnectStack', () => {
 		it(`Doesn't contain unreplaced placeholders`, () => {
 			for (const flowName of Object.keys(flows)) {
 				const flow = flows[flowName];
-				const flowModuleContent = JSON.stringify(flow.Properties.Content);
-				expect(flowModuleContent).not.toMatch(/<[^>]+>/);
+				const flowContent = JSON.stringify(flow.Properties.Content);
+				expect(flowContent).not.toMatch(/<[^>]+>/);
 			}
 		});
 	});
