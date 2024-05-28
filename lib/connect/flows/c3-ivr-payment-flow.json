@@ -789,7 +789,7 @@
 			}
 		},
 		"Annotations": [],
-		"name": "Agent-Assisted Payment IVR (Working Copy)",
+		"name": "Agent-Assisted Payment IVR",
 		"description": "",
 		"type": "queueTransfer",
 		"status": "PUBLISHED",

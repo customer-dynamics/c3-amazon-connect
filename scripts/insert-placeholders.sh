@@ -57,3 +57,7 @@ CERTIFICATE_PREFIX="-----BEGIN CERTIFICATE-----"
 PLACEHOLDER="<amazonConnectSecurityKeyCertificateContent>"
 sed -i '' "s|\(\"[^\"]*\": \)\".*${CERTIFICATE_PREFIX}.*\"|\1\"$PLACEHOLDER\"|g" "$IVR_PAYMENT_FLOW_FILE"
 sed -i '' "s|\(\"[^\"]*\": \)\".*${CERTIFICATE_PREFIX}.*\"|\1\"$PLACEHOLDER\"|g" "$IVR_PAYMENT_FLOW_MODULE_FILE"
+
+# Remove any instances of (Working Copy)
+sed -i '' "s| (Working Copy)||g" "$IVR_PAYMENT_FLOW_FILE"
+sed -i '' "s| (Working Copy)||g" "$IVR_PAYMENT_FLOW_MODULE_FILE"
