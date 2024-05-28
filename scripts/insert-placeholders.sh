@@ -37,7 +37,7 @@ sed -i '' "s|\(\"[^\"]*\": \)\".*${FUNCTION_NAME}.*\"|\1\"$PLACEHOLDER\"|g" "$IV
 
 # ---- FLOWS ----
 
-# Replace the ARN of te agent hold flow
+# Replace the ARN of the agent hold flow
 FLOW_PATH="/contact-flow/"
 PLACEHOLDER="<agentHoldFlowArn>"
 sed -i '' "s|\(\"[^\"]*\": \)\".*${FLOW_PATH}.*\"|\1\"$PLACEHOLDER\"|g" "$IVR_PAYMENT_FLOW_FILE"
