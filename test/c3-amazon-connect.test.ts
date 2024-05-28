@@ -9,7 +9,8 @@ const mockContext: Context = {
 	amazonConnect: {
 		instanceArn: 'placeholder',
 		securityKeyId: 'placeholder',
-		securityKeyCertificateContent: 'placeholder',
+		securityKeyCertificateContent:
+			'-----BEGIN CERTIFICATE-----\\n-----END CERTIFICATE-----\\n',
 	},
 	c3: {
 		env: C3Environment.Prod,
