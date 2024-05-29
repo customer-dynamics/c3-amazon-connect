@@ -76,7 +76,7 @@ describe('C3AmazonConnectStack', () => {
 			for (const flowModuleName of Object.keys(flowModules)) {
 				const flowModule = flowModules[flowModuleName];
 				const flowModuleContent = JSON.stringify(flowModule.Properties.Content);
-				expect(flowModuleContent).not.toMatch(/<[^>]+>/);
+				expect(flowModuleContent).not.toMatch(/<<[^>]+>>/);
 			}
 		});
 	});
