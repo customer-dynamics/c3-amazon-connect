@@ -29,29 +29,29 @@ export function getIVRPaymentFlowModuleContent(
 
 	// Replace Lambda placeholders with actual ARNs.
 	transformedContent = transformedContent.replace(
-		/<createPaymentRequestLambdaArn>/g,
+		/<<createPaymentRequestLambdaArn>>/g,
 		createPaymentRequestLambdaFunction.functionArn,
 	);
 	transformedContent = transformedContent.replace(
-		/<tokenizeTransactionLambdaArn>/g,
+		/<<tokenizeTransactionLambdaArn>>/g,
 		tokenizeTransactionLambdaFunction.functionArn,
 	);
 	transformedContent = transformedContent.replace(
-		/<submitPaymentLambdaArn>/g,
+		/<<submitPaymentLambdaArn>>/g,
 		submitPaymentLambdaFunction.functionArn,
 	);
 	transformedContent = transformedContent.replace(
-		/<emailReceiptLambdaArn>/g,
+		/<<emailReceiptLambdaArn>>/g,
 		emailReceiptLambdaFunction.functionArn,
 	);
 
 	// Replace Amazon Connect security key placeholders with actual values.
 	transformedContent = transformedContent.replace(
-		/<amazonConnectSecurityKeyId>/g,
+		/<<amazonConnectSecurityKeyId>>/g,
 		amazonConnectSecurityKeyId,
 	);
 	transformedContent = transformedContent.replace(
-		/<amazonConnectSecurityKeyCertificateContent>/g,
+		/<<amazonConnectSecurityKeyCertificateContent>>/g,
 		amazonConnectSecurityKeyCertificateContent,
 	);
 	return transformedContent;
@@ -86,39 +86,39 @@ export function getIVRPaymentFlowContent(
 
 	// Replace agent hold flow placeholder with actual ARN.
 	transformedContent = transformedContent.replace(
-		/<agentHoldFlowArn>/g,
+		/<<agentHoldFlowArn>>/g,
 		agentHoldFlow.ref,
 	);
 
 	// Replace Lambda placeholders with actual ARNs.
 	transformedContent = transformedContent.replace(
-		/<reportCustomerActivityLambdaArn>/g,
+		/<<reportCustomerActivityLambdaArn>>/g,
 		reportCustomerActivityLambdaFunction.functionArn,
 	);
 	transformedContent = transformedContent.replace(
-		/<createPaymentRequestLambdaArn>/g,
+		/<<createPaymentRequestLambdaArn>>/g,
 		createPaymentRequestLambdaFunction.functionArn,
 	);
 	transformedContent = transformedContent.replace(
-		/<tokenizeTransactionLambdaArn>/g,
+		/<<tokenizeTransactionLambdaArn>>/g,
 		tokenizeTransactionLambdaFunction.functionArn,
 	);
 	transformedContent = transformedContent.replace(
-		/<submitPaymentLambdaArn>/g,
+		/<<submitPaymentLambdaArn>>/g,
 		submitPaymentLambdaFunction.functionArn,
 	);
 	transformedContent = transformedContent.replace(
-		/<emailReceiptLambdaArn>/g,
+		/<<emailReceiptLambdaArn>>/g,
 		emailReceiptLambdaFunction.functionArn,
 	);
 
 	// Replace Amazon Connect security key placeholders with actual values.
 	transformedContent = transformedContent.replace(
-		/<amazonConnectSecurityKeyId>/g,
+		/<<amazonConnectSecurityKeyId>>/g,
 		amazonConnectSecurityKeyId,
 	);
 	transformedContent = transformedContent.replace(
-		/<amazonConnectSecurityKeyCertificateContent>/g,
+		/<<amazonConnectSecurityKeyCertificateContent>>/g,
 		amazonConnectSecurityKeyCertificateContent,
 	);
 	return transformedContent;

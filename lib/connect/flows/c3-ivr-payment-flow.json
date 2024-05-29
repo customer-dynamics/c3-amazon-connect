@@ -68,7 +68,7 @@
 				"isFriendlyName": true,
 				"parameters": {
 					"LambdaFunctionARN": {
-						"displayName": "<reportCustomerActivityLambdaArn>"
+						"displayName": "<<reportCustomerActivityLambdaArn>>"
 					}
 				},
 				"dynamicMetadata": {
@@ -96,7 +96,7 @@
 				"isFriendlyName": true,
 				"parameters": {
 					"LambdaFunctionARN": {
-						"displayName": "<reportCustomerActivityLambdaArn>"
+						"displayName": "<<reportCustomerActivityLambdaArn>>"
 					}
 				},
 				"dynamicMetadata": {
@@ -132,7 +132,7 @@
 				"isFriendlyName": true,
 				"parameters": {
 					"LambdaFunctionARN": {
-						"displayName": "<reportCustomerActivityLambdaArn>"
+						"displayName": "<<reportCustomerActivityLambdaArn>>"
 					}
 				},
 				"dynamicMetadata": {
@@ -154,7 +154,7 @@
 				"isFriendlyName": true,
 				"parameters": {
 					"LambdaFunctionARN": {
-						"displayName": "<reportCustomerActivityLambdaArn>"
+						"displayName": "<<reportCustomerActivityLambdaArn>>"
 					}
 				},
 				"dynamicMetadata": {
@@ -169,7 +169,7 @@
 				"isFriendlyName": true,
 				"parameters": {
 					"LambdaFunctionARN": {
-						"displayName": "<reportCustomerActivityLambdaArn>"
+						"displayName": "<<reportCustomerActivityLambdaArn>>"
 					}
 				},
 				"dynamicMetadata": {
@@ -225,7 +225,7 @@
 				},
 				"contactFlow": {
 					"text": "C3 Agent Hold Flow",
-					"id": "<agentHoldFlowArn>"
+					"id": "<<agentHoldFlowArn>>"
 				},
 				"customerOrAgent": false
 			},
@@ -275,7 +275,7 @@
 				"isFriendlyName": true,
 				"parameters": {
 					"LambdaFunctionARN": {
-						"displayName": "<reportCustomerActivityLambdaArn>"
+						"displayName": "<<reportCustomerActivityLambdaArn>>"
 					}
 				},
 				"dynamicMetadata": {
@@ -290,7 +290,7 @@
 				"isFriendlyName": true,
 				"parameters": {
 					"LambdaFunctionARN": {
-						"displayName": "<reportCustomerActivityLambdaArn>"
+						"displayName": "<<reportCustomerActivityLambdaArn>>"
 					}
 				},
 				"dynamicMetadata": {
@@ -339,7 +339,7 @@
 				"isFriendlyName": true,
 				"parameters": {
 					"LambdaFunctionARN": {
-						"displayName": "<reportCustomerActivityLambdaArn>"
+						"displayName": "<<reportCustomerActivityLambdaArn>>"
 					}
 				},
 				"dynamicMetadata": {
@@ -354,7 +354,7 @@
 				"isFriendlyName": true,
 				"parameters": {
 					"LambdaFunctionARN": {
-						"displayName": "<reportCustomerActivityLambdaArn>"
+						"displayName": "<<reportCustomerActivityLambdaArn>>"
 					}
 				},
 				"dynamicMetadata": {
@@ -435,7 +435,7 @@
 				"isFriendlyName": true,
 				"parameters": {
 					"LambdaFunctionARN": {
-						"displayName": "<reportCustomerActivityLambdaArn>"
+						"displayName": "<<reportCustomerActivityLambdaArn>>"
 					}
 				},
 				"dynamicMetadata": {
@@ -450,7 +450,7 @@
 				"isFriendlyName": true,
 				"parameters": {
 					"LambdaFunctionARN": {
-						"displayName": "<reportCustomerActivityLambdaArn>"
+						"displayName": "<<reportCustomerActivityLambdaArn>>"
 					}
 				},
 				"dynamicMetadata": {
@@ -499,7 +499,7 @@
 				"isFriendlyName": true,
 				"parameters": {
 					"LambdaFunctionARN": {
-						"displayName": "<reportCustomerActivityLambdaArn>"
+						"displayName": "<<reportCustomerActivityLambdaArn>>"
 					}
 				},
 				"dynamicMetadata": {
@@ -514,7 +514,7 @@
 				"isFriendlyName": true,
 				"parameters": {
 					"LambdaFunctionARN": {
-						"displayName": "<reportCustomerActivityLambdaArn>"
+						"displayName": "<<reportCustomerActivityLambdaArn>>"
 					}
 				},
 				"dynamicMetadata": {
@@ -578,7 +578,7 @@
 				"isFriendlyName": true,
 				"parameters": {
 					"LambdaFunctionARN": {
-						"displayName": "<emailReceiptLambdaArn>"
+						"displayName": "<<emailReceiptLambdaArn>>"
 					}
 				},
 				"dynamicMetadata": {}
@@ -610,7 +610,7 @@
 				"isFriendlyName": true,
 				"parameters": {
 					"LambdaFunctionARN": {
-						"displayName": "<reportCustomerActivityLambdaArn>"
+						"displayName": "<<reportCustomerActivityLambdaArn>>"
 					}
 				},
 				"dynamicMetadata": {
@@ -625,7 +625,7 @@
 				"isFriendlyName": true,
 				"parameters": {
 					"LambdaFunctionARN": {
-						"displayName": "<submitPaymentLambdaArn>"
+						"displayName": "<<submitPaymentLambdaArn>>"
 					}
 				},
 				"dynamicMetadata": {}
@@ -646,7 +646,7 @@
 				"isFriendlyName": true,
 				"parameters": {
 					"LambdaFunctionARN": {
-						"displayName": "<tokenizeTransactionLambdaArn>"
+						"displayName": "<<tokenizeTransactionLambdaArn>>"
 					}
 				},
 				"dynamicMetadata": {}
@@ -659,7 +659,7 @@
 				"isFriendlyName": true,
 				"parameters": {
 					"LambdaFunctionARN": {
-						"displayName": "<reportCustomerActivityLambdaArn>"
+						"displayName": "<<reportCustomerActivityLambdaArn>>"
 					}
 				},
 				"dynamicMetadata": {
@@ -689,7 +689,7 @@
 				"isFriendlyName": true,
 				"parameters": {
 					"LambdaFunctionARN": {
-						"displayName": "<reportCustomerActivityLambdaArn>"
+						"displayName": "<<reportCustomerActivityLambdaArn>>"
 					}
 				},
 				"dynamicMetadata": {
@@ -704,7 +704,7 @@
 				"isFriendlyName": true,
 				"parameters": {
 					"LambdaFunctionARN": {
-						"displayName": "<reportCustomerActivityLambdaArn>"
+						"displayName": "<<reportCustomerActivityLambdaArn>>"
 					}
 				},
 				"dynamicMetadata": {
@@ -750,7 +750,7 @@
 				"isFriendlyName": true,
 				"parameters": {
 					"LambdaFunctionARN": {
-						"displayName": "<createPaymentRequestLambdaArn>"
+						"displayName": "<<createPaymentRequestLambdaArn>>"
 					}
 				},
 				"dynamicMetadata": {}
@@ -906,7 +906,7 @@
 		},
 		{
 			"Parameters": {
-				"LambdaFunctionARN": "<reportCustomerActivityLambdaArn>",
+				"LambdaFunctionARN": "<<reportCustomerActivityLambdaArn>>",
 				"InvocationTimeLimitSeconds": "8",
 				"LambdaInvocationAttributes": {
 					"EventText": "PaymentRequestError"
@@ -951,7 +951,7 @@
 		},
 		{
 			"Parameters": {
-				"LambdaFunctionARN": "<reportCustomerActivityLambdaArn>",
+				"LambdaFunctionARN": "<<reportCustomerActivityLambdaArn>>",
 				"InvocationTimeLimitSeconds": "8",
 				"LambdaInvocationAttributes": {
 					"EventText": "IVRStarted"
@@ -1022,7 +1022,7 @@
 		},
 		{
 			"Parameters": {
-				"LambdaFunctionARN": "<reportCustomerActivityLambdaArn>",
+				"LambdaFunctionARN": "<<reportCustomerActivityLambdaArn>>",
 				"InvocationTimeLimitSeconds": "8",
 				"LambdaInvocationAttributes": {
 					"EventText": "ReceiptEmailError"
@@ -1061,7 +1061,7 @@
 		},
 		{
 			"Parameters": {
-				"LambdaFunctionARN": "<reportCustomerActivityLambdaArn>",
+				"LambdaFunctionARN": "<<reportCustomerActivityLambdaArn>>",
 				"InvocationTimeLimitSeconds": "8",
 				"LambdaInvocationAttributes": {
 					"EventText": "TokenizationError"
@@ -1084,7 +1084,7 @@
 		},
 		{
 			"Parameters": {
-				"LambdaFunctionARN": "<reportCustomerActivityLambdaArn>",
+				"LambdaFunctionARN": "<<reportCustomerActivityLambdaArn>>",
 				"InvocationTimeLimitSeconds": "8",
 				"LambdaInvocationAttributes": {
 					"EventText": "PaymentSubmissionError"
@@ -1191,7 +1191,7 @@
 		{
 			"Parameters": {
 				"EventHooks": {
-					"AgentHold": "<agentHoldFlowArn>"
+					"AgentHold": "<<agentHoldFlowArn>>"
 				}
 			},
 			"Identifier": "60f08ab6-8a8e-49f3-8e28-df3d56ca05a1",
@@ -1253,8 +1253,8 @@
 					}
 				},
 				"InputEncryption": {
-					"EncryptionKeyId": "<amazonConnectSecurityKeyId>",
-					"Key": "<amazonConnectSecurityKeyCertificateContent>"
+					"EncryptionKeyId": "<<amazonConnectSecurityKeyId>>",
+					"Key": "<<amazonConnectSecurityKeyCertificateContent>>"
 				}
 			},
 			"Identifier": "Get & Encrypt Card Number",
@@ -1300,8 +1300,8 @@
 					}
 				},
 				"InputEncryption": {
-					"EncryptionKeyId": "<amazonConnectSecurityKeyId>",
-					"Key": "<amazonConnectSecurityKeyCertificateContent>"
+					"EncryptionKeyId": "<<amazonConnectSecurityKeyId>>",
+					"Key": "<<amazonConnectSecurityKeyCertificateContent>>"
 				}
 			},
 			"Identifier": "Get & Encrypt Account Number",
@@ -1318,7 +1318,7 @@
 		},
 		{
 			"Parameters": {
-				"LambdaFunctionARN": "<reportCustomerActivityLambdaArn>",
+				"LambdaFunctionARN": "<<reportCustomerActivityLambdaArn>>",
 				"InvocationTimeLimitSeconds": "8",
 				"LambdaInvocationAttributes": {
 					"EventText": "AccountNumberEntered"
@@ -1341,7 +1341,7 @@
 		},
 		{
 			"Parameters": {
-				"LambdaFunctionARN": "<reportCustomerActivityLambdaArn>",
+				"LambdaFunctionARN": "<<reportCustomerActivityLambdaArn>>",
 				"InvocationTimeLimitSeconds": "8",
 				"LambdaInvocationAttributes": {
 					"EventText": "AccountNumberEncryptionError"
@@ -1408,7 +1408,7 @@
 		},
 		{
 			"Parameters": {
-				"LambdaFunctionARN": "<reportCustomerActivityLambdaArn>",
+				"LambdaFunctionARN": "<<reportCustomerActivityLambdaArn>>",
 				"InvocationTimeLimitSeconds": "8",
 				"LambdaInvocationAttributes": {
 					"EventText": "CardNumberEncryptionError"
@@ -1431,7 +1431,7 @@
 		},
 		{
 			"Parameters": {
-				"LambdaFunctionARN": "<reportCustomerActivityLambdaArn>",
+				"LambdaFunctionARN": "<<reportCustomerActivityLambdaArn>>",
 				"InvocationTimeLimitSeconds": "8",
 				"LambdaInvocationAttributes": {
 					"EventText": "CardNumberEntered"
@@ -1584,7 +1584,7 @@
 		},
 		{
 			"Parameters": {
-				"LambdaFunctionARN": "<reportCustomerActivityLambdaArn>",
+				"LambdaFunctionARN": "<<reportCustomerActivityLambdaArn>>",
 				"InvocationTimeLimitSeconds": "8",
 				"LambdaInvocationAttributes": {
 					"EventText": "RoutingNumberError"
@@ -1607,7 +1607,7 @@
 		},
 		{
 			"Parameters": {
-				"LambdaFunctionARN": "<reportCustomerActivityLambdaArn>",
+				"LambdaFunctionARN": "<<reportCustomerActivityLambdaArn>>",
 				"InvocationTimeLimitSeconds": "8",
 				"LambdaInvocationAttributes": {
 					"EventText": "RoutingNumberEntered"
@@ -1674,7 +1674,7 @@
 		},
 		{
 			"Parameters": {
-				"LambdaFunctionARN": "<reportCustomerActivityLambdaArn>",
+				"LambdaFunctionARN": "<<reportCustomerActivityLambdaArn>>",
 				"InvocationTimeLimitSeconds": "8",
 				"LambdaInvocationAttributes": {
 					"EventText": "ExpirationDateError"
@@ -1697,7 +1697,7 @@
 		},
 		{
 			"Parameters": {
-				"LambdaFunctionARN": "<reportCustomerActivityLambdaArn>",
+				"LambdaFunctionARN": "<<reportCustomerActivityLambdaArn>>",
 				"InvocationTimeLimitSeconds": "8",
 				"LambdaInvocationAttributes": {
 					"EventText": "ExpirationDateEntered"
@@ -1801,7 +1801,7 @@
 		},
 		{
 			"Parameters": {
-				"LambdaFunctionARN": "<emailReceiptLambdaArn>",
+				"LambdaFunctionARN": "<<emailReceiptLambdaArn>>",
 				"InvocationTimeLimitSeconds": "8",
 				"ResponseValidation": {
 					"ResponseType": "JSON"
@@ -1846,7 +1846,7 @@
 		},
 		{
 			"Parameters": {
-				"LambdaFunctionARN": "<reportCustomerActivityLambdaArn>",
+				"LambdaFunctionARN": "<<reportCustomerActivityLambdaArn>>",
 				"InvocationTimeLimitSeconds": "8",
 				"LambdaInvocationAttributes": {
 					"EventText": "PaymentProcessed"
@@ -1869,7 +1869,7 @@
 		},
 		{
 			"Parameters": {
-				"LambdaFunctionARN": "<submitPaymentLambdaArn>",
+				"LambdaFunctionARN": "<<submitPaymentLambdaArn>>",
 				"InvocationTimeLimitSeconds": "8",
 				"ResponseValidation": {
 					"ResponseType": "JSON"
@@ -1908,7 +1908,7 @@
 		},
 		{
 			"Parameters": {
-				"LambdaFunctionARN": "<tokenizeTransactionLambdaArn>",
+				"LambdaFunctionARN": "<<tokenizeTransactionLambdaArn>>",
 				"InvocationTimeLimitSeconds": "8",
 				"ResponseValidation": {
 					"ResponseType": "JSON"
@@ -1928,7 +1928,7 @@
 		},
 		{
 			"Parameters": {
-				"LambdaFunctionARN": "<reportCustomerActivityLambdaArn>",
+				"LambdaFunctionARN": "<<reportCustomerActivityLambdaArn>>",
 				"InvocationTimeLimitSeconds": "8",
 				"LambdaInvocationAttributes": {
 					"EventText": "PaymentTokenized"
@@ -1986,7 +1986,7 @@
 		},
 		{
 			"Parameters": {
-				"LambdaFunctionARN": "<reportCustomerActivityLambdaArn>",
+				"LambdaFunctionARN": "<<reportCustomerActivityLambdaArn>>",
 				"InvocationTimeLimitSeconds": "8",
 				"LambdaInvocationAttributes": {
 					"EventText": "BankAccountSelected"
@@ -2009,7 +2009,7 @@
 		},
 		{
 			"Parameters": {
-				"LambdaFunctionARN": "<reportCustomerActivityLambdaArn>",
+				"LambdaFunctionARN": "<<reportCustomerActivityLambdaArn>>",
 				"InvocationTimeLimitSeconds": "8",
 				"LambdaInvocationAttributes": {
 					"EventText": "CreditCardSelected"
@@ -2106,7 +2106,7 @@
 		},
 		{
 			"Parameters": {
-				"LambdaFunctionARN": "<createPaymentRequestLambdaArn>",
+				"LambdaFunctionARN": "<<createPaymentRequestLambdaArn>>",
 				"InvocationTimeLimitSeconds": "8",
 				"ResponseValidation": {
 					"ResponseType": "JSON"

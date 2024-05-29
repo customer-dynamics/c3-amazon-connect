@@ -59,7 +59,7 @@
 				"isFriendlyName": true,
 				"parameters": {
 					"LambdaFunctionARN": {
-						"displayName": "<submitPaymentLambdaArn>"
+						"displayName": "<<submitPaymentLambdaArn>>"
 					}
 				},
 				"dynamicMetadata": {}
@@ -72,7 +72,7 @@
 				"isFriendlyName": true,
 				"parameters": {
 					"LambdaFunctionARN": {
-						"displayName": "<emailReceiptLambdaArn>"
+						"displayName": "<<emailReceiptLambdaArn>>"
 					}
 				},
 				"dynamicMetadata": {}
@@ -275,7 +275,7 @@
 				"isFriendlyName": true,
 				"parameters": {
 					"LambdaFunctionARN": {
-						"displayName": "<tokenizeTransactionLambdaArn>"
+						"displayName": "<<tokenizeTransactionLambdaArn>>"
 					}
 				},
 				"dynamicMetadata": {}
@@ -288,7 +288,7 @@
 				"isFriendlyName": true,
 				"parameters": {
 					"LambdaFunctionARN": {
-						"displayName": "<createPaymentRequestLambdaArn>"
+						"displayName": "<<createPaymentRequestLambdaArn>>"
 					}
 				},
 				"dynamicMetadata": {}
@@ -724,7 +724,7 @@
 		},
 		{
 			"Parameters": {
-				"LambdaFunctionARN": "<submitPaymentLambdaArn>",
+				"LambdaFunctionARN": "<<submitPaymentLambdaArn>>",
 				"InvocationTimeLimitSeconds": "8",
 				"ResponseValidation": {
 					"ResponseType": "JSON"
@@ -744,7 +744,7 @@
 		},
 		{
 			"Parameters": {
-				"LambdaFunctionARN": "<emailReceiptLambdaArn>",
+				"LambdaFunctionARN": "<<emailReceiptLambdaArn>>",
 				"InvocationTimeLimitSeconds": "8",
 				"ResponseValidation": {
 					"ResponseType": "JSON"
@@ -1114,7 +1114,7 @@
 		},
 		{
 			"Parameters": {
-				"LambdaFunctionARN": "<tokenizeTransactionLambdaArn>",
+				"LambdaFunctionARN": "<<tokenizeTransactionLambdaArn>>",
 				"InvocationTimeLimitSeconds": "8",
 				"ResponseValidation": {
 					"ResponseType": "JSON"
@@ -1134,7 +1134,7 @@
 		},
 		{
 			"Parameters": {
-				"LambdaFunctionARN": "<createPaymentRequestLambdaArn>",
+				"LambdaFunctionARN": "<<createPaymentRequestLambdaArn>>",
 				"InvocationTimeLimitSeconds": "8",
 				"ResponseValidation": {
 					"ResponseType": "JSON"
@@ -1387,8 +1387,8 @@
 					}
 				},
 				"InputEncryption": {
-					"EncryptionKeyId": "<amazonConnectSecurityKeyId>",
-					"Key": "<amazonConnectSecurityKeyCertificateContent>"
+					"EncryptionKeyId": "<<amazonConnectSecurityKeyId>>",
+					"Key": "<<amazonConnectSecurityKeyCertificateContent>>"
 				}
 			},
 			"Identifier": "Get & Encrypt Card Number",
@@ -1418,8 +1418,8 @@
 					}
 				},
 				"InputEncryption": {
-					"EncryptionKeyId": "<amazonConnectSecurityKeyId>",
-					"Key": "<amazonConnectSecurityKeyCertificateContent>"
+					"EncryptionKeyId": "<<amazonConnectSecurityKeyId>>",
+					"Key": "<<amazonConnectSecurityKeyCertificateContent>>"
 				}
 			},
 			"Identifier": "Get & Encrypt Account Number",
