@@ -322,6 +322,8 @@ export class AgentAssistedPaymentIVR {
 
 	/**
 	 * Creates an IAM policy allowing C3 to update contact attributes for any contact on your instance.
+	 *
+	 * This policy is required so that the agent workspace can update contact attributes for any contact on your Amazon Connect instance.
 	 */
 	private createIAMPolicy(): void {
 		console.log('Creating IAM policy for agent-assisted IVR...');
