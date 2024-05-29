@@ -2,6 +2,7 @@
 
 IVR_PAYMENT_FLOW_FILE="lib/connect/flows/c3-ivr-payment-flow.json"
 IVR_PAYMENT_FLOW_MODULE_FILE="lib/connect/flows/modules/c3-ivr-payment-flow-module.json"
+AGENT_HOLD_FLOW_FILE="lib/connect/flows/c3-agent-hold-flow.json"
 
 # ---- LAMBDA FUNCTIONS ----
 
@@ -61,3 +62,4 @@ sed -i '' "s|\(\"[^\"]*\": \)\".*${CERTIFICATE_PREFIX}.*\"|\1\"$PLACEHOLDER\"|g"
 # Remove any instances of (Working Copy)
 sed -i '' "s| (Working Copy)||g" "$IVR_PAYMENT_FLOW_FILE"
 sed -i '' "s| (Working Copy)||g" "$IVR_PAYMENT_FLOW_MODULE_FILE"
+sed -i '' "s| (Working Copy)||g" "$AGENT_HOLD_FLOW_FILE"
