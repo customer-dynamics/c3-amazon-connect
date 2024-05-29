@@ -53,7 +53,7 @@
 			}
 		},
 		"Annotations": [],
-		"name": "C3 Agent Hold Flow (Working Copy)",
+		"name": "C3 Agent Hold Flow",
 		"description": "Flow for the agent experience while they are on hold during payment collection.",
 		"type": "agentHold",
 		"status": "saved",
