@@ -17,7 +17,8 @@ In order to ensure that sensitive payment information is encrypted in your envir
 
 To create a flow security key, please reference steps 1 and 2 of the [Amazon Connect documentation](https://aws.amazon.com/blogs/contact-center/creating-a-secure-ivr-solution-with-amazon-connect/#step1). Once you have created the key, make note of the key ID. Keep the certificate, private key, and public key in a safe place, as you will need them later in the deployment process.
 
-> **Note:** Be aware of the expiration date on the certificate you generated. Once this expires, values cannot be encrypted or decrypted and your payment flows will fail. It is recommended that you set a reminder to renew the certificate before it expires. Once renewed, you will need to update the security key in your Amazon Connect instance and repeat the process outlined in this document to deploy updated resources.
+> [!NOTE]
+> Be aware of the expiration date on the certificate you generated. Once this expires, values cannot be encrypted or decrypted and your payment flows will fail. It is recommended that you set a reminder to renew the certificate before it expires. Once renewed, you will need to update the security key in your Amazon Connect instance and repeat the process outlined in this document to deploy updated resources.
 
 ### Deploy Resources Using the AWS CDK
 
