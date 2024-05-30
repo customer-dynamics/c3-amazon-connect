@@ -2,17 +2,13 @@
 
 **💰 Contact Center Commerce. Simplified for Amazon Connect.**
 
-C3 for Amazon Connect is a collection of resources to help you collect payments over the phone with Amazon Connect using [C3 payments](https://www.customerdynamics.com/c3-payment).
+C3 for Amazon Connect is a collection of AWS resources to help you collect payments over the phone with Amazon Connect using [C3 payments](https://www.customerdynamics.com/c3-payment).
 
 ## Features
 
-### 📞 Amazon Connect Integration
+### ✅ PCI DSS Compliant
 
-C3 for Amazon Connect integrates seamlessly with Amazon Connect to provide a secure payment experience for your customers. Collect payments over the phone with confidence through a secure IVR solution.
-
-### ✅ PCI DSS Compliance
-
-Customer Dynamics is a PCI DSS Level 1 Service Provider, so you can rest assured that your customers' payment information is secure.
+Being a PCI DSS Level 1 Service Provider, Customer Dynamics takes compliance seriously. C3 for Amazon Connect is designed to help you achieve and maintain PCI DSS compliance while taking payments.
 
 To learn more about C3 and PCI compliance, please visit our [PCI compliance documentation](./docs/PCI-COMPLIANCE.md).
 
@@ -20,9 +16,21 @@ To learn more about C3 and PCI compliance, please visit our [PCI compliance docu
 
 C3 for Amazon Connect uses the AWS Cloud Development Kit (CDK) to deploy the necessary resources _directly_ to your AWS account in a newly created stack. No manual importing of resources required!
 
+### 🏦 Credit Card & ACH Support
+
+Allow customers to pay with either their credit card or bank account. C3 for Amazon Connect supports both payment methods.
+
+### 👤 Self-Service Payments
+
+C3 for Amazon Connect enables you to collect payments over the phone without the need for an agent. Customers can enter their payment details securely using their phone's keypad.
+
+### 👥 Agent-Assisted Payments
+
+While talking to a customer, your agents can securely take payment from the customer without ever seeing or hearing the payment details.
+
 ### 🧾 Automatic Receipts
 
-After a successful payment, customers have an option to receive a receipt for their transaction via email.
+After a successful payment, customers can receive a receipt for their transaction via email—complete with your name and logo.
 
 ## Getting Started
 
