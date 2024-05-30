@@ -1,6 +1,7 @@
 {
 	"name": "c3-amazon-connect",
-	"version": "0.1.0",
+	"version": "0.0.0",
+	"private": true,
 	"bin": {
 		"c3-amazon-connect": "bin/c3-amazon-connect.js"
 	},
