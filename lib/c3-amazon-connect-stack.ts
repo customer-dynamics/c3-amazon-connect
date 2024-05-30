@@ -371,7 +371,7 @@ export class C3AmazonConnectStack extends Stack {
 			permissions: ['User.Details.View', 'Contact.Details.View'],
 			applicationSourceConfig: {
 				externalUrlConfig: {
-					accessUrl: `https://${this.c3Context.vendorId}.dev.c2a.link/agent-workspace?instanceId=${instanceId}&region=${region}${agentAssistedIVRParams}${configuredFeatureParams}`,
+					accessUrl: `https://${this.c3Context.vendorId}.dev.c2a.link/agent-workspace?contactCenter=amazon&instanceId=${instanceId}&region=${region}${agentAssistedIVRParams}${configuredFeatureParams}`,
 					approvedOrigins: [], // Don't allow any other origins.
 				},
 			},
