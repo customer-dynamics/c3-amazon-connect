@@ -21,10 +21,7 @@ import {
 	associateLambdaFunctionsWithConnect,
 	commonLambdaProps,
 } from '../helpers/lambda';
-import {
-	getAgentHoldFlowContent,
-	getIVRPaymentFlowContent,
-} from '../connect/content-transformations';
+import { getIVRPaymentFlowContent } from '../connect/content-transformations';
 import { AmazonConnectContext } from '../models/amazon-connect-context';
 import { Secret } from 'aws-cdk-lib/aws-secretsmanager';
 
@@ -34,7 +31,6 @@ import { Secret } from 'aws-cdk-lib/aws-secretsmanager';
 export class AgentAssistedPaymentIVR {
 	public iamRole: Role;
 	private reportCustomerActivityFunction: Function;
-	private agentHoldFlow: CfnContactFlow;
 	private ivrPaymentFlow: CfnContactFlow;
 	private hoursOfOperation: CfnHoursOfOperation;
 	private queue: CfnQueue;
@@ -59,7 +55,6 @@ export class AgentAssistedPaymentIVR {
 		associateLambdaFunctionsWithConnect(this.stack, [
 			this.reportCustomerActivityFunction,
 		]);
-		this.createAgentHoldFlow();
 		this.createIVRFlow();
 		this.createHoursOfOperation();
 		this.createQueue();
@@ -111,28 +106,6 @@ export class AgentAssistedPaymentIVR {
 	}
 
 	/**
-	 * Creates a flow for the agent experience while they are on hold.
-	 *
-	 * This flow is required to provide the agent with audible updates while they are on hold.
-	 */
-	private createAgentHoldFlow(): void {
-		console.log('Creating flow C3AgentHoldFlow...');
-		const c3AgentHoldFlow = getAgentHoldFlowContent();
-		if (!existsSync('./exports')) {
-			mkdirSync('./exports');
-		}
-		writeFileSync('./exports/C3AgentHoldFlow', c3AgentHoldFlow);
-		this.agentHoldFlow = new CfnContactFlow(this.stack, 'C3AgentHoldFlow', {
-			name: 'C3 Agent Hold Flow',
-			description:
-				'Flow for the agent experience while they are on hold during payment collection.',
-			content: c3AgentHoldFlow,
-			instanceArn: this.amazonConnectInstanceArn,
-			type: 'AGENT_HOLD',
-		});
-	}
-
-	/**
 	 * Creates a flow for agent-assisted IVR payments.
 	 *
 	 * This flow is required to collect payments from customers through IVR. It is initiated by the agent and guides the customer through the payment process.
@@ -140,7 +113,6 @@ export class AgentAssistedPaymentIVR {
 	private createIVRFlow(): void {
 		console.log('Creating flow C3IVRPaymentFlow...');
 		const c3PaymentFlowContent = getIVRPaymentFlowContent(
-			this.agentHoldFlow,
 			this.reportCustomerActivityFunction,
 			this.createPaymentRequestFunction,
 			this.tokenizeTransactionFunction,

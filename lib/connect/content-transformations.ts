@@ -1,8 +1,6 @@
 import { Function } from 'aws-cdk-lib/aws-lambda';
 import * as flowModuleJson from './flows/modules/c3-ivr-payment-flow-module.json';
 import * as ivrPaymentFlowJson from './flows/c3-ivr-payment-flow.json';
-import * as agentHoldFlowJson from './flows/c3-agent-hold-flow.json';
-import { CfnContactFlow } from 'aws-cdk-lib/aws-connect';
 
 /**
  * Gets the content for the IVR payment flow module.
@@ -60,7 +58,6 @@ export function getIVRPaymentFlowModuleContent(
 /**
  * Gets the content for the IVR payment flow.
  *
- * @param agentHoldFlow The agent hold flow.
  * @param reportCustomerActivityLambdaArn The Lambda function that reports customer activity.
  * @param createPaymentRequestLambdaArn The Lambda function that creates a payment request.
  * @param tokenizeTransactionLambdaArn The Lambda function that tokenizes a transaction.
@@ -70,7 +67,6 @@ export function getIVRPaymentFlowModuleContent(
  * @returns A string representing the content for the base IVR payment flow.
  */
 export function getIVRPaymentFlowContent(
-	agentHoldFlow: CfnContactFlow,
 	reportCustomerActivityLambdaFunction: Function,
 	createPaymentRequestLambdaFunction: Function,
 	tokenizeTransactionLambdaFunction: Function,
@@ -83,12 +79,6 @@ export function getIVRPaymentFlowContent(
 
 	// Don't escape quotes.
 	transformedContent = transformedContent.replace('\\', '');
-
-	// Replace agent hold flow placeholder with actual ARN.
-	transformedContent = transformedContent.replace(
-		/<<agentHoldFlowArn>>/g,
-		agentHoldFlow.ref,
-	);
 
 	// Replace Lambda placeholders with actual ARNs.
 	transformedContent = transformedContent.replace(
@@ -121,18 +111,5 @@ export function getIVRPaymentFlowContent(
 		/<<amazonConnectSecurityKeyCertificateContent>>/g,
 		amazonConnectSecurityKeyCertificateContent,
 	);
-	return transformedContent;
-}
-
-/**
- * Gets the content for the agent hold flow.
- *
- * @returns A string representing the content for the agent hold flow.
- */
-export function getAgentHoldFlowContent() {
-	let transformedContent = JSON.stringify(agentHoldFlowJson);
-
-	// Don't escape quotes.
-	transformedContent = transformedContent.replace('\\', '');
 	return transformedContent;
 }
