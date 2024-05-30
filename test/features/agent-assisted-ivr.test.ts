@@ -40,7 +40,7 @@ describe('Agent Assisted IVR', () => {
 	describe('Amazon Connect', () => {
 		describe('IVR flow', () => {
 			it('Has contact flow', () => {
-				template.resourceCountIs('AWS::Connect::ContactFlow', 2);
+				template.resourceCountIs('AWS::Connect::ContactFlow', 1);
 			});
 		});
 
