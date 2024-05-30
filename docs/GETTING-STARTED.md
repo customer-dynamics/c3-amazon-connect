@@ -8,6 +8,7 @@ Before getting started with C3 for Amazon Connect, please ensure the following:
 - You have an AWS account
 - You have an Amazon Connect instance
 - You have Node.js (v20+) and npm (v10+) installed on your machine
+- You have [installed and configured the AWS CDK](https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html#getting_started_auth) on your machine
 
 ## Installation
 
@@ -19,6 +20,18 @@ To create a flow security key, please reference steps 1 and 2 of the [Amazon Con
 
 > [!NOTE]
 > Be aware of the expiration date on the certificate you generated. Once this expires, values cannot be encrypted or decrypted and your payment flows will fail. It is recommended that you set a reminder to renew the certificate before it expires. Once renewed, you will need to update the security key in your Amazon Connect instance and repeat the process outlined in this document to deploy updated resources.
+
+### Clone the Repository
+
+Begin by cloning the C3 for Amazon Connect repository to your local machine:
+
+```bash
+git clone git@github.com:customer-dynamics/c3-amazon-connect.git
+```
+
+> If you prefer, you can also [download the latest .zip](https://github.com/customer-dynamics/c3-amazon-connect/archive/refs/heads/main.zip) and extract it to your local machine.
+
+Once cloned, open the project in your preferred code editor.
 
 ### Deploy Resources Using the AWS CDK
 
@@ -38,17 +51,7 @@ In order to facilitate this process, you will need to provide some values to the
 | `supportPhone`                               | The phone number to which customers can call for inquiries. This will be displayed in the receipt email sent to customers.                                                                                                                                             |
 | `supportEmail`                               | The email address to which customers can send inquiries. This will be displayed in the receipt email sent to customers.                                                                                                                                                |
 
-Once these values are provided, ensure that you have the AWS CDK installed and configured on your machine. Please reference the [Getting started with the AWS CDK](https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html) documentation for more information.
-
-Bootstrap the CDK:
-
-```bash
-cdk bootstrap
-```
-
-This command will deploy the necessary resources to your AWS account to facilitate the deployment of the C3 stack. This only needs to be done once per AWS account.
-
-Then deploy the stack to the same region as your Amazon Connect instance:
+Once these values are provided, deploy the stack to the same region as your Amazon Connect instance by running the following at the root of the project:
 
 ```bash
 npm run deploy
@@ -93,6 +96,6 @@ Once configured, your agents should see a _Payment IVR_ quick connect in the _Qu
 
 ![Screen shot of the Amazon Connect agent workspace interface. The quick connects dropdown in the bottom left is expanded showing a quick connect called "Payment IVR"](./images/agent-workspace-quick-connects.png 'Amazon Connect Quick Connects')
 
-### Setting Up Your Flows
+#### Setting Up Your Flows
 
 Once the stack has been deployed, you will need to configure your Amazon Connect flows to utilize the resources that have been deployed. The following steps will guide you through the process of setting up your flows
