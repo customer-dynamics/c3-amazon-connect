@@ -56,6 +56,42 @@ npm run deploy
 > [!NOTE]
 > This command will deploy to the region specified in the default profile for your AWS CLI configuration. If you would like to deploy to a different profile, you can specify the profile using the `--profile` flag.
 
+### Provide Secret Values
+
+Once deployed, C3 for Amazon Connect will have deployed a number of secrets to [AWS Secrets Manager](https://console.aws.amazon.com/secretsmanager/listsecrets). These secrets will need to be updated with the appropriate values in order to facilitate the operation of the C3 resources:
+
+| Secret Name                              | Description                                                                                                                                                                  |
+| ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| C3_PRIVATE_KEY                           | The content of the private key that was used in the previous step when you generated the certificate. The content of this file can just be copy-pasted into Secrets Manager. |
+| C3_API_KEY                               | The API key assigned to your C3 vendor.                                                                                                                                      |
+| {{ Your payment gateway }}>\_CREDENTIALS | The credentials to the account used for your payment gateway. This includes a username, password, and account ID.                                                            |
+
+### Configure Amazon Connect
+
+You will also need to configure some items in your Amazon Connect instance to make C3 resources available for your agents.
+
+#### Update Security Profile
+
+> [!NOTE]
+> If you are not collecting agent-assisted payments, you can skip this step.
+
+To have the C3 Payment Request workspace available for your agents, you'll need to make sure the third-party app is enabled in the security profile that your agents are using. Please follow the steps outlined in the [Amazon Connect documentation](https://docs.aws.amazon.com/connect/latest/adminguide/assign-security-profile-3p-apps.html) to enable the third-party app in your security profile.
+
+Once configured, your agents should see a _Payment Request_ app in the _Apps_ dropdown in the top right corner of the Amazon Connect agent workspace.
+
+![Screen shot of the Amazon Connect agent workspace interface. The apps dropdown in the top right corner is expanded showing an application called "Payment Request"](./images/agent-workspace-apps.png 'Amazon Connect Apps')
+
+#### Update Queue
+
+> [!NOTE]
+> If you are not collecting agent-assisted payments, you can skip this step.
+
+To enable your agent to transfer a call to the C3 payment IVR, you will need to update the queue that your agents are working in to enable the _Payment IVR_ quick connect. Reference the _Enable agents to see quick connects_ step in the [Amazon Connect documentation](https://docs.aws.amazon.com/connect/latest/adminguide/quick-connects.html#step2-enable-agents-to-see-quick-connects) to enable the _Payment IVR_ quick connect.
+
+Once configured, your agents should see a _Payment IVR_ quick connect in the _Quick connects_ dropdown in the CCP interface. Note that this quick connect will only be present while the agent is on a call.
+
+![Screen shot of the Amazon Connect agent workspace interface. The quick connects dropdown in the bottom left is expanded showing a quick connect called "Payment IVR"](./images/agent-workspace-quick-connects.png 'Amazon Connect Quick Connects')
+
 ### Setting Up Your Flows
 
 Once the stack has been deployed, you will need to configure your Amazon Connect flows to utilize the resources that have been deployed. The following steps will guide you through the process of setting up your flows
