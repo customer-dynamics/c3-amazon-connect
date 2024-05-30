@@ -60,21 +60,6 @@
 				},
 				"isFriendlyName": true
 			},
-			"Report Payment Request Error": {
-				"position": {
-					"x": -1301.6,
-					"y": 727.2
-				},
-				"isFriendlyName": true,
-				"parameters": {
-					"LambdaFunctionARN": {
-						"displayName": "<<reportCustomerActivityLambdaArn>>"
-					}
-				},
-				"dynamicMetadata": {
-					"EventText": false
-				}
-			},
 			"33d2c563-289f-4358-9500-fc1552cc9523": {
 				"position": {
 					"x": -360,
@@ -190,45 +175,6 @@
 				},
 				"isFriendlyName": true
 			},
-			"Agent Hold Error": {
-				"position": {
-					"x": -586.4,
-					"y": 770.4
-				},
-				"isFriendlyName": true
-			},
-			"Record Payment Request ID": {
-				"position": {
-					"x": -1339.2,
-					"y": 493.6
-				},
-				"isFriendlyName": true,
-				"dynamicParams": []
-			},
-			"c584fdb0-1a54-4203-a33d-ae533419b8dc": {
-				"position": {
-					"x": -567.2,
-					"y": 557.6
-				}
-			},
-			"60f08ab6-8a8e-49f3-8e28-df3d56ca05a1": {
-				"position": {
-					"x": -812,
-					"y": 564.8
-				},
-				"parameters": {
-					"EventHooks": {
-						"AgentHold": {
-							"displayName": "C3 Agent Hold Flow"
-						}
-					}
-				},
-				"contactFlow": {
-					"text": "C3 Agent Hold Flow",
-					"id": "<<agentHoldFlowArn>>"
-				},
-				"customerOrAgent": false
-			},
 			"87c99ef0-15ba-43b9-9354-ffc116e7a1f1": {
 				"position": {
 					"x": 1091.2,
@@ -306,7 +252,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "e6d5e2d7-8fa6-4e9f-b0b3-03da6bbe266c",
+						"id": "546b21b7-8f18-4677-bf07-c456ac0404c1",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -370,7 +316,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "a4c2fa1e-e242-47f0-95fe-e046c7741d14",
+						"id": "9b03910e-375f-4f19-b4a1-4933e4379018",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -466,7 +412,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "7938fc29-f2e2-4acc-8432-25931fa32b9a",
+						"id": "6e7e39c4-0f00-4598-8ac2-775cc35c5e2a",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -530,7 +476,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "bf3712d9-9056-43bc-847b-d8a969ea52e8",
+						"id": "62d30a73-f1f7-4d01-b063-6ef46405e491",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -592,7 +538,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "0faf1d6a-5f12-443a-98be-a2068a68ed6f",
+						"id": "35dd3593-0bac-4d29-9fa4-291e8f60f9a7",
 						"operator": {
 							"name": "Contains",
 							"value": "Contains",
@@ -733,27 +679,14 @@
 				"isFriendlyName": true,
 				"conditionMetadata": [
 					{
-						"id": "a0bde073-b9e9-4821-acfe-5915145d854f",
+						"id": "bd4b755a-3d9f-4395-8a5e-cf3b85f912c8",
 						"value": "1"
 					},
 					{
-						"id": "38e06c57-33a0-41ed-a542-6f7275eac323",
+						"id": "ff8c195e-b75f-41ba-80b5-a4561fcfd9c4",
 						"value": "2"
 					}
 				]
-			},
-			"Create Payment Request": {
-				"position": {
-					"x": -1566.4,
-					"y": 564.8
-				},
-				"isFriendlyName": true,
-				"parameters": {
-					"LambdaFunctionARN": {
-						"displayName": "<<createPaymentRequestLambdaArn>>"
-					}
-				},
-				"dynamicMetadata": {}
 			},
 			"773c7dfc-3423-47e4-bf80-be55b0cd1947": {
 				"position": {
@@ -777,7 +710,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "96c39c9e-2142-4483-9354-7eb37d71058b",
+						"id": "98b9e5c1-397a-4a89-8326-305a95c0c83d",
 						"operator": {
 							"name": "Is greater than",
 							"value": "GreaterThan",
@@ -786,13 +719,62 @@
 						"value": "0"
 					}
 				]
+			},
+			"Agent Hold Error": {
+				"position": {
+					"x": -586.4,
+					"y": 770.4
+				},
+				"isFriendlyName": true
+			},
+			"c584fdb0-1a54-4203-a33d-ae533419b8dc": {
+				"position": {
+					"x": -567.2,
+					"y": 557.6
+				}
+			},
+			"Report Payment Request Error": {
+				"position": {
+					"x": -1301.6,
+					"y": 727.2
+				},
+				"isFriendlyName": true,
+				"parameters": {
+					"LambdaFunctionARN": {
+						"displayName": "<<reportCustomerActivityLambdaArn>>"
+					}
+				},
+				"dynamicMetadata": {
+					"EventText": false
+				}
+			},
+			"Create Payment Request": {
+				"position": {
+					"x": -1566.4,
+					"y": 564.8
+				},
+				"isFriendlyName": true,
+				"parameters": {
+					"LambdaFunctionARN": {
+						"displayName": "<<createPaymentRequestLambdaArn>>"
+					}
+				},
+				"dynamicMetadata": {}
+			},
+			"Record Payment Request ID": {
+				"position": {
+					"x": -1339.2,
+					"y": 493.6
+				},
+				"isFriendlyName": true,
+				"dynamicParams": []
 			}
 		},
 		"Annotations": [],
 		"name": "Agent-Assisted Payment IVR",
 		"description": "Flow for collecting payments with C3 through a quick connect IVR.",
 		"type": "queueTransfer",
-		"status": "PUBLISHED",
+		"status": "published",
 		"hash": {}
 	},
 	"Actions": [
@@ -899,29 +881,6 @@
 				"Errors": [
 					{
 						"NextAction": "33d2c563-289f-4358-9500-fc1552cc9523",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"LambdaFunctionARN": "<<reportCustomerActivityLambdaArn>>",
-				"InvocationTimeLimitSeconds": "8",
-				"LambdaInvocationAttributes": {
-					"EventText": "PaymentRequestError"
-				},
-				"ResponseValidation": {
-					"ResponseType": "JSON"
-				}
-			},
-			"Identifier": "Report Payment Request Error",
-			"Type": "InvokeLambdaFunction",
-			"Transitions": {
-				"NextAction": "Payment Request Error",
-				"Errors": [
-					{
-						"NextAction": "Payment Request Error",
 						"ErrorType": "NoMatchingError"
 					}
 				]
@@ -1132,75 +1091,6 @@
 				"Errors": [
 					{
 						"NextAction": "87c99ef0-15ba-43b9-9354-ffc116e7a1f1",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Text": "There was an error placing the agent on hold. Unable to request payment."
-			},
-			"Identifier": "Agent Hold Error",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "33d2c563-289f-4358-9500-fc1552cc9523",
-				"Errors": [
-					{
-						"NextAction": "33d2c563-289f-4358-9500-fc1552cc9523",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Attributes": {
-					"PaymentRequestId": "$.External.PaymentRequestId"
-				},
-				"TargetContact": "Current"
-			},
-			"Identifier": "Record Payment Request ID",
-			"Type": "UpdateContactAttributes",
-			"Transitions": {
-				"NextAction": "60f08ab6-8a8e-49f3-8e28-df3d56ca05a1",
-				"Errors": [
-					{
-						"NextAction": "Report Payment Request Error",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"PreviousContactParticipantState": "AgentOnHold"
-			},
-			"Identifier": "c584fdb0-1a54-4203-a33d-ae533419b8dc",
-			"Type": "UpdatePreviousContactParticipantState",
-			"Transitions": {
-				"NextAction": "Report Customer Transferred",
-				"Errors": [
-					{
-						"NextAction": "Agent Hold Error",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"EventHooks": {
-					"AgentHold": "<<agentHoldFlowArn>>"
-				}
-			},
-			"Identifier": "60f08ab6-8a8e-49f3-8e28-df3d56ca05a1",
-			"Type": "UpdateContactEventHooks",
-			"Transitions": {
-				"NextAction": "c584fdb0-1a54-4203-a33d-ae533419b8dc",
-				"Errors": [
-					{
-						"NextAction": "Agent Hold Error",
 						"ErrorType": "NoMatchingError"
 					}
 				]
@@ -2106,26 +1996,6 @@
 		},
 		{
 			"Parameters": {
-				"LambdaFunctionARN": "<<createPaymentRequestLambdaArn>>",
-				"InvocationTimeLimitSeconds": "8",
-				"ResponseValidation": {
-					"ResponseType": "JSON"
-				}
-			},
-			"Identifier": "Create Payment Request",
-			"Type": "InvokeLambdaFunction",
-			"Transitions": {
-				"NextAction": "Record Payment Request ID",
-				"Errors": [
-					{
-						"NextAction": "Report Payment Request Error",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
 				"FlowLoggingBehavior": "Enabled"
 			},
 			"Identifier": "773c7dfc-3423-47e4-bf80-be55b0cd1947",
@@ -2171,6 +2041,100 @@
 					{
 						"NextAction": "No Payment Information",
 						"ErrorType": "NoMatchingCondition"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "There was an error placing the agent on hold. Unable to request payment."
+			},
+			"Identifier": "Agent Hold Error",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "33d2c563-289f-4358-9500-fc1552cc9523",
+				"Errors": [
+					{
+						"NextAction": "33d2c563-289f-4358-9500-fc1552cc9523",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"PreviousContactParticipantState": "AgentOnHold"
+			},
+			"Identifier": "c584fdb0-1a54-4203-a33d-ae533419b8dc",
+			"Type": "UpdatePreviousContactParticipantState",
+			"Transitions": {
+				"NextAction": "Report Customer Transferred",
+				"Errors": [
+					{
+						"NextAction": "Agent Hold Error",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"LambdaFunctionARN": "<<reportCustomerActivityLambdaArn>>",
+				"InvocationTimeLimitSeconds": "8",
+				"LambdaInvocationAttributes": {
+					"EventText": "PaymentRequestError"
+				},
+				"ResponseValidation": {
+					"ResponseType": "JSON"
+				}
+			},
+			"Identifier": "Report Payment Request Error",
+			"Type": "InvokeLambdaFunction",
+			"Transitions": {
+				"NextAction": "Payment Request Error",
+				"Errors": [
+					{
+						"NextAction": "Payment Request Error",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"LambdaFunctionARN": "<<createPaymentRequestLambdaArn>>",
+				"InvocationTimeLimitSeconds": "8",
+				"ResponseValidation": {
+					"ResponseType": "JSON"
+				}
+			},
+			"Identifier": "Create Payment Request",
+			"Type": "InvokeLambdaFunction",
+			"Transitions": {
+				"NextAction": "Record Payment Request ID",
+				"Errors": [
+					{
+						"NextAction": "Report Payment Request Error",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Attributes": {
+					"PaymentRequestId": "$.External.PaymentRequestId"
+				},
+				"TargetContact": "Current"
+			},
+			"Identifier": "Record Payment Request ID",
+			"Type": "UpdateContactAttributes",
+			"Transitions": {
+				"NextAction": "c584fdb0-1a54-4203-a33d-ae533419b8dc",
+				"Errors": [
+					{
+						"NextAction": "Report Payment Request Error",
+						"ErrorType": "NoMatchingError"
 					}
 				]
 			}
