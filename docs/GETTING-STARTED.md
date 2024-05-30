@@ -83,7 +83,7 @@ To have the C3 Payment Request workspace available for your agents, you'll need 
 
 Once configured, your agents should see a _Payment Request_ app in the _Apps_ dropdown in the top right corner of the Amazon Connect agent workspace.
 
-![Screen shot of the Amazon Connect agent workspace interface. The apps dropdown in the top right corner is expanded showing an application called "Payment Request"](./images/agent-workspace-apps.png 'Amazon Connect Apps')
+![Screenshot of the Amazon Connect agent workspace interface. The apps dropdown in the top right corner is expanded showing an application called "Payment Request"](./images/agent-workspace-apps.png 'Amazon Connect Apps')
 
 #### Update Queue
 
@@ -94,7 +94,7 @@ To enable your agent to transfer a call to the C3 payment IVR, you will need to 
 
 Once configured, your agents should see a _Payment IVR_ quick connect in the _Quick connects_ dropdown in the CCP interface. Note that this quick connect will only be present while the agent is on a call.
 
-![Screen shot of the Amazon Connect agent workspace interface. The quick connects dropdown in the bottom left is expanded showing a quick connect called "Payment IVR"](./images/agent-workspace-quick-connects.png 'Amazon Connect Quick Connects')
+![Screenshot of the Amazon Connect agent workspace interface. The quick connects dropdown in the bottom left is expanded showing a quick connect called "Payment IVR"](./images/agent-workspace-quick-connects.png 'Amazon Connect Quick Connects')
 
 #### Setting Up Your Flows
 
