@@ -9,12 +9,13 @@
 		"vendorId": "",
 		"paymentGateway": ""
 	},
-	"logoUrl": "",
-	"supportPhone": "",
-	"supportEmail": "",
 	"features": {
 		"agentAssistedIVR": true,
 		"agentAssistedLink": true,
-		"selfServiceIVR": true
-	}
+		"selfServiceIVR": true,
+		"subjectLookup": ""
+	},
+	"logoUrl": "",
+	"supportPhone": "",
+	"supportEmail": ""
 }
