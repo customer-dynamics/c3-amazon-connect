@@ -1,0 +1,11 @@
+{
+	"name": "c3-report-subject-lookup-state",
+	"author": "Customer Dynamics",
+	"main": "index.js",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"dependencies": {}
+}
