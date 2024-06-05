@@ -64,6 +64,13 @@ export class SubjectLookup {
 			code: Code.fromAsset(join(__dirname, '../lambda/c3-subject-lookup')),
 			codeSigningConfig: this.codeSigningConfig,
 		});
+
+		// Update this with any additional permissions that the function needs for your subject lookup.
+		// const subjectLookupPolicy = new PolicyStatement({
+		// 	actions: [],
+		// 	resources: [],
+		// });
+		// this.subjectLookupFunction.addToRolePolicy(subjectLookupPolicy);
 	}
 
 	/**
