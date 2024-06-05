@@ -20,7 +20,7 @@ C3 for Amazon Connect uses the AWS Cloud Development Kit (CDK) to deploy the nec
 
 ### 🏦 Credit Card & ACH Support
 
-Allow customers to pay with either their credit card or bank account. C3 for Amazon Connect supports both payment methods.
+Allow customers to pay with either their credit card or bank account. C3 for Amazon Connect supports customer choice in the payment process.
 
 ### 👤 Self-Service Payments
 
