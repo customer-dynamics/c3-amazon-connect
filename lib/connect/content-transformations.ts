@@ -1,6 +1,7 @@
 import { Function } from 'aws-cdk-lib/aws-lambda';
 import * as flowModuleJson from './flows/modules/c3-ivr-payment-flow-module.json';
 import * as ivrPaymentFlowJson from './flows/c3-ivr-payment-flow.json';
+import * as subjectLookupFlow from './flows/c3-subject-lookup-flow.json';
 
 /**
  * Gets the content for the IVR payment flow module.
@@ -110,6 +111,34 @@ export function getIVRPaymentFlowContent(
 	transformedContent = transformedContent.replace(
 		/<<amazonConnectSecurityKeyCertificateContent>>/g,
 		amazonConnectSecurityKeyCertificateContent,
+	);
+	return transformedContent;
+}
+
+/**
+ * Gets the content for the subject lookup flow.
+ *
+ * @param subjectLookupFunction The Lambda function for getting the details of a subject.
+ * @param reportSubjectLookupStateFunction The Lambda function for reporting the state of subject lookup.
+ * @returns A string representing the content for the subject lookup flow.
+ */
+export function getSubjectLookupFlowContent(
+	subjectLookupFunction: Function,
+	reportSubjectLookupStateFunction: Function,
+): string {
+	let transformedContent = JSON.stringify(subjectLookupFlow);
+
+	// Don't escape quotes.
+	transformedContent = transformedContent.replace('\\', '');
+
+	// Replace the placeholders with the actual values.
+	transformedContent = transformedContent.replace(
+		/<<subjectLookupLambdaArn>>/g,
+		subjectLookupFunction.functionArn,
+	);
+	transformedContent = transformedContent.replace(
+		/<<reportSubjectLookupStateLambdaArn>>/g,
+		reportSubjectLookupStateFunction.functionArn,
 	);
 	return transformedContent;
 }

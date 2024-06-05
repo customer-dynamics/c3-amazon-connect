@@ -13,7 +13,10 @@ import {
 	validateAmazonConnectContext,
 } from './models/amazon-connect-context';
 import { C3Context, validateC3Context } from './models/c3-context';
-import { FeaturesContext } from './models/features-context';
+import {
+	FeaturesContext,
+	validateFeaturesContext,
+} from './models/features-context';
 import { Zift } from './payment-gateways/zift';
 import { AgentAssistedPaymentIVR, SelfServicePaymentIVR } from './features';
 import {
@@ -21,6 +24,7 @@ import {
 	commonLambdaProps,
 } from './helpers/lambda';
 import { C3PaymentGateway } from './models/enums/c3-payment-gateway';
+import { SubjectLookup } from './features/subject-lookup';
 
 export class C3AmazonConnectStack extends Stack {
 	private c3BaseUrl: string;
@@ -97,6 +101,21 @@ export class C3AmazonConnectStack extends Stack {
 				this.emailReceiptFunction,
 			);
 		}
+		if (this.featuresContext.subjectLookup) {
+			if (!this.agentAssistedIVRResources) {
+				throw new Error(
+					'Agent-assisted IVR resources are required for subject lookup.',
+				);
+			}
+			new SubjectLookup(
+				this,
+				this.amazonConnectContext,
+				this.codeSigningConfig,
+				this.c3BaseUrl,
+				this.c3ApiKeySecret,
+				this.agentAssistedIVRResources?.hoursOfOperation,
+			);
+		}
 
 		// Create resources needed for agent-assisted payment requests.
 		if (
@@ -118,6 +137,8 @@ export class C3AmazonConnectStack extends Stack {
 		validateC3Context(this.c3Context);
 
 		this.featuresContext = this.node.tryGetContext('features');
+		validateFeaturesContext(this.featuresContext);
+
 		this.logoUrl = this.node.tryGetContext('logoUrl');
 		this.supportPhone = this.node.tryGetContext('supportPhone');
 		this.supportEmail = this.node.tryGetContext('supportEmail');
@@ -354,13 +375,16 @@ export class C3AmazonConnectStack extends Stack {
 			? `&externalRoleArn=${externalRoleArn}`
 			: '';
 
-		// Add parameters to the URL if the features are not configured.
+		// Add parameters to the URL for the specific features.
 		let configuredFeatureParams = '';
 		if (!this.featuresContext.agentAssistedIVR) {
 			configuredFeatureParams += '&noIvr=true';
 		}
 		if (!this.featuresContext.agentAssistedLink) {
 			configuredFeatureParams += '&noLink=true';
+		}
+		if (this.featuresContext.subjectLookup) {
+			configuredFeatureParams += `&subjectLookup=${this.featuresContext.subjectLookup}`;
 		}
 
 		// Create the app.
