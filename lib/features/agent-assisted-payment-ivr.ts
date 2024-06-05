@@ -93,15 +93,10 @@ export class AgentAssistedPaymentIVR {
 		);
 
 		// Create the policies for getting secret values.
-		const batchGetSecretsPolicy = new PolicyStatement({
-			actions: ['secretsmanager:BatchGetSecretValue'],
-			resources: ['*'],
-		});
 		const getSecretValuePolicy = new PolicyStatement({
 			actions: ['secretsmanager:GetSecretValue'],
 			resources: [this.c3ApiKeySecret.secretArn],
 		});
-		this.reportCustomerActivityFunction.addToRolePolicy(batchGetSecretsPolicy);
 		this.reportCustomerActivityFunction.addToRolePolicy(getSecretValuePolicy);
 	}
 
