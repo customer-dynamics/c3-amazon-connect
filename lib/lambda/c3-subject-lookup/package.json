@@ -1,0 +1,13 @@
+{
+	"name": "c3-subject-lookup",
+	"author": "Customer Dynamics",
+	"main": "index.js",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"dependencies": {
+		"@aws-sdk/client-secrets-manager": "^3.588.0"
+	}
+}

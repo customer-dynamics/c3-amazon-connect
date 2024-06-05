@@ -43,3 +43,11 @@ updates:
     directory: 'lib/lambda/c3-email-receipt'
     schedule:
       interval: 'daily'
+  - package-ecosystem: 'npm'
+    directory: 'lib/lambda/c3-subject-lookup'
+    schedule:
+      interval: 'daily'
+  - package-ecosystem: 'npm'
+    directory: 'lib/lambda/c3-report-subject-lookup-status'
+    schedule:
+      interval: 'daily'
