@@ -131,7 +131,7 @@ export class AgentAssistedPaymentIVR {
 	}
 
 	/**
-	 * Creates hours of operation for handling IVR payments.
+	 * Creates hours of operation for queues.
 	 *
 	 * These hours of operation are required because a queue must have hours of operation defined. This allows the payment queue to be available 24/7.
 	 */
@@ -139,12 +139,11 @@ export class AgentAssistedPaymentIVR {
 		console.log('Creating hours of operation...');
 		this.hoursOfOperation = new CfnHoursOfOperation(
 			this.stack,
-			'C3IVRHoursOfOperation',
+			'C3HoursOfOperation',
 			{
 				instanceArn: this.amazonConnectInstanceArn,
-				name: 'C3 IVR Hours of Operation',
-				description:
-					'Hours of operation for handling IVR payment requests with C3.',
+				name: 'C3 Hours of Operation',
+				description: 'Hours of operation for quick connects with C3.',
 				timeZone: 'America/New_York',
 				config: [
 					{
