@@ -1,6 +1,7 @@
 #!/bin/bash
 
 IVR_PAYMENT_FLOW_FILE="lib/connect/flows/c3-ivr-payment-flow.json"
+SUBJECT_LOOKUP_FLOW_FILE="lib/connect/flows/c3-subject-lookup-flow.json"
 IVR_PAYMENT_FLOW_MODULE_FILE="lib/connect/flows/modules/c3-ivr-payment-flow-module.json"
 
 # ---- LAMBDA FUNCTIONS ----
@@ -33,6 +34,16 @@ sed -i '' "s|\(\"[^\"]*\": \)\".*${FUNCTION_NAME}.*\"|\1\"$PLACEHOLDER\"|g" "$IV
 FUNCTION_NAME="C3ReportCustomerActivity"
 PLACEHOLDER="<<reportCustomerActivityLambdaArn>>"
 sed -i '' "s|\(\"[^\"]*\": \)\".*${FUNCTION_NAME}.*\"|\1\"$PLACEHOLDER\"|g" "$IVR_PAYMENT_FLOW_FILE"
+
+# Replace the ARN of the C3SubjectLookup Lambda function
+FUNCTION_NAME="C3SubjectLookup"
+PLACEHOLDER="<<subjectLookupLambdaArn>>"
+sed -i '' "s|\(\"[^\"]*\": \)\".*${FUNCTION_NAME}.*\"|\1\"$PLACEHOLDER\"|g" "$SUBJECT_LOOKUP_FLOW_FILE"
+
+# Replace the ARN of the C3ReportSubjectLookupState Lambda function
+FUNCTION_NAME="C3ReportSubjectLookupState"
+PLACEHOLDER="<<reportSubjectLookupStateLambdaArn>>"
+sed -i '' "s|\(\"[^\"]*\": \)\".*${FUNCTION_NAME}.*\"|\1\"$PLACEHOLDER\"|g" "$SUBJECT_LOOKUP_FLOW_FILE"
 
 # ---- SECURITY KEY ----
 
