@@ -37,19 +37,42 @@ Once cloned, open the project in your preferred code editor.
 
 To reduce the need for manually importing resources, C3 for Amazon Connect uses the AWS Cloud Development Kit (CDK) to deploy the necessary resources directly to your AWS account in a newly created stack.
 
-In order to facilitate this process, you will need to provide some values to the CDK. All of the following values will need to be defined in the `cdk.context.json` file:
+In order to facilitate this process, you will need to provide some values to the CDK. All of the following configuration values will need to be defined in the `cdk.context.json` file:
 
-| Value                                        | Description                                                                                                                                                                                                                                                            |
-| -------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `amazonConnectInstanceArn`                   | The full ARN of your Amazon Connect Instance.                                                                                                                                                                                                                          |
-| `amazonConnectSecurityKeyId`                 | The ID the security key that you configured for your Amazon Connect instance.                                                                                                                                                                                          |
-| `amazonConnectSecurityKeyCertificateContent` | The full content of the certificate associated with your Amazon Connect security key. Begins with `-----BEGIN CERTIFICATE-----` and ends with`-----END CERTIFICATE-----`. Please note, this must be contained within a single string with newlines denoted with `\\n`. |
-| `c3Env`                                      | The C3 environment to be used. Valid options are `"prod"`, `"staging"`, and `"dev"`.                                                                                                                                                                                   |
-| `c3VendorId`                                 | The C3 ID identifying your vendor.                                                                                                                                                                                                                                     |
-| `c3PaymentGateway`                           | The payment gateway used for your vendor. Currently, only `"Zift"` is supported.                                                                                                                                                                                       |
-| `logoUrl`                                    | An public image URL to be used as the logo for your company. This will be displayed in the receipt email sent to customers.                                                                                                                                            |
-| `supportPhone`                               | The phone number to which customers can call for inquiries. This will be displayed in the receipt email sent to customers.                                                                                                                                             |
-| `supportEmail`                               | The email address to which customers can send inquiries. This will be displayed in the receipt email sent to customers.                                                                                                                                                |
+#### Configuration Values
+
+##### Amazon Connect
+
+| Value                           | Description                                                                                                                                                                                                                                                         |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `instanceArn`                   | The full ARN of your Amazon Connect Instance. You can find this in the AWS console and it should look something like `"arn:aws:connect:us-west-2:815407490078:instance/5c1f1fba-d5f1-4155-9e09-496456e58912"`.                                                      |
+| `securityKeyId`                 | The ID of the security key that you configured for your Amazon Connect instance. You can find this in the AWS console.                                                                                                                                              |
+| `securityKeyCertificateContent` | The full content of the certificate associated with your Amazon Connect security key. Begins with `-----BEGIN CERTIFICATE-----` and ends with`-----END CERTIFICATE-----`. **Note**: This must be contained within a single string with newlines denoted with `\\n`. |
+
+##### C3
+
+| Value            | Description                                                                          |
+| ---------------- | ------------------------------------------------------------------------------------ |
+| `env`            | The C3 environment to be used. Valid options are `"prod"`, `"staging"`, and `"dev"`. |
+| `vendorId`       | The C3 ID identifying your vendor.                                                   |
+| `paymentGateway` | The payment gateway used for your vendor. Currently, only `"Zift"` is supported.     |
+
+##### Features
+
+| Value               | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `agentAssistedIVR`  | Whether deploy resources necessary to support the agent-assisted IVR feature. Defaults to `true`. If set to `false`, some resources will not be deployed and agents will not have the ability to collect payments through an IVR.                                                                                                                                                                                                                                                       |
+| `agentAssistedLink` | **Currently unsupported**. This feature will be coming soon.                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| `selfServiceIVR`    | Whether to deploy resources necessary to support a self-service payment IVR. Defaults to `true`. If set to `false`, some resources will not be deployed.<br><br>For more information, see the [self-service payment IVR](./features/SELF_SERVICE_PAYMENT_IVR.md) documentation.                                                                                                                                                                                                         |
+| `subjectLookup`     | **Optional**. Additional feature for agent-assisted IVR payments. If set, this will allow the agent to pull details about the subject to pre-fill information in the payment request (contact name, contact email, and amount due). Valid options are `"required-fixed"`, `"required-editable"`, and `"optional-editable"`. Leave blank if you don't want to support subject lookup.<br><br>For more information, see the [subject lookup](./features/SUBJECT_LOOKUP.md) documentation. |
+
+##### Other
+
+| Value          | Description                                                                                                                 |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `logoUrl`      | An public image URL to be used as the logo for your company. This will be displayed in the receipt email sent to customers. |
+| `supportPhone` | The phone number to which customers can call for support. This will be displayed in the receipt email sent to customers.    |
+| `supportEmail` | The email address to which customers can email for support. This will be displayed in the receipt email sent to customers.  |
 
 Once these values are provided, deploy the stack to the same region as your Amazon Connect instance by running the following at the root of the project:
 
@@ -96,6 +119,12 @@ Once configured, your agents should see a _Payment IVR_ quick connect in the _Qu
 
 ![Screenshot of the Amazon Connect agent workspace interface. The quick connects dropdown in the bottom left is expanded showing a quick connect called "Payment IVR"](./images/agent-workspace-quick-connects.png 'Amazon Connect Quick Connects')
 
-#### Setting Up Your Flows
+#### Configure Additional Features
 
-Once the stack has been deployed, you will need to configure your Amazon Connect flows to utilize the resources that have been deployed. The following steps will guide you through the process of setting up your flows
+##### Self-Service Payment IVR
+
+If you have enabled the self-service payment IVR feature, you will need to configure the necessary resources to support this feature. Please reference the [self-service payment IVR](./features/SELF_SERVICE_PAYMENT_IVR.md) documentation for more information.
+
+##### Subject Lookup
+
+If you have enabled the subject lookup feature, you will need to configure the necessary resources to support this feature. Please reference the [subject lookup](./features/SUBJECT_LOOKUP.md) documentation for more information.
