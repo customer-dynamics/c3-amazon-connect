@@ -21,7 +21,27 @@ Agent lookup is facilitated through the use of a _quick connect_, _transfer to q
 
 ### Update Lambda Function
 
-asdf
+Because the subject lookup process is specific to your organization, you will need to provide your own code in the Lambda function that is deployed with the stack to handle the lookup process. This Lambda function is named `C3SubjectLookup` and you can find the code at `lib/lambda/c3-subject-lookup/index.js`. Please read the comments in the code to understand how to implement your own lookup process.
+
+If you need to grant your Lambda function to access any of your other AWS resources, you can add them to the empty, commented-out policy in `lib/features/subject-lookup.ts`. Look for this comment:
+
+```typescript
+// Update this with any additional permissions that the function needs for your subject lookup.
+// const subjectLookupPolicy = new PolicyStatement({
+//   actions: [],
+//   resources: [],
+// });
+// this.subjectLookupFunction.addToRolePolicy(subjectLookupPolicy);
+```
+
+Once you have updated the Lambda function, you can deploy the stack again to update the Lambda function:
+
+```bash
+npm run deploy
+```
+
+> [!NOTE]
+> Remember to save or commit your code changes so that future deployments will always include your changes.
 
 ### Update Queue
 
