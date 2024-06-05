@@ -4,6 +4,7 @@ import { Template } from 'aws-cdk-lib/assertions';
 import { Context } from '../../lib/models/context';
 import { C3PaymentGateway } from '../../lib/models/enums/c3-payment-gateway';
 import { C3Environment } from '../../lib/models/enums/c3-environment';
+import { SubjectLookupMode } from '../../lib/models/enums/subject-lookup-mode';
 
 const mockContext: Context = {
 	amazonConnect: {
@@ -17,14 +18,15 @@ const mockContext: Context = {
 		vendorId: 'placeholder',
 		paymentGateway: C3PaymentGateway.Zift,
 	},
-	logoUrl: 'placeholder',
-	supportPhone: 'placeholder',
-	supportEmail: 'placeholder',
 	features: {
 		agentAssistedIVR: true,
 		agentAssistedLink: false,
 		selfServiceIVR: false,
+		subjectLookup: SubjectLookupMode.Disabled,
 	},
+	logoUrl: 'placeholder',
+	supportPhone: 'placeholder',
+	supportEmail: 'placeholder',
 };
 
 const NUMBER_OF_LAMBDAS = 5;
