@@ -30,9 +30,9 @@ import { Secret } from 'aws-cdk-lib/aws-secretsmanager';
  */
 export class AgentAssistedPaymentIVR {
 	public iamRole: Role;
+	public hoursOfOperation: CfnHoursOfOperation;
 	private reportCustomerActivityFunction: Function;
 	private ivrPaymentFlow: CfnContactFlow;
-	private hoursOfOperation: CfnHoursOfOperation;
 	private queue: CfnQueue;
 
 	/**
