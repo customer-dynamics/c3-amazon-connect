@@ -117,7 +117,7 @@ To enable your agent to transfer a call to the C3 payment IVR, you will need to 
 
 Once configured, your agents should see a _Payment IVR_ quick connect in the _Quick connects_ dropdown in the CCP interface. Note that this quick connect will only be present while the agent is on a call.
 
-![Screenshot of the Amazon Connect agent workspace interface. The quick connects dropdown in the bottom left is expanded showing a quick connect called "Payment IVR"](./images/agent-workspace-quick-connects.png 'Amazon Connect Quick Connects')
+![Screenshot of the Amazon Connect agent workspace interface. The quick connects dropdown in the bottom left is expanded showing a quick connect called "Payment IVR"](./images/payment-ivr-quick-connect.png 'Amazon Connect Quick Connects')
 
 #### Configure Additional Features
 
