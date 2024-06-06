@@ -21,20 +21,20 @@ const mockContext: Context = {
 		paymentGateway: C3PaymentGateway.Zift,
 	},
 	features: {
-		agentAssistedIVR: false,
-		agentAssistedLink: true,
+		agentAssistedIVR: true,
+		agentAssistedLink: false,
 		selfServiceIVR: false,
-		subjectLookup: SubjectLookupMode.Disabled,
+		subjectLookup: SubjectLookupMode.OptionalEditable,
 	},
 	logoUrl: 'placeholder',
 	supportPhone: 'placeholder',
 	supportEmail: 'placeholder',
 };
 
-const NUMBER_OF_LAMBDAS = 0;
+const NUMBER_OF_LAMBDAS = 6;
 
-// Verify created resources for agent-assisted links.
-describe('Self-Service Link', () => {
+// Verify created resources for subject lookup.
+describe('Subject Lookup', () => {
 	const app = new App({
 		context: mockContext,
 	});
@@ -51,22 +51,22 @@ describe('Self-Service Link', () => {
 
 		// Flows
 		describe('Flows', () => {
-			it('Has no contact flows', () => {
-				template.resourceCountIs('AWS::Connect::ContactFlow', 0);
+			it('Has 2 contact flows', () => {
+				template.resourceCountIs('AWS::Connect::ContactFlow', 2);
 			});
 		});
 
 		// Quick connects
 		describe('Quick Connects', () => {
-			it('Has no quick connects', () => {
-				template.resourceCountIs('AWS::Connect::QuickConnect', 0);
+			it('Has 2 quick connects', () => {
+				template.resourceCountIs('AWS::Connect::QuickConnect', 2);
 			});
 		});
 
 		// Queues
 		describe('Queues', () => {
-			it('Has no queues', () => {
-				template.resourceCountIs('AWS::Connect::Queue', 0);
+			it('Has 2 queues', () => {
+				template.resourceCountIs('AWS::Connect::Queue', 2);
 			});
 		});
 
@@ -84,8 +84,19 @@ describe('Self-Service Link', () => {
 
 	// Lambda functions
 	describe('Lambda functions', () => {
-		it('Has 0 created functions', () => {
+		it('Has 6 created functions', () => {
 			template.resourceCountIs('AWS::Lambda::Function', NUMBER_OF_LAMBDAS);
+		});
+	});
+
+	// IAM
+	describe('IAM', () => {
+		it('Has 1 created role', () => {
+			template.resourceCountIs('AWS::IAM::Role', NUMBER_OF_LAMBDAS + 1);
+		});
+		it('Has 6 created policies', () => {
+			// Cross org policy, 4 secrets policies, and kms policy
+			template.resourceCountIs('AWS::IAM::Policy', 6);
 		});
 	});
 });

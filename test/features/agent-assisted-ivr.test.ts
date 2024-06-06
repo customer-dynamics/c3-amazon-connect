@@ -42,15 +42,42 @@ describe('Agent Assisted IVR', () => {
 	const template = Template.fromStack(stack);
 
 	describe('Amazon Connect', () => {
-		describe('IVR flow', () => {
-			it('Has contact flow', () => {
+		// Flow modules
+		describe('Flow modules', () => {
+			it('Has no flow modules', () => {
+				template.resourceCountIs('AWS::Connect::ContactFlowModule', 0);
+			});
+		});
+
+		// Flows
+		describe('Flows', () => {
+			it('Has 1 contact flow', () => {
 				template.resourceCountIs('AWS::Connect::ContactFlow', 1);
 			});
 		});
 
-		describe('C3 Quick Connect', () => {
-			it('Has quick connect', () => {
+		// Quick connects
+		describe('Quick Connects', () => {
+			it('Has 1 quick connect', () => {
 				template.resourceCountIs('AWS::Connect::QuickConnect', 1);
+			});
+		});
+
+		// Queues
+		describe('Queues', () => {
+			it('Has 1 queue', () => {
+				template.resourceCountIs('AWS::Connect::Queue', 1);
+			});
+		});
+
+		// 3rd party apps
+		describe('3rd party apps', () => {
+			it('Has 1 3rd party app', () => {
+				// template.resourceCountIs('AWS::Connect::Application', 1);
+				template.resourceCountIs(
+					'AWS::Connect::IntegrationAssociation',
+					NUMBER_OF_LAMBDAS + 1,
+				);
 			});
 		});
 	});
@@ -62,23 +89,12 @@ describe('Agent Assisted IVR', () => {
 		});
 	});
 
-	// 3rd party apps
-	describe('3rd party apps', () => {
-		it('Has a 3rd party app', () => {
-			// template.resourceCountIs('AWS::Connect::Application', 1);
-			template.resourceCountIs(
-				'AWS::Connect::IntegrationAssociation',
-				NUMBER_OF_LAMBDAS + 1,
-			);
-		});
-	});
-
 	// IAM
 	describe('IAM', () => {
 		it('Has a created role', () => {
 			template.resourceCountIs('AWS::IAM::Role', NUMBER_OF_LAMBDAS + 1);
 		});
-		it('Has a created policy', () => {
+		it('Has 5 created policies', () => {
 			// Cross org policy, 3 secrets policies, and kms policy
 			template.resourceCountIs('AWS::IAM::Policy', 5);
 		});
