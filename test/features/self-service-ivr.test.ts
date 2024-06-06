@@ -42,9 +42,42 @@ describe('Self-Service IVR', () => {
 	const template = Template.fromStack(stack);
 
 	describe('Amazon Connect', () => {
-		describe('IVR flow module', () => {
-			it('Has contact flow module', () => {
+		// Flow modules
+		describe('Flow modules', () => {
+			it('Has 1 flow module', () => {
 				template.resourceCountIs('AWS::Connect::ContactFlowModule', 1);
+			});
+		});
+
+		// Flows
+		describe('Flows', () => {
+			it('Has no contact flows', () => {
+				template.resourceCountIs('AWS::Connect::ContactFlow', 0);
+			});
+		});
+
+		// Quick connects
+		describe('Quick Connects', () => {
+			it('Has no quick connects', () => {
+				template.resourceCountIs('AWS::Connect::QuickConnect', 0);
+			});
+		});
+
+		// Queues
+		describe('Queues', () => {
+			it('Has no queues', () => {
+				template.resourceCountIs('AWS::Connect::Queue', 0);
+			});
+		});
+
+		// 3rd party apps
+		describe('3rd party apps', () => {
+			it('Has no 3rd party app', () => {
+				// template.resourceCountIs('AWS::Connect::Application', 1);
+				template.resourceCountIs(
+					'AWS::Connect::IntegrationAssociation',
+					NUMBER_OF_LAMBDAS + 0,
+				);
 			});
 		});
 	});
