@@ -28,6 +28,7 @@ import { SubjectLookup } from './features/subject-lookup';
 
 export class C3AmazonConnectStack extends Stack {
 	private c3BaseUrl: string;
+	private c3AppUrlFragment: string;
 
 	// Context variables.
 	private amazonConnectContext: AmazonConnectContext;
@@ -159,14 +160,17 @@ export class C3AmazonConnectStack extends Stack {
 		switch (this.c3Context.env) {
 			case 'prod':
 				this.c3BaseUrl = 'https://api.call2action.link';
+				this.c3AppUrlFragment = 'call2action.link';
 				break;
 			case 'staging':
 				this.c3BaseUrl =
 					'https://mstp8ccw53.execute-api.us-west-2.amazonaws.com/staging';
+				this.c3AppUrlFragment = 'staging.c2a.link';
 				break;
 			case 'dev':
 				this.c3BaseUrl =
 					'https://xr1n4f5p34.execute-api.us-west-2.amazonaws.com/dev';
+				this.c3AppUrlFragment = 'dev.c2a.link';
 				break;
 			default:
 				throw new Error(`Invalid environment: ${this.c3Context.env}`);
@@ -394,7 +398,7 @@ export class C3AmazonConnectStack extends Stack {
 			permissions: ['User.Details.View', 'Contact.Details.View'],
 			applicationSourceConfig: {
 				externalUrlConfig: {
-					accessUrl: `https://${this.c3Context.vendorId}.dev.c2a.link/agent-workspace?contactCenter=amazon&instanceId=${instanceId}&region=${region}${agentAssistedIVRParams}${configuredFeatureParams}`,
+					accessUrl: `https://${this.c3Context.vendorId}.${this.c3AppUrlFragment}/agent-workspace?contactCenter=amazon&instanceId=${instanceId}&region=${region}${agentAssistedIVRParams}${configuredFeatureParams}`,
 					approvedOrigins: [], // Don't allow any other origins.
 				},
 			},
