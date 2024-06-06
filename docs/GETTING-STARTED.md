@@ -87,11 +87,11 @@ npm run deploy
 
 Once deployed, C3 for Amazon Connect will have deployed a number of secrets to [AWS Secrets Manager](https://console.aws.amazon.com/secretsmanager/listsecrets). These secrets will need to be updated with the appropriate values in order to facilitate the operation of the C3 resources:
 
-| Secret Name                              | Description                                                                                                                                                                  |
-| ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| C3_PRIVATE_KEY                           | The content of the private key that was used in the previous step when you generated the certificate. The content of this file can just be copy-pasted into Secrets Manager. |
-| C3_API_KEY                               | The API key assigned to your C3 vendor.                                                                                                                                      |
-| {{ Your payment gateway }}>\_CREDENTIALS | The credentials to the account used for your payment gateway. This includes a username, password, and account ID.                                                            |
+| Secret Name              | Description                                                                                                                                                                  |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| C3_PRIVATE_KEY           | The content of the private key that was used in the previous step when you generated the certificate. The content of this file can just be copy-pasted into Secrets Manager. |
+| C3_API_KEY               | The API key assigned to your C3 vendor.                                                                                                                                      |
+| < GATEWAY >\_CREDENTIALS | The credentials to the account used for your payment gateway (Zift, etc.). This includes a username, password, and account ID.                                               |
 
 ### Configure Amazon Connect
 
