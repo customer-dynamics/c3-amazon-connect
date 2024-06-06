@@ -21,7 +21,7 @@ import {
 	associateLambdaFunctionsWithConnect,
 	commonLambdaProps,
 } from '../helpers/lambda';
-import { getIVRPaymentFlowContent } from '../connect/content-transformations';
+import { getSelfServicePaymentIVRFlowContent } from '../connect/content-transformations';
 import { AmazonConnectContext } from '../models/amazon-connect-context';
 import { Secret } from 'aws-cdk-lib/aws-secretsmanager';
 
@@ -31,7 +31,7 @@ import { Secret } from 'aws-cdk-lib/aws-secretsmanager';
 export class AgentAssistedPaymentIVR {
 	public iamRole: Role;
 	public hoursOfOperation: CfnHoursOfOperation;
-	private reportCustomerActivityFunction: Function;
+	public sendAgentMessageFunction: Function;
 	private ivrPaymentFlow: CfnContactFlow;
 	private queue: CfnQueue;
 
@@ -51,9 +51,9 @@ export class AgentAssistedPaymentIVR {
 		private emailReceiptFunction: Function,
 	) {
 		console.log('Creating resources for agent-assisted IVR payments...');
-		this.createReportCustomerActivityFunction();
+		this.createSendAgentMessageFunction();
 		associateLambdaFunctionsWithConnect(this.stack, [
-			this.reportCustomerActivityFunction,
+			this.sendAgentMessageFunction,
 		]);
 		this.createIVRFlow();
 		this.createHoursOfOperation();
@@ -64,25 +64,24 @@ export class AgentAssistedPaymentIVR {
 	}
 
 	/**
-	 * Creates a Lambda function for reporting payment activity to the agent.
+	 * Creates a Lambda function for sending messages to the agent.
 	 *
-	 * This function is required to report payment activity to the agent workspace. It is invoked by your payment flow to provide the
-	 * agent with visibility into the customer's progress through the payment process.
+	 * This function is required to report payment activity and subject lookup info to the agent workspace. It is invoked by your
+	 * payment and subject lookup flows to provide the agent with updates on activity.
 	 */
-	private createReportCustomerActivityFunction(): void {
-		console.log('Creating function C3ReportCustomerActivity...');
+	private createSendAgentMessageFunction(): void {
+		console.log('Creating function C3SendAgentMessage...');
 
 		// Create function.
 		const c3Context = this.stack.node.tryGetContext('c3') as C3Context;
-		this.reportCustomerActivityFunction = new Function(
+		this.sendAgentMessageFunction = new Function(
 			this.stack,
-			'C3ReportCustomerActivity',
+			'C3SendAgentMessage',
 			{
 				...commonLambdaProps,
-				description:
-					'Reports customer activity through C3 to the agent workspace.',
+				description: 'Sends a message through C3 to the agent workspace.',
 				code: Code.fromAsset(
-					join(__dirname, '../lambda/c3-report-customer-activity'),
+					join(__dirname, '../lambda/c3-send-agent-message'),
 				),
 				environment: {
 					C3_ENV: c3Context.env,
@@ -97,7 +96,7 @@ export class AgentAssistedPaymentIVR {
 			actions: ['secretsmanager:GetSecretValue'],
 			resources: [this.c3ApiKeySecret.secretArn],
 		});
-		this.reportCustomerActivityFunction.addToRolePolicy(getSecretValuePolicy);
+		this.sendAgentMessageFunction.addToRolePolicy(getSecretValuePolicy);
 	}
 
 	/**
@@ -106,9 +105,9 @@ export class AgentAssistedPaymentIVR {
 	 * This flow is required to collect payments from customers through IVR. It is initiated by the agent and guides the customer through the payment process.
 	 */
 	private createIVRFlow(): void {
-		console.log('Creating flow C3IVRPaymentFlow...');
-		const c3PaymentFlowContent = getIVRPaymentFlowContent(
-			this.reportCustomerActivityFunction,
+		console.log('Creating flow C3AgentAssistedPaymentIVRFlow...');
+		const c3PaymentFlowContent = getSelfServicePaymentIVRFlowContent(
+			this.sendAgentMessageFunction,
 			this.createPaymentRequestFunction,
 			this.tokenizeTransactionFunction,
 			this.submitPaymentFunction,
@@ -119,15 +118,22 @@ export class AgentAssistedPaymentIVR {
 		if (!existsSync('./exports')) {
 			mkdirSync('./exports');
 		}
-		writeFileSync('./exports/C3IVRPaymentFlow', c3PaymentFlowContent);
-		this.ivrPaymentFlow = new CfnContactFlow(this.stack, 'C3IVRPaymentFlow', {
-			name: 'Agent-Assisted Payment IVR',
-			description:
-				'Flow for collecting payments with C3 through a quick connect IVR.',
-			content: c3PaymentFlowContent,
-			instanceArn: this.amazonConnectInstanceArn,
-			type: 'QUEUE_TRANSFER',
-		});
+		writeFileSync(
+			'./exports/C3AgentAssistedPaymentIVRFlow',
+			c3PaymentFlowContent,
+		);
+		this.ivrPaymentFlow = new CfnContactFlow(
+			this.stack,
+			'C3AgentAssistedPaymentIVRFlow',
+			{
+				name: 'C3 Agent-Assisted Payment IVR',
+				description:
+					'Flow for collecting payments with C3 through a quick connect IVR.',
+				content: c3PaymentFlowContent,
+				instanceArn: this.amazonConnectInstanceArn,
+				type: 'QUEUE_TRANSFER',
+			},
+		);
 	}
 
 	/**

@@ -1,21 +1,21 @@
 {
 	"amazonConnect": {
-		"instanceArn": "",
-		"securityKeyId": "",
-		"securityKeyCertificateContent": ""
+		"instanceArn": "arn:aws:connect:us-west-2:815407490078:instance/4c1f1fba-d5f1-41c5-9e09-496456e58932",
+		"securityKeyId": "80341469-7fe3-48a2-8e76-dc5014b1f930",
+		"securityKeyCertificateContent": "-----BEGIN CERTIFICATE-----\\nMIIGQTCCBCmgAwIBAgIUZ5EGk19y9R2QCk2M0UwCFWBlpNwwDQYJKoZIhvcNAQEL\\nBQAwga8xCzAJBgNVBAYTAlVTMQswCQYDVQQIDAJVVDEOMAwGA1UEBwwFUHJvdm8x\\nGjAYBgNVBAoMEUN1c3RvbWVyIER5bmFtaWNzMRQwEgYDVQQLDAtEZXZlbG9wbWVu\\ndDEaMBgGA1UEAwwRVHlsZXIgSGVuZHJpY2tzb24xNTAzBgkqhkiG9w0BCQEWJnR5\\nbGVyLmhlbmRyaWNrc29uQGN1c3RvbWVyZHluYW1pY3MuY29tMB4XDTI0MDQwOTIx\\nNDMzN1oXDTI2MDQwOTIxNDMzN1owga8xCzAJBgNVBAYTAlVTMQswCQYDVQQIDAJV\\nVDEOMAwGA1UEBwwFUHJvdm8xGjAYBgNVBAoMEUN1c3RvbWVyIER5bmFtaWNzMRQw\\nEgYDVQQLDAtEZXZlbG9wbWVudDEaMBgGA1UEAwwRVHlsZXIgSGVuZHJpY2tzb24x\\nNTAzBgkqhkiG9w0BCQEWJnR5bGVyLmhlbmRyaWNrc29uQGN1c3RvbWVyZHluYW1p\\nY3MuY29tMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAoI1LbVQBTrL0\\nlZZjKiLefpliKsIAuTlnBohcgmeWpgOYacbgMWmcNy7n1mBJimjSV4GTRTPF5t/3\\nkItXxPKMU17rjeMOFhz8mlvuUWX0O6jU6sCUSIwIdNhgQzGxrvnwydXoVY+xuAAS\\nO1oW4eK6utZ0c28LdVoBg/WzFGoNTV0DQQ6toq+87YtAVgkynZyhNVuo5EzM7oM3\\n0mgSFHkMBqDrak7qLGYxwrp388hppF2wNyzC+B5XZ8LbvH6ktR0wssU0JTXIBaT2\\nvh1ujHgvkiDkh8Dj5ci5cEF3aUbgGf91j+AEKsSl3tMFprqzkX3U5H+79MQ9n6QJ\\n3hARl0tmA4c2vGYbQX3OpRWX+PN4QN4jryIMxFIKBGtW+kl7dMgezHozbsKzQ9GK\\nx6zLBj8H28zfPH616PlFW7xuoP6+lC/ym5BrpIwmxgXmRm0kHOO11nVp+5WCM0iU\\nLol8XnSyDXN5Zjm7EyOdILqzqtHpW2jc017bM/OvYqvjDFJoSCu0AodgEqMCa5hz\\nrUpFHR+jSaEpbsQg4n4GYpprDx2KvAc4VmdseChfbpzkFHBtTTic1oUoXNlkdm0X\\n/wUlGc3lrG3mwU76tb2GLbxYs8CvWzY+iUfDdOpEFu/dkwDWx/gqopAFoD0b/jib\\nd69d+VDayO1h+9mJwHeFX9rXVZmGiEMCAwEAAaNTMFEwHQYDVR0OBBYEFKRuXTNT\\niZi1/cdETtHEkRJ7UDEPMB8GA1UdIwQYMBaAFKRuXTNTiZi1/cdETtHEkRJ7UDEP\\nMA8GA1UdEwEB/wQFMAMBAf8wDQYJKoZIhvcNAQELBQADggIBACTcBrFXkP9C1rDy\\nKbP7paz83K100n6ducUbv9aDRCvaXwA7KBRsNuWJ+C2FNFYGi3PCnx/0BiFgRW/B\\n5vg2ugchLQQBPwDaKNzd42Vt6/44iqz26EeHBdEhoUIENn+cLy9TTloMfl5ouKJE\\nCdHrsQT1hHPd/mqBcYtJE/8QpLhgZpfOZY7dhdgCbhXlceRAsNoRL7M3zc5h/Fq0\\n3etyaBHrHzDK+QXHckmw4V2FTrJiQvqMUApmvW+mY7TUPH7i5TXc08s3kjmugqxf\\nYI8LiAJ1Y+ffnpH3fl51kf3c4m9ri9z5sQl/1EJ8Zd4qAK0Lc76dOuS9Cbu82jke\\n28WkGIFE/EFPysp05OXvfqce2j4TX33Y+M1HjC8VEqKva+0mTfUqxehh1OtcoEEp\\np9oHhgQsMdg42SpX9uaDM8fF95ZiJMu63+tMaIxI2s9ehNejNip003V98ufbfjro\\ntNh8gvN/Q9zPgZcAsAWcMwooF3aSBsseIOMeQAxaytjH2gqoWo4QrODgRHcJU059\\na3tu4AFjGROo6RZcmK0eysKIksE0HkrHRXD7dKUIu6bSUeNtKcAZhFmF59C7yQb/\\nOq8j1bDUDqmfIQGAkFqfDabt/X1MgOzAi2TPni+nYOXFnLAJVJttWFQBCm+G4yaP\\nZbVYUWwU8MFsYWqqFNqw400tR5cY\\n-----END CERTIFICATE-----\\n"
 	},
 	"c3": {
-		"env": "prod",
-		"vendorId": "",
-		"paymentGateway": ""
+		"env": "dev",
+		"vendorId": "academy-collections",
+		"paymentGateway": "Zift"
 	},
 	"features": {
 		"agentAssistedIVR": true,
 		"agentAssistedLink": true,
 		"selfServiceIVR": true,
-		"subjectLookup": ""
+		"subjectLookup": "required-editable"
 	},
-	"logoUrl": "",
-	"supportPhone": "",
-	"supportEmail": ""
+	"logoUrl": "https://media-exp1.licdn.com/dms/image/C560BAQE3qrk0lCwOhQ/company-logo_200_200/0?e=2159024400&v=beta&t=9C6UAdSij2VWg3zusUe-tGHdGogmmBXTzchCrhBBm5A",
+	"supportPhone": "+18015555555",
+	"supportEmail": "support@customerdynamics.com"
 }

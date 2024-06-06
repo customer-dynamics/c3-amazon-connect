@@ -120,7 +120,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "706d1c82-dfbe-408d-b1b6-3cb2371036f5",
+						"id": "c0fce7c6-5de3-4476-a220-c1670b01cf64",
 						"operator": {
 							"name": "Contains",
 							"value": "Contains",
@@ -161,7 +161,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "a90b23e9-1f28-4d4c-88ce-bcb0e46cf698",
+						"id": "6b65759a-7df1-4e2a-b7ac-7a42e0bbf806",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -187,7 +187,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "9bf13269-78aa-4f4c-aa9b-fa2e60b46d85",
+						"id": "0252ae45-9241-42d8-8cfe-8437c37ec6e4",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -238,7 +238,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "2c1d3d81-bf8f-4ed0-89a1-1d173caeb064",
+						"id": "5a926396-b550-4d6b-90ba-db46f2b4c40a",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -257,7 +257,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "75aaa26b-6465-4847-9923-55293a07f941",
+						"id": "2439ec59-f598-4815-a9d9-92e9a119103b",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -280,67 +280,11 @@
 				},
 				"dynamicMetadata": {}
 			},
-			"Create Payment Request": {
-				"position": {
-					"x": -413.6,
-					"y": 50.4
-				},
-				"isFriendlyName": true,
-				"parameters": {
-					"LambdaFunctionARN": {
-						"displayName": "<<createPaymentRequestLambdaArn>>"
-					}
-				},
-				"dynamicMetadata": {}
-			},
-			"Record Payment Request ID": {
-				"position": {
-					"x": -186.4,
-					"y": -20.8
-				},
-				"isFriendlyName": true,
-				"dynamicParams": []
-			},
-			"87859db2-400d-410b-8818-05c8ae4869aa": {
-				"position": {
-					"x": -558.4,
-					"y": 306.4
-				}
-			},
-			"Speak Amount": {
-				"position": {
-					"x": 112,
-					"y": -26.4
-				},
-				"isFriendlyName": true
-			},
 			"b2786200-e897-45bd-b888-0f53246f72ed": {
 				"position": {
 					"x": 321.6,
 					"y": 360.8
 				}
-			},
-			"Report Payment Request Error": {
-				"position": {
-					"x": -148.8,
-					"y": 212.8
-				},
-				"isFriendlyName": true,
-				"parameters": {
-					"LambdaFunctionARN": {
-						"displayName": "C3AmazonConnectStack-C3ReportCustomerActivityA86A4-vzWgYuaNaKBa"
-					}
-				},
-				"dynamicMetadata": {
-					"EventText": false
-				}
-			},
-			"Payment Request Error": {
-				"position": {
-					"x": 78.4,
-					"y": 361.6
-				},
-				"isFriendlyName": true
 			},
 			"Payment Method Timeout": {
 				"position": {
@@ -494,7 +438,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "b22b29bb-9f4c-45de-a9c8-42bcbaad1916",
+						"id": "f085948e-869a-4b48-8bf9-464c45f121a5",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -503,7 +447,7 @@
 						"value": "Timeout"
 					},
 					{
-						"id": "8b66562c-817e-4057-9aa0-360c2c5624d8",
+						"id": "66317644-778b-4a69-8767-70cadfca792b",
 						"operator": {
 							"name": "Is greater than",
 							"value": "GreaterThan",
@@ -512,7 +456,7 @@
 						"value": "$.Attributes.PaymentAmountDue"
 					},
 					{
-						"id": "7910b8f9-9642-45f8-9584-8f6891e353d9",
+						"id": "bbe36b4b-2d94-4635-9b19-82c38dbc92e7",
 						"operator": {
 							"name": "Is less than",
 							"value": "LessThan",
@@ -538,7 +482,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "d53bbf94-b1fc-4f17-a2f2-a261e7c8f87b",
+						"id": "d2619b0e-0b3c-44c5-b5fe-e3ca5e73bb0c",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -547,7 +491,7 @@
 						"value": "PaymentAmountDue"
 					},
 					{
-						"id": "e53a9660-8203-4ada-9106-921fa793584f",
+						"id": "7bfb70d2-1a62-448c-9cee-23a15278ee9b",
 						"operator": {
 							"name": "Is greater than",
 							"value": "GreaterThan",
@@ -579,11 +523,11 @@
 				"isFriendlyName": true,
 				"conditionMetadata": [
 					{
-						"id": "d3b768dd-d23b-4b4f-8847-b76ba401b036",
+						"id": "c438043a-33e2-41a4-bf9a-c7a34c1fbb01",
 						"value": "1"
 					},
 					{
-						"id": "5ffc653a-3b1b-42ac-80da-a013c041a78d",
+						"id": "4a36c85c-c98a-4b8e-9368-51bf37b6f1f9",
 						"value": "2"
 					}
 				]
@@ -603,14 +547,55 @@
 				"isFriendlyName": true,
 				"conditionMetadata": [
 					{
-						"id": "fef2905d-789a-4799-9e81-51f7cdbeda6d",
+						"id": "c0ed5146-d8f1-4f05-acdd-a7f3355cccac",
 						"value": "1"
 					},
 					{
-						"id": "b66af5f1-81be-42fd-b659-060f35c66939",
+						"id": "29b385ea-78db-4b54-b7c0-ddc1d283c06f",
 						"value": "2"
 					}
 				]
+			},
+			"Payment Request Error": {
+				"position": {
+					"x": 78.4,
+					"y": 361.6
+				},
+				"isFriendlyName": true
+			},
+			"87859db2-400d-410b-8818-05c8ae4869aa": {
+				"position": {
+					"x": -558.4,
+					"y": 306.4
+				}
+			},
+			"Speak Amount": {
+				"position": {
+					"x": 112,
+					"y": -26.4
+				},
+				"isFriendlyName": true
+			},
+			"Create Payment Request": {
+				"position": {
+					"x": -413.6,
+					"y": 50.4
+				},
+				"isFriendlyName": true,
+				"parameters": {
+					"LambdaFunctionARN": {
+						"displayName": "<<createPaymentRequestLambdaArn>>"
+					}
+				},
+				"dynamicMetadata": {}
+			},
+			"Record Payment Request ID": {
+				"position": {
+					"x": -186.4,
+					"y": -20.8
+				},
+				"isFriendlyName": true,
+				"dynamicParams": []
 			}
 		},
 		"Annotations": [],
@@ -1133,114 +1118,10 @@
 			}
 		},
 		{
-			"Parameters": {
-				"LambdaFunctionARN": "<<createPaymentRequestLambdaArn>>",
-				"InvocationTimeLimitSeconds": "8",
-				"ResponseValidation": {
-					"ResponseType": "JSON"
-				}
-			},
-			"Identifier": "Create Payment Request",
-			"Type": "InvokeLambdaFunction",
-			"Transitions": {
-				"NextAction": "Record Payment Request ID",
-				"Errors": [
-					{
-						"NextAction": "Report Payment Request Error",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Attributes": {
-					"PaymentRequestId": "$.External.PaymentRequestId"
-				},
-				"TargetContact": "Current"
-			},
-			"Identifier": "Record Payment Request ID",
-			"Type": "UpdateContactAttributes",
-			"Transitions": {
-				"NextAction": "Speak Amount",
-				"Errors": [
-					{
-						"NextAction": "Report Payment Request Error",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"FlowLoggingBehavior": "Enabled"
-			},
-			"Identifier": "87859db2-400d-410b-8818-05c8ae4869aa",
-			"Type": "UpdateFlowLoggingBehavior",
-			"Transitions": {
-				"NextAction": "Create Payment Request"
-			}
-		},
-		{
-			"Parameters": {
-				"Text": "A payment has been requested for the amount of $$.Attributes.PaymentAmountDue."
-			},
-			"Identifier": "Speak Amount",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "Check for Minimum Payment",
-				"Errors": [
-					{
-						"NextAction": "Check for Minimum Payment",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
 			"Parameters": {},
 			"Identifier": "b2786200-e897-45bd-b888-0f53246f72ed",
 			"Type": "EndFlowModuleExecution",
 			"Transitions": {}
-		},
-		{
-			"Parameters": {
-				"LambdaFunctionARN": "arn:aws:lambda:us-west-2:815407490078:function:C3AmazonConnectStack-C3ReportCustomerActivityA86A4-vzWgYuaNaKBa",
-				"InvocationTimeLimitSeconds": "8",
-				"LambdaInvocationAttributes": {
-					"EventText": "PaymentRequestError"
-				},
-				"ResponseValidation": {
-					"ResponseType": "JSON"
-				}
-			},
-			"Identifier": "Report Payment Request Error",
-			"Type": "InvokeLambdaFunction",
-			"Transitions": {
-				"NextAction": "Payment Request Error",
-				"Errors": [
-					{
-						"NextAction": "Payment Request Error",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Text": "There was an error creating the payment request."
-			},
-			"Identifier": "Payment Request Error",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "b2786200-e897-45bd-b888-0f53246f72ed",
-				"Errors": [
-					{
-						"NextAction": "b2786200-e897-45bd-b888-0f53246f72ed",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
 		},
 		{
 			"Parameters": {
@@ -1726,6 +1607,87 @@
 					},
 					{
 						"NextAction": "Amount Choice Input Not Recognized",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "There was an error creating the payment request."
+			},
+			"Identifier": "Payment Request Error",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "b2786200-e897-45bd-b888-0f53246f72ed",
+				"Errors": [
+					{
+						"NextAction": "b2786200-e897-45bd-b888-0f53246f72ed",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"FlowLoggingBehavior": "Enabled"
+			},
+			"Identifier": "87859db2-400d-410b-8818-05c8ae4869aa",
+			"Type": "UpdateFlowLoggingBehavior",
+			"Transitions": {
+				"NextAction": "Create Payment Request"
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "A payment has been requested for the amount of $$.Attributes.PaymentAmountDue."
+			},
+			"Identifier": "Speak Amount",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "Check for Minimum Payment",
+				"Errors": [
+					{
+						"NextAction": "Check for Minimum Payment",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"LambdaFunctionARN": "<<createPaymentRequestLambdaArn>>",
+				"InvocationTimeLimitSeconds": "8",
+				"ResponseValidation": {
+					"ResponseType": "JSON"
+				}
+			},
+			"Identifier": "Create Payment Request",
+			"Type": "InvokeLambdaFunction",
+			"Transitions": {
+				"NextAction": "Record Payment Request ID",
+				"Errors": [
+					{
+						"NextAction": "Payment Request Error",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Attributes": {
+					"PaymentRequestId": "$.External.PaymentRequestId"
+				},
+				"TargetContact": "Current"
+			},
+			"Identifier": "Record Payment Request ID",
+			"Type": "UpdateContactAttributes",
+			"Transitions": {
+				"NextAction": "Speak Amount",
+				"Errors": [
+					{
+						"NextAction": "Payment Request Error",
 						"ErrorType": "NoMatchingError"
 					}
 				]

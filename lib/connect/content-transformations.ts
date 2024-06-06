@@ -1,10 +1,10 @@
 import { Function } from 'aws-cdk-lib/aws-lambda';
-import * as flowModuleJson from './flows/modules/c3-ivr-payment-flow-module.json';
-import * as ivrPaymentFlowJson from './flows/c3-ivr-payment-flow.json';
+import * as flowModuleJson from './flows/modules/c3-payment-ivr-flow-module.json';
+import * as agentAssistedPaymentIVRFlowJson from './flows/c3-agent-assisted-payment-ivr-flow.json';
 import * as subjectLookupFlow from './flows/c3-subject-lookup-flow.json';
 
 /**
- * Gets the content for the IVR payment flow module.
+ * Gets the content for the payment IVR flow module.
  *
  * @param createPaymentRequestLambdaArn The Lambda function that creates a payment request.
  * @param tokenizeTransactionLambdaArn The Lambda function that tokenizes a transaction.
@@ -13,7 +13,7 @@ import * as subjectLookupFlow from './flows/c3-subject-lookup-flow.json';
  * @param amazonConnectSecurityKeyCertificateContent The security key certificate content for Amazon Connect.
  * @returns A string representing the content for the base IVR payment flow module.
  */
-export function getIVRPaymentFlowModuleContent(
+export function getPaymentIVRFlowModuleContent(
 	createPaymentRequestLambdaFunction: Function,
 	tokenizeTransactionLambdaFunction: Function,
 	submitPaymentLambdaFunction: Function,
@@ -57,42 +57,42 @@ export function getIVRPaymentFlowModuleContent(
 }
 
 /**
- * Gets the content for the IVR payment flow.
+ * Gets the content for the self-service payment IVR flow.
  *
- * @param reportCustomerActivityLambdaArn The Lambda function that reports customer activity.
- * @param createPaymentRequestLambdaArn The Lambda function that creates a payment request.
- * @param tokenizeTransactionLambdaArn The Lambda function that tokenizes a transaction.
- * @param submitPaymentLambdaArn The Lambda function that submits a payment.
+ * @param sendAgentMessageFunction The Lambda function that sends messages to the agent.
+ * @param createPaymentRequestFunction The Lambda function that creates a payment request.
+ * @param tokenizeTransactionFunction The Lambda function that tokenizes a transaction.
+ * @param submitPaymentLambdaFunction The Lambda function that submits a payment.
  * @param amazonConnectSecurityKeyId The security key ID for Amazon Connect.
  * @param amazonConnectSecurityKeyCertificateContent The security key certificate content for Amazon Connect.
  * @returns A string representing the content for the base IVR payment flow.
  */
-export function getIVRPaymentFlowContent(
-	reportCustomerActivityLambdaFunction: Function,
-	createPaymentRequestLambdaFunction: Function,
-	tokenizeTransactionLambdaFunction: Function,
+export function getSelfServicePaymentIVRFlowContent(
+	sendAgentMessageFunction: Function,
+	createPaymentRequestFunction: Function,
+	tokenizeTransactionFunction: Function,
 	submitPaymentLambdaFunction: Function,
 	emailReceiptLambdaFunction: Function,
 	amazonConnectSecurityKeyId: string,
 	amazonConnectSecurityKeyCertificateContent: string,
 ) {
-	let transformedContent = JSON.stringify(ivrPaymentFlowJson);
+	let transformedContent = JSON.stringify(agentAssistedPaymentIVRFlowJson);
 
 	// Don't escape quotes.
 	transformedContent = transformedContent.replace('\\', '');
 
 	// Replace Lambda placeholders with actual ARNs.
 	transformedContent = transformedContent.replace(
-		/<<reportCustomerActivityLambdaArn>>/g,
-		reportCustomerActivityLambdaFunction.functionArn,
+		/<<sendAgentMessageLambdaArn>>/g,
+		sendAgentMessageFunction.functionArn,
 	);
 	transformedContent = transformedContent.replace(
 		/<<createPaymentRequestLambdaArn>>/g,
-		createPaymentRequestLambdaFunction.functionArn,
+		createPaymentRequestFunction.functionArn,
 	);
 	transformedContent = transformedContent.replace(
 		/<<tokenizeTransactionLambdaArn>>/g,
-		tokenizeTransactionLambdaFunction.functionArn,
+		tokenizeTransactionFunction.functionArn,
 	);
 	transformedContent = transformedContent.replace(
 		/<<submitPaymentLambdaArn>>/g,
@@ -119,12 +119,12 @@ export function getIVRPaymentFlowContent(
  * Gets the content for the subject lookup flow.
  *
  * @param subjectLookupFunction The Lambda function for getting the details of a subject.
- * @param reportSubjectLookupStateFunction The Lambda function for reporting the state of subject lookup.
+ * @param sendAgentMessageFunction The Lambda function that sends messages to the agent.
  * @returns A string representing the content for the subject lookup flow.
  */
 export function getSubjectLookupFlowContent(
 	subjectLookupFunction: Function,
-	reportSubjectLookupStateFunction: Function,
+	sendAgentMessageFunction: Function,
 ): string {
 	let transformedContent = JSON.stringify(subjectLookupFlow);
 
@@ -137,8 +137,8 @@ export function getSubjectLookupFlowContent(
 		subjectLookupFunction.functionArn,
 	);
 	transformedContent = transformedContent.replace(
-		/<<reportSubjectLookupStateLambdaArn>>/g,
-		reportSubjectLookupStateFunction.functionArn,
+		/<<sendAgentMessageLambdaArn>>/g,
+		sendAgentMessageFunction.functionArn,
 	);
 	return transformedContent;
 }

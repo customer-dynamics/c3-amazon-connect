@@ -5,7 +5,6 @@ import {
 	CfnQueue,
 	CfnQuickConnect,
 } from 'aws-cdk-lib/aws-connect';
-import { PolicyStatement } from 'aws-cdk-lib/aws-iam';
 import { Code, CodeSigningConfig, Function } from 'aws-cdk-lib/aws-lambda';
 import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import { join } from 'path';
@@ -15,7 +14,6 @@ import {
 	commonLambdaProps,
 } from '../helpers/lambda';
 import { AmazonConnectContext } from '../models/amazon-connect-context';
-import { Secret } from 'aws-cdk-lib/aws-secretsmanager';
 import { getSubjectLookupFlowContent } from '../connect/content-transformations';
 
 /**
@@ -23,7 +21,6 @@ import { getSubjectLookupFlowContent } from '../connect/content-transformations'
  */
 export class SubjectLookup {
 	private subjectLookupFunction: Function;
-	private reportSubjectLookupStateFunction: Function;
 	private subjectLookupQueue: CfnQueue;
 	private subjectLookupFlow: CfnContactFlow;
 
@@ -34,16 +31,13 @@ export class SubjectLookup {
 		private stack: Stack,
 		private amazonConnectContext: AmazonConnectContext,
 		private codeSigningConfig: CodeSigningConfig,
-		private c3BaseUrl: string,
-		private c3ApiKeySecret: Secret,
+		private sendAgentMessageFunction: Function,
 		private hoursOfOperation: CfnHoursOfOperation,
 	) {
 		console.log('Creating resources for subject lookup...');
 		this.createSubjectLookupFunction();
-		this.createReportSubjectLookupStateFunction();
 		associateLambdaFunctionsWithConnect(this.stack, [
 			this.subjectLookupFunction,
-			this.reportSubjectLookupStateFunction,
 		]);
 		this.createSubjectLookupQueue();
 		this.createSubjectLookupFlow();
@@ -74,38 +68,6 @@ export class SubjectLookup {
 	}
 
 	/**
-	 * Creates a Lambda function for reporting the current state of subject lookup.
-	 *
-	 * This function is necessary for reporting the status of subject lookup and to provide the subject details to the workspace.
-	 */
-	private createReportSubjectLookupStateFunction(): void {
-		console.log('Creating function C3ReportSubjectLookupState...');
-		this.reportSubjectLookupStateFunction = new Function(
-			this.stack,
-			'C3ReportSubjectLookupState',
-			{
-				...commonLambdaProps,
-				description:
-					'Reports subject lookup state information to the agent workspace.',
-				code: Code.fromAsset(
-					join(__dirname, '../lambda/c3-report-subject-lookup-state'),
-				),
-				codeSigningConfig: this.codeSigningConfig,
-				environment: {
-					C3_BASE_URL: this.c3BaseUrl,
-				},
-			},
-		);
-
-		// Allow the function to access the C3 API key secret.
-		const getSecretValuePolicy = new PolicyStatement({
-			actions: ['secretsmanager:GetSecretValue'],
-			resources: [this.c3ApiKeySecret.secretArn],
-		});
-		this.reportSubjectLookupStateFunction.addToRolePolicy(getSecretValuePolicy);
-	}
-
-	/**
 	 * Creates the queue for the subject lookup quick connect.
 	 *
 	 * This queue is required so that an agent can look up subject information using a quick connect.
@@ -130,7 +92,7 @@ export class SubjectLookup {
 		console.log('Creating flow C3SubjectLookupFlow...');
 		const subjectLookupFlowContent = getSubjectLookupFlowContent(
 			this.subjectLookupFunction,
-			this.reportSubjectLookupStateFunction,
+			this.sendAgentMessageFunction,
 		);
 		if (!existsSync('./exports')) {
 			mkdirSync('./exports');
