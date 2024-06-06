@@ -599,7 +599,7 @@
 			}
 		},
 		"Annotations": [],
-		"name": "C3 IVR Payment Flow Module",
+		"name": "C3 Payment IVR Flow Module",
 		"description": "Flow module to collect payments through a self-service IVR using C3.",
 		"status": "published",
 		"hash": {}
