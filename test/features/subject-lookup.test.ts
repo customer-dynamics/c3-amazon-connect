@@ -94,9 +94,9 @@ describe('Subject Lookup', () => {
 		it('Has 1 created role', () => {
 			template.resourceCountIs('AWS::IAM::Role', NUMBER_OF_LAMBDAS + 1);
 		});
-		it('Has 6 created policies', () => {
-			// Cross org policy, 4 secrets policies, and kms policy
-			template.resourceCountIs('AWS::IAM::Policy', 6);
+		it('Has 5 created policies', () => {
+			// Cross org policy, 3 secrets policies, and kms policy
+			template.resourceCountIs('AWS::IAM::Policy', 5);
 		});
 	});
 });
