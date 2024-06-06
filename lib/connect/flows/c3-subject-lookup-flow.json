@@ -20,12 +20,6 @@
 				},
 				"isFriendlyName": true
 			},
-			"ea14d135-cdbc-4836-9ada-0d795495f071": {
-				"position": {
-					"x": 1248.8,
-					"y": 187.2
-				}
-			},
 			"Report Lookup Started": {
 				"position": {
 					"x": 174.4,
@@ -41,38 +35,10 @@
 					"EventText": false
 				}
 			},
-			"Report Lookup Error": {
+			"ea14d135-cdbc-4836-9ada-0d795495f071": {
 				"position": {
-					"x": 977.6,
-					"y": 256
-				},
-				"isFriendlyName": true,
-				"parameters": {
-					"LambdaFunctionARN": {
-						"displayName": "<<sendAgentMessageLambdaArn>>"
-					}
-				},
-				"dynamicMetadata": {
-					"EventText": false
-				}
-			},
-			"Report Lookup Finished": {
-				"position": {
-					"x": 640,
-					"y": 27.2
-				},
-				"isFriendlyName": true,
-				"parameters": {
-					"LambdaFunctionARN": {
-						"displayName": "<<sendAgentMessageLambdaArn>>"
-					}
-				},
-				"dynamicMetadata": {
-					"contactName": false,
-					"email": false,
-					"paymentAmountDue": false,
-					"paymentMinimumPayment": false,
-					"EventText": false
+					"x": 1248.8,
+					"y": 187.2
 				}
 			},
 			"Get Subject Info": {
@@ -93,6 +59,40 @@
 				},
 				"dynamicMetadata": {
 					"SubjectId": true
+				}
+			},
+			"Report Lookup Error": {
+				"position": {
+					"x": 977.6,
+					"y": 256
+				},
+				"isFriendlyName": true,
+				"parameters": {
+					"LambdaFunctionARN": {
+						"displayName": "<<sendAgentMessageLambdaArn>>"
+					}
+				},
+				"dynamicMetadata": {
+					"EventText": false
+				}
+			},
+			"Report Lookup Finished": {
+				"position": {
+					"x": 640,
+					"y": 26.4
+				},
+				"isFriendlyName": true,
+				"parameters": {
+					"LambdaFunctionARN": {
+						"displayName": "<<sendAgentMessageLambdaArn>>"
+					}
+				},
+				"dynamicMetadata": {
+					"contactName": false,
+					"contactEmail": false,
+					"amountDue": false,
+					"minimumPayment": false,
+					"EventText": false
 				}
 			}
 		},
@@ -131,12 +131,6 @@
 			}
 		},
 		{
-			"Parameters": {},
-			"Identifier": "ea14d135-cdbc-4836-9ada-0d795495f071",
-			"Type": "DisconnectParticipant",
-			"Transitions": {}
-		},
-		{
 			"Parameters": {
 				"LambdaFunctionARN": "<<sendAgentMessageLambdaArn>>",
 				"InvocationTimeLimitSeconds": "8",
@@ -154,6 +148,35 @@
 				"Errors": [
 					{
 						"NextAction": "Get Subject Info",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {},
+			"Identifier": "ea14d135-cdbc-4836-9ada-0d795495f071",
+			"Type": "DisconnectParticipant",
+			"Transitions": {}
+		},
+		{
+			"Parameters": {
+				"LambdaFunctionARN": "<<subjectLookupLambdaArn>>",
+				"InvocationTimeLimitSeconds": "8",
+				"LambdaInvocationAttributes": {
+					"SubjectId": "$.Attributes.$.Attributes.SubjectId"
+				},
+				"ResponseValidation": {
+					"ResponseType": "JSON"
+				}
+			},
+			"Identifier": "Get Subject Info",
+			"Type": "InvokeLambdaFunction",
+			"Transitions": {
+				"NextAction": "Report Lookup Finished",
+				"Errors": [
+					{
+						"NextAction": "Report Lookup Error",
 						"ErrorType": "NoMatchingError"
 					}
 				]
@@ -188,9 +211,9 @@
 				"InvocationTimeLimitSeconds": "8",
 				"LambdaInvocationAttributes": {
 					"contactName": "$.External.ContactName",
-					"email": "$.External.Email",
-					"paymentAmountDue": "$.External.PaymentAmountDue",
-					"paymentMinimumPayment": "$.External.PaymentMinimumPayment",
+					"contactEmail": "$.External.Email",
+					"amountDue": "$.External.PaymentAmountDue",
+					"minimumPayment": "$.External.PaymentMinimumPayment",
 					"EventText": "LookupFinished"
 				},
 				"ResponseValidation": {
@@ -201,29 +224,6 @@
 			"Type": "InvokeLambdaFunction",
 			"Transitions": {
 				"NextAction": "ea14d135-cdbc-4836-9ada-0d795495f071",
-				"Errors": [
-					{
-						"NextAction": "Report Lookup Error",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"LambdaFunctionARN": "<<subjectLookupLambdaArn>>",
-				"InvocationTimeLimitSeconds": "8",
-				"LambdaInvocationAttributes": {
-					"SubjectId": "$.Attributes.$.Attributes.SubjectId"
-				},
-				"ResponseValidation": {
-					"ResponseType": "JSON"
-				}
-			},
-			"Identifier": "Get Subject Info",
-			"Type": "InvokeLambdaFunction",
-			"Transitions": {
-				"NextAction": "Report Lookup Finished",
 				"Errors": [
 					{
 						"NextAction": "Report Lookup Error",
