@@ -7,16 +7,78 @@
 			"y": 44.8
 		},
 		"ActionMetadata": {
+			"d093afb0-db63-4259-8ee7-44962d2f099c": {
+				"position": {
+					"x": -184,
+					"y": 228
+				}
+			},
+			"Conference All": {
+				"position": {
+					"x": -52.8,
+					"y": 32.8
+				},
+				"isFriendlyName": true
+			},
 			"ea14d135-cdbc-4836-9ada-0d795495f071": {
 				"position": {
 					"x": 1248.8,
 					"y": 187.2
 				}
 			},
+			"Report Lookup Started": {
+				"position": {
+					"x": 174.4,
+					"y": 33.6
+				},
+				"isFriendlyName": true,
+				"parameters": {
+					"LambdaFunctionARN": {
+						"displayName": "<<sendAgentMessageLambdaArn>>"
+					}
+				},
+				"dynamicMetadata": {
+					"EventText": false
+				}
+			},
+			"Report Lookup Error": {
+				"position": {
+					"x": 977.6,
+					"y": 256
+				},
+				"isFriendlyName": true,
+				"parameters": {
+					"LambdaFunctionARN": {
+						"displayName": "<<sendAgentMessageLambdaArn>>"
+					}
+				},
+				"dynamicMetadata": {
+					"EventText": false
+				}
+			},
+			"Report Lookup Finished": {
+				"position": {
+					"x": 640,
+					"y": 27.2
+				},
+				"isFriendlyName": true,
+				"parameters": {
+					"LambdaFunctionARN": {
+						"displayName": "<<sendAgentMessageLambdaArn>>"
+					}
+				},
+				"dynamicMetadata": {
+					"contactName": false,
+					"email": false,
+					"paymentAmountDue": false,
+					"paymentMinimumPayment": false,
+					"EventText": false
+				}
+			},
 			"Get Subject Info": {
 				"position": {
-					"x": 400.8,
-					"y": 26.4
+					"x": 399.2,
+					"y": 24.8
 				},
 				"isFriendlyName": true,
 				"parameters": {
@@ -32,68 +94,6 @@
 				"dynamicMetadata": {
 					"SubjectId": true
 				}
-			},
-			"Report Lookup Error": {
-				"position": {
-					"x": 977.6,
-					"y": 256
-				},
-				"isFriendlyName": true,
-				"parameters": {
-					"LambdaFunctionARN": {
-						"displayName": "<<reportSubjectLookupStateLambdaArn>>"
-					}
-				},
-				"dynamicMetadata": {
-					"EventText": false
-				}
-			},
-			"Report Lookup Finished": {
-				"position": {
-					"x": 641.6,
-					"y": 29.6
-				},
-				"isFriendlyName": true,
-				"parameters": {
-					"LambdaFunctionARN": {
-						"displayName": "<<reportSubjectLookupStateLambdaArn>>"
-					}
-				},
-				"dynamicMetadata": {
-					"ContactName": false,
-					"Email": false,
-					"PaymentAmountDue": false,
-					"PaymentMinimumPayment": false,
-					"EventText": false
-				}
-			},
-			"d093afb0-db63-4259-8ee7-44962d2f099c": {
-				"position": {
-					"x": -184,
-					"y": 228
-				}
-			},
-			"Report Lookup Started": {
-				"position": {
-					"x": 175.2,
-					"y": 34.4
-				},
-				"isFriendlyName": true,
-				"parameters": {
-					"LambdaFunctionARN": {
-						"displayName": "<<reportSubjectLookupStateLambdaArn>>"
-					}
-				},
-				"dynamicMetadata": {
-					"EventText": false
-				}
-			},
-			"Conference All": {
-				"position": {
-					"x": -52.8,
-					"y": 32.8
-				},
-				"isFriendlyName": true
 			}
 		},
 		"Annotations": [],
@@ -104,85 +104,6 @@
 		"hash": {}
 	},
 	"Actions": [
-		{
-			"Parameters": {},
-			"Identifier": "ea14d135-cdbc-4836-9ada-0d795495f071",
-			"Type": "DisconnectParticipant",
-			"Transitions": {}
-		},
-		{
-			"Parameters": {
-				"LambdaFunctionARN": "<<subjectLookupLambdaArn>>",
-				"InvocationTimeLimitSeconds": "8",
-				"LambdaInvocationAttributes": {
-					"SubjectId": "$.Attributes.$.Attributes.SubjectId"
-				},
-				"ResponseValidation": {
-					"ResponseType": "JSON"
-				}
-			},
-			"Identifier": "Get Subject Info",
-			"Type": "InvokeLambdaFunction",
-			"Transitions": {
-				"NextAction": "Report Lookup Finished",
-				"Errors": [
-					{
-						"NextAction": "Report Lookup Error",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"LambdaFunctionARN": "<<reportSubjectLookupStateLambdaArn>>",
-				"InvocationTimeLimitSeconds": "8",
-				"LambdaInvocationAttributes": {
-					"EventText": "LookupError"
-				},
-				"ResponseValidation": {
-					"ResponseType": "JSON"
-				}
-			},
-			"Identifier": "Report Lookup Error",
-			"Type": "InvokeLambdaFunction",
-			"Transitions": {
-				"NextAction": "ea14d135-cdbc-4836-9ada-0d795495f071",
-				"Errors": [
-					{
-						"NextAction": "ea14d135-cdbc-4836-9ada-0d795495f071",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"LambdaFunctionARN": "<<reportSubjectLookupStateLambdaArn>>",
-				"InvocationTimeLimitSeconds": "8",
-				"LambdaInvocationAttributes": {
-					"ContactName": "$.External.ContactName",
-					"Email": "$.External.Email",
-					"PaymentAmountDue": "$.External.PaymentAmountDue",
-					"PaymentMinimumPayment": "$.External.PaymentMinimumPayment",
-					"EventText": "LookupFinished"
-				},
-				"ResponseValidation": {
-					"ResponseType": "JSON"
-				}
-			},
-			"Identifier": "Report Lookup Finished",
-			"Type": "InvokeLambdaFunction",
-			"Transitions": {
-				"NextAction": "ea14d135-cdbc-4836-9ada-0d795495f071",
-				"Errors": [
-					{
-						"NextAction": "Report Lookup Error",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
 		{
 			"Parameters": {
 				"FlowLoggingBehavior": "Disabled"
@@ -195,7 +116,29 @@
 		},
 		{
 			"Parameters": {
-				"LambdaFunctionARN": "<<reportSubjectLookupStateLambdaArn>>",
+				"PreviousContactParticipantState": "OffHold"
+			},
+			"Identifier": "Conference All",
+			"Type": "UpdatePreviousContactParticipantState",
+			"Transitions": {
+				"NextAction": "Report Lookup Started",
+				"Errors": [
+					{
+						"NextAction": "Report Lookup Started",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {},
+			"Identifier": "ea14d135-cdbc-4836-9ada-0d795495f071",
+			"Type": "DisconnectParticipant",
+			"Transitions": {}
+		},
+		{
+			"Parameters": {
+				"LambdaFunctionARN": "<<sendAgentMessageLambdaArn>>",
 				"InvocationTimeLimitSeconds": "8",
 				"LambdaInvocationAttributes": {
 					"EventText": "LookupStarted"
@@ -218,15 +161,72 @@
 		},
 		{
 			"Parameters": {
-				"PreviousContactParticipantState": "OffHold"
+				"LambdaFunctionARN": "<<sendAgentMessageLambdaArn>>",
+				"InvocationTimeLimitSeconds": "8",
+				"LambdaInvocationAttributes": {
+					"EventText": "LookupError"
+				},
+				"ResponseValidation": {
+					"ResponseType": "JSON"
+				}
 			},
-			"Identifier": "Conference All",
-			"Type": "UpdatePreviousContactParticipantState",
+			"Identifier": "Report Lookup Error",
+			"Type": "InvokeLambdaFunction",
 			"Transitions": {
-				"NextAction": "Report Lookup Started",
+				"NextAction": "ea14d135-cdbc-4836-9ada-0d795495f071",
 				"Errors": [
 					{
-						"NextAction": "Report Lookup Started",
+						"NextAction": "ea14d135-cdbc-4836-9ada-0d795495f071",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"LambdaFunctionARN": "<<sendAgentMessageLambdaArn>>",
+				"InvocationTimeLimitSeconds": "8",
+				"LambdaInvocationAttributes": {
+					"contactName": "$.External.ContactName",
+					"email": "$.External.Email",
+					"paymentAmountDue": "$.External.PaymentAmountDue",
+					"paymentMinimumPayment": "$.External.PaymentMinimumPayment",
+					"EventText": "LookupFinished"
+				},
+				"ResponseValidation": {
+					"ResponseType": "JSON"
+				}
+			},
+			"Identifier": "Report Lookup Finished",
+			"Type": "InvokeLambdaFunction",
+			"Transitions": {
+				"NextAction": "ea14d135-cdbc-4836-9ada-0d795495f071",
+				"Errors": [
+					{
+						"NextAction": "Report Lookup Error",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"LambdaFunctionARN": "<<subjectLookupLambdaArn>>",
+				"InvocationTimeLimitSeconds": "8",
+				"LambdaInvocationAttributes": {
+					"SubjectId": "$.Attributes.$.Attributes.SubjectId"
+				},
+				"ResponseValidation": {
+					"ResponseType": "JSON"
+				}
+			},
+			"Identifier": "Get Subject Info",
+			"Type": "InvokeLambdaFunction",
+			"Transitions": {
+				"NextAction": "Report Lookup Finished",
+				"Errors": [
+					{
+						"NextAction": "Report Lookup Error",
 						"ErrorType": "NoMatchingError"
 					}
 				]

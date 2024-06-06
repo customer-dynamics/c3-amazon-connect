@@ -1,5 +1,5 @@
 {
-	"name": "c3-report-subject-lookup-state",
+	"name": "c3-send-agent-message",
 	"author": "Customer Dynamics",
 	"main": "index.js",
 	"private": true,

@@ -1,5 +1,5 @@
 import { Stack } from 'aws-cdk-lib';
-import { getIVRPaymentFlowModuleContent } from '../connect/content-transformations';
+import { getPaymentIVRFlowModuleContent } from '../connect/content-transformations';
 import { CfnContactFlowModule } from 'aws-cdk-lib/aws-connect';
 import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import { AmazonConnectContext } from '../models/amazon-connect-context';
@@ -32,8 +32,8 @@ export class SelfServicePaymentIVR {
 	 * inbound contact flow when the required information is present in contact attributes.
 	 */
 	private createFlowModule(): void {
-		console.log('Creating IVR flow module...');
-		const ivrPaymentFlowModuleContent = getIVRPaymentFlowModuleContent(
+		console.log('Creating flow module C3PaymentIVRFlowModule...');
+		const paymentIVRFlowModuleContent = getPaymentIVRFlowModuleContent(
 			this.createPaymentRequestFunction,
 			this.tokenizeTransactionFunction,
 			this.submitPaymentFunction,
@@ -45,14 +45,14 @@ export class SelfServicePaymentIVR {
 			mkdirSync('./exports');
 		}
 		writeFileSync(
-			'./exports/C3IVRPaymentFlowModule',
-			ivrPaymentFlowModuleContent,
+			'./exports/C3PaymentIVRFlowModule',
+			paymentIVRFlowModuleContent,
 		);
-		new CfnContactFlowModule(this.stack, 'C3IVRPaymentFlowModule', {
-			name: 'C3 IVR Payment Flow Module',
+		new CfnContactFlowModule(this.stack, 'C3PaymentIVRFlowModule', {
+			name: 'C3 Payment IVR Flow Module',
 			description:
 				'Flow module to collect payments through a self-service IVR using C3.',
-			content: ivrPaymentFlowModuleContent,
+			content: paymentIVRFlowModuleContent,
 			instanceArn: this.amazonConnectInstanceArn,
 		});
 	}

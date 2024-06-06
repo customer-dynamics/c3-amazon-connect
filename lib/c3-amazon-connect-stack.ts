@@ -111,8 +111,7 @@ export class C3AmazonConnectStack extends Stack {
 				this,
 				this.amazonConnectContext,
 				this.codeSigningConfig,
-				this.c3BaseUrl,
-				this.c3ApiKeySecret,
+				this.agentAssistedIVRResources?.sendAgentMessageFunction,
 				this.agentAssistedIVRResources?.hoursOfOperation,
 			);
 		}
