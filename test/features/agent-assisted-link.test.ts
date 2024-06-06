@@ -1,10 +1,12 @@
 import { App } from 'aws-cdk-lib';
 import { C3AmazonConnectStack } from '../../lib/c3-amazon-connect-stack';
 import { Template } from 'aws-cdk-lib/assertions';
-import { Context } from '../../lib/models/context';
-import { C3PaymentGateway } from '../../lib/models/enums/c3-payment-gateway';
-import { C3Environment } from '../../lib/models/enums/c3-environment';
-import { SubjectLookupMode } from '../../lib/models/enums/subject-lookup-mode';
+import {
+	C3Environment,
+	C3PaymentGateway,
+	Context,
+	SubjectLookupMode,
+} from '../../lib/models';
 
 const mockContext: Context = {
 	amazonConnect: {

@@ -16,14 +16,13 @@ import { Code, CodeSigningConfig, Function } from 'aws-cdk-lib/aws-lambda';
 import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import { join } from 'path';
 
-import { C3Context } from '../models/c3-context';
 import {
 	associateLambdaFunctionsWithConnect,
 	commonLambdaProps,
 } from '../helpers/lambda';
 import { getSelfServicePaymentIVRFlowContent } from '../connect/content-transformations';
-import { AmazonConnectContext } from '../models/amazon-connect-context';
 import { Secret } from 'aws-cdk-lib/aws-secretsmanager';
+import { AmazonConnectContext, C3Context } from '../models';
 
 /**
  * Class for creating the necessary resources to facilitate agent-assisted payments collected through IVR.
