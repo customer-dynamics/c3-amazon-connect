@@ -13,8 +13,8 @@ import {
 	associateLambdaFunctionsWithConnect,
 	commonLambdaProps,
 } from '../helpers/lambda';
-import { AmazonConnectContext } from '../models/amazon-connect-context';
 import { getSubjectLookupFlowContent } from '../connect/content-transformations';
+import { AmazonConnectContext } from '../models';
 
 /**
  * Class for creating the necessary resources to facilitate subject lookup in agent-assisted payment scenarios.

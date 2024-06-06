@@ -2,8 +2,8 @@ import { Stack } from 'aws-cdk-lib';
 import { getPaymentIVRFlowModuleContent } from '../connect/content-transformations';
 import { CfnContactFlowModule } from 'aws-cdk-lib/aws-connect';
 import { existsSync, mkdirSync, writeFileSync } from 'fs';
-import { AmazonConnectContext } from '../models/amazon-connect-context';
 import { Function } from 'aws-cdk-lib/aws-lambda';
+import { AmazonConnectContext } from '../models';
 
 /**
  * Class for creating the necessary resources to facilitate self-service payments collected through IVR.

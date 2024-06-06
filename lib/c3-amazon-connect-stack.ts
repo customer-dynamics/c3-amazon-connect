@@ -8,23 +8,22 @@ import { Secret } from 'aws-cdk-lib/aws-secretsmanager';
 import { Construct } from 'constructs';
 import { CfnApplication } from 'aws-cdk-lib/aws-appintegrations';
 
-import {
-	AmazonConnectContext,
-	validateAmazonConnectContext,
-} from './models/amazon-connect-context';
-import { C3Context, validateC3Context } from './models/c3-context';
-import {
-	FeaturesContext,
-	validateFeaturesContext,
-} from './models/features-context';
 import { Zift } from './payment-gateways/zift';
 import { AgentAssistedPaymentIVR, SelfServicePaymentIVR } from './features';
 import {
 	associateLambdaFunctionsWithConnect,
 	commonLambdaProps,
 } from './helpers/lambda';
-import { C3PaymentGateway } from './models/enums/c3-payment-gateway';
 import { SubjectLookup } from './features/subject-lookup';
+import {
+	AmazonConnectContext,
+	C3Context,
+	C3PaymentGateway,
+	FeaturesContext,
+	validateAmazonConnectContext,
+	validateC3Context,
+	validateFeaturesContext,
+} from './models';
 
 export class C3AmazonConnectStack extends Stack {
 	private c3BaseUrl: string;
