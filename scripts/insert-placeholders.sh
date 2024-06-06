@@ -59,3 +59,4 @@ sed -i '' "s|\(\"[^\"]*\": \)\".*${CERTIFICATE_PREFIX}.*\"|\1\"$PLACEHOLDER\"|g"
 # Remove any instances of (Working Copy)
 sed -i '' "s| (Working Copy)||g" "$AGENT_ASSISTED_PAYMENT_IVR_FLOW_FILE"
 sed -i '' "s| (Working Copy)||g" "$PAYMENT_IVR_FLOW_MODULE_FILE"
+sed -i '' "s| (Working Copy)||g" "$SUBJECT_LOOKUP_FLOW_FILE"

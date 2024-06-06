@@ -97,7 +97,7 @@
 			}
 		},
 		"Annotations": [],
-		"name": "C3 Subject Lookup Flow (Working Copy)",
+		"name": "C3 Subject Lookup",
 		"description": "Flow to look up subject information in the agent workspace.",
 		"type": "queueTransfer",
 		"status": "published",
