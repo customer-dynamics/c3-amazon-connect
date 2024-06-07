@@ -22,7 +22,7 @@ Because the resources within C3 for Amazon Connect are hosted on your own AWS ac
 
 ## Code of Conduct
 
-All contributors to C3 for Amazon Connect are expected to adhere to our [Code of Conduct](./CODE_OF_CONDUCT.md). This includes maintaining the confidentiality of security-related discussions and respecting the privacy and security of other users.
+All contributors to C3 for Amazon Connect are expected to adhere to our [Code of Conduct](./docs/CODE_OF_CONDUCT.md). This includes maintaining the confidentiality of security-related discussions and respecting the privacy and security of other users.
 
 ## Contact
 
