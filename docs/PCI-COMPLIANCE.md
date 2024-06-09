@@ -10,4 +10,4 @@ While Customer Dynamics is PCI DSS compliant, it is important to note that compl
 
 ## Attestation of Compliance
 
-If you require an Attestation of Compliance (AOC) from Customer Dynamics to demonstrate our PCI DSS compliance, please contact us at [pci-compliance@example.com](mailto:pci-compliance@example.com) and we will be happy to provide you with the necessary documentation.
+If you require an Attestation of Compliance (AOC) from Customer Dynamics to demonstrate our PCI DSS compliance, please contact us at [support@customerdynamics.com](mailto:support@customerdynamics.com) and we will be happy to provide you with the necessary documentation.
