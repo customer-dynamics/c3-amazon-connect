@@ -61,18 +61,18 @@ In order to facilitate this process, you will need to provide some values to the
 
 | Value               | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `agentAssistedIVR`  | Whether deploy resources necessary to support the agent-assisted IVR feature. Defaults to `true`. If set to `false`, some resources will not be deployed and agents will not have the ability to collect payments through an IVR.                                                                                                                                                                                                                                                       |
+| `agentAssistedIVR`  | Determines whether or not to deploy resources necessary to support the agent-assisted IVR feature. Defaults to `true`. If set to `false`, some resources will not be deployed, and agents will not have the ability to collect payments through an IVR.                                                                                                                                                                                                                                 |
 | `agentAssistedLink` | **Currently unsupported**. This feature will be coming soon.                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| `selfServiceIVR`    | Whether to deploy resources necessary to support a self-service payment IVR. Defaults to `true`. If set to `false`, some resources will not be deployed.<br><br>For more information, see the [self-service payment IVR](./features/SELF_SERVICE_PAYMENT_IVR.md) documentation.                                                                                                                                                                                                         |
+| `selfServiceIVR`    | Determines whether or not to deploy resources necessary to support a self-service payment IVR. Defaults to `true`. If set to `false`, some resources will not be deployed.<br><br>For more information, see the [self-service payment IVR](./features/SELF_SERVICE_PAYMENT_IVR.md) documentation.                                                                                                                                                                                       |
 | `subjectLookup`     | **Optional**. Additional feature for agent-assisted IVR payments. If set, this will allow the agent to pull details about the subject to pre-fill information in the payment request (contact name, contact email, and amount due). Valid options are `"required-fixed"`, `"required-editable"`, and `"optional-editable"`. Leave blank if you don't want to support subject lookup.<br><br>For more information, see the [subject lookup](./features/SUBJECT_LOOKUP.md) documentation. |
 
 ##### Other
 
-| Value          | Description                                                                                                                 |
-| -------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| `logoUrl`      | An public image URL to be used as the logo for your company. This will be displayed in the receipt email sent to customers. |
-| `supportPhone` | The phone number to which customers can call for support. This will be displayed in the receipt email sent to customers.    |
-| `supportEmail` | The email address to which customers can email for support. This will be displayed in the receipt email sent to customers.  |
+| Value          | Description                                                                                                                    |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| `logoUrl`      | A public image URL used for the logo representing your company. This will be displayed in the receipt email sent to customers. |
+| `supportPhone` | The phone number customers can call for support. This will be displayed in the receipt email sent to customers.                |
+| `supportEmail` | The email address customers can email for support. This will be displayed in the receipt email sent to customers.              |
 
 Once these values are provided, deploy the stack to the same region as your Amazon Connect instance by running the following at the root of the project:
 
@@ -87,11 +87,11 @@ npm run deploy
 
 Once deployed, C3 for Amazon Connect will have deployed a number of secrets to [AWS Secrets Manager](https://console.aws.amazon.com/secretsmanager/listsecrets). These secrets will need to be updated with the appropriate values in order to facilitate the operation of the C3 resources:
 
-| Secret Name              | Description                                                                                                                                                                  |
-| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| C3_PRIVATE_KEY           | The content of the private key that was used in the previous step when you generated the certificate. The content of this file can just be copy-pasted into Secrets Manager. |
-| C3_API_KEY               | The API key assigned to your C3 vendor.                                                                                                                                      |
-| < GATEWAY >\_CREDENTIALS | The credentials to the account used for your payment gateway (Zift, etc.). This includes a username, password, and account ID.                                               |
+| Secret Name              | Description                                                                                                                                                             |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| C3_PRIVATE_KEY           | The content of the private key that was used in the previous step when you generated the certificate. The content of this file can be copy-pasted into Secrets Manager. |
+| C3_API_KEY               | The API key assigned to your C3 vendor.                                                                                                                                 |
+| < GATEWAY >\_CREDENTIALS | The credentials to the account used for your payment gateway (Zift, etc.). This includes a username, password, and account ID.                                          |
 
 ### Configure Amazon Connect
 
