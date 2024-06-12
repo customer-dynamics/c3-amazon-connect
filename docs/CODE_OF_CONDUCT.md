@@ -28,7 +28,7 @@ Project maintainers are responsible for enforcing the code of conduct. They have
 
 ## Reporting Violations
 
-If you experience or witness behavior that violates this code of conduct, please report it to the project maintainers at [conduct@example.com](mailto:conduct@example.com). All reports will be handled confidentially and with discretion.
+If you experience or witness behavior that violates this code of conduct, please report it to the project maintainers at [conduct@customerdynamics.com](mailto:conduct@customerdynamics.com). All reports will be handled confidentially and with discretion.
 
 ## Attribution
 

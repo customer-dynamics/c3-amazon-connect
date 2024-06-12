@@ -26,4 +26,4 @@ All contributors to C3 for Amazon Connect are expected to adhere to our [Code of
 
 ## Contact
 
-For further inquiries or assistance regarding security matters, please contact our security team at [security@example.com](mailto:security@example.com).
+For further inquiries or assistance regarding security matters, please contact our security team at [security@customerdynamics.com](mailto:security@customerdynamics.com).
