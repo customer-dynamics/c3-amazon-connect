@@ -14,7 +14,7 @@
 		"test": "jest",
 		"cdk": "cdk",
 		"deploy": "npm ci && npm run build && cdk deploy",
-		"insert-placeholders": "./scripts/insert-placeholders.sh",
+		"insert-placeholders": "npm run style:fix && ./scripts/insert-placeholders.sh",
 		"postinstall": "npm --prefix ./lib/lambda/c3-create-payment-request ci && npm --prefix ./lib/lambda/c3-email-receipt ci && npm --prefix ./lib/lambda/c3-submit-payment ci && npm --prefix ./lib/lambda/c3-tokenize-transaction ci && npm --prefix ./lib/lambda/c3-subject-lookup ci && npm --prefix ./lib/lambda/c3-send-agent-message ci",
 		"prepare": "husky"
 	},
