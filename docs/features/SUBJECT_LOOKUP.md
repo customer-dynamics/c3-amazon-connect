@@ -17,7 +17,7 @@ There are three modes currently supported for looking up subject information:
 > [!NOTE]
 > Before continuing, ensure that you have set the `"subjectLookup"` attribute in the `cdk.context.json` file and deployed the stack.
 
-Agent lookup is facilitated through the use of a _quick connect_, _transfer to queue flow_, _queue_ and _Lambda function_. These resources will be deployed automatically for you when you enable the subject lookup feature. Because the lookup is specific to your organization's needs, you will need to configure the lookup process within the Lambda function.
+Agent lookup is facilitated through the use of a _quick connect_, _transfer to queue flow_, _queue_, and _Lambda function_. These resources will be deployed automatically for you when you enable the subject lookup feature. Because the lookup is specific to your organization's needs, you will need to configure the lookup process within the Lambda function.
 
 ### Update Lambda Function
 
