@@ -4,7 +4,7 @@
 
 At Customer Dynamics, security is taken seriously. If you discover any security issues or vulnerabilities, please report them to our security team immediately. We appreciate your help in making C3 for Amazon Connect safe for everyone.
 
-To report a security vulnerability, please email [security@example.com](mailto:security@example.com) with a detailed description of the vulnerability and steps to reproduce it. Our security team will respond to your report promptly and work with you to address the issue.
+To report a security vulnerability, please create a new [security advisory in GitHub](https://github.com/customer-dynamics/c3-amazon-connect/security/advisories/new) with a detailed description of the vulnerability and steps to reproduce it. Our security team will respond to your report promptly and work with you to address the issue.
 
 ## Responsible Disclosure
 
