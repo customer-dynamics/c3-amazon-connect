@@ -29,7 +29,7 @@ module.exports = {
 					noteKeywords: ['BREAKING CHANGE', 'BREAKING CHANGES', 'BREAKING'],
 				},
 			},
-			'@semantic-release/github', // Creates a GitHub release
 		],
+		'@semantic-release/github', // Creates a GitHub release
 	],
 };
