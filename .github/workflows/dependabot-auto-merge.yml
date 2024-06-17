@@ -1,4 +1,4 @@
-name: Dependabot auto merge
+name: Dependabot Auto Merge
 
 on:
   # This must be `pull_request_target` for Dependabot-triggered PRs:
