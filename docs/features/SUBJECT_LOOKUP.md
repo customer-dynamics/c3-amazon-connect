@@ -49,4 +49,4 @@ To enable your agent to look up subject information, you will need to update the
 
 Once configured, your agents should see a _Subject Lookup_ quick connect in the _Quick connects_ dropdown in the CCP interface. Note that this quick connect will only be present while the agent is on a call.
 
-![Screenshot of the Amazon Connect agent workspace interface. The quick connects dropdown in the bottom left is expanded showing a quick connect called "Payment IVR"](../images/agent-workspace-quick-connects.png 'Amazon Connect Quick Connects')
+![Screenshot of the Amazon Connect agent workspace interface. The quick connects dropdown in the bottom left is expanded showing a quick connect called "Subject Lookup"](../images/subject-lookup-quick-connect.png 'Subject lookup quick connect')
