@@ -83,6 +83,14 @@ describe('C3AmazonConnectStack', () => {
 				expect(flowModuleContent).not.toMatch(/<<[^>]+>>/);
 			}
 		});
+
+		it(`Doesn't contain working copy text`, () => {
+			for (const flowModuleName of Object.keys(flowModules)) {
+				const flowModule = flowModules[flowModuleName];
+				const flowModuleContent = JSON.stringify(flowModule.Properties.Content);
+				expect(flowModuleContent).not.toMatch(/(Working Copy)/);
+			}
+		});
 	});
 
 	// Amazon Connect flows
@@ -93,6 +101,14 @@ describe('C3AmazonConnectStack', () => {
 				const flow = flows[flowName];
 				const flowContent = JSON.stringify(flow.Properties.Content);
 				expect(flowContent).not.toMatch(/<<[^>]+>>/);
+			}
+		});
+
+		it(`Doesn't contain working copy text`, () => {
+			for (const flowName of Object.keys(flows)) {
+				const flow = flows[flowName];
+				const flowModuleContent = JSON.stringify(flow.Properties.Content);
+				expect(flowModuleContent).not.toMatch(/(Working Copy)/);
 			}
 		});
 	});
