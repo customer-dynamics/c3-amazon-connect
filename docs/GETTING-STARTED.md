@@ -81,7 +81,7 @@ npm run deploy
 ```
 
 > [!NOTE]
-> This command will deploy to the region specified in the default profile for your AWS CLI configuration. If you would like to deploy to a different profile, you can specify the profile using the `--profile` flag.
+> This command will deploy to the region specified in the default profile for your AWS CLI configuration. If you would like to deploy to a different profile, you can specify the profile using the `-- --profile your_profile_name` argument.
 
 ### Provide Secret Values
 
