@@ -128,3 +128,7 @@ If you have enabled the self-service payment IVR feature, you will need to confi
 ##### Subject Lookup
 
 If you have enabled the subject lookup feature, you will need to configure the necessary resources to support this feature. Please reference the [subject lookup](./features/SUBJECT_LOOKUP.md) documentation for more information.
+
+##### Salesforce Integration
+
+C3 for Amazon Connect can also be used within Salesforce to facilitate payments. Please reference the [Salesforce Integration](./features/SALESFORCE_INTEGRATION.md) documentation for more information.

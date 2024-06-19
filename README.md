@@ -34,6 +34,10 @@ While talking to a customer, your agents can securely take payment from the cust
 
 After a successful payment, customers can receive a receipt for their transaction via email—complete with your name and logo.
 
+### 🧩 Salesforce Integration
+
+C3 for Amazon Connect can be integrated with Salesforce to provide a seamless experience for your agents. Agents can take payments directly within Salesforce using the C3 Payment Request app.
+
 ## Getting Started
 
 For existing C3 customers, please refer to the [Getting Started Guide](./docs/GETTING-STARTED.md) to get started with C3 for Amazon Connect.
