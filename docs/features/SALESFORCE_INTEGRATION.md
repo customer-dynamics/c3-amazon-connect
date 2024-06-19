@@ -96,7 +96,7 @@ At the bottom of the page, find the "Attributes" section and hit "New". Add a ne
 
 ![Screenshot of a dialogue screen in Salesforce named "New AC CTI Attribute". Properties are populated with values required for the integration.](../images/salesforce-new-attribute.png 'Contact ID CTI Attribute')
 
-#### Set the Contact ID Attribute in Amazon Connect Flow
+### Set the Contact ID Attribute in Amazon Connect Flow
 
 In your initial contact flow, you will need to set the `ContactId` contact attribute _before_ you transfer the call to a queue. This attribute will be used by the Salesforce CTI adapter to display the contact ID in the CCP interface.
 
@@ -112,7 +112,7 @@ Within the _Set contact attributes_ block, configure the following settings:
 
 Save the changes to your block, then save and publish your contact flow.
 
-#### Test the Integration
+## Test the Integration
 
 Test the entire integration by making a call to your Amazon Connect inbound number and attempting to collect a payment through the app.
 
