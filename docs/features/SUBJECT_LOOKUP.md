@@ -2,7 +2,7 @@
 
 ## Overview
 
-Subject lookup is an additional feature that can be enabled for agent-assisted payments. It allows the agent to search for details about a subject (customer, invoice, etc.) in order to pre-fill the payment form with the subject's details without ever leaving the agent workspace interface. This can help to reduce the time it takes to process a payment and reduce the likelihood of errors.
+Subject lookup is an additional feature that can be enabled for agent-assisted payments. It allows the agent to search for details about a subject (customer, invoice, etc.) to pre-fill the payment form with the subject's details. This can help to reduce the time it takes to process a payment and reduce the likelihood of errors.
 
 ## Modes
 

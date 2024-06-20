@@ -9,7 +9,7 @@ The self-service payment IVR feature allows customers to make payments over the 
 > [!NOTE]
 > Before continuing, ensure that you have set the `"selfServiceIVR"` attribute to true in the `cdk.context.json` file and deployed the stack.
 
-Self-service payment collection is facilitated through the use of a Amazon Connect _flow module_ that is deployed to your instance. This flow module is responsible for the main payment collection piece of your self-service payment IVR. How you configure the rest of your IVR is up to you, but we'll walk you through the basic setup in this guide.
+Self-service payment collection is facilitated through the use of an Amazon Connect _flow module_ that is deployed to your instance. This flow module is responsible for the main payment collection piece of your self-service payment IVR. How you configure the rest of your IVR is up to you, but we'll walk you through the basic setup in this guide.
 
 ### Create Inbound Flow
 
