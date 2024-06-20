@@ -2,7 +2,7 @@
 
 **💰 Contact Center Commerce. Simplified for Amazon Connect.**
 
-C3 for Amazon Connect is a collection of AWS resources to help you collect payments over the phone with Amazon Connect using [C3 payments](https://www.customerdynamics.com/c3-payment).
+C3 for Amazon Connect is a collection of AWS resources to help you collect payments over the phone with Amazon Connect using [C3 Payment](https://www.customerdynamics.com/c3-payment).
 
 ![Screenshot of the C3 Payment Request agent workspace app within Amazon Connect during an active call. An icon of a credit card displayed with the heading "Card Number Entered". Below it is the message, "The customer has entered their credit card number".](./docs/images/agent-workspace.png 'C3 Payment Request agent workspace app')
 
