@@ -15,6 +15,7 @@ import {
 } from '../helpers/lambda';
 import { getSubjectLookupFlowContent } from '../connect/content-transformations';
 import { AmazonConnectContext } from '../models';
+import { PolicyStatement } from 'aws-cdk-lib/aws-iam';
 
 /**
  * Class for creating the necessary resources to facilitate subject lookup in agent-assisted payment scenarios.
