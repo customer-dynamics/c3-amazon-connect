@@ -30,7 +30,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "52d14041-beb5-4e66-ad51-6a6a081538f3",
+						"id": "4c1c023a-67ed-47cf-a7db-97d4628997e1",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -72,7 +72,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "d6953dad-24c9-4eeb-a657-2da4853b244b",
+						"id": "5e60df02-ccce-41ad-b972-0327d2602b56",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -114,7 +114,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "cb3b5341-919c-4164-a1e3-ee1d5eea011b",
+						"id": "a2833b4c-7327-42a0-a470-ec6ff167dfb1",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -133,7 +133,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "25626f02-3dc6-4eb8-a929-810edaa77790",
+						"id": "f2546136-e831-4c23-a8ea-66458a379a59",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -255,11 +255,11 @@
 				"isFriendlyName": true,
 				"conditionMetadata": [
 					{
-						"id": "3c9ac8e9-61ac-4343-896a-8beaff00c16c",
+						"id": "c7c548e0-96c1-4e4d-9b15-c94d66730716",
 						"value": "1"
 					},
 					{
-						"id": "6cd9e356-612c-4b59-bc6e-ec077db4a012",
+						"id": "d16f74ca-0bca-4c83-9323-b3b920e1bc63",
 						"value": "2"
 					}
 				]
@@ -270,25 +270,6 @@
 					"y": -928.8
 				},
 				"isFriendlyName": true
-			},
-			"Create Payment Request": {
-				"position": {
-					"x": -1484,
-					"y": 224
-				},
-				"isFriendlyName": true,
-				"parameters": {
-					"LambdaFunctionARN": {
-						"displayName": "<<createPaymentRequestLambdaArn>>"
-					}
-				},
-				"dynamicMetadata": {}
-			},
-			"87859db2-400d-410b-8818-05c8ae4869aa": {
-				"position": {
-					"x": -1628.8,
-					"y": 480
-				}
 			},
 			"Store Routing Number": {
 				"position": {
@@ -320,19 +301,6 @@
 				},
 				"dynamicParams": ["ExpirationDate"]
 			},
-			"Tokenize Transaction": {
-				"position": {
-					"x": 4880,
-					"y": -132.8
-				},
-				"isFriendlyName": true,
-				"parameters": {
-					"LambdaFunctionARN": {
-						"displayName": "<<tokenizeTransactionLambdaArn>>"
-					}
-				},
-				"dynamicMetadata": {}
-			},
 			"Payment Success": {
 				"position": {
 					"x": 6239.2,
@@ -348,11 +316,11 @@
 				"isFriendlyName": true,
 				"conditionMetadata": [
 					{
-						"id": "43b3a560-6fe8-4142-8f65-12b5ad020186",
+						"id": "38703ff7-a6a5-4697-87ba-41478b8050f7",
 						"value": "1"
 					},
 					{
-						"id": "2dd6ce26-6817-426d-ad38-5d2c09467278",
+						"id": "ee3ca4a7-c9b8-4b26-a4eb-80061a359e80",
 						"value": "2"
 					}
 				]
@@ -365,11 +333,11 @@
 				"isFriendlyName": true,
 				"conditionMetadata": [
 					{
-						"id": "fdebd013-e057-4c6c-a645-b8c1911ccc67",
+						"id": "28d1b686-44d9-41bd-b721-fdc5a9bdb2be",
 						"value": "1"
 					},
 					{
-						"id": "1d69b48c-64be-447a-96ab-3c3b5e30df37",
+						"id": "64bebdcb-69c9-4deb-bacc-ebe4c6e559da",
 						"value": "2"
 					}
 				]
@@ -386,80 +354,6 @@
 				"position": {
 					"x": 5782.4,
 					"y": -149.6
-				},
-				"isFriendlyName": true,
-				"dynamicParams": []
-			},
-			"Submit Payment": {
-				"position": {
-					"x": 5556,
-					"y": -128.8
-				},
-				"isFriendlyName": true,
-				"parameters": {
-					"LambdaFunctionARN": {
-						"displayName": "<<submitPaymentLambdaArn>>"
-					}
-				},
-				"dynamicMetadata": {}
-			},
-			"a3ea896e-4f43-4677-8edd-159f677dc41e": {
-				"position": {
-					"x": 7818.4,
-					"y": 192.8
-				}
-			},
-			"Receipt Success": {
-				"position": {
-					"x": 6922.4,
-					"y": -128
-				},
-				"isFriendlyName": true
-			},
-			"Receipt Error": {
-				"position": {
-					"x": 7143.2,
-					"y": 55.2
-				},
-				"isFriendlyName": true
-			},
-			"Check for Customer Email": {
-				"position": {
-					"x": 6460.8,
-					"y": -43.2
-				},
-				"isFriendlyName": true,
-				"conditions": [],
-				"conditionMetadata": [
-					{
-						"id": "218c656d-1bd0-42eb-adc2-6d9b7684ba7c",
-						"operator": {
-							"name": "Contains",
-							"value": "Contains",
-							"shortDisplay": "contains"
-						},
-						"value": "@"
-					}
-				]
-			},
-			"Payment Validation Error": {
-				"position": {
-					"x": 5786.4,
-					"y": 273.6
-				},
-				"isFriendlyName": true
-			},
-			"Payment Submission Error": {
-				"position": {
-					"x": 6016,
-					"y": 158.4
-				},
-				"isFriendlyName": true
-			},
-			"Redact Sensitive Contact Attributes": {
-				"position": {
-					"x": 7378.4,
-					"y": 184
 				},
 				"isFriendlyName": true,
 				"dynamicParams": []
@@ -502,7 +396,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "8336dc5b-99ce-4af9-9bfb-69eada51f79d",
+						"id": "19d935d7-cd87-472b-a2b8-2d4864390105",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -511,7 +405,7 @@
 						"value": "PaymentAmountDue"
 					},
 					{
-						"id": "44aebfca-f051-41ae-bbf7-f45692c9937a",
+						"id": "201dce28-dca4-4661-9318-d71a7f65de07",
 						"operator": {
 							"name": "Is greater than",
 							"value": "GreaterThan",
@@ -582,7 +476,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "4867617d-cf45-45c3-87e8-77b200c83098",
+						"id": "035358e9-3517-4248-85db-9f8bc64190d5",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -591,7 +485,7 @@
 						"value": "Timeout"
 					},
 					{
-						"id": "9af64534-8c35-48aa-a729-97b76cbe56b1",
+						"id": "155e1088-7284-40ea-a4af-a450b0fce7d1",
 						"operator": {
 							"name": "Is greater than",
 							"value": "GreaterThan",
@@ -600,7 +494,7 @@
 						"value": "$.Attributes.PaymentAmountDue"
 					},
 					{
-						"id": "dfad210d-2734-4b3f-8d01-db570432afb7",
+						"id": "632fcd39-3689-47e9-b89f-a68bff165029",
 						"operator": {
 							"name": "Is less than",
 							"value": "LessThan",
@@ -609,13 +503,6 @@
 						"value": "$.Attributes.PaymentMinimumPayment"
 					}
 				]
-			},
-			"Internal Error": {
-				"position": {
-					"x": 2660,
-					"y": 525.6
-				},
-				"isFriendlyName": true
 			},
 			"Check for Payment Token": {
 				"position": {
@@ -626,7 +513,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "45915112-e17e-4be8-8b3c-420a2f44549f",
+						"id": "0107a09a-d891-4759-8405-af2776e74527",
 						"operator": {
 							"name": "Starts with",
 							"value": "StartsWith",
@@ -635,7 +522,7 @@
 						"value": "VC"
 					},
 					{
-						"id": "e086bd08-90b1-40b4-a0f4-733058057f01",
+						"id": "f10a6346-9d6f-4197-a11a-71f37e14194e",
 						"operator": {
 							"name": "Starts with",
 							"value": "StartsWith",
@@ -644,7 +531,7 @@
 						"value": "BC"
 					},
 					{
-						"id": "d19464e1-0c62-4693-8031-6bafc38ca15f",
+						"id": "62539558-4e03-4f7c-8d46-8d2e1fdca78b",
 						"operator": {
 							"name": "Starts with",
 							"value": "StartsWith",
@@ -662,11 +549,11 @@
 				"isFriendlyName": true,
 				"conditionMetadata": [
 					{
-						"id": "ca06874d-bb80-437a-871d-a98a83eb149e",
+						"id": "172664b6-023a-4e64-aeec-7c4a14d3f765",
 						"value": "1"
 					},
 					{
-						"id": "6c57294b-b0ce-4fae-9a3c-808150e0704b",
+						"id": "fb9686d6-8145-4f4a-b4cb-ddea571814d8",
 						"value": "2"
 					}
 				]
@@ -685,6 +572,127 @@
 					}
 				},
 				"dynamicParams": ["PaymentAmount"]
+			},
+			"Create Payment Request": {
+				"position": {
+					"x": -1484,
+					"y": 224
+				},
+				"isFriendlyName": true,
+				"parameters": {
+					"LambdaFunctionARN": {
+						"displayName": "<<createPaymentRequestLambdaArn>>"
+					}
+				},
+				"dynamicMetadata": {}
+			},
+			"87859db2-400d-410b-8818-05c8ae4869aa": {
+				"position": {
+					"x": -1628.8,
+					"y": 480
+				}
+			},
+			"Submit Payment": {
+				"position": {
+					"x": 5556,
+					"y": -128.8
+				},
+				"isFriendlyName": true,
+				"parameters": {
+					"LambdaFunctionARN": {
+						"displayName": "<<submitPaymentLambdaArn>>"
+					}
+				},
+				"dynamicMetadata": {}
+			},
+			"Tokenize Transaction": {
+				"position": {
+					"x": 4880,
+					"y": -132.8
+				},
+				"isFriendlyName": true,
+				"parameters": {
+					"LambdaFunctionARN": {
+						"displayName": "<<tokenizeTransactionLambdaArn>>"
+					}
+				},
+				"dynamicMetadata": {}
+			},
+			"a3ea896e-4f43-4677-8edd-159f677dc41e": {
+				"position": {
+					"x": 7818.4,
+					"y": 192.8
+				}
+			},
+			"Receipt Success": {
+				"position": {
+					"x": 6922.4,
+					"y": -128
+				},
+				"isFriendlyName": true
+			},
+			"Receipt Error": {
+				"position": {
+					"x": 7143.2,
+					"y": 55.2
+				},
+				"isFriendlyName": true
+			},
+			"Check for Customer Email": {
+				"position": {
+					"x": 6460.8,
+					"y": -43.2
+				},
+				"isFriendlyName": true,
+				"conditions": [],
+				"conditionMetadata": [
+					{
+						"id": "be10b27c-2317-4c85-9268-1e9afacc1da6",
+						"operator": {
+							"name": "Contains",
+							"value": "Contains",
+							"shortDisplay": "contains"
+						},
+						"value": "@"
+					}
+				]
+			},
+			"Internal Error": {
+				"position": {
+					"x": 2660,
+					"y": 525.6
+				},
+				"isFriendlyName": true
+			},
+			"Payment Submission Error": {
+				"position": {
+					"x": 6016,
+					"y": 158.4
+				},
+				"isFriendlyName": true
+			},
+			"Payment Validation Error": {
+				"position": {
+					"x": 6020.8,
+					"y": 337.6
+				},
+				"isFriendlyName": true
+			},
+			"Redact Sensitive Contact Attributes": {
+				"position": {
+					"x": 7378.4,
+					"y": 184
+				},
+				"isFriendlyName": true,
+				"dynamicParams": []
+			},
+			"Remove Failed Payment Token": {
+				"position": {
+					"x": 6335.2,
+					"y": 253.6
+				},
+				"isFriendlyName": true,
+				"dynamicParams": []
 			}
 		},
 		"Annotations": [],
@@ -1216,36 +1224,6 @@
 		},
 		{
 			"Parameters": {
-				"LambdaFunctionARN": "<<createPaymentRequestLambdaArn>>",
-				"InvocationTimeLimitSeconds": "8",
-				"ResponseValidation": {
-					"ResponseType": "JSON"
-				}
-			},
-			"Identifier": "Create Payment Request",
-			"Type": "InvokeLambdaFunction",
-			"Transitions": {
-				"NextAction": "Record Payment Request ID",
-				"Errors": [
-					{
-						"NextAction": "Payment Request Error",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"FlowLoggingBehavior": "Enabled"
-			},
-			"Identifier": "87859db2-400d-410b-8818-05c8ae4869aa",
-			"Type": "UpdateFlowLoggingBehavior",
-			"Transitions": {
-				"NextAction": "Create Payment Request"
-			}
-		},
-		{
-			"Parameters": {
 				"Attributes": {
 					"RoutingNumber": "$.StoredCustomerInput"
 				},
@@ -1277,26 +1255,6 @@
 				"Errors": [
 					{
 						"NextAction": "Internal Error",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"LambdaFunctionARN": "<<tokenizeTransactionLambdaArn>>",
-				"InvocationTimeLimitSeconds": "8",
-				"ResponseValidation": {
-					"ResponseType": "JSON"
-				}
-			},
-			"Identifier": "Tokenize Transaction",
-			"Type": "InvokeLambdaFunction",
-			"Transitions": {
-				"NextAction": "Record Token",
-				"Errors": [
-					{
-						"NextAction": "Payment Validation Error",
 						"ErrorType": "NoMatchingError"
 					}
 				]
@@ -1435,142 +1393,6 @@
 				"Errors": [
 					{
 						"NextAction": "Payment Success",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"LambdaFunctionARN": "<<submitPaymentLambdaArn>>",
-				"InvocationTimeLimitSeconds": "8",
-				"ResponseValidation": {
-					"ResponseType": "JSON"
-				}
-			},
-			"Identifier": "Submit Payment",
-			"Type": "InvokeLambdaFunction",
-			"Transitions": {
-				"NextAction": "Record Transaction ID",
-				"Errors": [
-					{
-						"NextAction": "Payment Submission Error",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {},
-			"Identifier": "a3ea896e-4f43-4677-8edd-159f677dc41e",
-			"Type": "EndFlowModuleExecution",
-			"Transitions": {}
-		},
-		{
-			"Parameters": {
-				"Text": "A receipt has been sent to your email address at $.Attributes.['Email']."
-			},
-			"Identifier": "Receipt Success",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "Redact Sensitive Contact Attributes",
-				"Errors": [
-					{
-						"NextAction": "Redact Sensitive Contact Attributes",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Text": "There was an error sending the receipt to your email address at $.Attributes.['Email']. Please contact customer support to receive a receipt for this transaction."
-			},
-			"Identifier": "Receipt Error",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "Redact Sensitive Contact Attributes",
-				"Errors": [
-					{
-						"NextAction": "Redact Sensitive Contact Attributes",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"ComparisonValue": "$.Attributes.Email"
-			},
-			"Identifier": "Check for Customer Email",
-			"Type": "Compare",
-			"Transitions": {
-				"NextAction": "Redact Sensitive Contact Attributes",
-				"Conditions": [
-					{
-						"NextAction": "Email Receipt",
-						"Condition": {
-							"Operator": "TextContains",
-							"Operands": ["@"]
-						}
-					}
-				],
-				"Errors": [
-					{
-						"NextAction": "Redact Sensitive Contact Attributes",
-						"ErrorType": "NoMatchingCondition"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Text": "There was a problem validating your $.Attributes.PaymentMethod information."
-			},
-			"Identifier": "Payment Validation Error",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "Redact Sensitive Contact Attributes",
-				"Errors": [
-					{
-						"NextAction": "Redact Sensitive Contact Attributes",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Text": "We're sorry, an error has occured preventing us from submitting your payment. You have not been charged."
-			},
-			"Identifier": "Payment Submission Error",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "Redact Sensitive Contact Attributes",
-				"Errors": [
-					{
-						"NextAction": "Redact Sensitive Contact Attributes",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Attributes": {
-					"EncryptedCardNumber": "REDACTED",
-					"EncryptedAccountNumber": "REDACTED",
-					"ExpirationDate": "REDACTED"
-				},
-				"TargetContact": "Current"
-			},
-			"Identifier": "Redact Sensitive Contact Attributes",
-			"Type": "UpdateContactAttributes",
-			"Transitions": {
-				"NextAction": "a3ea896e-4f43-4677-8edd-159f677dc41e",
-				"Errors": [
-					{
-						"NextAction": "a3ea896e-4f43-4677-8edd-159f677dc41e",
 						"ErrorType": "NoMatchingError"
 					}
 				]
@@ -1826,22 +1648,6 @@
 		},
 		{
 			"Parameters": {
-				"Text": "We're sorry, an error has occured that prevents us from collecting the payment."
-			},
-			"Identifier": "Internal Error",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "Redact Sensitive Contact Attributes",
-				"Errors": [
-					{
-						"NextAction": "Redact Sensitive Contact Attributes",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
 				"ComparisonValue": "$.Attributes.PaymentToken"
 			},
 			"Identifier": "Check for Payment Token",
@@ -1935,6 +1741,227 @@
 				"Errors": [
 					{
 						"NextAction": "Internal Error",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"LambdaFunctionARN": "<<createPaymentRequestLambdaArn>>",
+				"InvocationTimeLimitSeconds": "8",
+				"ResponseValidation": {
+					"ResponseType": "JSON"
+				}
+			},
+			"Identifier": "Create Payment Request",
+			"Type": "InvokeLambdaFunction",
+			"Transitions": {
+				"NextAction": "Record Payment Request ID",
+				"Errors": [
+					{
+						"NextAction": "Payment Request Error",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"FlowLoggingBehavior": "Disabled"
+			},
+			"Identifier": "87859db2-400d-410b-8818-05c8ae4869aa",
+			"Type": "UpdateFlowLoggingBehavior",
+			"Transitions": {
+				"NextAction": "Create Payment Request"
+			}
+		},
+		{
+			"Parameters": {
+				"LambdaFunctionARN": "<<submitPaymentLambdaArn>>",
+				"InvocationTimeLimitSeconds": "8",
+				"ResponseValidation": {
+					"ResponseType": "JSON"
+				}
+			},
+			"Identifier": "Submit Payment",
+			"Type": "InvokeLambdaFunction",
+			"Transitions": {
+				"NextAction": "Record Transaction ID",
+				"Errors": [
+					{
+						"NextAction": "Payment Submission Error",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"LambdaFunctionARN": "<<tokenizeTransactionLambdaArn>>",
+				"InvocationTimeLimitSeconds": "8",
+				"ResponseValidation": {
+					"ResponseType": "JSON"
+				}
+			},
+			"Identifier": "Tokenize Transaction",
+			"Type": "InvokeLambdaFunction",
+			"Transitions": {
+				"NextAction": "Record Token",
+				"Errors": [
+					{
+						"NextAction": "Payment Validation Error",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {},
+			"Identifier": "a3ea896e-4f43-4677-8edd-159f677dc41e",
+			"Type": "EndFlowModuleExecution",
+			"Transitions": {}
+		},
+		{
+			"Parameters": {
+				"Text": "A receipt has been sent to your email address at $.Attributes.['Email']."
+			},
+			"Identifier": "Receipt Success",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "Redact Sensitive Contact Attributes",
+				"Errors": [
+					{
+						"NextAction": "Redact Sensitive Contact Attributes",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "There was an error sending the receipt to your email address at $.Attributes.['Email']. Please contact customer support to receive a receipt for this transaction."
+			},
+			"Identifier": "Receipt Error",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "Redact Sensitive Contact Attributes",
+				"Errors": [
+					{
+						"NextAction": "Redact Sensitive Contact Attributes",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"ComparisonValue": "$.Attributes.Email"
+			},
+			"Identifier": "Check for Customer Email",
+			"Type": "Compare",
+			"Transitions": {
+				"NextAction": "Redact Sensitive Contact Attributes",
+				"Conditions": [
+					{
+						"NextAction": "Email Receipt",
+						"Condition": {
+							"Operator": "TextContains",
+							"Operands": ["@"]
+						}
+					}
+				],
+				"Errors": [
+					{
+						"NextAction": "Redact Sensitive Contact Attributes",
+						"ErrorType": "NoMatchingCondition"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "We're sorry, an error has occured that prevents us from collecting the payment."
+			},
+			"Identifier": "Internal Error",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "Redact Sensitive Contact Attributes",
+				"Errors": [
+					{
+						"NextAction": "Redact Sensitive Contact Attributes",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "We're sorry, an error has occured preventing us from submitting your payment. You have not been charged."
+			},
+			"Identifier": "Payment Submission Error",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "Remove Failed Payment Token",
+				"Errors": [
+					{
+						"NextAction": "Remove Failed Payment Token",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "There was a problem validating your $.Attributes.PaymentMethod information."
+			},
+			"Identifier": "Payment Validation Error",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "Remove Failed Payment Token",
+				"Errors": [
+					{
+						"NextAction": "Remove Failed Payment Token",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Attributes": {
+					"EncryptedCardNumber": "REDACTED",
+					"EncryptedAccountNumber": "REDACTED",
+					"ExpirationDate": "REDACTED"
+				},
+				"TargetContact": "Current"
+			},
+			"Identifier": "Redact Sensitive Contact Attributes",
+			"Type": "UpdateContactAttributes",
+			"Transitions": {
+				"NextAction": "a3ea896e-4f43-4677-8edd-159f677dc41e",
+				"Errors": [
+					{
+						"NextAction": "a3ea896e-4f43-4677-8edd-159f677dc41e",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Attributes": {
+					"PaymentToken": " "
+				},
+				"TargetContact": "Current"
+			},
+			"Identifier": "Remove Failed Payment Token",
+			"Type": "UpdateContactAttributes",
+			"Transitions": {
+				"NextAction": "Redact Sensitive Contact Attributes",
+				"Errors": [
+					{
+						"NextAction": "Redact Sensitive Contact Attributes",
 						"ErrorType": "NoMatchingError"
 					}
 				]

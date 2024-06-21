@@ -50,7 +50,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "44d3c7b7-5079-4909-a017-f7d622b07b76",
+						"id": "1a126608-3ade-4597-811d-b345c8cef5a0",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -69,7 +69,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "9a7213e9-0674-4bda-9e2f-7acef8e9dbca",
+						"id": "03c43e38-8c70-4d4b-8a8a-75edcb546fff",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -102,7 +102,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "6a613f03-7680-46d6-89a1-cc0c9f93ce57",
+						"id": "859d9da5-79c7-47d4-90be-7cb938669bea",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -121,7 +121,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "fae506c5-0b38-4037-bf37-5ecb56caa848",
+						"id": "6c13caca-7110-489d-bd20-022f893314d7",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -350,49 +350,6 @@
 					"EventText": false
 				}
 			},
-			"Report Payment Submission Error": {
-				"position": {
-					"x": 4445.6,
-					"y": 672.8
-				},
-				"isFriendlyName": true,
-				"parameters": {
-					"LambdaFunctionARN": {
-						"displayName": "<<sendAgentMessageLambdaArn>>"
-					}
-				},
-				"dynamicMetadata": {
-					"EventText": false
-				}
-			},
-			"Tokenize Transaction": {
-				"position": {
-					"x": 3539.2,
-					"y": 382.4
-				},
-				"isFriendlyName": true,
-				"parameters": {
-					"LambdaFunctionARN": {
-						"displayName": "<<tokenizeTransactionLambdaArn>>"
-					}
-				},
-				"dynamicMetadata": {}
-			},
-			"Report Tokenization Error": {
-				"position": {
-					"x": 3896,
-					"y": 845.6
-				},
-				"isFriendlyName": true,
-				"parameters": {
-					"LambdaFunctionARN": {
-						"displayName": "<<sendAgentMessageLambdaArn>>"
-					}
-				},
-				"dynamicMetadata": {
-					"EventText": false
-				}
-			},
 			"90dc6a63-2ae9-4c5f-b65f-75348779d0c6": {
 				"position": {
 					"x": 6472.8,
@@ -482,7 +439,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "63a18ab3-0086-431b-b9d7-fbc7158a0730",
+						"id": "ec56e904-05df-4ded-b8d9-e4e09055707b",
 						"operator": {
 							"name": "Contains",
 							"value": "Contains",
@@ -499,34 +456,12 @@
 				},
 				"isFriendlyName": true
 			},
-			"Payment Submission Error": {
-				"position": {
-					"x": 4680,
-					"y": 677.6
-				},
-				"isFriendlyName": true
-			},
-			"Payment Validation Error": {
-				"position": {
-					"x": 4134.4,
-					"y": 841.6
-				},
-				"isFriendlyName": true
-			},
 			"Returning To Agent": {
 				"position": {
 					"x": 6256.8,
 					"y": 695.2
 				},
 				"isFriendlyName": true
-			},
-			"Redact Sensitive Contact Attributes": {
-				"position": {
-					"x": 6037.6,
-					"y": 699.2
-				},
-				"isFriendlyName": true,
-				"dynamicParams": []
 			},
 			"Report Payment Request Error": {
 				"position": {
@@ -565,7 +500,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "99d6885c-f524-49e0-a02a-15be81b963c6",
+						"id": "cfc58e76-ada3-4504-8ef1-6c74e8f06d8b",
 						"operator": {
 							"name": "Is greater than",
 							"value": "GreaterThan",
@@ -757,9 +692,10 @@
 					"y": 561.6
 				},
 				"isFriendlyName": true,
+				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "eade4def-8d1d-45df-8b9d-163fafc554ac",
+						"id": "1a12f504-dfc7-4467-a56e-ce020f024740",
 						"operator": {
 							"name": "Starts with",
 							"value": "StartsWith",
@@ -768,7 +704,7 @@
 						"value": "VC"
 					},
 					{
-						"id": "d1dfb6a9-4c47-4594-a5c9-dc23f73f65a3",
+						"id": "7cda8288-48cd-4c22-8a25-bc96e94a75b4",
 						"operator": {
 							"name": "Starts with",
 							"value": "StartsWith",
@@ -777,7 +713,7 @@
 						"value": "BC"
 					},
 					{
-						"id": "3937506c-f8b5-4699-8db3-08e6da7def11",
+						"id": "281e94a1-4320-485f-bf94-5525d8f3f73e",
 						"operator": {
 							"name": "Starts with",
 							"value": "StartsWith",
@@ -795,11 +731,11 @@
 				"isFriendlyName": true,
 				"conditionMetadata": [
 					{
-						"id": "2069fddc-428d-47d4-938d-a19946dbd734",
+						"id": "60feb465-d85e-4f52-9d76-a2fa6f764a5e",
 						"value": "1"
 					},
 					{
-						"id": "014c9c5f-dc64-4618-8ab8-d587dba99cef",
+						"id": "aa4e28cc-b2a5-4992-aa17-757a7c6037fa",
 						"value": "2"
 					}
 				]
@@ -812,11 +748,11 @@
 				"isFriendlyName": true,
 				"conditionMetadata": [
 					{
-						"id": "54b8eb86-6b94-470f-a90c-f4ef5e66bb13",
+						"id": "d901a937-fdb2-4bbe-8922-034711ff5528",
 						"value": "1"
 					},
 					{
-						"id": "c1969c5f-a62a-4a40-9166-eccc8c1479eb",
+						"id": "c86b55c2-2e57-44f8-a447-f58d6abc799a",
 						"value": "2"
 					}
 				]
@@ -825,6 +761,38 @@
 				"position": {
 					"x": 285.6,
 					"y": -236.8
+				},
+				"isFriendlyName": true,
+				"parameters": {
+					"LambdaFunctionARN": {
+						"displayName": "<<sendAgentMessageLambdaArn>>"
+					}
+				},
+				"dynamicMetadata": {
+					"EventText": false
+				}
+			},
+			"Use Credit Card Again?": {
+				"position": {
+					"x": -129.6,
+					"y": -83.2
+				},
+				"isFriendlyName": true,
+				"conditionMetadata": [
+					{
+						"id": "ce1b4034-72d1-43b6-80cb-09ed68861ecd",
+						"value": "1"
+					},
+					{
+						"id": "f3feefb8-34cf-4614-977d-b53cf7aa487f",
+						"value": "2"
+					}
+				]
+			},
+			"Report Credit Card Selected Again": {
+				"position": {
+					"x": 218.4,
+					"y": -461.6
 				},
 				"isFriendlyName": true,
 				"parameters": {
@@ -849,27 +817,10 @@
 				},
 				"dynamicMetadata": {}
 			},
-			"Use Credit Card Again?": {
+			"Report Payment Submission Error": {
 				"position": {
-					"x": -129.6,
-					"y": -83.2
-				},
-				"isFriendlyName": true,
-				"conditionMetadata": [
-					{
-						"id": "34698d5d-aeb2-46df-a3dd-334723c8c10c",
-						"value": "1"
-					},
-					{
-						"id": "c23ad035-bb21-4d08-88c8-15b7d9d78723",
-						"value": "2"
-					}
-				]
-			},
-			"Report Credit Card Selected Again": {
-				"position": {
-					"x": 218.4,
-					"y": -461.6
+					"x": 4436,
+					"y": 663.2
 				},
 				"isFriendlyName": true,
 				"parameters": {
@@ -880,6 +831,64 @@
 				"dynamicMetadata": {
 					"EventText": false
 				}
+			},
+			"Tokenize Transaction": {
+				"position": {
+					"x": 3539.2,
+					"y": 382.4
+				},
+				"isFriendlyName": true,
+				"parameters": {
+					"LambdaFunctionARN": {
+						"displayName": "<<tokenizeTransactionLambdaArn>>"
+					}
+				},
+				"dynamicMetadata": {}
+			},
+			"Report Tokenization Error": {
+				"position": {
+					"x": 4440.8,
+					"y": 872.8
+				},
+				"isFriendlyName": true,
+				"parameters": {
+					"LambdaFunctionARN": {
+						"displayName": "<<sendAgentMessageLambdaArn>>"
+					}
+				},
+				"dynamicMetadata": {
+					"EventText": false
+				}
+			},
+			"Redact Sensitive Contact Attributes": {
+				"position": {
+					"x": 6037.6,
+					"y": 699.2
+				},
+				"isFriendlyName": true,
+				"dynamicParams": []
+			},
+			"Payment Submission Error": {
+				"position": {
+					"x": 4680,
+					"y": 677.6
+				},
+				"isFriendlyName": true
+			},
+			"Payment Validation Error": {
+				"position": {
+					"x": 4684.8,
+					"y": 881.6
+				},
+				"isFriendlyName": true
+			},
+			"Remove Failed Payment Token": {
+				"position": {
+					"x": 4981.6,
+					"y": 835.2
+				},
+				"isFriendlyName": true,
+				"dynamicParams": []
 			}
 		},
 		"Annotations": [],
@@ -1459,72 +1468,6 @@
 		},
 		{
 			"Parameters": {
-				"LambdaFunctionARN": "<<sendAgentMessageLambdaArn>>",
-				"InvocationTimeLimitSeconds": "8",
-				"LambdaInvocationAttributes": {
-					"EventText": "PaymentSubmissionError"
-				},
-				"ResponseValidation": {
-					"ResponseType": "JSON"
-				}
-			},
-			"Identifier": "Report Payment Submission Error",
-			"Type": "InvokeLambdaFunction",
-			"Transitions": {
-				"NextAction": "Payment Submission Error",
-				"Errors": [
-					{
-						"NextAction": "Payment Submission Error",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"LambdaFunctionARN": "<<tokenizeTransactionLambdaArn>>",
-				"InvocationTimeLimitSeconds": "8",
-				"ResponseValidation": {
-					"ResponseType": "JSON"
-				}
-			},
-			"Identifier": "Tokenize Transaction",
-			"Type": "InvokeLambdaFunction",
-			"Transitions": {
-				"NextAction": "Record Token",
-				"Errors": [
-					{
-						"NextAction": "Report Tokenization Error",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"LambdaFunctionARN": "<<sendAgentMessageLambdaArn>>",
-				"InvocationTimeLimitSeconds": "8",
-				"LambdaInvocationAttributes": {
-					"EventText": "TokenizationError"
-				},
-				"ResponseValidation": {
-					"ResponseType": "JSON"
-				}
-			},
-			"Identifier": "Report Tokenization Error",
-			"Type": "InvokeLambdaFunction",
-			"Transitions": {
-				"NextAction": "Payment Validation Error",
-				"Errors": [
-					{
-						"NextAction": "Payment Validation Error",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
 				"PreviousContactParticipantState": "OffHold"
 			},
 			"Identifier": "90dc6a63-2ae9-4c5f-b65f-75348779d0c6",
@@ -1706,38 +1649,6 @@
 		},
 		{
 			"Parameters": {
-				"Text": "We're sorry, an error has occured preventing us from submitting your payment. You have not been charged."
-			},
-			"Identifier": "Payment Submission Error",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "Redact Sensitive Contact Attributes",
-				"Errors": [
-					{
-						"NextAction": "Redact Sensitive Contact Attributes",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Text": "There was a problem validating your $.Attributes.PaymentMethod information."
-			},
-			"Identifier": "Payment Validation Error",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "Redact Sensitive Contact Attributes",
-				"Errors": [
-					{
-						"NextAction": "Redact Sensitive Contact Attributes",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
 				"Text": "Returning you to the agent..."
 			},
 			"Identifier": "Returning To Agent",
@@ -1747,27 +1658,6 @@
 				"Errors": [
 					{
 						"NextAction": "90dc6a63-2ae9-4c5f-b65f-75348779d0c6",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Attributes": {
-					"EncryptedCardNumber": "REDACTED",
-					"ExpirationDate": "REDACTED",
-					"EncryptedAccountNumber": "REDACTED"
-				},
-				"TargetContact": "Current"
-			},
-			"Identifier": "Redact Sensitive Contact Attributes",
-			"Type": "UpdateContactAttributes",
-			"Transitions": {
-				"NextAction": "Returning To Agent",
-				"Errors": [
-					{
-						"NextAction": "Returning To Agent",
 						"ErrorType": "NoMatchingError"
 					}
 				]
@@ -2360,26 +2250,6 @@
 		},
 		{
 			"Parameters": {
-				"LambdaFunctionARN": "<<submitPaymentLambdaArn>>",
-				"InvocationTimeLimitSeconds": "8",
-				"ResponseValidation": {
-					"ResponseType": "JSON"
-				}
-			},
-			"Identifier": "Submit Payment",
-			"Type": "InvokeLambdaFunction",
-			"Transitions": {
-				"NextAction": "Record Transaction ID",
-				"Errors": [
-					{
-						"NextAction": "Report Payment Submission Error",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
 				"StoreInput": "False",
 				"InputTimeLimitSeconds": "5",
 				"Text": "You previously paid with a credit card.\n\nIf you would like to use this card again for this payment, press 1.\nTo use a different payment method, press 2."
@@ -2438,6 +2308,164 @@
 				"Errors": [
 					{
 						"NextAction": "Submit Payment",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"LambdaFunctionARN": "<<submitPaymentLambdaArn>>",
+				"InvocationTimeLimitSeconds": "8",
+				"ResponseValidation": {
+					"ResponseType": "JSON"
+				}
+			},
+			"Identifier": "Submit Payment",
+			"Type": "InvokeLambdaFunction",
+			"Transitions": {
+				"NextAction": "Record Transaction ID",
+				"Errors": [
+					{
+						"NextAction": "Report Payment Submission Error",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"LambdaFunctionARN": "<<sendAgentMessageLambdaArn>>",
+				"InvocationTimeLimitSeconds": "8",
+				"LambdaInvocationAttributes": {
+					"EventText": "PaymentSubmissionError"
+				},
+				"ResponseValidation": {
+					"ResponseType": "JSON"
+				}
+			},
+			"Identifier": "Report Payment Submission Error",
+			"Type": "InvokeLambdaFunction",
+			"Transitions": {
+				"NextAction": "Payment Submission Error",
+				"Errors": [
+					{
+						"NextAction": "Payment Submission Error",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"LambdaFunctionARN": "<<tokenizeTransactionLambdaArn>>",
+				"InvocationTimeLimitSeconds": "8",
+				"ResponseValidation": {
+					"ResponseType": "JSON"
+				}
+			},
+			"Identifier": "Tokenize Transaction",
+			"Type": "InvokeLambdaFunction",
+			"Transitions": {
+				"NextAction": "Record Token",
+				"Errors": [
+					{
+						"NextAction": "Report Tokenization Error",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"LambdaFunctionARN": "<<sendAgentMessageLambdaArn>>",
+				"InvocationTimeLimitSeconds": "8",
+				"LambdaInvocationAttributes": {
+					"EventText": "TokenizationError"
+				},
+				"ResponseValidation": {
+					"ResponseType": "JSON"
+				}
+			},
+			"Identifier": "Report Tokenization Error",
+			"Type": "InvokeLambdaFunction",
+			"Transitions": {
+				"NextAction": "Payment Validation Error",
+				"Errors": [
+					{
+						"NextAction": "Payment Validation Error",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Attributes": {
+					"EncryptedCardNumber": "REDACTED",
+					"ExpirationDate": "REDACTED",
+					"EncryptedAccountNumber": "REDACTED"
+				},
+				"TargetContact": "Current"
+			},
+			"Identifier": "Redact Sensitive Contact Attributes",
+			"Type": "UpdateContactAttributes",
+			"Transitions": {
+				"NextAction": "Returning To Agent",
+				"Errors": [
+					{
+						"NextAction": "Returning To Agent",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "We're sorry, an error has occured preventing us from submitting your payment. You have not been charged."
+			},
+			"Identifier": "Payment Submission Error",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "Remove Failed Payment Token",
+				"Errors": [
+					{
+						"NextAction": "Remove Failed Payment Token",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "There was a problem validating your $.Attributes.PaymentMethod information."
+			},
+			"Identifier": "Payment Validation Error",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "Remove Failed Payment Token",
+				"Errors": [
+					{
+						"NextAction": "Remove Failed Payment Token",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Attributes": {
+					"PaymentToken": " "
+				},
+				"TargetContact": "Current"
+			},
+			"Identifier": "Remove Failed Payment Token",
+			"Type": "UpdateContactAttributes",
+			"Transitions": {
+				"NextAction": "Redact Sensitive Contact Attributes",
+				"Errors": [
+					{
+						"NextAction": "Redact Sensitive Contact Attributes",
 						"ErrorType": "NoMatchingError"
 					}
 				]
