@@ -1,4 +1,5 @@
 {
+	"stackEnvName": "prod",
 	"amazonConnect": {
 		"instanceArn": "",
 		"securityKeyId": "",
