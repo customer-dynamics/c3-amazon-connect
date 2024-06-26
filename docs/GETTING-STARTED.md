@@ -41,6 +41,10 @@ In order to facilitate this process, you will need to provide some values to the
 
 #### Configuration Values
 
+| Value        | Description                                                                                                                                                                    |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `stackLabel` | **Optional**. A unique label to give to the deployed stack. To enable multiple stacks to be deployed to a single AWS account, this field must be populated with a unique name. |
+
 ##### Amazon Connect
 
 | Value                           | Description                                                                                                                                                                                                                                                         |
