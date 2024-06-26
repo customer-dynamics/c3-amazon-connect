@@ -205,8 +205,11 @@ export class C3AmazonConnectStack extends Stack {
 	 */
 	private createC3ApiKeySecret(): void {
 		console.log('Creating secret for C3 API key...');
+		const secretLabel = this.stackLabel
+			? `_${this.stackLabel.toUpperCase()}`
+			: '';
 		this.c3ApiKeySecret = new Secret(this, 'C3APIKey', {
-			secretName: `C3_API_KEY_${this.stackLabel.toUpperCase()}`,
+			secretName: 'C3_API_KEY' + secretLabel,
 			secretStringValue: SecretValue.unsafePlainText('<Your C3 API key>'),
 			description: 'The API key used for C3 Payment.',
 		});
@@ -220,8 +223,11 @@ export class C3AmazonConnectStack extends Stack {
 	 */
 	private createPrivateKeySecret(): void {
 		console.log('Creating private key secret...');
+		const secretLabel = this.stackLabel
+			? `_${this.stackLabel.toUpperCase()}`
+			: '';
 		this.privateKeySecret = new Secret(this, 'C3PrivateKey', {
-			secretName: `C3_PRIVATE_KEY_${this.stackLabel.toUpperCase()}`,
+			secretName: 'C3_PRIVATE_KEY' + secretLabel,
 			secretStringValue: SecretValue.unsafePlainText(
 				'<The content of your private key>',
 			),

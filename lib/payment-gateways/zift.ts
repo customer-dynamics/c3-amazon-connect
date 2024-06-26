@@ -28,8 +28,11 @@ export class Zift {
 	 */
 	private createZiftCredentialsSecret(): void {
 		console.log('Creating Zift credentials secret...');
+		const secretLabel = this.stackLabel
+			? `_${this.stackLabel.toUpperCase()}`
+			: '';
 		this.ziftCredentialsSecret = new Secret(this.stack, 'C3ZiftCredentials', {
-			secretName: `ZIFT_CREDENTIALS_${this.stackLabel.toUpperCase()}`,
+			secretName: 'ZIFT_CREDENTIALS' + secretLabel,
 			secretObjectValue: {
 				accountId: SecretValue.unsafePlainText('<Your Zift account ID>'),
 				username: SecretValue.unsafePlainText('<Your Zift username>'),
