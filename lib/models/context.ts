@@ -3,7 +3,7 @@ import { C3Context } from './c3-context';
 import { FeaturesContext } from './features-context';
 
 export interface Context {
-	stackEnvName: string;
+	stackLabel: string;
 	amazonConnect: AmazonConnectContext;
 	c3: C3Context;
 	logoUrl: string;

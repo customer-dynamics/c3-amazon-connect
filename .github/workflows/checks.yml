@@ -31,7 +31,7 @@ jobs:
           write-mode: overwrite
           contents: |
             {
-              "stackEnvName": "dev",
+              "stackLabel": "dev",
               "amazonConnect": {
                 "instanceArn": "placeholder",
                 "securityKeyId": "placeholder",

@@ -9,7 +9,7 @@ import {
 } from '../lib/models';
 
 const mockContext: Context = {
-	stackEnvName: 'dev',
+	stackLabel: 'dev',
 	amazonConnect: {
 		instanceArn: 'placeholder',
 		securityKeyId: 'placeholder',

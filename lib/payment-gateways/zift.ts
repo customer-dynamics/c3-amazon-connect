@@ -14,6 +14,7 @@ export class Zift {
 	constructor(
 		private stack: Stack,
 		private tokenizeTransactionPolicy: PolicyStatement,
+		private stackLabel: string,
 	) {
 		console.log('Creating resources for Zift...');
 		this.createZiftCredentialsSecret();
@@ -28,7 +29,7 @@ export class Zift {
 	private createZiftCredentialsSecret(): void {
 		console.log('Creating Zift credentials secret...');
 		this.ziftCredentialsSecret = new Secret(this.stack, 'C3ZiftCredentials', {
-			secretName: 'ZIFT_CREDENTIALS',
+			secretName: `ZIFT_CREDENTIALS_${this.stackLabel.toUpperCase()}`,
 			secretObjectValue: {
 				accountId: SecretValue.unsafePlainText('<Your Zift account ID>'),
 				username: SecretValue.unsafePlainText('<Your Zift username>'),
