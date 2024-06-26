@@ -31,7 +31,6 @@ export class C3AmazonConnectStack extends Stack {
 
 	// Context variables.
 	private stackLabel: string;
-	private stackLabelTitleCase: string;
 	private amazonConnectContext: AmazonConnectContext;
 	private c3Context: C3Context;
 	private featuresContext: FeaturesContext;
@@ -132,8 +131,6 @@ export class C3AmazonConnectStack extends Stack {
 	 */
 	private validateContextVariables(): void {
 		this.stackLabel = this.node.tryGetContext('stackLabel');
-		this.stackLabelTitleCase =
-			this.stackLabel.charAt(0).toUpperCase() + this.stackLabel.slice(1);
 
 		this.amazonConnectContext = this.node.tryGetContext('amazonConnect');
 		validateAmazonConnectContext(this.amazonConnectContext);
@@ -396,10 +393,12 @@ export class C3AmazonConnectStack extends Stack {
 		}
 
 		// Create the app.
-		const appLabel = this.stackLabel ? ` - ${this.stackLabelTitleCase}` : '';
+		const stackLabelTitleCase =
+			this.stackLabel.charAt(0).toUpperCase() + this.stackLabel.slice(1);
+		const appLabel = this.stackLabel ? ` - ${stackLabelTitleCase}` : '';
 		const application = new CfnApplication(
 			this,
-			`C3ConnectApp${this.stackLabelTitleCase}`,
+			`C3ConnectApp${stackLabelTitleCase}`,
 			{
 				name: 'Payment Request' + appLabel, // App name is unfortunately required to be unique to create.
 				namespace: `c3-payment-${this.stackLabel}`,
