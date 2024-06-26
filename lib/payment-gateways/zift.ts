@@ -1,5 +1,6 @@
 import { SecretValue, Stack } from 'aws-cdk-lib';
 import { PolicyStatement } from 'aws-cdk-lib/aws-iam';
+import { Function } from 'aws-cdk-lib/aws-lambda';
 import { Secret } from 'aws-cdk-lib/aws-secretsmanager';
 
 /**
@@ -13,12 +14,14 @@ export class Zift {
 	 */
 	constructor(
 		private stack: Stack,
+		private tokenizeTransactionFunction: Function,
 		private tokenizeTransactionPolicy: PolicyStatement,
 		private stackLabel: string,
 	) {
 		console.log('Creating resources for Zift...');
 		this.createZiftCredentialsSecret();
 		this.addSecretsToTokenizeTransactionPolicy();
+		this.addSecretIdToTokenizeTransactionFunctionEnvironment();
 	}
 
 	/**
@@ -51,6 +54,19 @@ export class Zift {
 		console.log('Adding Zift secrets to tokenize transaction policy...');
 		this.tokenizeTransactionPolicy.addResources(
 			this.ziftCredentialsSecret.secretArn,
+		);
+	}
+
+	/**
+	 * Updates the tokenize transaction function environment to include the secret ID for the Zift credentials.
+	 *
+	 * This is necessary for the tokenize transaction function to access the Zift credentials. The secret ID for these
+	 * credentials change based on your stack label.
+	 */
+	private addSecretIdToTokenizeTransactionFunctionEnvironment(): void {
+		this.tokenizeTransactionFunction.addEnvironment(
+			'ZIFT_CREDENTIALS_SECRET_ID',
+			this.ziftCredentialsSecret.secretName,
 		);
 	}
 }

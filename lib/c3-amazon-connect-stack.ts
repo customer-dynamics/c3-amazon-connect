@@ -252,8 +252,9 @@ export class C3AmazonConnectStack extends Stack {
 					join(__dirname, 'lambda/c3-create-payment-request'),
 				),
 				environment: {
-					C3_VENDOR_ID: this.c3Context.vendorId,
 					C3_BASE_URL: this.c3BaseUrl,
+					C3_VENDOR_ID: this.c3Context.vendorId,
+					C3_API_KEY_SECRET_ID: this.c3ApiKeySecret.secretName,
 					LOGO_URL: this.logoUrl,
 					SUPPORT_PHONE: this.supportPhone,
 					SUPPORT_EMAIL: this.supportEmail,
@@ -286,6 +287,7 @@ export class C3AmazonConnectStack extends Stack {
 				code: Code.fromAsset(join(__dirname, 'lambda/c3-tokenize-transaction')),
 				environment: {
 					C3_ENV: this.c3Context.env,
+					C3_PRIVATE_KEY_SECRET_ID: this.privateKeySecret.secretName,
 					C3_PAYMENT_GATEWAY: this.c3Context.paymentGateway,
 					CONNECT_SECURITY_KEY_ID: this.amazonConnectContext.securityKeyId,
 				},
@@ -308,7 +310,12 @@ export class C3AmazonConnectStack extends Stack {
 		// Create additional payment gateway secrets and add to policy.
 		switch (this.c3Context.paymentGateway) {
 			case C3PaymentGateway.Zift:
-				new Zift(this, getSecretValuePolicy, this.stackLabel);
+				new Zift(
+					this,
+					this.tokenizeTransactionFunction,
+					getSecretValuePolicy,
+					this.stackLabel,
+				);
 				break;
 			default:
 				throw new Error(
@@ -331,6 +338,7 @@ export class C3AmazonConnectStack extends Stack {
 			code: Code.fromAsset(join(__dirname, 'lambda/c3-submit-payment')),
 			environment: {
 				C3_BASE_URL: this.c3BaseUrl,
+				C3_API_KEY_SECRET_ID: this.c3ApiKeySecret.secretName,
 			},
 			codeSigningConfig: this.codeSigningConfig,
 		});
@@ -356,6 +364,7 @@ export class C3AmazonConnectStack extends Stack {
 			code: Code.fromAsset(join(__dirname, 'lambda/c3-email-receipt')),
 			environment: {
 				C3_BASE_URL: this.c3BaseUrl,
+				C3_API_KEY_SECRET_ID: this.c3ApiKeySecret.secretName,
 			},
 			codeSigningConfig: this.codeSigningConfig,
 		});
