@@ -7,15 +7,18 @@ import { exec } from 'child_process';
 
 (async () => {
 	const stackVersion = await getMostRecentGitTag();
-	console.log(`Deploying stack version ${stackVersion}...`);
-
 	const app = new App();
-	new C3AmazonConnectStack(app, 'C3AmazonConnectStack', {
+	const stackLabel = app.node.tryGetContext('stackLabel') as string;
+	console.log(`Deploying stack version ${stackVersion} for "${stackLabel}"...`);
+
+	const formattedStackLabel = getFormattedStackLabel(stackLabel);
+	new C3AmazonConnectStack(app, `C3AmazonConnect${formattedStackLabel}Stack`, {
 		description: `Stack containing the resources for C3 for Amazon Connect (${stackVersion}).`,
 	});
 })();
 
 /**
+ * Fetches the most recent git tag in the repository.
  *
  * @returns {Promise<string>} The most recent git tag in the repository
  */
@@ -31,4 +34,15 @@ async function getMostRecentGitTag(): Promise<string> {
 		console.error('Error fetching the most recent git tag:', error);
 		return 'v?.?.?';
 	}
+}
+
+/**
+ * Gets the stack label from the context, formatted as a title.
+ *
+ * @param stackLabel The stack label from the context.
+ * @returns A formatted stack label.
+ */
+function getFormattedStackLabel(stackLabel: string): string {
+	const lowerCaseValue = stackLabel.toLowerCase();
+	return lowerCaseValue.charAt(0).toUpperCase() + lowerCaseValue.slice(1);
 }

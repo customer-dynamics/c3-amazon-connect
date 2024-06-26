@@ -30,6 +30,7 @@ export class C3AmazonConnectStack extends Stack {
 	private c3AppUrlFragment: string;
 
 	// Context variables.
+	private stackLabel: string;
 	private amazonConnectContext: AmazonConnectContext;
 	private c3Context: C3Context;
 	private featuresContext: FeaturesContext;
@@ -129,6 +130,8 @@ export class C3AmazonConnectStack extends Stack {
 	 * Ensures that all required context variables are set. Throws an error if any are missing.
 	 */
 	private validateContextVariables(): void {
+		this.stackLabel = this.node.tryGetContext('stackLabel');
+
 		this.amazonConnectContext = this.node.tryGetContext('amazonConnect');
 		validateAmazonConnectContext(this.amazonConnectContext);
 
@@ -202,10 +205,13 @@ export class C3AmazonConnectStack extends Stack {
 	 */
 	private createC3ApiKeySecret(): void {
 		console.log('Creating secret for C3 API key...');
+		const secretLabel = this.stackLabel
+			? `_${this.stackLabel.toUpperCase()}`
+			: '';
 		this.c3ApiKeySecret = new Secret(this, 'C3APIKey', {
-			secretName: 'C3_API_KEY',
+			secretName: 'C3_API_KEY' + secretLabel,
 			secretStringValue: SecretValue.unsafePlainText('<Your C3 API key>'),
-			description: 'The API key used for C3 payments.',
+			description: 'The API key used for C3 Payment.',
 		});
 	}
 
@@ -217,8 +223,11 @@ export class C3AmazonConnectStack extends Stack {
 	 */
 	private createPrivateKeySecret(): void {
 		console.log('Creating private key secret...');
+		const secretLabel = this.stackLabel
+			? `_${this.stackLabel.toUpperCase()}`
+			: '';
 		this.privateKeySecret = new Secret(this, 'C3PrivateKey', {
-			secretName: 'C3_PRIVATE_KEY',
+			secretName: 'C3_PRIVATE_KEY' + secretLabel,
 			secretStringValue: SecretValue.unsafePlainText(
 				'<The content of your private key>',
 			),
@@ -243,8 +252,9 @@ export class C3AmazonConnectStack extends Stack {
 					join(__dirname, 'lambda/c3-create-payment-request'),
 				),
 				environment: {
-					C3_VENDOR_ID: this.c3Context.vendorId,
 					C3_BASE_URL: this.c3BaseUrl,
+					C3_VENDOR_ID: this.c3Context.vendorId,
+					C3_API_KEY_SECRET_ID: this.c3ApiKeySecret.secretName,
 					LOGO_URL: this.logoUrl,
 					SUPPORT_PHONE: this.supportPhone,
 					SUPPORT_EMAIL: this.supportEmail,
@@ -277,6 +287,7 @@ export class C3AmazonConnectStack extends Stack {
 				code: Code.fromAsset(join(__dirname, 'lambda/c3-tokenize-transaction')),
 				environment: {
 					C3_ENV: this.c3Context.env,
+					C3_PRIVATE_KEY_SECRET_ID: this.privateKeySecret.secretName,
 					C3_PAYMENT_GATEWAY: this.c3Context.paymentGateway,
 					CONNECT_SECURITY_KEY_ID: this.amazonConnectContext.securityKeyId,
 				},
@@ -299,7 +310,12 @@ export class C3AmazonConnectStack extends Stack {
 		// Create additional payment gateway secrets and add to policy.
 		switch (this.c3Context.paymentGateway) {
 			case C3PaymentGateway.Zift:
-				new Zift(this, getSecretValuePolicy);
+				new Zift(
+					this,
+					this.tokenizeTransactionFunction,
+					getSecretValuePolicy,
+					this.stackLabel,
+				);
 				break;
 			default:
 				throw new Error(
@@ -322,6 +338,7 @@ export class C3AmazonConnectStack extends Stack {
 			code: Code.fromAsset(join(__dirname, 'lambda/c3-submit-payment')),
 			environment: {
 				C3_BASE_URL: this.c3BaseUrl,
+				C3_API_KEY_SECRET_ID: this.c3ApiKeySecret.secretName,
 			},
 			codeSigningConfig: this.codeSigningConfig,
 		});
@@ -347,6 +364,7 @@ export class C3AmazonConnectStack extends Stack {
 			code: Code.fromAsset(join(__dirname, 'lambda/c3-email-receipt')),
 			environment: {
 				C3_BASE_URL: this.c3BaseUrl,
+				C3_API_KEY_SECRET_ID: this.c3ApiKeySecret.secretName,
 			},
 			codeSigningConfig: this.codeSigningConfig,
 		});
@@ -390,18 +408,25 @@ export class C3AmazonConnectStack extends Stack {
 		}
 
 		// Create the app.
-		const application = new CfnApplication(this, 'C3ConnectApp', {
-			name: 'Payment Request',
-			namespace: 'c3-payment',
-			description: 'Agent application for collecting payments with C3.',
-			permissions: ['User.Details.View', 'Contact.Details.View'],
-			applicationSourceConfig: {
-				externalUrlConfig: {
-					accessUrl: `https://${this.c3Context.vendorId}.${this.c3AppUrlFragment}/agent-workspace?contactCenter=amazon&instanceId=${instanceId}&region=${region}${agentAssistedIVRParams}${configuredFeatureParams}`,
-					approvedOrigins: [], // Don't allow any other origins.
+		const stackLabelTitleCase =
+			this.stackLabel.charAt(0).toUpperCase() + this.stackLabel.slice(1);
+		const appLabel = this.stackLabel ? ` - ${stackLabelTitleCase}` : '';
+		const application = new CfnApplication(
+			this,
+			`C3ConnectApp${stackLabelTitleCase}`,
+			{
+				name: 'Payment Request' + appLabel, // App name is unfortunately required to be unique to create.
+				namespace: `c3-payment-${this.stackLabel}`,
+				description: 'Agent application for collecting payments with C3.',
+				permissions: ['User.Details.View', 'Contact.Details.View'],
+				applicationSourceConfig: {
+					externalUrlConfig: {
+						accessUrl: `https://${this.c3Context.vendorId}.${this.c3AppUrlFragment}/agent-workspace?contactCenter=amazon&instanceId=${instanceId}&region=${region}${agentAssistedIVRParams}${configuredFeatureParams}`,
+						approvedOrigins: [], // Don't allow any other origins.
+					},
 				},
 			},
-		});
+		);
 
 		// Associate the app with the Amazon Connect instance.
 		new CfnIntegrationAssociation(this, `C3ConnectIntegrationApp`, {

@@ -85,6 +85,7 @@ export class AgentAssistedPaymentIVR {
 				environment: {
 					C3_ENV: c3Context.env,
 					C3_BASE_URL: this.c3BaseUrl,
+					C3_API_KEY_SECRET_ID: this.c3ApiKeySecret.secretName,
 				},
 				codeSigningConfig: this.codeSigningConfig,
 			},
