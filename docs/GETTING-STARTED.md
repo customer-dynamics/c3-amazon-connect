@@ -4,7 +4,7 @@
 
 Before getting started with C3 for Amazon Connect, please ensure the following:
 
-- You have a current C3 license
+- You have a current C3 vendor account
 - You have an AWS account
 - You have an Amazon Connect instance
 - You have Node.js (v20+) and npm (v10+) installed on your machine
