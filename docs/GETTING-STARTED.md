@@ -29,6 +29,7 @@ Begin by cloning the C3 for Amazon Connect repository to your local machine:
 git clone git@github.com:customer-dynamics/c3-amazon-connect.git
 ```
 
+> [!TIP]
 > If you prefer, you can also [download the latest .zip](https://github.com/customer-dynamics/c3-amazon-connect/archive/refs/heads/main.zip) and extract it to your local machine.
 
 Once cloned, open the project in your preferred code editor.
@@ -84,8 +85,11 @@ Once these values are provided, deploy the stack to the same region as your Amaz
 npm run deploy
 ```
 
-> [!NOTE]
+> [!IMPORTANT]
 > This command will deploy to the region specified in the default profile for your AWS CLI configuration. If you would like to deploy to a different profile, you can specify the profile using the `-- --profile your_profile_name` argument.
+
+> [!TIP]
+> If your deployment fails because of permission issues relating to the CDK, you can try the [alternative import method](./ALTERNATIVE_IMPORT.md) to deploy the stack.
 
 ### Provide Secret Values
 
