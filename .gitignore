@@ -6,6 +6,7 @@
 node_modules
 .context-values.json
 exports
+.DS_Store
 
 # CDK asset staging directory
 .cdk.staging
