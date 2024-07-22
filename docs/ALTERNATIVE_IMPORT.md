@@ -18,7 +18,7 @@ It might be necessary to use the alternative import method in the following inst
 
 3. Create a new bucket in [Amazon S3](https://console.aws.amazon.com/s3) to store the Code for the Lambda functions. This bucket must be in the same region as your Amazon Connect instance and the same region you specified in the `cdk.context.json` file. **This bucket must have a specific name**. Open your `cdk.out/C3AmazonConnect**Stack.assets.json` file and find the `bucketName` property. Use this name for your bucket, replacing any of the `${}` placeholders with the appropriate values. This should look something like `cdk-hnb659fds-assets-815407490078-us-west-2`.
 
-4. While in the `cdk.out` directory, individually compress all of the `asset.*` folders into separate .zip files.
+4. While in the `cdk.out` directory, individually compress **the content** of all of the `asset.*` folders into separate .zip files.
 
 5. After each .zip file is created, remove the "asset." prefix from the file name. For example, `asset.1234567890.zip` should be renamed to `1234567890.zip`.
 
