@@ -17,10 +17,16 @@ When you deployed resources to your AWS account through this project, a unique U
 4. Select the application named "Payment Request"
 5. Copy the value under "Access URL"
 
-It should be a long URL that looks something like this:
+It should be a long URL that looks something like this, if you are using the dev or staging C3 environments:
 
 ```url
-https://some-vendor.dev.c2a.link/agent-workspace?contactCenter=amazon&instanceId=some-guid&region=some-region&externalRoleArn=arn:aws:iam::000000000000:role/C3AmazonConnectStack-C3AgentAssistedIVRRole00000000-000000000000&subjectLookup=required-editable
+https://some-vendor.{{c3Environment}}.c2a.link/agent-workspace?contactCenter=amazon&instanceId=some-guid&region=some-region&externalRoleArn=arn:aws:iam::000000000000:role/C3AmazonConnectStack-C3AgentAssistedIVRRole00000000-000000000000&subjectLookup=required-editable
+```
+
+If you are using the production C3 environment, the URL will look like this:
+
+```url
+https://some-vendor.call2action.link/agent-workspace?contactCenter=amazon&instanceId=some-guid&region=some-region&externalRoleArn=arn:aws:iam::000000000000:role/C3AmazonConnectStack-C3AgentAssistedIVRRole00000000-000000000000&subjectLookup=required-editable
 ```
 
 #### Create Visualforce Page
