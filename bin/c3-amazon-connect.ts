@@ -32,7 +32,7 @@ async function getMostRecentGitTag(): Promise<string> {
 		return stdout.trim();
 	} catch (error) {
 		console.error('Error fetching the most recent git tag:', error);
-		return 'v?.?.?';
+		return 'v1.2.1';
 	}
 }
 
