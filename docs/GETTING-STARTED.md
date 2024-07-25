@@ -30,7 +30,7 @@ git clone git@github.com:customer-dynamics/c3-amazon-connect.git
 ```
 
 > [!TIP]
-> If you prefer, you can also download the latest source code as a .zip [from the releases page](https://github.com/customer-dynamics/c3-amazon-connect/releases) and extract it to your local machine.
+> If you prefer, you can also download the latest source code as a .zip from the [releases page](https://github.com/customer-dynamics/c3-amazon-connect/releases) and extract it to your local machine.
 
 Once cloned, open the project in your preferred code editor.
 
