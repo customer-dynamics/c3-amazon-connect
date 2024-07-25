@@ -122,7 +122,4 @@ Save the changes to your block, then save and publish your contact flow.
 
 Test the entire integration by making a call to your Amazon Connect inbound number and attempting to collect a payment through the app.
 
-For more information on how to use C3 for Amazon Connect with Salesforce, please refer to the **agent usage guide**.
-
-> [!NOTE]
-> The agent usage guide is coming soon.
+For more information on how to use C3 for Amazon Connect, please refer to the [agent user manual](https://stonly.com/guide/en/c3-for-amazon-connect-4aD1PSTbrN/Steps/3598750).

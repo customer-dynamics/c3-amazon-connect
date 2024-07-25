@@ -140,3 +140,15 @@ If you have enabled the subject lookup feature, you will need to configure the n
 ##### Salesforce Integration
 
 C3 for Amazon Connect can also be used within Salesforce to facilitate payments. Please reference the [Salesforce Integration](./features/SALESFORCE_INTEGRATION.md) documentation for more information.
+
+## Next Steps
+
+With the resources deployed and configured, you can now begin using the C3 Amazon Connect resources to provide a more seamless experience for your agents and customers.
+
+For more information on how to use the features, please reference the [agent user manual](https://stonly.com/guide/en/c3-for-amazon-connect-4aD1PSTbrN/Steps/3598750).
+
+### Test Cards and Bank Accounts
+
+If your payment gateway is in sandbox mode, you can use specific dummy credit cards and bank accounts in order to test payments. Please reference the linked documentation for your payment gateway:
+
+- [Zift](https://docs.zift.io/processing-api/terminal/integration)
