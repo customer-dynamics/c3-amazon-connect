@@ -20,9 +20,11 @@ import {
 	C3Context,
 	C3PaymentGateway,
 	FeaturesContext,
+	OptionsContext,
 	validateAmazonConnectContext,
 	validateC3Context,
 	validateFeaturesContext,
+	validateOptionsContext,
 } from './models';
 
 export class C3AmazonConnectStack extends Stack {
@@ -34,6 +36,7 @@ export class C3AmazonConnectStack extends Stack {
 	private amazonConnectContext: AmazonConnectContext;
 	private c3Context: C3Context;
 	private featuresContext: FeaturesContext;
+	private optionsContext: OptionsContext;
 	private logoUrl: string;
 	private supportPhone: string;
 	private supportEmail: string;
@@ -55,7 +58,9 @@ export class C3AmazonConnectStack extends Stack {
 		this.setC3BaseUrl();
 
 		// Create resources needed for all features.
-		this.createCodeSigningConfig();
+		if (this.optionsContext.codeSigning) {
+			this.createCodeSigningConfig();
+		}
 		this.createC3ApiKeySecret();
 
 		// Create resources needed for IVR payments.
@@ -140,6 +145,9 @@ export class C3AmazonConnectStack extends Stack {
 
 		this.featuresContext = this.node.tryGetContext('features');
 		validateFeaturesContext(this.featuresContext);
+
+		this.optionsContext = this.node.tryGetContext('options');
+		validateOptionsContext(this.optionsContext);
 
 		this.logoUrl = this.node.tryGetContext('logoUrl');
 		this.supportPhone = this.node.tryGetContext('supportPhone');
@@ -259,7 +267,9 @@ export class C3AmazonConnectStack extends Stack {
 					SUPPORT_PHONE: this.supportPhone,
 					SUPPORT_EMAIL: this.supportEmail,
 				},
-				codeSigningConfig: this.codeSigningConfig,
+				codeSigningConfig: this.optionsContext.codeSigning
+					? this.codeSigningConfig
+					: undefined,
 			},
 		);
 
@@ -291,7 +301,9 @@ export class C3AmazonConnectStack extends Stack {
 					C3_PAYMENT_GATEWAY: this.c3Context.paymentGateway,
 					CONNECT_SECURITY_KEY_ID: this.amazonConnectContext.securityKeyId,
 				},
-				codeSigningConfig: this.codeSigningConfig,
+				codeSigningConfig: this.optionsContext.codeSigning
+					? this.codeSigningConfig
+					: undefined,
 			},
 		);
 
@@ -340,7 +352,9 @@ export class C3AmazonConnectStack extends Stack {
 				C3_BASE_URL: this.c3BaseUrl,
 				C3_API_KEY_SECRET_ID: this.c3ApiKeySecret.secretName,
 			},
-			codeSigningConfig: this.codeSigningConfig,
+			codeSigningConfig: this.optionsContext.codeSigning
+				? this.codeSigningConfig
+				: undefined,
 		});
 
 		// Create the policy for getting secret values.
@@ -366,7 +380,9 @@ export class C3AmazonConnectStack extends Stack {
 				C3_BASE_URL: this.c3BaseUrl,
 				C3_API_KEY_SECRET_ID: this.c3ApiKeySecret.secretName,
 			},
-			codeSigningConfig: this.codeSigningConfig,
+			codeSigningConfig: this.optionsContext.codeSigning
+				? this.codeSigningConfig
+				: undefined,
 		});
 
 		// Create the policy for getting secret values.

@@ -16,6 +16,9 @@
 		"selfServiceIVR": true,
 		"subjectLookup": ""
 	},
+	"options": {
+		"codeSigning": true
+	},
 	"logoUrl": "",
 	"supportPhone": "",
 	"supportEmail": ""

@@ -14,7 +14,7 @@ import {
 	commonLambdaProps,
 } from '../helpers/lambda';
 import { getSubjectLookupFlowContent } from '../connect/content-transformations';
-import { AmazonConnectContext } from '../models';
+import { AmazonConnectContext, OptionsContext } from '../models';
 import { PolicyStatement } from 'aws-cdk-lib/aws-iam';
 
 /**
@@ -52,12 +52,17 @@ export class SubjectLookup {
 	 */
 	private createSubjectLookupFunction(): void {
 		console.log('Creating function C3SubjectLookup...');
+		const optionsContext = this.stack.node.tryGetContext(
+			'options',
+		) as OptionsContext;
 		this.subjectLookupFunction = new Function(this.stack, 'C3SubjectLookup', {
 			...commonLambdaProps,
 			description:
 				'Gets the details about a subject to pre-fill in the C3 workspace.',
 			code: Code.fromAsset(join(__dirname, '../lambda/c3-subject-lookup')),
-			codeSigningConfig: this.codeSigningConfig,
+			codeSigningConfig: optionsContext.codeSigning
+				? this.codeSigningConfig
+				: undefined,
 		});
 
 		// Update this with any additional permissions that the function needs for your subject lookup.

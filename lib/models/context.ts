@@ -1,6 +1,7 @@
 import { AmazonConnectContext } from './amazon-connect-context';
 import { C3Context } from './c3-context';
 import { FeaturesContext } from './features-context';
+import { OptionsContext } from './options-context';
 
 export interface Context {
 	stackLabel: string;
@@ -10,4 +11,5 @@ export interface Context {
 	supportPhone: string;
 	supportEmail: string;
 	features: FeaturesContext;
+	options: OptionsContext;
 }
