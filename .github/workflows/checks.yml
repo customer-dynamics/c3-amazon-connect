@@ -48,6 +48,9 @@ jobs:
                 "selfServiceIVR": true,
                 "subjectLookup": "required-editable"
               },
+              "options": {
+                "codeSigning": true
+              },
               "logoUrl": "placeholder",
               "supportPhone": "placeholder",
               "supportEmail": "placeholder"
