@@ -71,6 +71,12 @@ In order to facilitate this process, you will need to provide some values to the
 | `selfServiceIVR`    | Determines whether or not to deploy resources necessary to support a self-service payment IVR. Defaults to `true`. If set to `false`, some resources will not be deployed.<br><br>For more information, see the [self-service payment IVR](./features/SELF_SERVICE_PAYMENT_IVR.md) documentation.                                                                                                                                                                                       |
 | `subjectLookup`     | **Optional**. Additional feature for agent-assisted IVR payments. If set, this will allow the agent to pull details about the subject to pre-fill information in the payment request (contact name, contact email, and amount due). Valid options are `"required-fixed"`, `"required-editable"`, and `"optional-editable"`. Leave blank if you don't want to support subject lookup.<br><br>For more information, see the [subject lookup](./features/SUBJECT_LOOKUP.md) documentation. |
 
+##### Options
+
+| Value         | Description                                                                                      |
+| ------------- | ------------------------------------------------------------------------------------------------ |
+| `codeSigning` | Whether to support code signing for Lambda resources. This is recommended for security purposes. |
+
 ##### Other
 
 | Value          | Description                                                                                                                    |
