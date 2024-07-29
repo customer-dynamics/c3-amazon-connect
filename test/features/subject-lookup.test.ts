@@ -27,6 +27,9 @@ const mockContext: Context = {
 		selfServiceIVR: false,
 		subjectLookup: SubjectLookupMode.OptionalEditable,
 	},
+	options: {
+		codeSigning: true,
+	},
 	logoUrl: 'placeholder',
 	supportPhone: 'placeholder',
 	supportEmail: 'placeholder',
