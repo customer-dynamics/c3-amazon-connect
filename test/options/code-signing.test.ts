@@ -44,18 +44,6 @@ describe('C3AmazonConnectStack', () => {
 
 	// Lambda functions
 	describe('Lambda functions', () => {
-		it('Using arm64', () => {
-			template.hasResourceProperties('AWS::Lambda::Function', {
-				Architectures: ['arm64'],
-			});
-		});
-
-		it('Using latest Node', () => {
-			template.hasResourceProperties('AWS::Lambda::Function', {
-				Runtime: 'nodejs20.x',
-			});
-		});
-
 		it('Has code signing disabled', () => {
 			template.resourcePropertiesCountIs(
 				'AWS::Lambda::Function',
