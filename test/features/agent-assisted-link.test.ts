@@ -15,6 +15,7 @@ const mockContext: Context = {
 		securityKeyId: 'placeholder',
 		securityKeyCertificateContent:
 			'-----BEGIN CERTIFICATE-----\\n-----END CERTIFICATE-----\\n',
+		workspaceApp: true,
 	},
 	c3: {
 		env: C3Environment.Prod,
