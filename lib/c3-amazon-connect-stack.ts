@@ -26,6 +26,7 @@ import {
 	validateFeaturesContext,
 	validateOptionsContext,
 } from './models';
+import { existsSync, mkdirSync, writeFileSync } from 'fs';
 
 export class C3AmazonConnectStack extends Stack {
 	private c3BaseUrl: string;
@@ -127,7 +128,10 @@ export class C3AmazonConnectStack extends Stack {
 			this.featuresContext.agentAssistedIVR ||
 			this.featuresContext.agentAssistedLink
 		) {
-			this.create3rdPartyApp();
+			const appUrl = this.getAppUrl();
+			if (this.amazonConnectContext.workspaceApp) {
+				this.create3rdPartyApp(appUrl);
+			}
 		}
 	}
 
@@ -396,11 +400,48 @@ export class C3AmazonConnectStack extends Stack {
 	/**
 	 * Creates a 3rd party application to be used for agent-assisted payments and associates it with your Amazon Connect instance.
 	 *
+	 * @param appUrl The URL for the 3rd party application.
 	 * This app is required in order for an agent to initiate a payment while on a call with a customer. Once created, it will show as
 	 * an app in the agent workspace. NOTE: You will also have to enable this app to viewed on the security profile for your agents.
 	 */
-	private create3rdPartyApp(): void {
+	private create3rdPartyApp(appUrl: string): void {
 		console.log('Creating 3rd party application...');
+
+		// Create the app.
+		const stackLabelTitleCase =
+			this.stackLabel.charAt(0).toUpperCase() + this.stackLabel.slice(1);
+		const appLabel = this.stackLabel ? ` - ${stackLabelTitleCase}` : '';
+		const application = new CfnApplication(
+			this,
+			`C3ConnectApp${stackLabelTitleCase}`,
+			{
+				name: 'Payment Request' + appLabel, // App name is unfortunately required to be unique to create.
+				namespace: `c3-payment-${this.stackLabel}`,
+				description: 'Agent application for collecting payments with C3.',
+				permissions: ['User.Details.View', 'Contact.Details.View'],
+				applicationSourceConfig: {
+					externalUrlConfig: {
+						accessUrl: appUrl,
+						approvedOrigins: [], // Don't allow any other origins.
+					},
+				},
+			},
+		);
+
+		// Associate the app with the Amazon Connect instance.
+		new CfnIntegrationAssociation(this, `C3ConnectIntegrationApp`, {
+			instanceId: this.amazonConnectContext.instanceArn,
+			integrationType: 'APPLICATION',
+			integrationArn: application.attrApplicationArn,
+		});
+	}
+
+	/**
+	 * Gets the URL to be used for the C3 Payment Request app.
+	 *
+	 * @returns The URL for the app.
+	 */
+	private getAppUrl(): string {
 		const instanceId = this.amazonConnectContext.instanceArn.split('/')[1];
 
 		// Set params for IVR features.
@@ -423,32 +464,17 @@ export class C3AmazonConnectStack extends Stack {
 			configuredFeatureParams += `&subjectLookup=${this.featuresContext.subjectLookup}`;
 		}
 
-		// Create the app.
-		const stackLabelTitleCase =
-			this.stackLabel.charAt(0).toUpperCase() + this.stackLabel.slice(1);
-		const appLabel = this.stackLabel ? ` - ${stackLabelTitleCase}` : '';
-		const application = new CfnApplication(
-			this,
-			`C3ConnectApp${stackLabelTitleCase}`,
-			{
-				name: 'Payment Request' + appLabel, // App name is unfortunately required to be unique to create.
-				namespace: `c3-payment-${this.stackLabel}`,
-				description: 'Agent application for collecting payments with C3.',
-				permissions: ['User.Details.View', 'Contact.Details.View'],
-				applicationSourceConfig: {
-					externalUrlConfig: {
-						accessUrl: `https://${this.c3Context.vendorId}.${this.c3AppUrlFragment}/agent-workspace?contactCenter=amazon&instanceId=${instanceId}&region=${region}${agentAssistedIVRParams}${configuredFeatureParams}`,
-						approvedOrigins: [], // Don't allow any other origins.
-					},
-				},
-			},
+		const appUrl = `https://${this.c3Context.vendorId}.${this.c3AppUrlFragment}/agent-workspace?contactCenter=amazon&instanceId=${instanceId}&region=${region}${agentAssistedIVRParams}${configuredFeatureParams}`;
+
+		// Write the app URL to txt file.
+		if (!existsSync('./exports')) {
+			mkdirSync('./exports');
+		}
+		writeFileSync(
+			'./exports/C3WorkspaceAppUrl.txt',
+			`🌐 Your C3 Payment Request app URL is:\n\n${appUrl}\n`,
 		);
 
-		// Associate the app with the Amazon Connect instance.
-		new CfnIntegrationAssociation(this, `C3ConnectIntegrationApp`, {
-			instanceId: this.amazonConnectContext.instanceArn,
-			integrationType: 'APPLICATION',
-			integrationArn: application.attrApplicationArn,
-		});
+		return appUrl;
 	}
 }

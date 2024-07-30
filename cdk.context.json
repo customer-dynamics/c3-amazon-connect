@@ -3,7 +3,8 @@
 	"amazonConnect": {
 		"instanceArn": "",
 		"securityKeyId": "",
-		"securityKeyCertificateContent": ""
+		"securityKeyCertificateContent": "",
+		"workspaceApp": true
 	},
 	"c3": {
 		"env": "prod",
