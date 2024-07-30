@@ -16,6 +16,7 @@ import { getSubjectLookupFlowContent } from '../connect/content-transformations'
 import { AmazonConnectContext, OptionsContext } from '../models';
 import { PolicyStatement } from 'aws-cdk-lib/aws-iam';
 import { writeFileToExports } from '../helpers/file';
+import { policyStatements } from '../lambda/subject-lookup-policy';
 
 /**
  * Class for creating the necessary resources to facilitate subject lookup in agent-assisted payment scenarios.
@@ -65,12 +66,17 @@ export class SubjectLookup {
 				: undefined,
 		});
 
-		// Update this with any additional permissions that the function needs for your subject lookup.
-		// const subjectLookupPolicy = new PolicyStatement({
-		// 	actions: [],
-		// 	resources: [],
-		// });
-		// this.subjectLookupFunction.addToRolePolicy(subjectLookupPolicy);
+		// Add any custom policy statements to the Lambda role.
+		for (const policyStatement of policyStatements) {
+			if (
+				!policyStatement.actions?.length ||
+				!policyStatement.resources?.length
+			) {
+				continue; // Skip empty policy statements.
+			}
+			const subjectLookupPolicy = new PolicyStatement(policyStatement);
+			this.subjectLookupFunction.addToRolePolicy(subjectLookupPolicy);
+		}
 	}
 
 	/**
