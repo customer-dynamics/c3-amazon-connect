@@ -7,8 +7,11 @@ If you are unable to use the standard `npm run deploy` process using the CDK, yo
 It might be necessary to use the alternative import method in the following instances:
 
 - Your user lacks the Amazon Elastic Container Registry (ECR) permissions required for the CDK to deploy.
-- Your AWS account was set up through [Salesforce Service Cloud Voice](https://trailhead.salesforce.com/content/learn/modules/service-cloud-voice/service-voice-learn).
-  - This prevents even your _root_ user from having ECR permissions.
+- Your AWS account was set up through [Salesforce Service Cloud Voice](https://trailhead.salesforce.com/content/learn/modules/service-cloud-voice/service-voice-learn) (specifically the _SVC with Amazon Connect_ SKU).
+  - This prevents even your _root_ user from having ECR permissions and they cannot be added.
+
+> [!TIP]
+> If you are using Salesforce Service Cloud Voice, ensure that the `amazonConnect.workspaceApp` and `options.codeSigning` values are set to `false` in your `cdk.context.json` file. Your account will not have the necessary permissions for these items.
 
 ## Process
 
