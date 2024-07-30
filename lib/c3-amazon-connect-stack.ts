@@ -128,7 +128,7 @@ export class C3AmazonConnectStack extends Stack {
 			this.featuresContext.agentAssistedIVR ||
 			this.featuresContext.agentAssistedLink
 		) {
-			const appUrl = this.getAppUrl();
+			const appUrl = this.getAppUrl(!this.amazonConnectContext.workspaceApp);
 			if (this.amazonConnectContext.workspaceApp) {
 				this.create3rdPartyApp(appUrl);
 			}
@@ -439,9 +439,10 @@ export class C3AmazonConnectStack extends Stack {
 	/**
 	 * Gets the URL to be used for the C3 Payment Request app.
 	 *
+	 * @param customEmbed Whether to use a custom embed URL for the app.
 	 * @returns The URL for the app.
 	 */
-	private getAppUrl(): string {
+	private getAppUrl(customEmbed: boolean): string {
 		const instanceId = this.amazonConnectContext.instanceArn.split('/')[1];
 
 		// Set params for IVR features.
@@ -462,6 +463,9 @@ export class C3AmazonConnectStack extends Stack {
 		}
 		if (this.featuresContext.subjectLookup) {
 			configuredFeatureParams += `&subjectLookup=${this.featuresContext.subjectLookup}`;
+		}
+		if (customEmbed) {
+			configuredFeatureParams += '&customEmbed=true';
 		}
 
 		const appUrl = `https://${this.c3Context.vendorId}.${this.c3AppUrlFragment}/agent-workspace?contactCenter=amazon&instanceId=${instanceId}&region=${region}${agentAssistedIVRParams}${configuredFeatureParams}`;
