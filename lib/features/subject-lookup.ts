@@ -6,7 +6,6 @@ import {
 	CfnQuickConnect,
 } from 'aws-cdk-lib/aws-connect';
 import { Code, CodeSigningConfig, Function } from 'aws-cdk-lib/aws-lambda';
-import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import { join } from 'path';
 
 import {
@@ -16,6 +15,7 @@ import {
 import { getSubjectLookupFlowContent } from '../connect/content-transformations';
 import { AmazonConnectContext, OptionsContext } from '../models';
 import { PolicyStatement } from 'aws-cdk-lib/aws-iam';
+import { writeFileToExports } from '../helpers/file';
 
 /**
  * Class for creating the necessary resources to facilitate subject lookup in agent-assisted payment scenarios.
@@ -100,10 +100,7 @@ export class SubjectLookup {
 			this.subjectLookupFunction,
 			this.sendAgentMessageFunction,
 		);
-		if (!existsSync('./exports')) {
-			mkdirSync('./exports');
-		}
-		writeFileSync('./exports/C3SubjectLookupFlow', subjectLookupFlowContent);
+		writeFileToExports('C3SubjectLookupFlow.json', subjectLookupFlowContent);
 		this.subjectLookupFlow = new CfnContactFlow(
 			this.stack,
 			'C3SubjectLookupFlow',

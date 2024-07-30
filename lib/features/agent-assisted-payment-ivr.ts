@@ -13,7 +13,6 @@ import {
 	Role,
 } from 'aws-cdk-lib/aws-iam';
 import { Code, CodeSigningConfig, Function } from 'aws-cdk-lib/aws-lambda';
-import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import { join } from 'path';
 
 import {
@@ -23,6 +22,7 @@ import {
 import { getSelfServicePaymentIVRFlowContent } from '../connect/content-transformations';
 import { Secret } from 'aws-cdk-lib/aws-secretsmanager';
 import { AmazonConnectContext, C3Context, OptionsContext } from '../models';
+import { writeFileToExports } from '../helpers/file';
 
 /**
  * Class for creating the necessary resources to facilitate agent-assisted payments collected through IVR.
@@ -120,11 +120,8 @@ export class AgentAssistedPaymentIVR {
 			this.amazonConnectContext.securityKeyId,
 			this.amazonConnectContext.securityKeyCertificateContent,
 		);
-		if (!existsSync('./exports')) {
-			mkdirSync('./exports');
-		}
-		writeFileSync(
-			'./exports/C3AgentAssistedPaymentIVRFlow',
+		writeFileToExports(
+			'C3AgentAssistedPaymentIVRFlow.json',
 			c3PaymentFlowContent,
 		);
 		this.ivrPaymentFlow = new CfnContactFlow(

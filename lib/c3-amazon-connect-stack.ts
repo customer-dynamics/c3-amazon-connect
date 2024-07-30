@@ -26,7 +26,7 @@ import {
 	validateFeaturesContext,
 	validateOptionsContext,
 } from './models';
-import { existsSync, mkdirSync, writeFileSync } from 'fs';
+import { writeFileToExports } from './helpers/file';
 
 export class C3AmazonConnectStack extends Stack {
 	private c3BaseUrl: string;
@@ -465,16 +465,10 @@ export class C3AmazonConnectStack extends Stack {
 		}
 
 		const appUrl = `https://${this.c3Context.vendorId}.${this.c3AppUrlFragment}/agent-workspace?contactCenter=amazon&instanceId=${instanceId}&region=${region}${agentAssistedIVRParams}${configuredFeatureParams}`;
-
-		// Write the app URL to txt file.
-		if (!existsSync('./exports')) {
-			mkdirSync('./exports');
-		}
-		writeFileSync(
-			'./exports/C3WorkspaceAppUrl.txt',
+		writeFileToExports(
+			'C3WorkspaceAppUrl.txt',
 			`🌐 Your C3 Payment Request app URL is:\n\n${appUrl}\n`,
 		);
-
 		return appUrl;
 	}
 }
