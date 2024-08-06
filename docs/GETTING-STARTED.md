@@ -152,7 +152,7 @@ C3 for Amazon Connect can also be used within Salesforce to facilitate payments.
 
 With the resources deployed and configured, you can now begin using the C3 Amazon Connect resources to provide a more seamless experience for your agents and customers.
 
-For more information on how to use the features, please reference the [agent user manual](https://stonly.com/guide/en/c3-for-amazon-connect-4aD1PSTbrN/Steps/3598750).
+For more information on how to use the features, please reference the [agent user manual](https://customerdynamics.stonly.com/kb/guide/en/c3-for-amazon-connect-4aD1PSTbrN/Steps/3598750).
 
 ### Test Cards and Bank Accounts
 

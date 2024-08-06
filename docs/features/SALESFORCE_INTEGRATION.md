@@ -136,4 +136,4 @@ Ensure that the _Payment IVR_ (and _Subject Lookup_) quick connects are displayi
 
 Test the entire integration by making a call to your Amazon Connect inbound number and attempting to collect a payment through the app.
 
-For more information on how to use C3 for Amazon Connect, please refer to the [agent user manual](https://stonly.com/guide/en/c3-for-amazon-connect-4aD1PSTbrN/Steps/3598750).
+For more information on how to use C3 for Amazon Connect, please refer to the [agent user manual](https://customerdynamics.stonly.com/kb/guide/en/c3-for-amazon-connect-4aD1PSTbrN/Steps/3598750).
