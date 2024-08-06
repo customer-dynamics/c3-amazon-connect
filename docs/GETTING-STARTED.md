@@ -74,9 +74,9 @@ In order to facilitate this process, you will need to provide some values to the
 
 ##### Options
 
-| Value         | Description                                                                                      |
-| ------------- | ------------------------------------------------------------------------------------------------ |
-| `codeSigning` | Whether to support code signing for Lambda resources. This is recommended for security purposes. |
+| Value         | Description                                                                                                                        |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `codeSigning` | Whether to support code signing for Lambda resources. This is recommended for security purposes, but may be disabled if necessary. |
 
 ##### Other
 
