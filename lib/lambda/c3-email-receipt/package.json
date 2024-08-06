@@ -8,7 +8,7 @@
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"dependencies": {
-		"@aws-sdk/client-secrets-manager": "^3.620.1"
+		"@aws-sdk/client-secrets-manager": "^3.624.0"
 	},
 	"devDependencies": {}
 }
