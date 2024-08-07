@@ -2,6 +2,7 @@
 !jest.config.js
 !release.config.js
 !lib/lambda/**/*.js
+lib/lambda/subject-lookup-policy.js
 *.d.ts
 node_modules
 .context-values.json
@@ -11,3 +12,4 @@ exports
 # CDK asset staging directory
 .cdk.staging
 cdk.out
+lib/lambda/subject-lookup-policy.js

@@ -20,10 +20,13 @@ import {
 	C3Context,
 	C3PaymentGateway,
 	FeaturesContext,
+	OptionsContext,
 	validateAmazonConnectContext,
 	validateC3Context,
 	validateFeaturesContext,
+	validateOptionsContext,
 } from './models';
+import { writeFileToExports } from './helpers/file';
 
 export class C3AmazonConnectStack extends Stack {
 	private c3BaseUrl: string;
@@ -34,6 +37,7 @@ export class C3AmazonConnectStack extends Stack {
 	private amazonConnectContext: AmazonConnectContext;
 	private c3Context: C3Context;
 	private featuresContext: FeaturesContext;
+	private optionsContext: OptionsContext;
 	private logoUrl: string;
 	private supportPhone: string;
 	private supportEmail: string;
@@ -55,7 +59,9 @@ export class C3AmazonConnectStack extends Stack {
 		this.setC3BaseUrl();
 
 		// Create resources needed for all features.
-		this.createCodeSigningConfig();
+		if (this.optionsContext.codeSigning) {
+			this.createCodeSigningConfig();
+		}
 		this.createC3ApiKeySecret();
 
 		// Create resources needed for IVR payments.
@@ -122,7 +128,10 @@ export class C3AmazonConnectStack extends Stack {
 			this.featuresContext.agentAssistedIVR ||
 			this.featuresContext.agentAssistedLink
 		) {
-			this.create3rdPartyApp();
+			const appUrl = this.getAppUrl(!this.amazonConnectContext.workspaceApp);
+			if (this.amazonConnectContext.workspaceApp) {
+				this.create3rdPartyApp(appUrl);
+			}
 		}
 	}
 
@@ -140,6 +149,9 @@ export class C3AmazonConnectStack extends Stack {
 
 		this.featuresContext = this.node.tryGetContext('features');
 		validateFeaturesContext(this.featuresContext);
+
+		this.optionsContext = this.node.tryGetContext('options');
+		validateOptionsContext(this.optionsContext);
 
 		this.logoUrl = this.node.tryGetContext('logoUrl');
 		this.supportPhone = this.node.tryGetContext('supportPhone');
@@ -259,7 +271,9 @@ export class C3AmazonConnectStack extends Stack {
 					SUPPORT_PHONE: this.supportPhone,
 					SUPPORT_EMAIL: this.supportEmail,
 				},
-				codeSigningConfig: this.codeSigningConfig,
+				codeSigningConfig: this.optionsContext.codeSigning
+					? this.codeSigningConfig
+					: undefined,
 			},
 		);
 
@@ -291,7 +305,9 @@ export class C3AmazonConnectStack extends Stack {
 					C3_PAYMENT_GATEWAY: this.c3Context.paymentGateway,
 					CONNECT_SECURITY_KEY_ID: this.amazonConnectContext.securityKeyId,
 				},
-				codeSigningConfig: this.codeSigningConfig,
+				codeSigningConfig: this.optionsContext.codeSigning
+					? this.codeSigningConfig
+					: undefined,
 			},
 		);
 
@@ -340,7 +356,9 @@ export class C3AmazonConnectStack extends Stack {
 				C3_BASE_URL: this.c3BaseUrl,
 				C3_API_KEY_SECRET_ID: this.c3ApiKeySecret.secretName,
 			},
-			codeSigningConfig: this.codeSigningConfig,
+			codeSigningConfig: this.optionsContext.codeSigning
+				? this.codeSigningConfig
+				: undefined,
 		});
 
 		// Create the policy for getting secret values.
@@ -366,7 +384,9 @@ export class C3AmazonConnectStack extends Stack {
 				C3_BASE_URL: this.c3BaseUrl,
 				C3_API_KEY_SECRET_ID: this.c3ApiKeySecret.secretName,
 			},
-			codeSigningConfig: this.codeSigningConfig,
+			codeSigningConfig: this.optionsContext.codeSigning
+				? this.codeSigningConfig
+				: undefined,
 		});
 
 		// Create the policy for getting secret values.
@@ -380,11 +400,49 @@ export class C3AmazonConnectStack extends Stack {
 	/**
 	 * Creates a 3rd party application to be used for agent-assisted payments and associates it with your Amazon Connect instance.
 	 *
+	 * @param appUrl The URL for the 3rd party application.
 	 * This app is required in order for an agent to initiate a payment while on a call with a customer. Once created, it will show as
 	 * an app in the agent workspace. NOTE: You will also have to enable this app to viewed on the security profile for your agents.
 	 */
-	private create3rdPartyApp(): void {
+	private create3rdPartyApp(appUrl: string): void {
 		console.log('Creating 3rd party application...');
+
+		// Create the app.
+		const stackLabelTitleCase =
+			this.stackLabel.charAt(0).toUpperCase() + this.stackLabel.slice(1);
+		const appLabel = this.stackLabel ? ` - ${stackLabelTitleCase}` : '';
+		const application = new CfnApplication(
+			this,
+			`C3ConnectApp${stackLabelTitleCase}`,
+			{
+				name: 'Payment Request' + appLabel, // App name is unfortunately required to be unique to create.
+				namespace: `c3-payment-${this.stackLabel}`,
+				description: 'Agent application for collecting payments with C3.',
+				permissions: ['User.Details.View', 'Contact.Details.View'],
+				applicationSourceConfig: {
+					externalUrlConfig: {
+						accessUrl: appUrl,
+						approvedOrigins: [], // Don't allow any other origins.
+					},
+				},
+			},
+		);
+
+		// Associate the app with the Amazon Connect instance.
+		new CfnIntegrationAssociation(this, `C3ConnectIntegrationApp`, {
+			instanceId: this.amazonConnectContext.instanceArn,
+			integrationType: 'APPLICATION',
+			integrationArn: application.attrApplicationArn,
+		});
+	}
+
+	/**
+	 * Gets the URL to be used for the C3 Payment Request app.
+	 *
+	 * @param customEmbed Whether to use a custom embed URL for the app.
+	 * @returns The URL for the app.
+	 */
+	private getAppUrl(customEmbed: boolean): string {
 		const instanceId = this.amazonConnectContext.instanceArn.split('/')[1];
 
 		// Set params for IVR features.
@@ -406,33 +464,15 @@ export class C3AmazonConnectStack extends Stack {
 		if (this.featuresContext.subjectLookup) {
 			configuredFeatureParams += `&subjectLookup=${this.featuresContext.subjectLookup}`;
 		}
+		if (customEmbed) {
+			configuredFeatureParams += '&customEmbed=true';
+		}
 
-		// Create the app.
-		const stackLabelTitleCase =
-			this.stackLabel.charAt(0).toUpperCase() + this.stackLabel.slice(1);
-		const appLabel = this.stackLabel ? ` - ${stackLabelTitleCase}` : '';
-		const application = new CfnApplication(
-			this,
-			`C3ConnectApp${stackLabelTitleCase}`,
-			{
-				name: 'Payment Request' + appLabel, // App name is unfortunately required to be unique to create.
-				namespace: `c3-payment-${this.stackLabel}`,
-				description: 'Agent application for collecting payments with C3.',
-				permissions: ['User.Details.View', 'Contact.Details.View'],
-				applicationSourceConfig: {
-					externalUrlConfig: {
-						accessUrl: `https://${this.c3Context.vendorId}.${this.c3AppUrlFragment}/agent-workspace?contactCenter=amazon&instanceId=${instanceId}&region=${region}${agentAssistedIVRParams}${configuredFeatureParams}`,
-						approvedOrigins: [], // Don't allow any other origins.
-					},
-				},
-			},
+		const appUrl = `https://${this.c3Context.vendorId}.${this.c3AppUrlFragment}/agent-workspace?contactCenter=amazon&instanceId=${instanceId}&region=${region}${agentAssistedIVRParams}${configuredFeatureParams}`;
+		writeFileToExports(
+			'C3WorkspaceAppUrl.txt',
+			`🌐 Your C3 Payment Request app URL is:\n\n${appUrl}\n`,
 		);
-
-		// Associate the app with the Amazon Connect instance.
-		new CfnIntegrationAssociation(this, `C3ConnectIntegrationApp`, {
-			instanceId: this.amazonConnectContext.instanceArn,
-			integrationType: 'APPLICATION',
-			integrationArn: application.attrApplicationArn,
-		});
+		return appUrl;
 	}
 }

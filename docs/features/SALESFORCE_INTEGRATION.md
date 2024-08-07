@@ -1,5 +1,12 @@
 # Salesforce Integration
 
+## Overview
+
+C3 for Amazon connect can be used within Salesforce to provide agents with a seamless experience when handling customer interactions. The configuration process depends on how you have Amazon Connect integrated with your Salesforce instance. There are two integrations that are supported by this project:
+
+1. **[Amazon Connect CTI Adapter](https://appexchange.salesforce.com/appxListingDetail?listingId=a0N3A00000EJH4yUAH)**: The Amazon Connect CTI Adapter allows for the Amazon Connect Contact Control Panel (CCP) to be embedded within Salesforce as the softphone for your agents.
+2. **[Salesforce Service Cloud Voice](https://aws.amazon.com/partners/amazon-connect-and-salesforce/)**: This integration is a managed package that provides a pre-built integration between Salesforce and Amazon Connect. It allows you to use [Salesforce Omni-Channel](https://www.salesforce.com/service/digital-customer-engagement-platform/) with Amazon Connect as your voice provider using the omni-channel softphone interface.
+
 ## Installation
 
 > [!NOTE]
@@ -9,25 +16,18 @@
 
 #### Find Your Workspace URL
 
-When you deployed resources to your AWS account through this project, a unique URL was generated for your agent workspace. Steps to find this URL are as follows:
+When you deployed resources to your AWS account through this project, a unique URL was generated for your agent workspace. After running `npm run synth` or `npm run deploy`, you will see this URL output in the console. It will look something like:
 
-1. Open the AWS Amazon Connect console
-2. Select your instance in the list
-3. Select "Third-party applications" in the left-hand menu
-4. Select the application named "Payment Request"
-5. Copy the value under "Access URL"
+```bash
+🌐 Your C3 Payment Request app URL is:
 
-It should be a long URL that looks something like this, if you are using the dev or staging C3 environments:
-
-```url
-https://some-vendor.{{c3Environment}}.c2a.link/agent-workspace?contactCenter=amazon&instanceId=some-guid&region=some-region&externalRoleArn=arn:aws:iam::000000000000:role/C3AmazonConnectStack-C3AgentAssistedIVRRole00000000-000000000000&subjectLookup=required-editable
+https://some-vendor.call2action.link/agent-workspace?contactCenter=amazon&instanceId=some-guid&region=some-region&externalRoleArn=${Token[TOKEN.261]}&subjectLookup=required-editable&customEmbed=true
 ```
 
-If you are using the production C3 environment, the URL will look like this:
+> [!TIP]
+> You can also find this URL at any time by looking at the `exports/C3WorkspaceAppUrl.txt` file.
 
-```url
-https://some-vendor.call2action.link/agent-workspace?contactCenter=amazon&instanceId=some-guid&region=some-region&externalRoleArn=arn:aws:iam::000000000000:role/C3AmazonConnectStack-C3AgentAssistedIVRRole00000000-000000000000&subjectLookup=required-editable
-```
+Replace the `${Token[TOKEN.261]}` value with the ARN of the IAM role that was created when you deployed the stack. Look in IAM for a role named "AmazonConnectExternalRole", copy the ARN, and replace the placeholder in the URL.
 
 #### Create Visualforce Page
 
@@ -40,7 +40,7 @@ Replace the content of the _Visualforce Markup_ tab with the following code:
 ```html
 <apex:page>
 	<iframe
-		src="{{ Your URL from the previous step}}&customEmbed=true"
+		src="{{ Your URL from the previous step }}"
 		style="height: 100vh; width: 100%; border: none;"
 	>
 	</iframe>
@@ -75,6 +75,10 @@ Your app page is now ready for use! Verify that your agents can see the new app 
 
 ### Configure Amazon Connect Integration
 
+This step will vary depending on how you have Amazon Connect integrated with Salesforce. Please follow the appropriate guide below:
+
+#### CTI Adapter Configuration
+
 #### Install CTI Adapter
 
 In order to integrate Amazon Connect into your Salesforce Lightning instance, you will need to install the Amazon Connect CTI Adapter. This adapter will allow you to connect your Amazon Connect instance to Salesforce and provide your agents with the ability to make and receive calls with the CCP interface within Salesforce.
@@ -84,7 +88,7 @@ For detailed instructions on how to install the CTI Adapter, please reference th
 > [!IMPORTANT]
 > Please follow the directions closely. The CTI Adapter requires a number of configuration steps to be completed in order to function properly.
 
-#### Enable CCP Softphone
+##### Enable CCP Softphone
 
 Navigate back to the App Manager in the Salesforce _Service Setup_ page. Find the app that your agents will be using. As before, examples could be the _Service Console_ or _Sales Console_ app. Scroll to the far right of the table, click the dropdown arrow, and select "Edit".
 
@@ -92,7 +96,7 @@ Select the "Utility Items" tab and click the "Add Utility Item" button. Search f
 
 Verify that your agents can see the new softphone option in their utility items at the bottom of the screen.
 
-#### Enable Attribute Display in the CCP Softphone
+##### Enable Attribute Display in the CCP Softphone
 
 Because the "Payment Request" app cannot directly communicate with Amazon Connect when embedded in Salesforce, agents will need to pass some necessary information from Salesforce to the Payment Request app. To display this information to the agent in the CCP interface, you will need to modify the CTI adapter that you installed.
 
@@ -102,7 +106,7 @@ At the bottom of the page, find the "Attributes" section and hit "New". Add a ne
 
 ![Screenshot of a dialogue screen in Salesforce named "New AC CTI Attribute". Properties are populated with values required for the integration.](../images/salesforce-new-attribute.png 'Contact ID CTI Attribute')
 
-### Set the Contact ID Attribute in Amazon Connect Flow
+#### Set the Contact ID Attribute in Amazon Connect Flow
 
 In your initial contact flow, you will need to set the `ContactId` contact attribute _before_ you transfer the call to a queue. This attribute will be used by the Salesforce CTI adapter to display the contact ID in the CCP interface.
 
@@ -118,8 +122,18 @@ Within the _Set contact attributes_ block, configure the following settings:
 
 Save the changes to your block, then save and publish your contact flow.
 
+#### Service Cloud Voice Configuration
+
+#### Install Service Cloud Voice
+
+Follow the steps in the [Service Cloud Voice guide](https://help.salesforce.com/s/articleView?id=sf.voice_setup_enable.htm&type=5) to get set up with Service Cloud Voice. This will provision an AWS account and Amazon Connect instance for you.
+
+#### Configure Omni-Channel
+
+Ensure that the _Payment IVR_ (and _Subject Lookup_) quick connects are displaying in the Salesforce Omni-Channel widget.
+
 ## Test the Integration
 
 Test the entire integration by making a call to your Amazon Connect inbound number and attempting to collect a payment through the app.
 
-For more information on how to use C3 for Amazon Connect, please refer to the [agent user manual](https://stonly.com/guide/en/c3-for-amazon-connect-4aD1PSTbrN/Steps/3598750).
+For more information on how to use C3 for Amazon Connect, please refer to the [agent user manual](https://customerdynamics.stonly.com/kb/guide/en/c3-for-amazon-connect-4aD1PSTbrN/Steps/3598750).

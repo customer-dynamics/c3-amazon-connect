@@ -48,11 +48,12 @@ In order to facilitate this process, you will need to provide some values to the
 
 ##### Amazon Connect
 
-| Value                           | Description                                                                                                                                                                                                                                                         |
-| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `instanceArn`                   | The full ARN of your Amazon Connect Instance. You can find this in the AWS console and it should look something like `"arn:aws:connect:us-west-2:815407490078:instance/5c1f1fba-d5f1-4155-9e09-496456e58912"`.                                                      |
-| `securityKeyId`                 | The ID of the security key that you configured for your Amazon Connect instance. You can find this in the AWS console.                                                                                                                                              |
-| `securityKeyCertificateContent` | The full content of the certificate associated with your Amazon Connect security key. Begins with `-----BEGIN CERTIFICATE-----` and ends with`-----END CERTIFICATE-----`. **Note**: This must be contained within a single string with newlines denoted with `\\n`. |
+| Value                           | Description                                                                                                                                                                                                                                                                                             |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `instanceArn`                   | The full ARN of your Amazon Connect Instance. You can find this in the AWS console and it should look something like `"arn:aws:connect:us-west-2:815407490078:instance/5c1f1fba-d5f1-4155-9e09-496456e58912"`.                                                                                          |
+| `securityKeyId`                 | The ID of the security key that you configured for your Amazon Connect instance. You can find this in the AWS console.                                                                                                                                                                                  |
+| `securityKeyCertificateContent` | The full content of the certificate associated with your Amazon Connect security key. Begins with `-----BEGIN CERTIFICATE-----` and ends with`-----END CERTIFICATE-----`. **Note**: This must be contained within a single string with newlines denoted with `\\n`.                                     |
+| `workspaceApp`                  | Whether to create the C3 Payment Request app for the Amazon Connect agent workspace. Defaults to `true`. You may want to set this to `false` if you plan to use the workspace through another interface, like Salesforce. **Note**: This option does nothing if no agent-assisted features are enabled. |
 
 ##### C3
 
@@ -70,6 +71,12 @@ In order to facilitate this process, you will need to provide some values to the
 | `agentAssistedLink` | **Currently unsupported**. This feature will be coming soon.                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | `selfServiceIVR`    | Determines whether or not to deploy resources necessary to support a self-service payment IVR. Defaults to `true`. If set to `false`, some resources will not be deployed.<br><br>For more information, see the [self-service payment IVR](./features/SELF_SERVICE_PAYMENT_IVR.md) documentation.                                                                                                                                                                                       |
 | `subjectLookup`     | **Optional**. Additional feature for agent-assisted IVR payments. If set, this will allow the agent to pull details about the subject to pre-fill information in the payment request (contact name, contact email, and amount due). Valid options are `"required-fixed"`, `"required-editable"`, and `"optional-editable"`. Leave blank if you don't want to support subject lookup.<br><br>For more information, see the [subject lookup](./features/SUBJECT_LOOKUP.md) documentation. |
+
+##### Options
+
+| Value         | Description                                                                                                                        |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `codeSigning` | Whether to support code signing for Lambda resources. This is recommended for security purposes, but may be disabled if necessary. |
 
 ##### Other
 
@@ -145,7 +152,7 @@ C3 for Amazon Connect can also be used within Salesforce to facilitate payments.
 
 With the resources deployed and configured, you can now begin using the C3 Amazon Connect resources to provide a more seamless experience for your agents and customers.
 
-For more information on how to use the features, please reference the [agent user manual](https://stonly.com/guide/en/c3-for-amazon-connect-4aD1PSTbrN/Steps/3598750).
+For more information on how to use the features, please reference the [agent user manual](https://customerdynamics.stonly.com/kb/guide/en/c3-for-amazon-connect-4aD1PSTbrN/Steps/3598750).
 
 ### Test Cards and Bank Accounts
 

@@ -1,9 +1,9 @@
 import { Stack } from 'aws-cdk-lib';
 import { getPaymentIVRFlowModuleContent } from '../connect/content-transformations';
 import { CfnContactFlowModule } from 'aws-cdk-lib/aws-connect';
-import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import { Function } from 'aws-cdk-lib/aws-lambda';
 import { AmazonConnectContext } from '../models';
+import { writeFileToExports } from '../helpers/file';
 
 /**
  * Class for creating the necessary resources to facilitate self-service payments collected through IVR.
@@ -41,11 +41,8 @@ export class SelfServicePaymentIVR {
 			this.amazonConnectContext.securityKeyId,
 			this.amazonConnectContext.securityKeyCertificateContent,
 		);
-		if (!existsSync('./exports')) {
-			mkdirSync('./exports');
-		}
-		writeFileSync(
-			'./exports/C3PaymentIVRFlowModule',
+		writeFileToExports(
+			'C3PaymentIVRFlowModule.json',
 			paymentIVRFlowModuleContent,
 		);
 		new CfnContactFlowModule(this.stack, 'C3PaymentIVRFlowModule', {

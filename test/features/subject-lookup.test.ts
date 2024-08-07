@@ -15,6 +15,7 @@ const mockContext: Context = {
 		securityKeyId: 'placeholder',
 		securityKeyCertificateContent:
 			'-----BEGIN CERTIFICATE-----\\n-----END CERTIFICATE-----\\n',
+		workspaceApp: true,
 	},
 	c3: {
 		env: C3Environment.Prod,
@@ -26,6 +27,9 @@ const mockContext: Context = {
 		agentAssistedLink: false,
 		selfServiceIVR: false,
 		subjectLookup: SubjectLookupMode.OptionalEditable,
+	},
+	options: {
+		codeSigning: true,
 	},
 	logoUrl: 'placeholder',
 	supportPhone: 'placeholder',

@@ -2,6 +2,7 @@ export interface AmazonConnectContext {
 	instanceArn: string;
 	securityKeyId: string;
 	securityKeyCertificateContent: string;
+	workspaceApp: boolean;
 }
 
 /**

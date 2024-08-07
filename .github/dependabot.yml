@@ -15,6 +15,10 @@ updates:
       cdk:
         patterns:
           - 'aws-cdk*'
+    ignore:
+      # Ignore all Node types major updates to keep in sync with local version
+      - dependency-name: '@types/node'
+        update-types: ['version-update:semver-major']
 
   # GitHub Actions
   - package-ecosystem: 'github-actions'

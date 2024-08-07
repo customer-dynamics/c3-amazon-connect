@@ -13,7 +13,6 @@ import {
 	Role,
 } from 'aws-cdk-lib/aws-iam';
 import { Code, CodeSigningConfig, Function } from 'aws-cdk-lib/aws-lambda';
-import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import { join } from 'path';
 
 import {
@@ -22,7 +21,8 @@ import {
 } from '../helpers/lambda';
 import { getSelfServicePaymentIVRFlowContent } from '../connect/content-transformations';
 import { Secret } from 'aws-cdk-lib/aws-secretsmanager';
-import { AmazonConnectContext, C3Context } from '../models';
+import { AmazonConnectContext, C3Context, OptionsContext } from '../models';
+import { writeFileToExports } from '../helpers/file';
 
 /**
  * Class for creating the necessary resources to facilitate agent-assisted payments collected through IVR.
@@ -73,6 +73,9 @@ export class AgentAssistedPaymentIVR {
 
 		// Create function.
 		const c3Context = this.stack.node.tryGetContext('c3') as C3Context;
+		const optionsContext = this.stack.node.tryGetContext(
+			'options',
+		) as OptionsContext;
 		this.sendAgentMessageFunction = new Function(
 			this.stack,
 			'C3SendAgentMessage',
@@ -87,7 +90,9 @@ export class AgentAssistedPaymentIVR {
 					C3_BASE_URL: this.c3BaseUrl,
 					C3_API_KEY_SECRET_ID: this.c3ApiKeySecret.secretName,
 				},
-				codeSigningConfig: this.codeSigningConfig,
+				codeSigningConfig: optionsContext.codeSigning
+					? this.codeSigningConfig
+					: undefined,
 			},
 		);
 
@@ -115,11 +120,8 @@ export class AgentAssistedPaymentIVR {
 			this.amazonConnectContext.securityKeyId,
 			this.amazonConnectContext.securityKeyCertificateContent,
 		);
-		if (!existsSync('./exports')) {
-			mkdirSync('./exports');
-		}
-		writeFileSync(
-			'./exports/C3AgentAssistedPaymentIVRFlow',
+		writeFileToExports(
+			'C3AgentAssistedPaymentIVRFlow.json',
 			c3PaymentFlowContent,
 		);
 		this.ivrPaymentFlow = new CfnContactFlow(

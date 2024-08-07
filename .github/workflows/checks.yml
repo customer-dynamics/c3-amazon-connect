@@ -35,7 +35,8 @@ jobs:
               "amazonConnect": {
                 "instanceArn": "placeholder",
                 "securityKeyId": "placeholder",
-                "securityKeyCertificateContent": "-----BEGIN CERTIFICATE-----\\n-----END CERTIFICATE-----\\n"
+                "securityKeyCertificateContent": "-----BEGIN CERTIFICATE-----\\n-----END CERTIFICATE-----\\n",
+                "workspaceApp": true
               },
               "c3": {
                 "env": "dev",
@@ -47,6 +48,9 @@ jobs:
                 "agentAssistedLink": true,
                 "selfServiceIVR": true,
                 "subjectLookup": "required-editable"
+              },
+              "options": {
+                "codeSigning": true
               },
               "logoUrl": "placeholder",
               "supportPhone": "placeholder",

@@ -7,20 +7,6 @@
 			"y": 677.6
 		},
 		"ActionMetadata": {
-			"Try Expiration Date Again": {
-				"position": {
-					"x": 2589.6,
-					"y": 28
-				},
-				"isFriendlyName": true
-			},
-			"Try Routing Number Again": {
-				"position": {
-					"x": 2540,
-					"y": 870.4
-				},
-				"isFriendlyName": true
-			},
 			"5a505241-be5a-4437-8d66-785eb1b0beca": {
 				"position": {
 					"x": 6692,
@@ -50,7 +36,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "1a126608-3ade-4597-811d-b345c8cef5a0",
+						"id": "822d4f1e-ced0-4336-b603-ae6b7709ee7e",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -69,7 +55,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "03c43e38-8c70-4d4b-8a8a-75edcb546fff",
+						"id": "b7eda77f-7301-4682-a299-564b836e874d",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -78,13 +64,6 @@
 						"value": "Timeout"
 					}
 				]
-			},
-			"Expiration Date Timeout": {
-				"position": {
-					"x": 2492.8,
-					"y": -591.2
-				},
-				"isFriendlyName": true
 			},
 			"Routing Number Timeout": {
 				"position": {
@@ -102,7 +81,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "859d9da5-79c7-47d4-90be-7cb938669bea",
+						"id": "91e62c7e-a5d1-42bc-8030-a5c6a44398d4",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -111,58 +90,6 @@
 						"value": "Timeout"
 					}
 				]
-			},
-			"Expiration Date Timeout Check": {
-				"position": {
-					"x": 2625.6,
-					"y": -388
-				},
-				"isFriendlyName": true,
-				"conditions": [],
-				"conditionMetadata": [
-					{
-						"id": "6c13caca-7110-489d-bd20-022f893314d7",
-						"operator": {
-							"name": "Equals",
-							"value": "Equals",
-							"shortDisplay": "="
-						},
-						"value": "Timeout"
-					}
-				]
-			},
-			"Get Expiration Date": {
-				"position": {
-					"x": 2526.4,
-					"y": -187.2
-				},
-				"isFriendlyName": true,
-				"conditionMetadata": [],
-				"countryCodePrefix": "+1"
-			},
-			"Report Card Number Entered": {
-				"position": {
-					"x": 2044.8,
-					"y": -172
-				},
-				"isFriendlyName": true,
-				"parameters": {
-					"LambdaFunctionARN": {
-						"displayName": "<<sendAgentMessageLambdaArn>>"
-					}
-				},
-				"dynamicMetadata": {
-					"EventText": false
-				}
-			},
-			"Get Routing Number": {
-				"position": {
-					"x": 2500.8,
-					"y": 646.4
-				},
-				"isFriendlyName": true,
-				"conditionMetadata": [],
-				"countryCodePrefix": "+1"
 			},
 			"Report Account Number Entered": {
 				"position": {
@@ -209,21 +136,6 @@
 				},
 				"dynamicParams": ["EncryptedAccountNumber"]
 			},
-			"Report Expiration Entered": {
-				"position": {
-					"x": 3006.4,
-					"y": -184.8
-				},
-				"isFriendlyName": true,
-				"parameters": {
-					"LambdaFunctionARN": {
-						"displayName": "<<sendAgentMessageLambdaArn>>"
-					}
-				},
-				"dynamicMetadata": {
-					"EventText": false
-				}
-			},
 			"Store Expiration Date": {
 				"position": {
 					"x": 2786.4,
@@ -239,21 +151,6 @@
 				},
 				"dynamicParams": ["ExpirationDate"]
 			},
-			"Report Routing Number Entered": {
-				"position": {
-					"x": 3012.8,
-					"y": 614.4
-				},
-				"isFriendlyName": true,
-				"parameters": {
-					"LambdaFunctionARN": {
-						"displayName": "<<sendAgentMessageLambdaArn>>"
-					}
-				},
-				"dynamicMetadata": {
-					"EventText": false
-				}
-			},
 			"Store Routing Number": {
 				"position": {
 					"x": 2779.2,
@@ -268,29 +165,6 @@
 					}
 				},
 				"dynamicParams": ["RoutingNumber"]
-			},
-			"Record Token": {
-				"position": {
-					"x": 3776.8,
-					"y": 387.2
-				},
-				"isFriendlyName": true,
-				"dynamicParams": []
-			},
-			"Report Payment Tokenized": {
-				"position": {
-					"x": 3997.6,
-					"y": 384
-				},
-				"isFriendlyName": true,
-				"parameters": {
-					"LambdaFunctionARN": {
-						"displayName": "<<sendAgentMessageLambdaArn>>"
-					}
-				},
-				"dynamicMetadata": {
-					"EventText": false
-				}
 			},
 			"Payment Success": {
 				"position": {
@@ -322,6 +196,109 @@
 					"EventText": false
 				}
 			},
+			"Check for Customer Email": {
+				"position": {
+					"x": 5120,
+					"y": 472
+				},
+				"isFriendlyName": true,
+				"conditions": [],
+				"conditionMetadata": [
+					{
+						"id": "0b87f91f-cb5a-4fde-aece-f78760d44a79",
+						"operator": {
+							"name": "Contains",
+							"value": "Contains",
+							"shortDisplay": "contains"
+						},
+						"value": "@"
+					}
+				]
+			},
+			"Check for Entered Info": {
+				"position": {
+					"x": -2976.8,
+					"y": 659.2
+				},
+				"isFriendlyName": true,
+				"conditions": [],
+				"conditionMetadata": [
+					{
+						"id": "03c47790-50f3-4972-a50f-ff7833d3a227",
+						"operator": {
+							"name": "Is greater than",
+							"value": "GreaterThan",
+							"shortDisplay": ">"
+						},
+						"value": "0"
+					}
+				]
+			},
+			"Report Customer Transferred": {
+				"position": {
+					"x": -1353.6,
+					"y": 561.6
+				},
+				"isFriendlyName": true,
+				"parameters": {
+					"LambdaFunctionARN": {
+						"displayName": "<<sendAgentMessageLambdaArn>>"
+					}
+				},
+				"dynamicMetadata": {
+					"EventText": false
+				}
+			},
+			"773c7dfc-3423-47e4-bf80-be55b0cd1947": {
+				"position": {
+					"x": -3140.8,
+					"y": 964.8
+				}
+			},
+			"Report Bank Account Selected": {
+				"position": {
+					"x": 1376,
+					"y": 584
+				},
+				"isFriendlyName": true,
+				"parameters": {
+					"LambdaFunctionARN": {
+						"displayName": "<<sendAgentMessageLambdaArn>>"
+					}
+				},
+				"dynamicMetadata": {
+					"EventText": false
+				}
+			},
+			"Report Bank Account Selected Again": {
+				"position": {
+					"x": 285.6,
+					"y": -236.8
+				},
+				"isFriendlyName": true,
+				"parameters": {
+					"LambdaFunctionARN": {
+						"displayName": "<<sendAgentMessageLambdaArn>>"
+					}
+				},
+				"dynamicMetadata": {
+					"EventText": false
+				}
+			},
+			"Agent Hold Error": {
+				"position": {
+					"x": -1571.2,
+					"y": 764.8
+				},
+				"isFriendlyName": true
+			},
+			"Receipt Success": {
+				"position": {
+					"x": 5581.6,
+					"y": 387.2
+				},
+				"isFriendlyName": true
+			},
 			"Email Receipt": {
 				"position": {
 					"x": 5361.6,
@@ -350,11 +327,83 @@
 					"EventText": false
 				}
 			},
+			"Receipt Error": {
+				"position": {
+					"x": 5804,
+					"y": 572
+				},
+				"isFriendlyName": true
+			},
+			"Report Credit Card Selected Again": {
+				"position": {
+					"x": 218.4,
+					"y": -461.6
+				},
+				"isFriendlyName": true,
+				"parameters": {
+					"LambdaFunctionARN": {
+						"displayName": "<<sendAgentMessageLambdaArn>>"
+					}
+				},
+				"dynamicMetadata": {
+					"EventText": false
+				}
+			},
+			"Payment Method Timeout": {
+				"position": {
+					"x": 424.8,
+					"y": 160.8
+				},
+				"isFriendlyName": true
+			},
+			"Set Payment Method to Bank": {
+				"position": {
+					"x": 1055.2,
+					"y": 572.8
+				},
+				"isFriendlyName": true,
+				"dynamicParams": []
+			},
 			"90dc6a63-2ae9-4c5f-b65f-75348779d0c6": {
 				"position": {
 					"x": 6472.8,
 					"y": 689.6
 				}
+			},
+			"Payment Request Error": {
+				"position": {
+					"x": -2152.8,
+					"y": 809.6
+				},
+				"isFriendlyName": true
+			},
+			"Report No Payment Info Error": {
+				"position": {
+					"x": -2376.8,
+					"y": 1015.2
+				},
+				"isFriendlyName": true,
+				"parameters": {
+					"LambdaFunctionARN": {
+						"displayName": "<<sendAgentMessageLambdaArn>>"
+					}
+				},
+				"dynamicMetadata": {
+					"EventText": false
+				}
+			},
+			"33d2c563-289f-4358-9500-fc1552cc9523": {
+				"position": {
+					"x": -1293.6,
+					"y": 957.6
+				}
+			},
+			"No Payment Information": {
+				"position": {
+					"x": -2148.8,
+					"y": 1009.6
+				},
+				"isFriendlyName": true
 			},
 			"Report Card Number Encryption Error": {
 				"position": {
@@ -416,205 +465,6 @@
 					"EventText": false
 				}
 			},
-			"Internal Error": {
-				"position": {
-					"x": 1321.6,
-					"y": 1040.8
-				},
-				"isFriendlyName": true
-			},
-			"Receipt Success": {
-				"position": {
-					"x": 5581.6,
-					"y": 387.2
-				},
-				"isFriendlyName": true
-			},
-			"Check for Customer Email": {
-				"position": {
-					"x": 5120,
-					"y": 472
-				},
-				"isFriendlyName": true,
-				"conditions": [],
-				"conditionMetadata": [
-					{
-						"id": "ec56e904-05df-4ded-b8d9-e4e09055707b",
-						"operator": {
-							"name": "Contains",
-							"value": "Contains",
-							"shortDisplay": "contains"
-						},
-						"value": "@"
-					}
-				]
-			},
-			"Receipt Error": {
-				"position": {
-					"x": 5805.6,
-					"y": 572.8
-				},
-				"isFriendlyName": true
-			},
-			"Returning To Agent": {
-				"position": {
-					"x": 6256.8,
-					"y": 695.2
-				},
-				"isFriendlyName": true
-			},
-			"Report Payment Request Error": {
-				"position": {
-					"x": -2365.6,
-					"y": 807.2
-				},
-				"isFriendlyName": true,
-				"parameters": {
-					"LambdaFunctionARN": {
-						"displayName": "<<sendAgentMessageLambdaArn>>"
-					}
-				},
-				"dynamicMetadata": {
-					"EventText": false
-				}
-			},
-			"Create Payment Request": {
-				"position": {
-					"x": -2580,
-					"y": 581.6
-				},
-				"isFriendlyName": true,
-				"parameters": {
-					"LambdaFunctionARN": {
-						"displayName": "<<createPaymentRequestLambdaArn>>"
-					}
-				},
-				"dynamicMetadata": {}
-			},
-			"Check for Entered Info": {
-				"position": {
-					"x": -2976.8,
-					"y": 659.2
-				},
-				"isFriendlyName": true,
-				"conditions": [],
-				"conditionMetadata": [
-					{
-						"id": "cfc58e76-ada3-4504-8ef1-6c74e8f06d8b",
-						"operator": {
-							"name": "Is greater than",
-							"value": "GreaterThan",
-							"shortDisplay": ">"
-						},
-						"value": "0"
-					}
-				]
-			},
-			"Report No Payment Info Error": {
-				"position": {
-					"x": -2376.8,
-					"y": 1015.2
-				},
-				"isFriendlyName": true,
-				"parameters": {
-					"LambdaFunctionARN": {
-						"displayName": "<<sendAgentMessageLambdaArn>>"
-					}
-				},
-				"dynamicMetadata": {
-					"EventText": false
-				}
-			},
-			"Record Payment Request ID": {
-				"position": {
-					"x": -2352.8,
-					"y": 510.4
-				},
-				"isFriendlyName": true,
-				"dynamicParams": []
-			},
-			"Payment Request Error": {
-				"position": {
-					"x": -2152.8,
-					"y": 809.6
-				},
-				"isFriendlyName": true
-			},
-			"No Payment Information": {
-				"position": {
-					"x": -2148.8,
-					"y": 1009.6
-				},
-				"isFriendlyName": true
-			},
-			"c584fdb0-1a54-4203-a33d-ae533419b8dc": {
-				"position": {
-					"x": -1581.6,
-					"y": 556.8
-				}
-			},
-			"33d2c563-289f-4358-9500-fc1552cc9523": {
-				"position": {
-					"x": -1293.6,
-					"y": 957.6
-				}
-			},
-			"Agent Hold Error": {
-				"position": {
-					"x": -1570.4,
-					"y": 766.4
-				},
-				"isFriendlyName": true
-			},
-			"Report Customer Transferred": {
-				"position": {
-					"x": -1353.6,
-					"y": 561.6
-				},
-				"isFriendlyName": true,
-				"parameters": {
-					"LambdaFunctionARN": {
-						"displayName": "<<sendAgentMessageLambdaArn>>"
-					}
-				},
-				"dynamicMetadata": {
-					"EventText": false
-				}
-			},
-			"773c7dfc-3423-47e4-bf80-be55b0cd1947": {
-				"position": {
-					"x": -3140.8,
-					"y": 964.8
-				}
-			},
-			"Agent Placed On Hold": {
-				"position": {
-					"x": -1126.4,
-					"y": 561.6
-				},
-				"isFriendlyName": true
-			},
-			"Speak Amount": {
-				"position": {
-					"x": -812.8,
-					"y": 557.6
-				},
-				"isFriendlyName": true
-			},
-			"Input Not Recognized": {
-				"position": {
-					"x": 667.2,
-					"y": 88.8
-				},
-				"isFriendlyName": true
-			},
-			"Payment Method Timeout": {
-				"position": {
-					"x": 424.8,
-					"y": 160.8
-				},
-				"isFriendlyName": true
-			},
 			"Get & Encrypt Card Number": {
 				"position": {
 					"x": 1558.4,
@@ -624,13 +474,108 @@
 				"conditionMetadata": [],
 				"countryCodePrefix": "+1"
 			},
-			"Set Payment Method to Card": {
+			"Get & Encrypt Account Number": {
 				"position": {
-					"x": 1037.6,
-					"y": -178.4
+					"x": 1635.2,
+					"y": 629.6
 				},
 				"isFriendlyName": true,
-				"dynamicParams": []
+				"conditionMetadata": [],
+				"countryCodePrefix": "+1"
+			},
+			"Returning To Agent": {
+				"position": {
+					"x": 6256.8,
+					"y": 695.2
+				},
+				"isFriendlyName": true
+			},
+			"Internal Error": {
+				"position": {
+					"x": 1320,
+					"y": 1038.4
+				},
+				"isFriendlyName": true
+			},
+			"Expiration Date Timeout": {
+				"position": {
+					"x": 2492.8,
+					"y": -591.2
+				},
+				"isFriendlyName": true
+			},
+			"Expiration Date Timeout Check": {
+				"position": {
+					"x": 2625.6,
+					"y": -388
+				},
+				"isFriendlyName": true,
+				"conditions": [],
+				"conditionMetadata": [
+					{
+						"id": "3299690a-97dd-48c2-84aa-123574189646",
+						"operator": {
+							"name": "Equals",
+							"value": "Equals",
+							"shortDisplay": "="
+						},
+						"value": "Timeout"
+					}
+				]
+			},
+			"Report Card Number Entered": {
+				"position": {
+					"x": 2044.8,
+					"y": -172
+				},
+				"isFriendlyName": true,
+				"parameters": {
+					"LambdaFunctionARN": {
+						"displayName": "<<sendAgentMessageLambdaArn>>"
+					}
+				},
+				"dynamicMetadata": {
+					"EventText": false
+				}
+			},
+			"Get Routing Number": {
+				"position": {
+					"x": 2500.8,
+					"y": 646.4
+				},
+				"isFriendlyName": true,
+				"conditionMetadata": [],
+				"countryCodePrefix": "+1"
+			},
+			"Try Routing Number Again": {
+				"position": {
+					"x": 2540,
+					"y": 870.4
+				},
+				"isFriendlyName": true
+			},
+			"Input Not Recognized": {
+				"position": {
+					"x": 666.4,
+					"y": 87.2
+				},
+				"isFriendlyName": true
+			},
+			"Get Expiration Date": {
+				"position": {
+					"x": 2525.6,
+					"y": -188.8
+				},
+				"isFriendlyName": true,
+				"conditionMetadata": [],
+				"countryCodePrefix": "+1"
+			},
+			"Try Expiration Date Again": {
+				"position": {
+					"x": 2589.6,
+					"y": 28
+				},
+				"isFriendlyName": true
 			},
 			"Report Credit Card Selected": {
 				"position": {
@@ -647,27 +592,37 @@
 					"EventText": false
 				}
 			},
-			"Get & Encrypt Account Number": {
+			"Set Payment Method to Card": {
 				"position": {
-					"x": 1635.2,
-					"y": 629.6
-				},
-				"isFriendlyName": true,
-				"conditionMetadata": [],
-				"countryCodePrefix": "+1"
-			},
-			"Set Payment Method to Bank": {
-				"position": {
-					"x": 1055.2,
-					"y": 572.8
+					"x": 1079.2,
+					"y": -175.2
 				},
 				"isFriendlyName": true,
 				"dynamicParams": []
 			},
-			"Report Bank Account Selected": {
+			"Create Payment Request": {
 				"position": {
-					"x": 1376,
-					"y": 584
+					"x": -2580,
+					"y": 581.6
+				},
+				"isFriendlyName": true,
+				"parameters": {
+					"LambdaFunctionARN": {
+						"displayName": "<<createPaymentRequestLambdaArn>>"
+					}
+				},
+				"dynamicMetadata": {}
+			},
+			"c584fdb0-1a54-4203-a33d-ae533419b8dc": {
+				"position": {
+					"x": -1581.6,
+					"y": 556.8
+				}
+			},
+			"Report Payment Request Error": {
+				"position": {
+					"x": -2365.6,
+					"y": 807.2
 				},
 				"isFriendlyName": true,
 				"parameters": {
@@ -679,63 +634,27 @@
 					"EventText": false
 				}
 			},
-			"Use Payment Method Again Timeout": {
+			"Record Payment Request ID": {
 				"position": {
-					"x": -345.6,
-					"y": -348.8
-				},
-				"isFriendlyName": true
-			},
-			"Check for Payment Token": {
-				"position": {
-					"x": -332.8,
-					"y": 561.6
+					"x": -2353.6,
+					"y": 508.8
 				},
 				"isFriendlyName": true,
-				"conditions": [],
-				"conditionMetadata": [
-					{
-						"id": "1a12f504-dfc7-4467-a56e-ce020f024740",
-						"operator": {
-							"name": "Starts with",
-							"value": "StartsWith",
-							"shortDisplay": "starts with"
-						},
-						"value": "VC"
-					},
-					{
-						"id": "7cda8288-48cd-4c22-8a25-bc96e94a75b4",
-						"operator": {
-							"name": "Starts with",
-							"value": "StartsWith",
-							"shortDisplay": "starts with"
-						},
-						"value": "BC"
-					},
-					{
-						"id": "281e94a1-4320-485f-bf94-5525d8f3f73e",
-						"operator": {
-							"name": "Starts with",
-							"value": "StartsWith",
-							"shortDisplay": "starts with"
-						},
-						"value": "BS"
-					}
-				]
+				"dynamicParams": []
 			},
-			"Ask for Payment Method": {
+			"Use Card Again?": {
 				"position": {
-					"x": 382.4,
-					"y": 500
+					"x": -129.6,
+					"y": -83.2
 				},
 				"isFriendlyName": true,
 				"conditionMetadata": [
 					{
-						"id": "60feb465-d85e-4f52-9d76-a2fa6f764a5e",
+						"id": "0e49b6dc-6616-419c-bccf-c0303130e51e",
 						"value": "1"
 					},
 					{
-						"id": "aa4e28cc-b2a5-4992-aa17-757a7c6037fa",
+						"id": "5b6aaba4-775c-4da9-a03a-fccfe2fbb13f",
 						"value": "2"
 					}
 				]
@@ -748,61 +667,88 @@
 				"isFriendlyName": true,
 				"conditionMetadata": [
 					{
-						"id": "d901a937-fdb2-4bbe-8922-034711ff5528",
+						"id": "fd0a0c6b-7489-4ba8-a2fd-d6ee418813e2",
 						"value": "1"
 					},
 					{
-						"id": "c86b55c2-2e57-44f8-a447-f58d6abc799a",
+						"id": "c6a4ff59-e138-4308-bd37-43ebecd3cbc4",
 						"value": "2"
 					}
 				]
 			},
-			"Report Bank Account Selected Again": {
+			"Use Payment Method Again Timeout": {
 				"position": {
-					"x": 285.6,
-					"y": -236.8
+					"x": -345.6,
+					"y": -348.8
 				},
-				"isFriendlyName": true,
-				"parameters": {
-					"LambdaFunctionARN": {
-						"displayName": "<<sendAgentMessageLambdaArn>>"
-					}
-				},
-				"dynamicMetadata": {
-					"EventText": false
-				}
+				"isFriendlyName": true
 			},
-			"Use Credit Card Again?": {
+			"Agent Placed On Hold": {
 				"position": {
-					"x": -129.6,
-					"y": -83.2
+					"x": -1126.4,
+					"y": 561.6
+				},
+				"isFriendlyName": true
+			},
+			"Speak Amount": {
+				"position": {
+					"x": -812.8,
+					"y": 557.6
+				},
+				"isFriendlyName": true
+			},
+			"Ask for Payment Method": {
+				"position": {
+					"x": 382.4,
+					"y": 500
 				},
 				"isFriendlyName": true,
 				"conditionMetadata": [
 					{
-						"id": "ce1b4034-72d1-43b6-80cb-09ed68861ecd",
+						"id": "ef5a3c37-6f52-43ee-b4ce-579a2103d23a",
 						"value": "1"
 					},
 					{
-						"id": "f3feefb8-34cf-4614-977d-b53cf7aa487f",
+						"id": "121f223b-b879-4f3e-8a41-fac3e35208bb",
 						"value": "2"
 					}
 				]
 			},
-			"Report Credit Card Selected Again": {
+			"Check Last Payment Method": {
 				"position": {
-					"x": 218.4,
-					"y": -461.6
+					"x": -291.2,
+					"y": 556
 				},
 				"isFriendlyName": true,
-				"parameters": {
-					"LambdaFunctionARN": {
-						"displayName": "<<sendAgentMessageLambdaArn>>"
+				"conditions": [],
+				"conditionMetadata": [
+					{
+						"id": "a0d9f6d1-b41d-4ec0-9d64-ddcc3d2568be",
+						"operator": {
+							"name": "Equals",
+							"value": "Equals",
+							"shortDisplay": "="
+						},
+						"value": "Card"
+					},
+					{
+						"id": "b992a024-856f-4b3d-895f-8d8bcb26950d",
+						"operator": {
+							"name": "Equals",
+							"value": "Equals",
+							"shortDisplay": "="
+						},
+						"value": "Bank"
 					}
+				]
+			},
+			"Redact Sensitive Contact Attributes": {
+				"position": {
+					"x": 6037.6,
+					"y": 699.2
 				},
-				"dynamicMetadata": {
-					"EventText": false
-				}
+				"isFriendlyName": true,
+				"dynamicParams": []
 			},
 			"Submit Payment": {
 				"position": {
@@ -819,8 +765,8 @@
 			},
 			"Report Payment Submission Error": {
 				"position": {
-					"x": 4436,
-					"y": 663.2
+					"x": 4446.4,
+					"y": 623.2
 				},
 				"isFriendlyName": true,
 				"parameters": {
@@ -832,18 +778,64 @@
 					"EventText": false
 				}
 			},
-			"Tokenize Transaction": {
+			"Payment Submission Error": {
 				"position": {
-					"x": 3539.2,
-					"y": 382.4
+					"x": 4686.4,
+					"y": 619.2
+				},
+				"isFriendlyName": true
+			},
+			"Payment Validation Error": {
+				"position": {
+					"x": 4684.8,
+					"y": 881.6
+				},
+				"isFriendlyName": true
+			},
+			"Report Payment Tokenized": {
+				"position": {
+					"x": 3997.6,
+					"y": 384
 				},
 				"isFriendlyName": true,
 				"parameters": {
 					"LambdaFunctionARN": {
-						"displayName": "<<tokenizeTransactionLambdaArn>>"
+						"displayName": "<<sendAgentMessageLambdaArn>>"
 					}
 				},
-				"dynamicMetadata": {}
+				"dynamicMetadata": {
+					"EventText": false
+				}
+			},
+			"Report Expiration Entered": {
+				"position": {
+					"x": 3006.4,
+					"y": -184.8
+				},
+				"isFriendlyName": true,
+				"parameters": {
+					"LambdaFunctionARN": {
+						"displayName": "<<sendAgentMessageLambdaArn>>"
+					}
+				},
+				"dynamicMetadata": {
+					"EventText": false
+				}
+			},
+			"Report Routing Number Entered": {
+				"position": {
+					"x": 3012.8,
+					"y": 614.4
+				},
+				"isFriendlyName": true,
+				"parameters": {
+					"LambdaFunctionARN": {
+						"displayName": "<<sendAgentMessageLambdaArn>>"
+					}
+				},
+				"dynamicMetadata": {
+					"EventText": false
+				}
 			},
 			"Report Tokenization Error": {
 				"position": {
@@ -860,35 +852,79 @@
 					"EventText": false
 				}
 			},
-			"Redact Sensitive Contact Attributes": {
+			"Record Token": {
 				"position": {
-					"x": 6037.6,
-					"y": 699.2
+					"x": 3776.8,
+					"y": 387.2
 				},
 				"isFriendlyName": true,
 				"dynamicParams": []
 			},
-			"Payment Submission Error": {
+			"Tokenize Transaction": {
 				"position": {
-					"x": 4680,
-					"y": 677.6
+					"x": 3304.8,
+					"y": 383.2
 				},
-				"isFriendlyName": true
+				"isFriendlyName": true,
+				"parameters": {
+					"LambdaFunctionARN": {
+						"displayName": "<<tokenizeTransactionLambdaArn>>"
+					}
+				},
+				"dynamicMetadata": {}
 			},
-			"Payment Validation Error": {
+			"Check for Tokenize Error": {
 				"position": {
-					"x": 4684.8,
-					"y": 881.6
+					"x": 3547.2,
+					"y": 372.8
 				},
-				"isFriendlyName": true
+				"isFriendlyName": true,
+				"conditionMetadata": [
+					{
+						"id": "7e6ab979-2475-41c0-abcb-8e525308021a",
+						"operator": {
+							"name": "Equals",
+							"value": "Equals",
+							"shortDisplay": "="
+						},
+						"value": "NULL"
+					}
+				]
 			},
-			"Remove Failed Payment Token": {
+			"Remove Failed Payment Token and Method": {
 				"position": {
 					"x": 4981.6,
 					"y": 835.2
 				},
 				"isFriendlyName": true,
 				"dynamicParams": []
+			},
+			"Speak Validation Error": {
+				"position": {
+					"x": 3784,
+					"y": 696
+				},
+				"isFriendlyName": true
+			},
+			"Report Validation Error": {
+				"position": {
+					"x": 4028.8,
+					"y": 700.8
+				},
+				"isFriendlyName": true,
+				"parameters": {
+					"LambdaFunctionARN": {
+						"displayName": "<<sendAgentMessageLambdaArn>>"
+					},
+					"LambdaInvocationAttributes": {
+						"EventText": {
+							"useDynamic": true
+						}
+					}
+				},
+				"dynamicMetadata": {
+					"EventText": true
+				}
 			}
 		},
 		"Annotations": [],
@@ -899,38 +935,6 @@
 		"hash": {}
 	},
 	"Actions": [
-		{
-			"Parameters": {
-				"Text": "There was a problem with your expiration date. Please try again."
-			},
-			"Identifier": "Try Expiration Date Again",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "Get Expiration Date",
-				"Errors": [
-					{
-						"NextAction": "Get Expiration Date",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Text": "There was a problem with your routing number. Please try again."
-			},
-			"Identifier": "Try Routing Number Again",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "Get Routing Number",
-				"Errors": [
-					{
-						"NextAction": "Get Routing Number",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
 		{
 			"Parameters": {},
 			"Identifier": "5a505241-be5a-4437-8d66-785eb1b0beca",
@@ -1023,22 +1027,6 @@
 			"Parameters": {
 				"Text": "Are you still there?"
 			},
-			"Identifier": "Expiration Date Timeout",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "Get Expiration Date",
-				"Errors": [
-					{
-						"NextAction": "Get Expiration Date",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Text": "Are you still there?"
-			},
 			"Identifier": "Routing Number Timeout",
 			"Type": "MessageParticipant",
 			"Transitions": {
@@ -1072,108 +1060,6 @@
 					{
 						"NextAction": "Store Routing Number",
 						"ErrorType": "NoMatchingCondition"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"ComparisonValue": "$.StoredCustomerInput"
-			},
-			"Identifier": "Expiration Date Timeout Check",
-			"Type": "Compare",
-			"Transitions": {
-				"NextAction": "Store Expiration Date",
-				"Conditions": [
-					{
-						"NextAction": "Expiration Date Timeout",
-						"Condition": {
-							"Operator": "Equals",
-							"Operands": ["Timeout"]
-						}
-					}
-				],
-				"Errors": [
-					{
-						"NextAction": "Store Expiration Date",
-						"ErrorType": "NoMatchingCondition"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"StoreInput": "True",
-				"InputTimeLimitSeconds": "5",
-				"Text": "Please enter your card's expiration date, followed by the pound key when complete.",
-				"DTMFConfiguration": {
-					"DisableCancelKey": "False",
-					"InputTerminationSequence": "#"
-				},
-				"InputValidation": {
-					"CustomValidation": {
-						"MaximumLength": "4"
-					}
-				}
-			},
-			"Identifier": "Get Expiration Date",
-			"Type": "GetParticipantInput",
-			"Transitions": {
-				"NextAction": "Expiration Date Timeout Check",
-				"Errors": [
-					{
-						"NextAction": "Try Expiration Date Again",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"LambdaFunctionARN": "<<sendAgentMessageLambdaArn>>",
-				"InvocationTimeLimitSeconds": "8",
-				"LambdaInvocationAttributes": {
-					"EventText": "CardNumberEntered"
-				},
-				"ResponseValidation": {
-					"ResponseType": "JSON"
-				}
-			},
-			"Identifier": "Report Card Number Entered",
-			"Type": "InvokeLambdaFunction",
-			"Transitions": {
-				"NextAction": "Get Expiration Date",
-				"Errors": [
-					{
-						"NextAction": "Get Expiration Date",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"StoreInput": "True",
-				"InputTimeLimitSeconds": "10",
-				"Text": "Please enter your bank's routing number, followed by the pound key when complete.",
-				"DTMFConfiguration": {
-					"DisableCancelKey": "False",
-					"InputTerminationSequence": "#"
-				},
-				"InputValidation": {
-					"CustomValidation": {
-						"MaximumLength": "9"
-					}
-				}
-			},
-			"Identifier": "Get Routing Number",
-			"Type": "GetParticipantInput",
-			"Transitions": {
-				"NextAction": "Routing Number Timeout Check",
-				"Errors": [
-					{
-						"NextAction": "Try Routing Number Again",
-						"ErrorType": "NoMatchingError"
 					}
 				]
 			}
@@ -1241,29 +1127,6 @@
 		},
 		{
 			"Parameters": {
-				"LambdaFunctionARN": "<<sendAgentMessageLambdaArn>>",
-				"InvocationTimeLimitSeconds": "8",
-				"LambdaInvocationAttributes": {
-					"EventText": "ExpirationDateEntered"
-				},
-				"ResponseValidation": {
-					"ResponseType": "JSON"
-				}
-			},
-			"Identifier": "Report Expiration Entered",
-			"Type": "InvokeLambdaFunction",
-			"Transitions": {
-				"NextAction": "Tokenize Transaction",
-				"Errors": [
-					{
-						"NextAction": "Tokenize Transaction",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
 				"Attributes": {
 					"ExpirationDate": "$.StoredCustomerInput"
 				},
@@ -1283,29 +1146,6 @@
 		},
 		{
 			"Parameters": {
-				"LambdaFunctionARN": "<<sendAgentMessageLambdaArn>>",
-				"InvocationTimeLimitSeconds": "8",
-				"LambdaInvocationAttributes": {
-					"EventText": "RoutingNumberEntered"
-				},
-				"ResponseValidation": {
-					"ResponseType": "JSON"
-				}
-			},
-			"Identifier": "Report Routing Number Entered",
-			"Type": "InvokeLambdaFunction",
-			"Transitions": {
-				"NextAction": "Tokenize Transaction",
-				"Errors": [
-					{
-						"NextAction": "Tokenize Transaction",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
 				"Attributes": {
 					"RoutingNumber": "$.StoredCustomerInput"
 				},
@@ -1318,48 +1158,6 @@
 				"Errors": [
 					{
 						"NextAction": "Report Routing Number Error",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Attributes": {
-					"PaymentToken": "$.External.PaymentToken"
-				},
-				"TargetContact": "Current"
-			},
-			"Identifier": "Record Token",
-			"Type": "UpdateContactAttributes",
-			"Transitions": {
-				"NextAction": "Report Payment Tokenized",
-				"Errors": [
-					{
-						"NextAction": "Report Payment Tokenized",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"LambdaFunctionARN": "<<sendAgentMessageLambdaArn>>",
-				"InvocationTimeLimitSeconds": "8",
-				"LambdaInvocationAttributes": {
-					"EventText": "PaymentTokenized"
-				},
-				"ResponseValidation": {
-					"ResponseType": "JSON"
-				}
-			},
-			"Identifier": "Report Payment Tokenized",
-			"Type": "InvokeLambdaFunction",
-			"Transitions": {
-				"NextAction": "Submit Payment",
-				"Errors": [
-					{
-						"NextAction": "Submit Payment",
 						"ErrorType": "NoMatchingError"
 					}
 				]
@@ -1425,6 +1223,167 @@
 		},
 		{
 			"Parameters": {
+				"ComparisonValue": "$.Attributes.Email"
+			},
+			"Identifier": "Check for Customer Email",
+			"Type": "Compare",
+			"Transitions": {
+				"NextAction": "Redact Sensitive Contact Attributes",
+				"Conditions": [
+					{
+						"NextAction": "Email Receipt",
+						"Condition": {
+							"Operator": "TextContains",
+							"Operands": ["@"]
+						}
+					}
+				],
+				"Errors": [
+					{
+						"NextAction": "Redact Sensitive Contact Attributes",
+						"ErrorType": "NoMatchingCondition"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"ComparisonValue": "$.Attributes.PaymentAmount"
+			},
+			"Identifier": "Check for Entered Info",
+			"Type": "Compare",
+			"Transitions": {
+				"NextAction": "Report No Payment Info Error",
+				"Conditions": [
+					{
+						"NextAction": "Create Payment Request",
+						"Condition": {
+							"Operator": "NumberGreaterThan",
+							"Operands": ["0"]
+						}
+					}
+				],
+				"Errors": [
+					{
+						"NextAction": "Report No Payment Info Error",
+						"ErrorType": "NoMatchingCondition"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"LambdaFunctionARN": "<<sendAgentMessageLambdaArn>>",
+				"InvocationTimeLimitSeconds": "8",
+				"LambdaInvocationAttributes": {
+					"EventText": "IVRStarted"
+				},
+				"ResponseValidation": {
+					"ResponseType": "JSON"
+				}
+			},
+			"Identifier": "Report Customer Transferred",
+			"Type": "InvokeLambdaFunction",
+			"Transitions": {
+				"NextAction": "Agent Placed On Hold",
+				"Errors": [
+					{
+						"NextAction": "Agent Placed On Hold",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"FlowLoggingBehavior": "Disabled"
+			},
+			"Identifier": "773c7dfc-3423-47e4-bf80-be55b0cd1947",
+			"Type": "UpdateFlowLoggingBehavior",
+			"Transitions": {
+				"NextAction": "Check for Entered Info"
+			}
+		},
+		{
+			"Parameters": {
+				"LambdaFunctionARN": "<<sendAgentMessageLambdaArn>>",
+				"InvocationTimeLimitSeconds": "8",
+				"LambdaInvocationAttributes": {
+					"EventText": "BankAccountSelected"
+				},
+				"ResponseValidation": {
+					"ResponseType": "JSON"
+				}
+			},
+			"Identifier": "Report Bank Account Selected",
+			"Type": "InvokeLambdaFunction",
+			"Transitions": {
+				"NextAction": "Get & Encrypt Account Number",
+				"Errors": [
+					{
+						"NextAction": "Get & Encrypt Account Number",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"LambdaFunctionARN": "<<sendAgentMessageLambdaArn>>",
+				"InvocationTimeLimitSeconds": "8",
+				"LambdaInvocationAttributes": {
+					"EventText": "BankAccountSelected"
+				},
+				"ResponseValidation": {
+					"ResponseType": "JSON"
+				}
+			},
+			"Identifier": "Report Bank Account Selected Again",
+			"Type": "InvokeLambdaFunction",
+			"Transitions": {
+				"NextAction": "Submit Payment",
+				"Errors": [
+					{
+						"NextAction": "Submit Payment",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "There was an error placing the agent on hold. Unable to request payment."
+			},
+			"Identifier": "Agent Hold Error",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "33d2c563-289f-4358-9500-fc1552cc9523",
+				"Errors": [
+					{
+						"NextAction": "33d2c563-289f-4358-9500-fc1552cc9523",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "A receipt has been sent to your email address, $.Attributes.['Email']."
+			},
+			"Identifier": "Receipt Success",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "Redact Sensitive Contact Attributes",
+				"Errors": [
+					{
+						"NextAction": "Redact Sensitive Contact Attributes",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
 				"LambdaFunctionARN": "<<emailReceiptLambdaArn>>",
 				"InvocationTimeLimitSeconds": "8",
 				"ResponseValidation": {
@@ -1468,6 +1427,80 @@
 		},
 		{
 			"Parameters": {
+				"Text": "There was an error sending the receipt to your email address, $.Attributes.['Email']. Please contact customer support to receive a receipt for this transaction."
+			},
+			"Identifier": "Receipt Error",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "Redact Sensitive Contact Attributes",
+				"Errors": [
+					{
+						"NextAction": "Redact Sensitive Contact Attributes",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"LambdaFunctionARN": "<<sendAgentMessageLambdaArn>>",
+				"InvocationTimeLimitSeconds": "8",
+				"LambdaInvocationAttributes": {
+					"EventText": "CreditCardSelected"
+				},
+				"ResponseValidation": {
+					"ResponseType": "JSON"
+				}
+			},
+			"Identifier": "Report Credit Card Selected Again",
+			"Type": "InvokeLambdaFunction",
+			"Transitions": {
+				"NextAction": "Submit Payment",
+				"Errors": [
+					{
+						"NextAction": "Submit Payment",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "Are you still there?"
+			},
+			"Identifier": "Payment Method Timeout",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "Ask for Payment Method",
+				"Errors": [
+					{
+						"NextAction": "Ask for Payment Method",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Attributes": {
+					"PaymentMethod": "Bank"
+				},
+				"TargetContact": "Current"
+			},
+			"Identifier": "Set Payment Method to Bank",
+			"Type": "UpdateContactAttributes",
+			"Transitions": {
+				"NextAction": "Report Bank Account Selected",
+				"Errors": [
+					{
+						"NextAction": "Report Bank Account Selected",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
 				"PreviousContactParticipantState": "OffHold"
 			},
 			"Identifier": "90dc6a63-2ae9-4c5f-b65f-75348779d0c6",
@@ -1477,6 +1510,67 @@
 				"Errors": [
 					{
 						"NextAction": "5a505241-be5a-4437-8d66-785eb1b0beca",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "There was an error creating the payment request."
+			},
+			"Identifier": "Payment Request Error",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "33d2c563-289f-4358-9500-fc1552cc9523",
+				"Errors": [
+					{
+						"NextAction": "33d2c563-289f-4358-9500-fc1552cc9523",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"LambdaFunctionARN": "<<sendAgentMessageLambdaArn>>",
+				"InvocationTimeLimitSeconds": "8",
+				"LambdaInvocationAttributes": {
+					"EventText": "NoPaymentInfoError"
+				},
+				"ResponseValidation": {
+					"ResponseType": "JSON"
+				}
+			},
+			"Identifier": "Report No Payment Info Error",
+			"Type": "InvokeLambdaFunction",
+			"Transitions": {
+				"NextAction": "No Payment Information",
+				"Errors": [
+					{
+						"NextAction": "No Payment Information",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {},
+			"Identifier": "33d2c563-289f-4358-9500-fc1552cc9523",
+			"Type": "DisconnectParticipant",
+			"Transitions": {}
+		},
+		{
+			"Parameters": {
+				"Text": "There's no payment information for this customer. Please fill out the information in the C3 Payment Request app and try again."
+			},
+			"Identifier": "No Payment Information",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "33d2c563-289f-4358-9500-fc1552cc9523",
+				"Errors": [
+					{
+						"NextAction": "33d2c563-289f-4358-9500-fc1552cc9523",
 						"ErrorType": "NoMatchingError"
 					}
 				]
@@ -1576,372 +1670,6 @@
 		},
 		{
 			"Parameters": {
-				"Text": "We're sorry, an error has occured that prevents us from collecting the payment."
-			},
-			"Identifier": "Internal Error",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "Returning To Agent",
-				"Errors": [
-					{
-						"NextAction": "Returning To Agent",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Text": "A receipt has been sent to your email address at $.Attributes.['Email']."
-			},
-			"Identifier": "Receipt Success",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "Redact Sensitive Contact Attributes",
-				"Errors": [
-					{
-						"NextAction": "Redact Sensitive Contact Attributes",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"ComparisonValue": "$.Attributes.Email"
-			},
-			"Identifier": "Check for Customer Email",
-			"Type": "Compare",
-			"Transitions": {
-				"NextAction": "Redact Sensitive Contact Attributes",
-				"Conditions": [
-					{
-						"NextAction": "Email Receipt",
-						"Condition": {
-							"Operator": "TextContains",
-							"Operands": ["@"]
-						}
-					}
-				],
-				"Errors": [
-					{
-						"NextAction": "Redact Sensitive Contact Attributes",
-						"ErrorType": "NoMatchingCondition"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Text": "There was an error sending the receipt to your email address at $.Attributes.['Email']. Please contact customer support to receive a receipt for this transaction."
-			},
-			"Identifier": "Receipt Error",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "Redact Sensitive Contact Attributes",
-				"Errors": [
-					{
-						"NextAction": "Redact Sensitive Contact Attributes",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Text": "Returning you to the agent..."
-			},
-			"Identifier": "Returning To Agent",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "90dc6a63-2ae9-4c5f-b65f-75348779d0c6",
-				"Errors": [
-					{
-						"NextAction": "90dc6a63-2ae9-4c5f-b65f-75348779d0c6",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"LambdaFunctionARN": "<<sendAgentMessageLambdaArn>>",
-				"InvocationTimeLimitSeconds": "8",
-				"LambdaInvocationAttributes": {
-					"EventText": "PaymentRequestError"
-				},
-				"ResponseValidation": {
-					"ResponseType": "JSON"
-				}
-			},
-			"Identifier": "Report Payment Request Error",
-			"Type": "InvokeLambdaFunction",
-			"Transitions": {
-				"NextAction": "Payment Request Error",
-				"Errors": [
-					{
-						"NextAction": "Payment Request Error",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"LambdaFunctionARN": "<<createPaymentRequestLambdaArn>>",
-				"InvocationTimeLimitSeconds": "8",
-				"ResponseValidation": {
-					"ResponseType": "JSON"
-				}
-			},
-			"Identifier": "Create Payment Request",
-			"Type": "InvokeLambdaFunction",
-			"Transitions": {
-				"NextAction": "Record Payment Request ID",
-				"Errors": [
-					{
-						"NextAction": "Report Payment Request Error",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"ComparisonValue": "$.Attributes.PaymentAmount"
-			},
-			"Identifier": "Check for Entered Info",
-			"Type": "Compare",
-			"Transitions": {
-				"NextAction": "Report No Payment Info Error",
-				"Conditions": [
-					{
-						"NextAction": "Create Payment Request",
-						"Condition": {
-							"Operator": "NumberGreaterThan",
-							"Operands": ["0"]
-						}
-					}
-				],
-				"Errors": [
-					{
-						"NextAction": "Report No Payment Info Error",
-						"ErrorType": "NoMatchingCondition"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"LambdaFunctionARN": "<<sendAgentMessageLambdaArn>>",
-				"InvocationTimeLimitSeconds": "8",
-				"LambdaInvocationAttributes": {
-					"EventText": "NoPaymentInfoError"
-				},
-				"ResponseValidation": {
-					"ResponseType": "JSON"
-				}
-			},
-			"Identifier": "Report No Payment Info Error",
-			"Type": "InvokeLambdaFunction",
-			"Transitions": {
-				"NextAction": "No Payment Information",
-				"Errors": [
-					{
-						"NextAction": "No Payment Information",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Attributes": {
-					"PaymentRequestId": "$.External.PaymentRequestId"
-				},
-				"TargetContact": "Current"
-			},
-			"Identifier": "Record Payment Request ID",
-			"Type": "UpdateContactAttributes",
-			"Transitions": {
-				"NextAction": "c584fdb0-1a54-4203-a33d-ae533419b8dc",
-				"Errors": [
-					{
-						"NextAction": "Report Payment Request Error",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Text": "There was an error creating the payment request."
-			},
-			"Identifier": "Payment Request Error",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "33d2c563-289f-4358-9500-fc1552cc9523",
-				"Errors": [
-					{
-						"NextAction": "33d2c563-289f-4358-9500-fc1552cc9523",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Text": "There's no payment information for this contact. Please fill out the information in the C3 Payment Request app and try again."
-			},
-			"Identifier": "No Payment Information",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "33d2c563-289f-4358-9500-fc1552cc9523",
-				"Errors": [
-					{
-						"NextAction": "33d2c563-289f-4358-9500-fc1552cc9523",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"PreviousContactParticipantState": "AgentOnHold"
-			},
-			"Identifier": "c584fdb0-1a54-4203-a33d-ae533419b8dc",
-			"Type": "UpdatePreviousContactParticipantState",
-			"Transitions": {
-				"NextAction": "Report Customer Transferred",
-				"Errors": [
-					{
-						"NextAction": "Agent Hold Error",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {},
-			"Identifier": "33d2c563-289f-4358-9500-fc1552cc9523",
-			"Type": "DisconnectParticipant",
-			"Transitions": {}
-		},
-		{
-			"Parameters": {
-				"Text": "There was an error placing the agent on hold. Unable to request payment."
-			},
-			"Identifier": "Agent Hold Error",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "33d2c563-289f-4358-9500-fc1552cc9523",
-				"Errors": [
-					{
-						"NextAction": "33d2c563-289f-4358-9500-fc1552cc9523",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"LambdaFunctionARN": "<<sendAgentMessageLambdaArn>>",
-				"InvocationTimeLimitSeconds": "8",
-				"LambdaInvocationAttributes": {
-					"EventText": "IVRStarted"
-				},
-				"ResponseValidation": {
-					"ResponseType": "JSON"
-				}
-			},
-			"Identifier": "Report Customer Transferred",
-			"Type": "InvokeLambdaFunction",
-			"Transitions": {
-				"NextAction": "Agent Placed On Hold",
-				"Errors": [
-					{
-						"NextAction": "Agent Placed On Hold",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"FlowLoggingBehavior": "Disabled"
-			},
-			"Identifier": "773c7dfc-3423-47e4-bf80-be55b0cd1947",
-			"Type": "UpdateFlowLoggingBehavior",
-			"Transitions": {
-				"NextAction": "Check for Entered Info"
-			}
-		},
-		{
-			"Parameters": {
-				"Text": "To ensure the security of your information, the agent has been temporarily placed on hold."
-			},
-			"Identifier": "Agent Placed On Hold",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "Speak Amount",
-				"Errors": [
-					{
-						"NextAction": "Speak Amount",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Text": "A payment has been requested for the amount of $$.Attributes.PaymentAmount."
-			},
-			"Identifier": "Speak Amount",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "Check for Payment Token",
-				"Errors": [
-					{
-						"NextAction": "Check for Payment Token",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Text": "Your input was not recognized. Please try again."
-			},
-			"Identifier": "Input Not Recognized",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "Ask for Payment Method",
-				"Errors": [
-					{
-						"NextAction": "Ask for Payment Method",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Text": "Are you still there?"
-			},
-			"Identifier": "Payment Method Timeout",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "Ask for Payment Method",
-				"Errors": [
-					{
-						"NextAction": "Ask for Payment Method",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
 				"StoreInput": "True",
 				"InputTimeLimitSeconds": "10",
 				"Text": "Please enter your card number followed by the pound key when complete.",
@@ -1966,48 +1694,6 @@
 				"Errors": [
 					{
 						"NextAction": "Internal Error",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Attributes": {
-					"PaymentMethod": "Card"
-				},
-				"TargetContact": "Current"
-			},
-			"Identifier": "Set Payment Method to Card",
-			"Type": "UpdateContactAttributes",
-			"Transitions": {
-				"NextAction": "Report Credit Card Selected",
-				"Errors": [
-					{
-						"NextAction": "Report Credit Card Selected",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"LambdaFunctionARN": "<<sendAgentMessageLambdaArn>>",
-				"InvocationTimeLimitSeconds": "8",
-				"LambdaInvocationAttributes": {
-					"EventText": "CreditCardSelected"
-				},
-				"ResponseValidation": {
-					"ResponseType": "JSON"
-				}
-			},
-			"Identifier": "Report Credit Card Selected",
-			"Type": "InvokeLambdaFunction",
-			"Transitions": {
-				"NextAction": "Get & Encrypt Card Number",
-				"Errors": [
-					{
-						"NextAction": "Get & Encrypt Card Number",
 						"ErrorType": "NoMatchingError"
 					}
 				]
@@ -2046,18 +1732,197 @@
 		},
 		{
 			"Parameters": {
-				"Attributes": {
-					"PaymentMethod": "Bank"
-				},
-				"TargetContact": "Current"
+				"Text": "Returning you to the agent..."
 			},
-			"Identifier": "Set Payment Method to Bank",
-			"Type": "UpdateContactAttributes",
+			"Identifier": "Returning To Agent",
+			"Type": "MessageParticipant",
 			"Transitions": {
-				"NextAction": "Report Bank Account Selected",
+				"NextAction": "90dc6a63-2ae9-4c5f-b65f-75348779d0c6",
 				"Errors": [
 					{
-						"NextAction": "Report Bank Account Selected",
+						"NextAction": "90dc6a63-2ae9-4c5f-b65f-75348779d0c6",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "We're sorry, an error has occurred that prevents us from collecting the payment."
+			},
+			"Identifier": "Internal Error",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "Returning To Agent",
+				"Errors": [
+					{
+						"NextAction": "Returning To Agent",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "Are you still there?"
+			},
+			"Identifier": "Expiration Date Timeout",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "Get Expiration Date",
+				"Errors": [
+					{
+						"NextAction": "Get Expiration Date",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"ComparisonValue": "$.StoredCustomerInput"
+			},
+			"Identifier": "Expiration Date Timeout Check",
+			"Type": "Compare",
+			"Transitions": {
+				"NextAction": "Store Expiration Date",
+				"Conditions": [
+					{
+						"NextAction": "Expiration Date Timeout",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": ["Timeout"]
+						}
+					}
+				],
+				"Errors": [
+					{
+						"NextAction": "Store Expiration Date",
+						"ErrorType": "NoMatchingCondition"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"LambdaFunctionARN": "<<sendAgentMessageLambdaArn>>",
+				"InvocationTimeLimitSeconds": "8",
+				"LambdaInvocationAttributes": {
+					"EventText": "CardNumberEntered"
+				},
+				"ResponseValidation": {
+					"ResponseType": "JSON"
+				}
+			},
+			"Identifier": "Report Card Number Entered",
+			"Type": "InvokeLambdaFunction",
+			"Transitions": {
+				"NextAction": "Get Expiration Date",
+				"Errors": [
+					{
+						"NextAction": "Get Expiration Date",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"StoreInput": "True",
+				"InputTimeLimitSeconds": "10",
+				"Text": "Please enter your bank's routing number, followed by the pound key when complete.",
+				"DTMFConfiguration": {
+					"DisableCancelKey": "False",
+					"InputTerminationSequence": "#"
+				},
+				"InputValidation": {
+					"CustomValidation": {
+						"MaximumLength": "9"
+					}
+				}
+			},
+			"Identifier": "Get Routing Number",
+			"Type": "GetParticipantInput",
+			"Transitions": {
+				"NextAction": "Routing Number Timeout Check",
+				"Errors": [
+					{
+						"NextAction": "Try Routing Number Again",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "There was a problem with your routing number. Please check your entry and try again."
+			},
+			"Identifier": "Try Routing Number Again",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "Get Routing Number",
+				"Errors": [
+					{
+						"NextAction": "Get Routing Number",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "Your entry was not recognized. Please try again."
+			},
+			"Identifier": "Input Not Recognized",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "Ask for Payment Method",
+				"Errors": [
+					{
+						"NextAction": "Ask for Payment Method",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"StoreInput": "True",
+				"InputTimeLimitSeconds": "5",
+				"Text": "Please enter your card's expiration date in the format month-month-year-year, followed by the pound key when complete.",
+				"DTMFConfiguration": {
+					"DisableCancelKey": "False",
+					"InputTerminationSequence": "#"
+				},
+				"InputValidation": {
+					"CustomValidation": {
+						"MaximumLength": "4"
+					}
+				}
+			},
+			"Identifier": "Get Expiration Date",
+			"Type": "GetParticipantInput",
+			"Transitions": {
+				"NextAction": "Expiration Date Timeout Check",
+				"Errors": [
+					{
+						"NextAction": "Try Expiration Date Again",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "There was a problem with your expiration date. Please check your entry and try again."
+			},
+			"Identifier": "Try Expiration Date Again",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "Get Expiration Date",
+				"Errors": [
+					{
+						"NextAction": "Get Expiration Date",
 						"ErrorType": "NoMatchingError"
 					}
 				]
@@ -2068,19 +1933,19 @@
 				"LambdaFunctionARN": "<<sendAgentMessageLambdaArn>>",
 				"InvocationTimeLimitSeconds": "8",
 				"LambdaInvocationAttributes": {
-					"EventText": "BankAccountSelected"
+					"EventText": "CreditCardSelected"
 				},
 				"ResponseValidation": {
 					"ResponseType": "JSON"
 				}
 			},
-			"Identifier": "Report Bank Account Selected",
+			"Identifier": "Report Credit Card Selected",
 			"Type": "InvokeLambdaFunction",
 			"Transitions": {
-				"NextAction": "Get & Encrypt Account Number",
+				"NextAction": "Get & Encrypt Card Number",
 				"Errors": [
 					{
-						"NextAction": "Get & Encrypt Account Number",
+						"NextAction": "Get & Encrypt Card Number",
 						"ErrorType": "NoMatchingError"
 					}
 				]
@@ -2088,15 +1953,18 @@
 		},
 		{
 			"Parameters": {
-				"Text": "Are you still there?"
+				"Attributes": {
+					"PaymentMethod": "Card"
+				},
+				"TargetContact": "Current"
 			},
-			"Identifier": "Use Payment Method Again Timeout",
-			"Type": "MessageParticipant",
+			"Identifier": "Set Payment Method to Card",
+			"Type": "UpdateContactAttributes",
 			"Transitions": {
-				"NextAction": "Check for Payment Token",
+				"NextAction": "Report Credit Card Selected",
 				"Errors": [
 					{
-						"NextAction": "Check for Payment Token",
+						"NextAction": "Report Credit Card Selected",
 						"ErrorType": "NoMatchingError"
 					}
 				]
@@ -2104,39 +1972,78 @@
 		},
 		{
 			"Parameters": {
-				"ComparisonValue": "$.Attributes.PaymentToken"
+				"LambdaFunctionARN": "<<createPaymentRequestLambdaArn>>",
+				"InvocationTimeLimitSeconds": "8",
+				"ResponseValidation": {
+					"ResponseType": "JSON"
+				}
 			},
-			"Identifier": "Check for Payment Token",
-			"Type": "Compare",
+			"Identifier": "Create Payment Request",
+			"Type": "InvokeLambdaFunction",
 			"Transitions": {
-				"NextAction": "Ask for Payment Method",
-				"Conditions": [
-					{
-						"NextAction": "Use Credit Card Again?",
-						"Condition": {
-							"Operator": "TextStartsWith",
-							"Operands": ["VC"]
-						}
-					},
-					{
-						"NextAction": "Use Bank Account Again?",
-						"Condition": {
-							"Operator": "TextStartsWith",
-							"Operands": ["BC"]
-						}
-					},
-					{
-						"NextAction": "Use Bank Account Again?",
-						"Condition": {
-							"Operator": "TextStartsWith",
-							"Operands": ["BS"]
-						}
-					}
-				],
+				"NextAction": "Record Payment Request ID",
 				"Errors": [
 					{
-						"NextAction": "Ask for Payment Method",
-						"ErrorType": "NoMatchingCondition"
+						"NextAction": "Report Payment Request Error",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"PreviousContactParticipantState": "AgentOnHold"
+			},
+			"Identifier": "c584fdb0-1a54-4203-a33d-ae533419b8dc",
+			"Type": "UpdatePreviousContactParticipantState",
+			"Transitions": {
+				"NextAction": "Report Customer Transferred",
+				"Errors": [
+					{
+						"NextAction": "Agent Hold Error",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"LambdaFunctionARN": "<<sendAgentMessageLambdaArn>>",
+				"InvocationTimeLimitSeconds": "8",
+				"LambdaInvocationAttributes": {
+					"EventText": "PaymentRequestError"
+				},
+				"ResponseValidation": {
+					"ResponseType": "JSON"
+				}
+			},
+			"Identifier": "Report Payment Request Error",
+			"Type": "InvokeLambdaFunction",
+			"Transitions": {
+				"NextAction": "Payment Request Error",
+				"Errors": [
+					{
+						"NextAction": "Payment Request Error",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Attributes": {
+					"PaymentRequestId": "$.External.PaymentRequestId"
+				},
+				"TargetContact": "Current"
+			},
+			"Identifier": "Record Payment Request ID",
+			"Type": "UpdateContactAttributes",
+			"Transitions": {
+				"NextAction": "c584fdb0-1a54-4203-a33d-ae533419b8dc",
+				"Errors": [
+					{
+						"NextAction": "Report Payment Request Error",
+						"ErrorType": "NoMatchingError"
 					}
 				]
 			}
@@ -2145,22 +2052,22 @@
 			"Parameters": {
 				"StoreInput": "False",
 				"InputTimeLimitSeconds": "5",
-				"Text": "To pay with a credit card, press 1.\nTo pay directly with your bank account, press 2."
+				"Text": "You previously paid with a credit or debit card.\n\nIf you would like to use this card again for this payment, press 1.\nTo use a different payment method, press 2."
 			},
-			"Identifier": "Ask for Payment Method",
+			"Identifier": "Use Card Again?",
 			"Type": "GetParticipantInput",
 			"Transitions": {
-				"NextAction": "Input Not Recognized",
+				"NextAction": "Ask for Payment Method",
 				"Conditions": [
 					{
-						"NextAction": "Set Payment Method to Card",
+						"NextAction": "Report Credit Card Selected Again",
 						"Condition": {
 							"Operator": "Equals",
 							"Operands": ["1"]
 						}
 					},
 					{
-						"NextAction": "Set Payment Method to Bank",
+						"NextAction": "Ask for Payment Method",
 						"Condition": {
 							"Operator": "Equals",
 							"Operands": ["2"]
@@ -2169,15 +2076,15 @@
 				],
 				"Errors": [
 					{
-						"NextAction": "Payment Method Timeout",
+						"NextAction": "Use Payment Method Again Timeout",
 						"ErrorType": "InputTimeLimitExceeded"
 					},
 					{
-						"NextAction": "Input Not Recognized",
+						"NextAction": "Ask for Payment Method",
 						"ErrorType": "NoMatchingCondition"
 					},
 					{
-						"NextAction": "Input Not Recognized",
+						"NextAction": "Ask for Payment Method",
 						"ErrorType": "NoMatchingError"
 					}
 				]
@@ -2227,22 +2134,47 @@
 		},
 		{
 			"Parameters": {
-				"LambdaFunctionARN": "<<sendAgentMessageLambdaArn>>",
-				"InvocationTimeLimitSeconds": "8",
-				"LambdaInvocationAttributes": {
-					"EventText": "BankAccountSelected"
-				},
-				"ResponseValidation": {
-					"ResponseType": "JSON"
-				}
+				"Text": "Are you still there?"
 			},
-			"Identifier": "Report Bank Account Selected Again",
-			"Type": "InvokeLambdaFunction",
+			"Identifier": "Use Payment Method Again Timeout",
+			"Type": "MessageParticipant",
 			"Transitions": {
-				"NextAction": "Submit Payment",
+				"NextAction": "Check Last Payment Method",
 				"Errors": [
 					{
-						"NextAction": "Submit Payment",
+						"NextAction": "Check Last Payment Method",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "To ensure the security of your information, the agent has been temporarily placed on hold."
+			},
+			"Identifier": "Agent Placed On Hold",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "Speak Amount",
+				"Errors": [
+					{
+						"NextAction": "Speak Amount",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "A payment has been requested for the amount of $$.Attributes.PaymentAmount."
+			},
+			"Identifier": "Speak Amount",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "Check Last Payment Method",
+				"Errors": [
+					{
+						"NextAction": "Check Last Payment Method",
 						"ErrorType": "NoMatchingError"
 					}
 				]
@@ -2252,22 +2184,22 @@
 			"Parameters": {
 				"StoreInput": "False",
 				"InputTimeLimitSeconds": "5",
-				"Text": "You previously paid with a credit card.\n\nIf you would like to use this card again for this payment, press 1.\nTo use a different payment method, press 2."
+				"Text": "To pay with a credit or debit card, press 1.\nTo pay directly with your bank account, press 2."
 			},
-			"Identifier": "Use Credit Card Again?",
+			"Identifier": "Ask for Payment Method",
 			"Type": "GetParticipantInput",
 			"Transitions": {
-				"NextAction": "Ask for Payment Method",
+				"NextAction": "Input Not Recognized",
 				"Conditions": [
 					{
-						"NextAction": "Report Credit Card Selected Again",
+						"NextAction": "Set Payment Method to Card",
 						"Condition": {
 							"Operator": "Equals",
 							"Operands": ["1"]
 						}
 					},
 					{
-						"NextAction": "Ask for Payment Method",
+						"NextAction": "Set Payment Method to Bank",
 						"Condition": {
 							"Operator": "Equals",
 							"Operands": ["2"]
@@ -2276,15 +2208,15 @@
 				],
 				"Errors": [
 					{
-						"NextAction": "Use Payment Method Again Timeout",
+						"NextAction": "Payment Method Timeout",
 						"ErrorType": "InputTimeLimitExceeded"
 					},
 					{
-						"NextAction": "Ask for Payment Method",
+						"NextAction": "Input Not Recognized",
 						"ErrorType": "NoMatchingCondition"
 					},
 					{
-						"NextAction": "Ask for Payment Method",
+						"NextAction": "Input Not Recognized",
 						"ErrorType": "NoMatchingError"
 					}
 				]
@@ -2292,22 +2224,52 @@
 		},
 		{
 			"Parameters": {
-				"LambdaFunctionARN": "<<sendAgentMessageLambdaArn>>",
-				"InvocationTimeLimitSeconds": "8",
-				"LambdaInvocationAttributes": {
-					"EventText": "CreditCardSelected"
-				},
-				"ResponseValidation": {
-					"ResponseType": "JSON"
-				}
+				"ComparisonValue": "$.Attributes.PaymentMethod"
 			},
-			"Identifier": "Report Credit Card Selected Again",
-			"Type": "InvokeLambdaFunction",
+			"Identifier": "Check Last Payment Method",
+			"Type": "Compare",
 			"Transitions": {
-				"NextAction": "Submit Payment",
+				"NextAction": "Ask for Payment Method",
+				"Conditions": [
+					{
+						"NextAction": "Use Card Again?",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": ["Card"]
+						}
+					},
+					{
+						"NextAction": "Use Bank Account Again?",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": ["Bank"]
+						}
+					}
+				],
 				"Errors": [
 					{
-						"NextAction": "Submit Payment",
+						"NextAction": "Ask for Payment Method",
+						"ErrorType": "NoMatchingCondition"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Attributes": {
+					"EncryptedCardNumber": "REDACTED",
+					"ExpirationDate": "REDACTED",
+					"EncryptedAccountNumber": "REDACTED"
+				},
+				"TargetContact": "Current"
+			},
+			"Identifier": "Redact Sensitive Contact Attributes",
+			"Type": "UpdateContactAttributes",
+			"Transitions": {
+				"NextAction": "Returning To Agent",
+				"Errors": [
+					{
+						"NextAction": "Returning To Agent",
 						"ErrorType": "NoMatchingError"
 					}
 				]
@@ -2358,19 +2320,100 @@
 		},
 		{
 			"Parameters": {
-				"LambdaFunctionARN": "<<tokenizeTransactionLambdaArn>>",
+				"Text": "We're sorry, an error has occured preventing us from submitting your payment. You have not been charged."
+			},
+			"Identifier": "Payment Submission Error",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "Remove Failed Payment Token and Method",
+				"Errors": [
+					{
+						"NextAction": "Remove Failed Payment Token and Method",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "There was a problem validating your $.Attributes.PaymentMethod information."
+			},
+			"Identifier": "Payment Validation Error",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "Remove Failed Payment Token and Method",
+				"Errors": [
+					{
+						"NextAction": "Remove Failed Payment Token and Method",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"LambdaFunctionARN": "<<sendAgentMessageLambdaArn>>",
 				"InvocationTimeLimitSeconds": "8",
+				"LambdaInvocationAttributes": {
+					"EventText": "PaymentTokenized"
+				},
 				"ResponseValidation": {
 					"ResponseType": "JSON"
 				}
 			},
-			"Identifier": "Tokenize Transaction",
+			"Identifier": "Report Payment Tokenized",
 			"Type": "InvokeLambdaFunction",
 			"Transitions": {
-				"NextAction": "Record Token",
+				"NextAction": "Submit Payment",
 				"Errors": [
 					{
-						"NextAction": "Report Tokenization Error",
+						"NextAction": "Submit Payment",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"LambdaFunctionARN": "<<sendAgentMessageLambdaArn>>",
+				"InvocationTimeLimitSeconds": "8",
+				"LambdaInvocationAttributes": {
+					"EventText": "ExpirationDateEntered"
+				},
+				"ResponseValidation": {
+					"ResponseType": "JSON"
+				}
+			},
+			"Identifier": "Report Expiration Entered",
+			"Type": "InvokeLambdaFunction",
+			"Transitions": {
+				"NextAction": "Tokenize Transaction",
+				"Errors": [
+					{
+						"NextAction": "Tokenize Transaction",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"LambdaFunctionARN": "<<sendAgentMessageLambdaArn>>",
+				"InvocationTimeLimitSeconds": "8",
+				"LambdaInvocationAttributes": {
+					"EventText": "RoutingNumberEntered"
+				},
+				"ResponseValidation": {
+					"ResponseType": "JSON"
+				}
+			},
+			"Identifier": "Report Routing Number Entered",
+			"Type": "InvokeLambdaFunction",
+			"Transitions": {
+				"NextAction": "Tokenize Transaction",
+				"Errors": [
+					{
+						"NextAction": "Tokenize Transaction",
 						"ErrorType": "NoMatchingError"
 					}
 				]
@@ -2402,19 +2445,17 @@
 		{
 			"Parameters": {
 				"Attributes": {
-					"EncryptedCardNumber": "REDACTED",
-					"ExpirationDate": "REDACTED",
-					"EncryptedAccountNumber": "REDACTED"
+					"PaymentToken": "$.External.PaymentToken"
 				},
 				"TargetContact": "Current"
 			},
-			"Identifier": "Redact Sensitive Contact Attributes",
+			"Identifier": "Record Token",
 			"Type": "UpdateContactAttributes",
 			"Transitions": {
-				"NextAction": "Returning To Agent",
+				"NextAction": "Report Payment Tokenized",
 				"Errors": [
 					{
-						"NextAction": "Returning To Agent",
+						"NextAction": "Report Payment Tokenized",
 						"ErrorType": "NoMatchingError"
 					}
 				]
@@ -2422,15 +2463,19 @@
 		},
 		{
 			"Parameters": {
-				"Text": "We're sorry, an error has occured preventing us from submitting your payment. You have not been charged."
+				"LambdaFunctionARN": "<<tokenizeTransactionLambdaArn>>",
+				"InvocationTimeLimitSeconds": "8",
+				"ResponseValidation": {
+					"ResponseType": "JSON"
+				}
 			},
-			"Identifier": "Payment Submission Error",
-			"Type": "MessageParticipant",
+			"Identifier": "Tokenize Transaction",
+			"Type": "InvokeLambdaFunction",
 			"Transitions": {
-				"NextAction": "Remove Failed Payment Token",
+				"NextAction": "Check for Tokenize Error",
 				"Errors": [
 					{
-						"NextAction": "Remove Failed Payment Token",
+						"NextAction": "Report Tokenization Error",
 						"ErrorType": "NoMatchingError"
 					}
 				]
@@ -2438,16 +2483,25 @@
 		},
 		{
 			"Parameters": {
-				"Text": "There was a problem validating your $.Attributes.PaymentMethod information."
+				"ComparisonValue": "$.External.Error"
 			},
-			"Identifier": "Payment Validation Error",
-			"Type": "MessageParticipant",
+			"Identifier": "Check for Tokenize Error",
+			"Type": "Compare",
 			"Transitions": {
-				"NextAction": "Remove Failed Payment Token",
+				"NextAction": "Speak Validation Error",
+				"Conditions": [
+					{
+						"NextAction": "Record Token",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": ["NULL"]
+						}
+					}
+				],
 				"Errors": [
 					{
-						"NextAction": "Remove Failed Payment Token",
-						"ErrorType": "NoMatchingError"
+						"NextAction": "Speak Validation Error",
+						"ErrorType": "NoMatchingCondition"
 					}
 				]
 			}
@@ -2455,17 +2509,57 @@
 		{
 			"Parameters": {
 				"Attributes": {
-					"PaymentToken": " "
+					"PaymentToken": "NULL",
+					"PaymentMethod": "NULL"
 				},
 				"TargetContact": "Current"
 			},
-			"Identifier": "Remove Failed Payment Token",
+			"Identifier": "Remove Failed Payment Token and Method",
 			"Type": "UpdateContactAttributes",
 			"Transitions": {
 				"NextAction": "Redact Sensitive Contact Attributes",
 				"Errors": [
 					{
 						"NextAction": "Redact Sensitive Contact Attributes",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "The payment failed because of the following error:\n\n$.External.Error"
+			},
+			"Identifier": "Speak Validation Error",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "Report Validation Error",
+				"Errors": [
+					{
+						"NextAction": "Report Validation Error",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"LambdaFunctionARN": "<<sendAgentMessageLambdaArn>>",
+				"InvocationTimeLimitSeconds": "8",
+				"LambdaInvocationAttributes": {
+					"EventText": "$.External.Error"
+				},
+				"ResponseValidation": {
+					"ResponseType": "JSON"
+				}
+			},
+			"Identifier": "Report Validation Error",
+			"Type": "InvokeLambdaFunction",
+			"Transitions": {
+				"NextAction": "Remove Failed Payment Token and Method",
+				"Errors": [
+					{
+						"NextAction": "Remove Failed Payment Token and Method",
 						"ErrorType": "NoMatchingError"
 					}
 				]

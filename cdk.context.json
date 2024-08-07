@@ -3,7 +3,8 @@
 	"amazonConnect": {
 		"instanceArn": "",
 		"securityKeyId": "",
-		"securityKeyCertificateContent": ""
+		"securityKeyCertificateContent": "",
+		"workspaceApp": true
 	},
 	"c3": {
 		"env": "prod",
@@ -15,6 +16,9 @@
 		"agentAssistedLink": true,
 		"selfServiceIVR": true,
 		"subjectLookup": ""
+	},
+	"options": {
+		"codeSigning": true
 	},
 	"logoUrl": "",
 	"supportPhone": "",

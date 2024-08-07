@@ -6,7 +6,6 @@ import {
 	CfnQuickConnect,
 } from 'aws-cdk-lib/aws-connect';
 import { Code, CodeSigningConfig, Function } from 'aws-cdk-lib/aws-lambda';
-import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import { join } from 'path';
 
 import {
@@ -14,8 +13,10 @@ import {
 	commonLambdaProps,
 } from '../helpers/lambda';
 import { getSubjectLookupFlowContent } from '../connect/content-transformations';
-import { AmazonConnectContext } from '../models';
+import { AmazonConnectContext, OptionsContext } from '../models';
 import { PolicyStatement } from 'aws-cdk-lib/aws-iam';
+import { writeFileToExports } from '../helpers/file';
+import { policyStatements } from '../lambda/subject-lookup-policy';
 
 /**
  * Class for creating the necessary resources to facilitate subject lookup in agent-assisted payment scenarios.
@@ -52,20 +53,30 @@ export class SubjectLookup {
 	 */
 	private createSubjectLookupFunction(): void {
 		console.log('Creating function C3SubjectLookup...');
+		const optionsContext = this.stack.node.tryGetContext(
+			'options',
+		) as OptionsContext;
 		this.subjectLookupFunction = new Function(this.stack, 'C3SubjectLookup', {
 			...commonLambdaProps,
 			description:
 				'Gets the details about a subject to pre-fill in the C3 workspace.',
 			code: Code.fromAsset(join(__dirname, '../lambda/c3-subject-lookup')),
-			codeSigningConfig: this.codeSigningConfig,
+			codeSigningConfig: optionsContext.codeSigning
+				? this.codeSigningConfig
+				: undefined,
 		});
 
-		// Update this with any additional permissions that the function needs for your subject lookup.
-		// const subjectLookupPolicy = new PolicyStatement({
-		// 	actions: [],
-		// 	resources: [],
-		// });
-		// this.subjectLookupFunction.addToRolePolicy(subjectLookupPolicy);
+		// Add any custom policy statements to the Lambda role.
+		for (const policyStatement of policyStatements) {
+			if (
+				!policyStatement.actions?.length ||
+				!policyStatement.resources?.length
+			) {
+				continue; // Skip empty policy statements.
+			}
+			const subjectLookupPolicy = new PolicyStatement(policyStatement);
+			this.subjectLookupFunction.addToRolePolicy(subjectLookupPolicy);
+		}
 	}
 
 	/**
@@ -95,10 +106,7 @@ export class SubjectLookup {
 			this.subjectLookupFunction,
 			this.sendAgentMessageFunction,
 		);
-		if (!existsSync('./exports')) {
-			mkdirSync('./exports');
-		}
-		writeFileSync('./exports/C3SubjectLookupFlow', subjectLookupFlowContent);
+		writeFileToExports('C3SubjectLookupFlow.json', subjectLookupFlowContent);
 		this.subjectLookupFlow = new CfnContactFlow(
 			this.stack,
 			'C3SubjectLookupFlow',
