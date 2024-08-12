@@ -59,6 +59,14 @@ PLACEHOLDER="<<amazonConnectSecurityKeyCertificateContent>>"
 sed -i '' "s|\(\"[^\"]*\": \)\".*${CERTIFICATE_PREFIX}.*\"|\1\"$PLACEHOLDER\"|g" "$AGENT_ASSISTED_PAYMENT_IVR_FLOW_FILE"
 sed -i '' "s|\(\"[^\"]*\": \)\".*${CERTIFICATE_PREFIX}.*\"|\1\"$PLACEHOLDER\"|g" "$PAYMENT_IVR_FLOW_MODULE_FILE"
 
+
+# ---- RECEIPT QUEUE ID ----
+
+# Replace the receipt queue ID
+QUEUE_ID_PREFIX="34f98ae7-73a8-496b-a1c0-392ae6de130d"
+PLACEHOLDER="<<receiptQueueId>>"
+sed -i '' "s|$QUEUE_ID_PREFIX|$PLACEHOLDER|g" "$PAYMENT_IVR_FLOW_MODULE_FILE"
+
 # Remove any instances of (Working Copy)
 sed -i '' "s| (Working Copy)||g" "$AGENT_ASSISTED_PAYMENT_IVR_FLOW_FILE"
 sed -i '' "s| (Working Copy)||g" "$PAYMENT_IVR_FLOW_MODULE_FILE"

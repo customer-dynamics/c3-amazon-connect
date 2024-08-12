@@ -40,6 +40,7 @@ export class SelfServicePaymentIVR {
 			this.emailReceiptFunction,
 			this.amazonConnectContext.securityKeyId,
 			this.amazonConnectContext.securityKeyCertificateContent,
+			this.amazonConnectContext.receiptQueueArn,
 		);
 		writeFileToExports(
 			'C3PaymentIVRFlowModule.json',

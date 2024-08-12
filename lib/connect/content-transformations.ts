@@ -11,6 +11,7 @@ import * as subjectLookupFlow from './flows/c3-subject-lookup-flow.json';
  * @param submitPaymentLambdaArn The Lambda function that submits a payment.
  * @param amazonConnectSecurityKeyId The security key ID for Amazon Connect.
  * @param amazonConnectSecurityKeyCertificateContent The security key certificate content for Amazon Connect.
+ * @param amazonConnectReceiptQueueArn The ARN for the Amazon Connect receipt queue.
  * @returns A string representing the content for the base IVR payment flow module.
  */
 export function getPaymentIVRFlowModuleContent(
@@ -20,6 +21,7 @@ export function getPaymentIVRFlowModuleContent(
 	emailReceiptLambdaFunction: Function,
 	amazonConnectSecurityKeyId: string,
 	amazonConnectSecurityKeyCertificateContent: string,
+	amazonConnectReceiptQueueArn: string,
 ) {
 	let transformedContent = JSON.stringify(flowModuleJson);
 
@@ -53,6 +55,17 @@ export function getPaymentIVRFlowModuleContent(
 		/<<amazonConnectSecurityKeyCertificateContent>>/g,
 		amazonConnectSecurityKeyCertificateContent,
 	);
+
+	// Replace the receipt queue ID placeholder with the actual value.
+	const queueId = amazonConnectReceiptQueueArn.split('/queue/').pop();
+	if (!queueId) {
+		throw new Error('Invalid ARN for the receipt queue.');
+	}
+	transformedContent = transformedContent.replace(
+		/<<receiptQueueId>>/g,
+		queueId,
+	);
+
 	return transformedContent;
 }
 
