@@ -16,6 +16,7 @@ const mockContext: Context = {
 		securityKeyCertificateContent:
 			'-----BEGIN CERTIFICATE-----\\n-----END CERTIFICATE-----\\n',
 		workspaceApp: true,
+		receiptQueueArn: 'placeholder',
 	},
 	c3: {
 		env: C3Environment.Prod,
