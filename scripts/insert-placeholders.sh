@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Replaces all referenced Lambda function ARNs, security key IDs, and certificate content values with placeholder values so
+# they can be used in different environments.
+
 AGENT_ASSISTED_PAYMENT_IVR_FLOW_FILE="lib/connect/flows/c3-agent-assisted-payment-ivr-flow.json"
 SUBJECT_LOOKUP_FLOW_FILE="lib/connect/flows/c3-subject-lookup-flow.json"
 PAYMENT_IVR_FLOW_MODULE_FILE="lib/connect/flows/modules/c3-payment-ivr-flow-module.json"
