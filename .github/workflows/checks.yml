@@ -36,7 +36,8 @@ jobs:
                 "instanceArn": "placeholder",
                 "securityKeyId": "placeholder",
                 "securityKeyCertificateContent": "-----BEGIN CERTIFICATE-----\\n-----END CERTIFICATE-----\\n",
-                "workspaceApp": true
+                "workspaceApp": true,
+                "receiptQueueArn", "placeholder"
               },
               "c3": {
                 "env": "dev",
