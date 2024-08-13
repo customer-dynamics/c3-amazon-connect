@@ -51,3 +51,7 @@ updates:
     directory: 'lib/lambda/c3-send-agent-message'
     schedule:
       interval: 'daily'
+  - package-ecosystem: 'npm'
+    directory: 'lib/lambda/c3-validate-entry'
+    schedule:
+      interval: 'daily'
