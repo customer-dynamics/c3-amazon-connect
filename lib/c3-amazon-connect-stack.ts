@@ -299,11 +299,27 @@ export class C3AmazonConnectStack extends Stack {
 			...commonLambdaProps,
 			description: "Validates a customer's entry in the IVR.",
 			code: Code.fromAsset(join(__dirname, 'lambda/c3-validate-entry')),
-			environment: {},
+			environment: {
+				C3_PRIVATE_KEY_SECRET_ID: this.privateKeySecret.secretName,
+				CONNECT_SECURITY_KEY_ID: this.amazonConnectContext.securityKeyId,
+			},
 			codeSigningConfig: this.optionsContext.codeSigning
 				? this.codeSigningConfig
 				: undefined,
 		});
+
+		// Create policies for decrypting payment information.
+		const decryptPolicy = new PolicyStatement({
+			actions: ['kms:Decrypt'],
+			resources: ['*'],
+		});
+		this.validateEntryFunction.addToRolePolicy(decryptPolicy);
+
+		const getSecretValuePolicy = new PolicyStatement({
+			actions: ['secretsmanager:GetSecretValue'],
+			resources: [this.privateKeySecret.secretArn],
+		});
+		this.validateEntryFunction.addToRolePolicy(getSecretValuePolicy);
 	}
 
 	/**
