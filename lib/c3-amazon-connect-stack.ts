@@ -47,6 +47,7 @@ export class C3AmazonConnectStack extends Stack {
 	private c3ApiKeySecret: Secret;
 	private privateKeySecret: Secret;
 	private createPaymentRequestFunction: Function;
+	private validateEntryFunction: Function;
 	private tokenizeTransactionFunction: Function;
 	private submitPaymentFunction: Function;
 	private emailReceiptFunction: Function;
@@ -71,11 +72,13 @@ export class C3AmazonConnectStack extends Stack {
 		) {
 			this.createPrivateKeySecret();
 			this.createCreatePaymentRequestFunction();
+			this.createValidateEntryFunction();
 			this.createTokenizeTransactionFunction();
 			this.createSubmitPaymentFunction();
 			this.createEmailReceiptFunction();
 			associateLambdaFunctionsWithConnect(this, [
 				this.createPaymentRequestFunction,
+				this.validateEntryFunction,
 				this.tokenizeTransactionFunction,
 				this.submitPaymentFunction,
 				this.emailReceiptFunction,
@@ -283,6 +286,24 @@ export class C3AmazonConnectStack extends Stack {
 			resources: [this.c3ApiKeySecret.secretArn],
 		});
 		this.createPaymentRequestFunction.addToRolePolicy(getSecretValuePolicy);
+	}
+
+	/**
+	 * Creates a Lambda function for validating the customer's entry in the IVR.
+	 *
+	 * This function is necessary to validate credit card and bank account information entered by the customer.
+	 */
+	private createValidateEntryFunction(): void {
+		console.log('Creating function C3ValidateEntry...');
+		this.validateEntryFunction = new Function(this, 'C3ValidateEntry', {
+			...commonLambdaProps,
+			description: "Validates a customer's entry in the IVR.",
+			code: Code.fromAsset(join(__dirname, 'lambda/c3-validate-entry')),
+			environment: {},
+			codeSigningConfig: this.optionsContext.codeSigning
+				? this.codeSigningConfig
+				: undefined,
+		});
 	}
 
 	/**
