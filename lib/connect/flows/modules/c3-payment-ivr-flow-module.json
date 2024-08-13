@@ -71,7 +71,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "b37be942-f990-491a-a5b0-2b27925ee4d8",
+						"id": "12fa6334-812d-401d-9e19-1642cc6d42e5",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -113,7 +113,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "3d7bcc8f-540d-4fc2-b852-e2ad674c046b",
+						"id": "ddab5019-0ae2-44c4-9725-7583e655aa17",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -146,7 +146,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "ef918f8e-5466-4183-8180-007789b1a909",
+						"id": "929f5f5b-7c10-4768-a6af-a0e43bc5257b",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -172,7 +172,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "693af26d-7fe4-4ac6-9f4e-04349d4d09ab",
+						"id": "23ca5e06-9fa0-42dd-830e-b38172a49729",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -181,7 +181,7 @@
 						"value": "PaymentAmountDue"
 					},
 					{
-						"id": "0eb3be17-da0f-4174-a3f8-2fbb5f601b86",
+						"id": "21d1cc51-6ef2-4a05-b244-669b25be1610",
 						"operator": {
 							"name": "Is greater than",
 							"value": "GreaterThan",
@@ -230,11 +230,11 @@
 				"isFriendlyName": true,
 				"conditionMetadata": [
 					{
-						"id": "d124774f-2104-4f34-8d4c-1df41b3e4dc1",
+						"id": "cc0e6909-ab0e-47e3-90b6-228dc4ec2a4e",
 						"value": "1"
 					},
 					{
-						"id": "660142c0-a66c-47af-ad26-4791eff8c757",
+						"id": "25a51cb0-4244-4653-bf3b-9139f32bd336",
 						"value": "2"
 					}
 				]
@@ -248,7 +248,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "62e4fe1b-267f-4262-9f8f-d4088e30112b",
+						"id": "3732b509-0373-4239-bc9c-cb7072ad21fd",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -257,7 +257,7 @@
 						"value": "Timeout"
 					},
 					{
-						"id": "e5174e9c-7574-445e-9d12-703b2c2a78dc",
+						"id": "ce99c9c0-5049-40f8-a2c7-06bc79808fd8",
 						"operator": {
 							"name": "Is greater than",
 							"value": "GreaterThan",
@@ -266,99 +266,13 @@
 						"value": "$.Attributes.PaymentAmountDue"
 					},
 					{
-						"id": "f7a6ca13-1f7b-4228-801c-d1e530b52300",
+						"id": "051656bf-5a65-4350-805c-faddb3b5b07d",
 						"operator": {
 							"name": "Is less than",
 							"value": "LessThan",
 							"shortDisplay": "<"
 						},
 						"value": "$.Attributes.PaymentMinimumPayment"
-					}
-				]
-			},
-			"Use Card Again?": {
-				"position": {
-					"x": 1292,
-					"y": -718.4
-				},
-				"isFriendlyName": true,
-				"conditionMetadata": [
-					{
-						"id": "a19969f9-709f-48cf-a7c8-cc280db088bf",
-						"value": "1"
-					},
-					{
-						"id": "9c5a2cb5-b6e4-45f9-9811-f6d529083ee8",
-						"value": "2"
-					}
-				]
-			},
-			"Use Bank Account Again?": {
-				"position": {
-					"x": 1412,
-					"y": -396
-				},
-				"isFriendlyName": true,
-				"conditionMetadata": [
-					{
-						"id": "cc03fb12-0edc-4d28-a0bb-f666b360df91",
-						"value": "1"
-					},
-					{
-						"id": "00b2f540-b8c2-49d4-9738-21fef255b97d",
-						"value": "2"
-					}
-				]
-			},
-			"Use Payment Method Again Timeout": {
-				"position": {
-					"x": 1083.2,
-					"y": -928.8
-				},
-				"isFriendlyName": true
-			},
-			"Check Last Payment Method": {
-				"position": {
-					"x": 1000,
-					"y": -67.2
-				},
-				"isFriendlyName": true,
-				"conditions": [],
-				"conditionMetadata": [
-					{
-						"id": "6684699e-cf9c-432b-a274-48eb8c2d07fd",
-						"operator": {
-							"name": "Equals",
-							"value": "Equals",
-							"shortDisplay": "="
-						},
-						"value": "Card"
-					},
-					{
-						"id": "98c0947d-ab39-4a38-be0e-810fab7c7ba3",
-						"operator": {
-							"name": "Equals",
-							"value": "Equals",
-							"shortDisplay": "="
-						},
-						"value": "Bank"
-					}
-				]
-			},
-			"Ask for Payment Method": {
-				"position": {
-					"x": 2230.4,
-					"y": -29.6
-				},
-				"isFriendlyName": true,
-				"conditionMetadata": [
-					{
-						"id": "fc019fbb-df8c-4a2f-9953-b45eb89329a5",
-						"value": "1"
-					},
-					{
-						"id": "7e169aa6-4de5-470a-a575-d8a8363ecb57",
-						"value": "2"
 					}
 				]
 			},
@@ -378,7 +292,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "a97ca0ee-4e15-4ae9-b220-6c8e0d55dcd7",
+						"id": "e947c8df-e6fc-439f-812f-14cfee5cadc1",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -593,7 +507,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "13311b24-2ce3-4718-a879-df711b9c51a0",
+						"id": "28bf539f-0484-4077-bf14-ca56fcddbc55",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -607,27 +521,6 @@
 				"position": {
 					"x": 5072.8,
 					"y": -132.8
-				},
-				"isFriendlyName": true,
-				"dynamicParams": []
-			},
-			"Submit Payment": {
-				"position": {
-					"x": 5556,
-					"y": -128.8
-				},
-				"isFriendlyName": true,
-				"parameters": {
-					"LambdaFunctionARN": {
-						"displayName": "<<submitPaymentLambdaArn>>"
-					}
-				},
-				"dynamicMetadata": {}
-			},
-			"Record Transaction ID": {
-				"position": {
-					"x": 5796,
-					"y": -130.4
 				},
 				"isFriendlyName": true,
 				"dynamicParams": []
@@ -707,13 +600,6 @@
 				},
 				"dynamicMetadata": {}
 			},
-			"Payment Success": {
-				"position": {
-					"x": 6239.2,
-					"y": -44.8
-				},
-				"isFriendlyName": true
-			},
 			"Ask to Transfer for Receipt": {
 				"position": {
 					"x": 7094.4,
@@ -722,11 +608,11 @@
 				"isFriendlyName": true,
 				"conditionMetadata": [
 					{
-						"id": "15d499be-8d1d-44c7-9693-132ad09b9311",
+						"id": "4c53fb7c-08a1-4a39-993e-50204e533398",
 						"value": "1"
 					},
 					{
-						"id": "336ae332-65ad-46bc-b2aa-dce41d528f64",
+						"id": "42fdcef0-1790-443c-a23a-140b40c97fc7",
 						"value": "2"
 					}
 				]
@@ -748,7 +634,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "3fb359f7-d845-4185-923e-de28ac6942e1",
+						"id": "4a49800a-9ad5-4047-8c99-bbe33df44353",
 						"operator": {
 							"name": "Contains",
 							"value": "Contains",
@@ -764,9 +650,10 @@
 					"y": -28
 				},
 				"isFriendlyName": true,
+				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "1b9d123b-1f3b-4b30-b225-6bcb6f8804db",
+						"id": "250e2c9c-cb9a-45af-9513-f17461d99b79",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -801,6 +688,120 @@
 					"y": 214.4
 				},
 				"isFriendlyName": true
+			},
+			"Payment Success": {
+				"position": {
+					"x": 6239.2,
+					"y": -44.8
+				},
+				"isFriendlyName": true
+			},
+			"Record Transaction Attributes": {
+				"position": {
+					"x": 5796,
+					"y": -130.4
+				},
+				"isFriendlyName": true,
+				"dynamicParams": []
+			},
+			"Use Card Again?": {
+				"position": {
+					"x": 1292,
+					"y": -718.4
+				},
+				"isFriendlyName": true,
+				"conditionMetadata": [
+					{
+						"id": "f357d159-f815-418b-b8aa-eab217862354",
+						"value": "1"
+					},
+					{
+						"id": "431cb32b-de6a-4f0c-b6d7-14c8b07579c5",
+						"value": "2"
+					}
+				]
+			},
+			"Use Payment Method Again Timeout": {
+				"position": {
+					"x": 1083.2,
+					"y": -928.8
+				},
+				"isFriendlyName": true
+			},
+			"Check Last Payment Method": {
+				"position": {
+					"x": 1000,
+					"y": -67.2
+				},
+				"isFriendlyName": true,
+				"conditions": [],
+				"conditionMetadata": [
+					{
+						"id": "5a61fd5d-d566-4959-8c1e-67897d4f4fe2",
+						"operator": {
+							"name": "Equals",
+							"value": "Equals",
+							"shortDisplay": "="
+						},
+						"value": "Card"
+					},
+					{
+						"id": "7360bcd6-2ad2-4adf-9928-b986ff651543",
+						"operator": {
+							"name": "Equals",
+							"value": "Equals",
+							"shortDisplay": "="
+						},
+						"value": "Bank"
+					}
+				]
+			},
+			"Ask for Payment Method": {
+				"position": {
+					"x": 2230.4,
+					"y": -29.6
+				},
+				"isFriendlyName": true,
+				"conditionMetadata": [
+					{
+						"id": "c8c31a25-bc5a-4599-bfa3-c5996234a3c3",
+						"value": "1"
+					},
+					{
+						"id": "34a236c5-3790-4dad-81e7-f1415a290a70",
+						"value": "2"
+					}
+				]
+			},
+			"Submit Payment": {
+				"position": {
+					"x": 5556,
+					"y": -128.8
+				},
+				"isFriendlyName": true,
+				"parameters": {
+					"LambdaFunctionARN": {
+						"displayName": "<<submitPaymentLambdaArn>>"
+					}
+				},
+				"dynamicMetadata": {}
+			},
+			"Use Bank Account Again?": {
+				"position": {
+					"x": 1409.6,
+					"y": -398.4
+				},
+				"isFriendlyName": true,
+				"conditionMetadata": [
+					{
+						"id": "79fff8e1-6aeb-49b6-afea-a517f5a2cf7b",
+						"value": "1"
+					},
+					{
+						"id": "2b583533-e1ea-4441-873f-d81046948411",
+						"value": "2"
+					}
+				]
 			}
 		},
 		"Annotations": [
@@ -1314,180 +1315,6 @@
 		},
 		{
 			"Parameters": {
-				"StoreInput": "False",
-				"InputTimeLimitSeconds": "5",
-				"Text": "You previously paid with a credit or debit card.\n\nIf you would like to use this card again for this payment, press 1.\nTo use a different payment method, press 2."
-			},
-			"Identifier": "Use Card Again?",
-			"Type": "GetParticipantInput",
-			"Transitions": {
-				"NextAction": "Ask for Payment Method",
-				"Conditions": [
-					{
-						"NextAction": "Submit Payment",
-						"Condition": {
-							"Operator": "Equals",
-							"Operands": ["1"]
-						}
-					},
-					{
-						"NextAction": "Ask for Payment Method",
-						"Condition": {
-							"Operator": "Equals",
-							"Operands": ["2"]
-						}
-					}
-				],
-				"Errors": [
-					{
-						"NextAction": "Use Payment Method Again Timeout",
-						"ErrorType": "InputTimeLimitExceeded"
-					},
-					{
-						"NextAction": "Ask for Payment Method",
-						"ErrorType": "NoMatchingCondition"
-					},
-					{
-						"NextAction": "Ask for Payment Method",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"StoreInput": "False",
-				"InputTimeLimitSeconds": "5",
-				"Text": "You previously paid with a bank account.\n\nIf you would like to use this account again for this payment, press 1.\nTo use a different payment method, press 2."
-			},
-			"Identifier": "Use Bank Account Again?",
-			"Type": "GetParticipantInput",
-			"Transitions": {
-				"NextAction": "Ask for Payment Method",
-				"Conditions": [
-					{
-						"NextAction": "Submit Payment",
-						"Condition": {
-							"Operator": "Equals",
-							"Operands": ["1"]
-						}
-					},
-					{
-						"NextAction": "Ask for Payment Method",
-						"Condition": {
-							"Operator": "Equals",
-							"Operands": ["2"]
-						}
-					}
-				],
-				"Errors": [
-					{
-						"NextAction": "Use Payment Method Again Timeout",
-						"ErrorType": "InputTimeLimitExceeded"
-					},
-					{
-						"NextAction": "Ask for Payment Method",
-						"ErrorType": "NoMatchingCondition"
-					},
-					{
-						"NextAction": "Ask for Payment Method",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Text": "Are you still there?"
-			},
-			"Identifier": "Use Payment Method Again Timeout",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "Check Last Payment Method",
-				"Errors": [
-					{
-						"NextAction": "Check Last Payment Method",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"ComparisonValue": "$.Attributes.PaymentMethod"
-			},
-			"Identifier": "Check Last Payment Method",
-			"Type": "Compare",
-			"Transitions": {
-				"NextAction": "Ask for Payment Method",
-				"Conditions": [
-					{
-						"NextAction": "Use Card Again?",
-						"Condition": {
-							"Operator": "Equals",
-							"Operands": ["Card"]
-						}
-					},
-					{
-						"NextAction": "Use Bank Account Again?",
-						"Condition": {
-							"Operator": "Equals",
-							"Operands": ["Bank"]
-						}
-					}
-				],
-				"Errors": [
-					{
-						"NextAction": "Ask for Payment Method",
-						"ErrorType": "NoMatchingCondition"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"StoreInput": "False",
-				"InputTimeLimitSeconds": "5",
-				"Text": "To pay with a credit or debit card, press 1.\nTo pay directly with your bank account, press 2."
-			},
-			"Identifier": "Ask for Payment Method",
-			"Type": "GetParticipantInput",
-			"Transitions": {
-				"NextAction": "Method Input Not Recognized",
-				"Conditions": [
-					{
-						"NextAction": "Set Payment Method to Card",
-						"Condition": {
-							"Operator": "Equals",
-							"Operands": ["1"]
-						}
-					},
-					{
-						"NextAction": "Set Payment Method to Bank",
-						"Condition": {
-							"Operator": "Equals",
-							"Operands": ["2"]
-						}
-					}
-				],
-				"Errors": [
-					{
-						"NextAction": "Payment Method Timeout",
-						"ErrorType": "InputTimeLimitExceeded"
-					},
-					{
-						"NextAction": "Method Input Not Recognized",
-						"ErrorType": "NoMatchingCondition"
-					},
-					{
-						"NextAction": "Method Input Not Recognized",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
 				"Text": "Your entry was not recognized. Please try again."
 			},
 			"Identifier": "Method Input Not Recognized",
@@ -1954,45 +1781,6 @@
 			}
 		},
 		{
-			"Parameters": {
-				"LambdaFunctionARN": "<<submitPaymentLambdaArn>>",
-				"InvocationTimeLimitSeconds": "8",
-				"ResponseValidation": {
-					"ResponseType": "JSON"
-				}
-			},
-			"Identifier": "Submit Payment",
-			"Type": "InvokeLambdaFunction",
-			"Transitions": {
-				"NextAction": "Record Transaction ID",
-				"Errors": [
-					{
-						"NextAction": "Payment Submission Error",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Attributes": {
-					"TransactionId": "$.External.TransactionId"
-				},
-				"TargetContact": "Current"
-			},
-			"Identifier": "Record Transaction ID",
-			"Type": "UpdateContactAttributes",
-			"Transitions": {
-				"NextAction": "Payment Success",
-				"Errors": [
-					{
-						"NextAction": "Payment Success",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
 			"Parameters": {},
 			"Identifier": "a3ea896e-4f43-4677-8edd-159f677dc41e",
 			"Type": "EndFlowModuleExecution",
@@ -2132,22 +1920,6 @@
 				"Errors": [
 					{
 						"NextAction": "Receipt Error",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Text": "Your payment was processed successfully."
-			},
-			"Identifier": "Payment Success",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "Check for Customer Email",
-				"Errors": [
-					{
-						"NextAction": "Check for Customer Email",
 						"ErrorType": "NoMatchingError"
 					}
 				]
@@ -2311,6 +2083,236 @@
 				"Errors": [
 					{
 						"NextAction": "Create Payment Request",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "Your payment was processed successfully."
+			},
+			"Identifier": "Payment Success",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "Check for Customer Email",
+				"Errors": [
+					{
+						"NextAction": "Check for Customer Email",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Attributes": {
+					"TransactionId": "$.External.TransactionId",
+					"PaymentMethodEndingDigits": "$.External.PaymentMethodEndingDigits"
+				},
+				"TargetContact": "Current"
+			},
+			"Identifier": "Record Transaction Attributes",
+			"Type": "UpdateContactAttributes",
+			"Transitions": {
+				"NextAction": "Payment Success",
+				"Errors": [
+					{
+						"NextAction": "Payment Success",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"StoreInput": "False",
+				"InputTimeLimitSeconds": "5",
+				"Text": "You previously paid with a credit or debit card ending in <say-as interpret-as=\"digits\">$.Attributes.PaymentMethodEndingDigits</say-as>.\n\nIf you would like to use this card again for this payment, press 1.\nTo use a different payment method, press 2."
+			},
+			"Identifier": "Use Card Again?",
+			"Type": "GetParticipantInput",
+			"Transitions": {
+				"NextAction": "Ask for Payment Method",
+				"Conditions": [
+					{
+						"NextAction": "Submit Payment",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": ["1"]
+						}
+					},
+					{
+						"NextAction": "Ask for Payment Method",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": ["2"]
+						}
+					}
+				],
+				"Errors": [
+					{
+						"NextAction": "Use Payment Method Again Timeout",
+						"ErrorType": "InputTimeLimitExceeded"
+					},
+					{
+						"NextAction": "Ask for Payment Method",
+						"ErrorType": "NoMatchingCondition"
+					},
+					{
+						"NextAction": "Ask for Payment Method",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "Are you still there?"
+			},
+			"Identifier": "Use Payment Method Again Timeout",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "Check Last Payment Method",
+				"Errors": [
+					{
+						"NextAction": "Check Last Payment Method",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"ComparisonValue": "$.Attributes.PaymentMethod"
+			},
+			"Identifier": "Check Last Payment Method",
+			"Type": "Compare",
+			"Transitions": {
+				"NextAction": "Ask for Payment Method",
+				"Conditions": [
+					{
+						"NextAction": "Use Card Again?",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": ["Card"]
+						}
+					},
+					{
+						"NextAction": "Use Bank Account Again?",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": ["Bank"]
+						}
+					}
+				],
+				"Errors": [
+					{
+						"NextAction": "Ask for Payment Method",
+						"ErrorType": "NoMatchingCondition"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"StoreInput": "False",
+				"InputTimeLimitSeconds": "5",
+				"Text": "To pay with a credit or debit card, press 1.\nTo pay directly with your bank account, press 2."
+			},
+			"Identifier": "Ask for Payment Method",
+			"Type": "GetParticipantInput",
+			"Transitions": {
+				"NextAction": "Method Input Not Recognized",
+				"Conditions": [
+					{
+						"NextAction": "Set Payment Method to Card",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": ["1"]
+						}
+					},
+					{
+						"NextAction": "Set Payment Method to Bank",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": ["2"]
+						}
+					}
+				],
+				"Errors": [
+					{
+						"NextAction": "Payment Method Timeout",
+						"ErrorType": "InputTimeLimitExceeded"
+					},
+					{
+						"NextAction": "Method Input Not Recognized",
+						"ErrorType": "NoMatchingCondition"
+					},
+					{
+						"NextAction": "Method Input Not Recognized",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"LambdaFunctionARN": "<<submitPaymentLambdaArn>>",
+				"InvocationTimeLimitSeconds": "8",
+				"ResponseValidation": {
+					"ResponseType": "JSON"
+				}
+			},
+			"Identifier": "Submit Payment",
+			"Type": "InvokeLambdaFunction",
+			"Transitions": {
+				"NextAction": "Record Transaction Attributes",
+				"Errors": [
+					{
+						"NextAction": "Payment Submission Error",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"StoreInput": "False",
+				"InputTimeLimitSeconds": "5",
+				"Text": "You previously paid with a bank account ending in <say-as interpret-as=\"digits\">$.Attributes.PaymentMethodEndingDigits</say-as>.\n\nIf you would like to use this account again for this payment, press 1.\nTo use a different payment method, press 2."
+			},
+			"Identifier": "Use Bank Account Again?",
+			"Type": "GetParticipantInput",
+			"Transitions": {
+				"NextAction": "Ask for Payment Method",
+				"Conditions": [
+					{
+						"NextAction": "Submit Payment",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": ["1"]
+						}
+					},
+					{
+						"NextAction": "Ask for Payment Method",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": ["2"]
+						}
+					}
+				],
+				"Errors": [
+					{
+						"NextAction": "Use Payment Method Again Timeout",
+						"ErrorType": "InputTimeLimitExceeded"
+					},
+					{
+						"NextAction": "Ask for Payment Method",
+						"ErrorType": "NoMatchingCondition"
+					},
+					{
+						"NextAction": "Ask for Payment Method",
 						"ErrorType": "NoMatchingError"
 					}
 				]
