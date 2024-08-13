@@ -3,8 +3,6 @@ import { CfnIntegrationAssociation } from 'aws-cdk-lib/aws-connect';
 import { ServicePrincipal } from 'aws-cdk-lib/aws-iam';
 import { Architecture, Function, Runtime } from 'aws-cdk-lib/aws-lambda';
 
-let integrationNumber = 1;
-
 export const commonLambdaProps = {
 	architecture: Architecture.ARM_64,
 	runtime: Runtime.NODEJS_20_X,
@@ -25,6 +23,12 @@ export function associateLambdaFunctionsWithConnect(
 	stack: Stack,
 	lambdaFunctions: Function[],
 ): void {
+	// Workaround to delete the existing associations. Necessary when the naming format changes.
+	const skipAssociations = stack.node.tryGetContext('options').skipAssociations;
+	if (skipAssociations) {
+		return;
+	}
+
 	const instanceArn = stack.node.tryGetContext('amazonConnect').instanceArn;
 	for (const lambdaFunction of lambdaFunctions) {
 		// Allow Amazon Connect to invoke the Lambda functions.
@@ -42,13 +46,12 @@ export function associateLambdaFunctionsWithConnect(
 		);
 		new CfnIntegrationAssociation(
 			stack,
-			`C3ConnectIntegrationFunction${integrationNumber}`,
+			`C3ConnectIntegration-${lambdaFunction.node.id}`,
 			{
 				instanceId: instanceArn,
 				integrationType: 'LAMBDA_FUNCTION',
 				integrationArn: lambdaFunction.functionArn,
 			},
 		);
-		integrationNumber++;
 	}
 }
