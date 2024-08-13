@@ -25,9 +25,6 @@ export function getPaymentIVRFlowModuleContent(
 ) {
 	let transformedContent = JSON.stringify(flowModuleJson);
 
-	// Don't escape quotes.
-	transformedContent = transformedContent.replace(/\\/g, '');
-
 	// Replace Lambda placeholders with actual ARNs.
 	transformedContent = transformedContent.replace(
 		/<<createPaymentRequestLambdaArn>>/g,
@@ -91,9 +88,6 @@ export function getSelfServicePaymentIVRFlowContent(
 ) {
 	let transformedContent = JSON.stringify(agentAssistedPaymentIVRFlowJson);
 
-	// Don't escape quotes.
-	transformedContent = transformedContent.replace(/\\/g, '');
-
 	// Replace Lambda placeholders with actual ARNs.
 	transformedContent = transformedContent.replace(
 		/<<sendAgentMessageLambdaArn>>/g,
@@ -140,9 +134,6 @@ export function getSubjectLookupFlowContent(
 	sendAgentMessageFunction: Function,
 ): string {
 	let transformedContent = JSON.stringify(subjectLookupFlow);
-
-	// Don't escape quotes.
-	transformedContent = transformedContent.replace(/\\/g, '');
 
 	// Replace the placeholders with the actual values.
 	transformedContent = transformedContent.replace(
