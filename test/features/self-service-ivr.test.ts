@@ -37,7 +37,7 @@ const mockContext: Context = {
 	supportEmail: 'placeholder',
 };
 
-const NUMBER_OF_LAMBDAS = 4;
+const NUMBER_OF_LAMBDAS = 5;
 
 // Verify created resources for agent-assisted IVR.
 describe('Self-Service IVR', () => {

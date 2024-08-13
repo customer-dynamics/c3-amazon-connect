@@ -37,7 +37,7 @@ const mockContext: Context = {
 	supportEmail: 'placeholder',
 };
 
-const NUMBER_OF_LAMBDAS = 6;
+const NUMBER_OF_LAMBDAS = 7;
 
 // Verify created resources for subject lookup.
 describe('Subject Lookup', () => {
