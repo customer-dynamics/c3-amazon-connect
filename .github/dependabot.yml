@@ -28,6 +28,10 @@ updates:
 
   # Lambda functions
   - package-ecosystem: 'npm'
+    directory: 'lib/lambda/c3-utils-layer/lib/nodejs'
+    schedule:
+      interval: 'daily'
+  - package-ecosystem: 'npm'
     directory: 'lib/lambda/c3-create-payment-request'
     schedule:
       interval: 'daily'
