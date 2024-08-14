@@ -12,7 +12,12 @@ import {
 	PolicyStatement,
 	Role,
 } from 'aws-cdk-lib/aws-iam';
-import { Code, CodeSigningConfig, Function } from 'aws-cdk-lib/aws-lambda';
+import {
+	Code,
+	CodeSigningConfig,
+	Function,
+	LayerVersion,
+} from 'aws-cdk-lib/aws-lambda';
 import { join } from 'path';
 
 import {
@@ -44,6 +49,7 @@ export class AgentAssistedPaymentIVR {
 		private codeSigningConfig: CodeSigningConfig,
 		private c3BaseUrl: string,
 		private c3ApiKeySecret: Secret,
+		private utilsLayer: LayerVersion,
 		private createPaymentRequestFunction: Function,
 		private tokenizeTransactionFunction: Function,
 		private submitPaymentFunction: Function,
@@ -93,6 +99,7 @@ export class AgentAssistedPaymentIVR {
 				codeSigningConfig: optionsContext.codeSigning
 					? this.codeSigningConfig
 					: undefined,
+				layers: [this.utilsLayer],
 			},
 		);
 

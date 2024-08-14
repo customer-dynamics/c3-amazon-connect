@@ -1,11 +1,28 @@
 import { Duration, Stack } from 'aws-cdk-lib';
 import { CfnIntegrationAssociation } from 'aws-cdk-lib/aws-connect';
 import { ServicePrincipal } from 'aws-cdk-lib/aws-iam';
-import { Architecture, Function, Runtime } from 'aws-cdk-lib/aws-lambda';
+import {
+	Architecture,
+	Code,
+	Function,
+	FunctionProps,
+	LayerVersionProps,
+	Runtime,
+} from 'aws-cdk-lib/aws-lambda';
 
-export const commonLambdaProps = {
-	architecture: Architecture.ARM_64,
-	runtime: Runtime.NODEJS_20_X,
+const TARGET_ARCHITECTURE = Architecture.ARM_64;
+const TARGET_RUNTIME = Runtime.NODEJS_20_X;
+
+export const commonLambdaLayerProps: LayerVersionProps = {
+	code: Code.fromInline('// Not empty'), // Placeholder code. The actual code will be set elsewhere.
+	compatibleArchitectures: [TARGET_ARCHITECTURE],
+	compatibleRuntimes: [TARGET_RUNTIME],
+};
+
+export const commonLambdaProps: FunctionProps = {
+	code: Code.fromInline('// Not empty'), // Placeholder code. The actual code will be set elsewhere.
+	architecture: TARGET_ARCHITECTURE,
+	runtime: TARGET_RUNTIME,
 	timeout: Duration.seconds(8),
 	handler: 'index.handler',
 	memorySize: 256,

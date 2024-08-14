@@ -1,7 +1,12 @@
 import { join } from 'path';
 import { SecretValue, Stack, StackProps } from 'aws-cdk-lib';
 import { CfnIntegrationAssociation } from 'aws-cdk-lib/aws-connect';
-import { Code, CodeSigningConfig, Function } from 'aws-cdk-lib/aws-lambda';
+import {
+	Code,
+	CodeSigningConfig,
+	Function,
+	LayerVersion,
+} from 'aws-cdk-lib/aws-lambda';
 import { PolicyStatement } from 'aws-cdk-lib/aws-iam';
 import { SigningProfile, Platform } from 'aws-cdk-lib/aws-signer';
 import { Secret } from 'aws-cdk-lib/aws-secretsmanager';
@@ -12,6 +17,7 @@ import { Zift } from './payment-gateways/zift';
 import { AgentAssistedPaymentIVR, SelfServicePaymentIVR } from './features';
 import {
 	associateLambdaFunctionsWithConnect,
+	commonLambdaLayerProps,
 	commonLambdaProps,
 } from './helpers/lambda';
 import { SubjectLookup } from './features/subject-lookup';
@@ -46,6 +52,7 @@ export class C3AmazonConnectStack extends Stack {
 	private codeSigningConfig: CodeSigningConfig;
 	private c3ApiKeySecret: Secret;
 	private privateKeySecret: Secret;
+	private utilsLayer: LayerVersion;
 	private createPaymentRequestFunction: Function;
 	private validateEntryFunction: Function;
 	private tokenizeTransactionFunction: Function;
@@ -71,6 +78,7 @@ export class C3AmazonConnectStack extends Stack {
 			this.featuresContext.agentAssistedIVR
 		) {
 			this.createPrivateKeySecret();
+			this.createUtilsLayer();
 			this.createCreatePaymentRequestFunction();
 			this.createValidateEntryFunction();
 			this.createTokenizeTransactionFunction();
@@ -105,6 +113,7 @@ export class C3AmazonConnectStack extends Stack {
 				this.codeSigningConfig,
 				this.c3BaseUrl,
 				this.c3ApiKeySecret,
+				this.utilsLayer,
 				this.createPaymentRequestFunction,
 				this.tokenizeTransactionFunction,
 				this.submitPaymentFunction,
@@ -251,6 +260,20 @@ export class C3AmazonConnectStack extends Stack {
 	}
 
 	/**
+	 * Creates a Lambda layer for utility functions.
+	 *
+	 * This layer is necessary for the Lambda functions to access utility functions that are shared across multiple functions.
+	 */
+	private createUtilsLayer(): void {
+		console.log('Creating layer for utility functions...');
+		this.utilsLayer = new LayerVersion(this, 'C3UtilsLayer', {
+			...commonLambdaLayerProps,
+			description: 'Utility functions for C3 payment processing.',
+			code: Code.fromAsset(join(__dirname, 'lambda/c3-utils-layer/lib')),
+		});
+	}
+
+	/**
 	 * Creates a Lambda function for creating a payment request.
 	 *
 	 * This function is necessary for your payment flow to create a payment request through the C3 API.
@@ -277,6 +300,7 @@ export class C3AmazonConnectStack extends Stack {
 				codeSigningConfig: this.optionsContext.codeSigning
 					? this.codeSigningConfig
 					: undefined,
+				layers: [this.utilsLayer],
 			},
 		);
 
@@ -306,6 +330,7 @@ export class C3AmazonConnectStack extends Stack {
 			codeSigningConfig: this.optionsContext.codeSigning
 				? this.codeSigningConfig
 				: undefined,
+			layers: [this.utilsLayer],
 		});
 
 		// Create policies for decrypting payment information.
@@ -345,6 +370,7 @@ export class C3AmazonConnectStack extends Stack {
 				codeSigningConfig: this.optionsContext.codeSigning
 					? this.codeSigningConfig
 					: undefined,
+				layers: [this.utilsLayer],
 			},
 		);
 
@@ -396,6 +422,7 @@ export class C3AmazonConnectStack extends Stack {
 			codeSigningConfig: this.optionsContext.codeSigning
 				? this.codeSigningConfig
 				: undefined,
+			layers: [this.utilsLayer],
 		});
 
 		// Create the policy for getting secret values.
@@ -424,6 +451,7 @@ export class C3AmazonConnectStack extends Stack {
 			codeSigningConfig: this.optionsContext.codeSigning
 				? this.codeSigningConfig
 				: undefined,
+			layers: [this.utilsLayer],
 		});
 
 		// Create the policy for getting secret values.
