@@ -90,7 +90,7 @@ describe('Subject Lookup', () => {
 
 	// Lambda functions
 	describe('Lambda functions', () => {
-		it('Has 6 created functions', () => {
+		it('Has 7 created functions', () => {
 			template.resourceCountIs('AWS::Lambda::Function', NUMBER_OF_LAMBDAS);
 		});
 	});
@@ -102,7 +102,7 @@ describe('Subject Lookup', () => {
 		});
 		it('Has 6 created policies', () => {
 			// Cross org policy, 3 secrets policies, and kms policy
-			template.resourceCountIs('AWS::IAM::Policy', NUMBER_OF_LAMBDAS);
+			template.resourceCountIs('AWS::IAM::Policy', NUMBER_OF_LAMBDAS - 1); // No policy for subject lookup
 		});
 	});
 });
