@@ -2,7 +2,7 @@
 	"compilerOptions": {
 		"baseUrl": ".",
 		"paths": {
-			"/opt/nodejs/*": ["lib/lambda/c3-utils-layer/lib/nodejs/*"]
+			"/opt/nodejs/*": ["../c3-utils-layer/lib/nodejs/*"]
 		}
 	}
 }
