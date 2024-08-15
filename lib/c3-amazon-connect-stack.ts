@@ -57,7 +57,7 @@ export class C3AmazonConnectStack extends Stack {
 	private validateEntryFunction: Function;
 	private tokenizeTransactionFunction: Function;
 	private submitPaymentFunction: Function;
-	private emailReceiptFunction: Function;
+	private sendReceiptFunction: Function;
 
 	private agentAssistedIVRResources: AgentAssistedPaymentIVR;
 
@@ -83,13 +83,13 @@ export class C3AmazonConnectStack extends Stack {
 			this.createValidateEntryFunction();
 			this.createTokenizeTransactionFunction();
 			this.createSubmitPaymentFunction();
-			this.createEmailReceiptFunction();
+			this.createSendReceiptFunction();
 			associateLambdaFunctionsWithConnect(this, [
 				this.createPaymentRequestFunction,
 				this.validateEntryFunction,
 				this.tokenizeTransactionFunction,
 				this.submitPaymentFunction,
-				this.emailReceiptFunction,
+				this.sendReceiptFunction,
 			]);
 		}
 
@@ -102,7 +102,7 @@ export class C3AmazonConnectStack extends Stack {
 				this.createPaymentRequestFunction,
 				this.tokenizeTransactionFunction,
 				this.submitPaymentFunction,
-				this.emailReceiptFunction,
+				this.sendReceiptFunction,
 			);
 		}
 		if (this.featuresContext.agentAssistedIVR) {
@@ -117,7 +117,7 @@ export class C3AmazonConnectStack extends Stack {
 				this.createPaymentRequestFunction,
 				this.tokenizeTransactionFunction,
 				this.submitPaymentFunction,
-				this.emailReceiptFunction,
+				this.sendReceiptFunction,
 			);
 		}
 		if (this.featuresContext.subjectLookup) {
@@ -434,16 +434,16 @@ export class C3AmazonConnectStack extends Stack {
 	}
 
 	/**
-	 * Creates a Lambda function for sending an email receipt.
+	 * Creates a Lambda function for sending a receipt.
 	 *
-	 * This function is necessary for your payment flow to send an email receipt to the customer using C3 after the payment has been processed.
+	 * This function is necessary for your payment flow to send a receipt to the customer using C3 after the payment has been processed.
 	 */
-	private createEmailReceiptFunction(): void {
-		console.log('Creating function C3EmailReceipt...');
-		this.emailReceiptFunction = new Function(this, 'C3EmailReceipt', {
+	private createSendReceiptFunction(): void {
+		console.log('Creating function C3SendReceipt...');
+		this.sendReceiptFunction = new Function(this, 'C3SendReceipt', {
 			...commonLambdaProps,
-			description: 'Creates a payment request through the C3 API.',
-			code: Code.fromAsset(join(__dirname, 'lambda/c3-email-receipt')),
+			description: 'Sends a payment receipt using the C3 API.',
+			code: Code.fromAsset(join(__dirname, 'lambda/c3-send-receipt')),
 			environment: {
 				C3_BASE_URL: this.c3BaseUrl,
 				C3_API_KEY_SECRET_ID: this.c3ApiKeySecret.secretName,
@@ -459,7 +459,7 @@ export class C3AmazonConnectStack extends Stack {
 			actions: ['secretsmanager:GetSecretValue'],
 			resources: [this.c3ApiKeySecret.secretArn],
 		});
-		this.emailReceiptFunction.addToRolePolicy(getSecretValuePolicy);
+		this.sendReceiptFunction.addToRolePolicy(getSecretValuePolicy);
 	}
 
 	/**

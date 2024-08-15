@@ -44,7 +44,7 @@ updates:
     schedule:
       interval: 'daily'
   - package-ecosystem: 'npm'
-    directory: 'lib/lambda/c3-email-receipt'
+    directory: 'lib/lambda/c3-send-receipt'
     schedule:
       interval: 'daily'
   - package-ecosystem: 'npm'

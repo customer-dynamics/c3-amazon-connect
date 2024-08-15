@@ -1,5 +1,5 @@
 {
-	"name": "c3-email-receipt",
+	"name": "c3-send-receipt",
 	"author": "Customer Dynamics",
 	"main": "index.js",
 	"private": true,

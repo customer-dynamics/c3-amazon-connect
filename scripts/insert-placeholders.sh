@@ -27,9 +27,9 @@ PLACEHOLDER="<<submitPaymentLambdaArn>>"
 sed -i '' "s|\(\"[^\"]*\": \)\".*${FUNCTION_NAME}.*\"|\1\"$PLACEHOLDER\"|g" "$AGENT_ASSISTED_PAYMENT_IVR_FLOW_FILE"
 sed -i '' "s|\(\"[^\"]*\": \)\".*${FUNCTION_NAME}.*\"|\1\"$PLACEHOLDER\"|g" "$PAYMENT_IVR_FLOW_MODULE_FILE"
 
-# Replace the ARN of the C3EmailReceipt Lambda function
-FUNCTION_NAME="C3EmailReceipt"
-PLACEHOLDER="<<emailReceiptLambdaArn>>"
+# Replace the ARN of the C3SendReceipt Lambda function
+FUNCTION_NAME="C3SendReceipt"
+PLACEHOLDER="<<sendReceiptLambdaArn>>"
 sed -i '' "s|\(\"[^\"]*\": \)\".*${FUNCTION_NAME}.*\"|\1\"$PLACEHOLDER\"|g" "$AGENT_ASSISTED_PAYMENT_IVR_FLOW_FILE"
 sed -i '' "s|\(\"[^\"]*\": \)\".*${FUNCTION_NAME}.*\"|\1\"$PLACEHOLDER\"|g" "$PAYMENT_IVR_FLOW_MODULE_FILE"
 
