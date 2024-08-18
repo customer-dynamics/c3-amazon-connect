@@ -28,6 +28,10 @@ updates:
 
   # Lambda functions
   - package-ecosystem: 'npm'
+    directory: 'lib/lambda/c3-utils-layer/lib/nodejs'
+    schedule:
+      interval: 'daily'
+  - package-ecosystem: 'npm'
     directory: 'lib/lambda/c3-create-payment-request'
     schedule:
       interval: 'daily'
@@ -40,7 +44,7 @@ updates:
     schedule:
       interval: 'daily'
   - package-ecosystem: 'npm'
-    directory: 'lib/lambda/c3-email-receipt'
+    directory: 'lib/lambda/c3-send-receipt'
     schedule:
       interval: 'daily'
   - package-ecosystem: 'npm'
@@ -49,5 +53,9 @@ updates:
       interval: 'daily'
   - package-ecosystem: 'npm'
     directory: 'lib/lambda/c3-send-agent-message'
+    schedule:
+      interval: 'daily'
+  - package-ecosystem: 'npm'
+    directory: 'lib/lambda/c3-validate-entry'
     schedule:
       interval: 'daily'

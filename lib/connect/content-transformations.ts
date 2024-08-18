@@ -9,22 +9,22 @@ import * as subjectLookupFlow from './flows/c3-subject-lookup-flow.json';
  * @param createPaymentRequestLambdaArn The Lambda function that creates a payment request.
  * @param tokenizeTransactionLambdaArn The Lambda function that tokenizes a transaction.
  * @param submitPaymentLambdaArn The Lambda function that submits a payment.
+ * @param sendReceiptLambdaArn The Lambda function that sends a receipt.
  * @param amazonConnectSecurityKeyId The security key ID for Amazon Connect.
  * @param amazonConnectSecurityKeyCertificateContent The security key certificate content for Amazon Connect.
+ * @param amazonConnectReceiptQueueArn The ARN for the Amazon Connect receipt queue.
  * @returns A string representing the content for the base IVR payment flow module.
  */
 export function getPaymentIVRFlowModuleContent(
 	createPaymentRequestLambdaFunction: Function,
 	tokenizeTransactionLambdaFunction: Function,
 	submitPaymentLambdaFunction: Function,
-	emailReceiptLambdaFunction: Function,
+	sendReceiptLambdaFunction: Function,
 	amazonConnectSecurityKeyId: string,
 	amazonConnectSecurityKeyCertificateContent: string,
+	amazonConnectReceiptQueueArn: string,
 ) {
 	let transformedContent = JSON.stringify(flowModuleJson);
-
-	// Don't escape quotes.
-	transformedContent = transformedContent.replace(/\\/g, '');
 
 	// Replace Lambda placeholders with actual ARNs.
 	transformedContent = transformedContent.replace(
@@ -40,8 +40,8 @@ export function getPaymentIVRFlowModuleContent(
 		submitPaymentLambdaFunction.functionArn,
 	);
 	transformedContent = transformedContent.replace(
-		/<<emailReceiptLambdaArn>>/g,
-		emailReceiptLambdaFunction.functionArn,
+		/<<sendReceiptLambdaArn>>/g,
+		sendReceiptLambdaFunction.functionArn,
 	);
 
 	// Replace Amazon Connect security key placeholders with actual values.
@@ -53,6 +53,17 @@ export function getPaymentIVRFlowModuleContent(
 		/<<amazonConnectSecurityKeyCertificateContent>>/g,
 		amazonConnectSecurityKeyCertificateContent,
 	);
+
+	// Replace the receipt queue ID placeholder with the actual value.
+	const queueId = amazonConnectReceiptQueueArn.split('/queue/').pop();
+	if (!queueId) {
+		throw new Error('Invalid ARN for the receipt queue.');
+	}
+	transformedContent = transformedContent.replace(
+		/<<receiptQueueId>>/g,
+		queueId,
+	);
+
 	return transformedContent;
 }
 
@@ -63,6 +74,7 @@ export function getPaymentIVRFlowModuleContent(
  * @param createPaymentRequestFunction The Lambda function that creates a payment request.
  * @param tokenizeTransactionFunction The Lambda function that tokenizes a transaction.
  * @param submitPaymentLambdaFunction The Lambda function that submits a payment.
+ * @param sendReceiptLambdaFunction The Lambda function that sends a receipt.
  * @param amazonConnectSecurityKeyId The security key ID for Amazon Connect.
  * @param amazonConnectSecurityKeyCertificateContent The security key certificate content for Amazon Connect.
  * @returns A string representing the content for the base IVR payment flow.
@@ -72,14 +84,11 @@ export function getSelfServicePaymentIVRFlowContent(
 	createPaymentRequestFunction: Function,
 	tokenizeTransactionFunction: Function,
 	submitPaymentLambdaFunction: Function,
-	emailReceiptLambdaFunction: Function,
+	sendReceiptLambdaFunction: Function,
 	amazonConnectSecurityKeyId: string,
 	amazonConnectSecurityKeyCertificateContent: string,
 ) {
 	let transformedContent = JSON.stringify(agentAssistedPaymentIVRFlowJson);
-
-	// Don't escape quotes.
-	transformedContent = transformedContent.replace(/\\/g, '');
 
 	// Replace Lambda placeholders with actual ARNs.
 	transformedContent = transformedContent.replace(
@@ -99,8 +108,8 @@ export function getSelfServicePaymentIVRFlowContent(
 		submitPaymentLambdaFunction.functionArn,
 	);
 	transformedContent = transformedContent.replace(
-		/<<emailReceiptLambdaArn>>/g,
-		emailReceiptLambdaFunction.functionArn,
+		/<<sendReceiptLambdaArn>>/g,
+		sendReceiptLambdaFunction.functionArn,
 	);
 
 	// Replace Amazon Connect security key placeholders with actual values.
@@ -127,9 +136,6 @@ export function getSubjectLookupFlowContent(
 	sendAgentMessageFunction: Function,
 ): string {
 	let transformedContent = JSON.stringify(subjectLookupFlow);
-
-	// Don't escape quotes.
-	transformedContent = transformedContent.replace(/\\/g, '');
 
 	// Replace the placeholders with the actual values.
 	transformedContent = transformedContent.replace(

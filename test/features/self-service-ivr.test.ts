@@ -16,6 +16,7 @@ const mockContext: Context = {
 		securityKeyCertificateContent:
 			'-----BEGIN CERTIFICATE-----\\n-----END CERTIFICATE-----\\n',
 		workspaceApp: true,
+		receiptQueueArn: 'placeholder',
 	},
 	c3: {
 		env: C3Environment.Prod,
@@ -36,7 +37,7 @@ const mockContext: Context = {
 	supportEmail: 'placeholder',
 };
 
-const NUMBER_OF_LAMBDAS = 4;
+const NUMBER_OF_LAMBDAS = 5;
 
 // Verify created resources for agent-assisted IVR.
 describe('Self-Service IVR', () => {

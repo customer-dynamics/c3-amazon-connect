@@ -16,6 +16,7 @@ const mockContext: Context = {
 		securityKeyCertificateContent:
 			'-----BEGIN CERTIFICATE-----\\n-----END CERTIFICATE-----\\n',
 		workspaceApp: true,
+		receiptQueueArn: 'placeholder',
 	},
 	c3: {
 		env: C3Environment.Prod,
@@ -36,7 +37,7 @@ const mockContext: Context = {
 	supportEmail: 'placeholder',
 };
 
-const NUMBER_OF_LAMBDAS = 5;
+const NUMBER_OF_LAMBDAS = 6;
 
 // Verify created resources for agent-assisted IVR.
 describe('Agent Assisted IVR', () => {
@@ -99,9 +100,9 @@ describe('Agent Assisted IVR', () => {
 		it('Has a created role', () => {
 			template.resourceCountIs('AWS::IAM::Role', NUMBER_OF_LAMBDAS + 1);
 		});
-		it('Has 5 created policies', () => {
+		it('Has 6 created policies', () => {
 			// Cross org policy, 3 secrets policies, and kms policy
-			template.resourceCountIs('AWS::IAM::Policy', 5);
+			template.resourceCountIs('AWS::IAM::Policy', NUMBER_OF_LAMBDAS);
 		});
 	});
 });

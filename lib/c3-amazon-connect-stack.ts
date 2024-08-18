@@ -1,7 +1,12 @@
 import { join } from 'path';
 import { SecretValue, Stack, StackProps } from 'aws-cdk-lib';
 import { CfnIntegrationAssociation } from 'aws-cdk-lib/aws-connect';
-import { Code, CodeSigningConfig, Function } from 'aws-cdk-lib/aws-lambda';
+import {
+	Code,
+	CodeSigningConfig,
+	Function,
+	LayerVersion,
+} from 'aws-cdk-lib/aws-lambda';
 import { PolicyStatement } from 'aws-cdk-lib/aws-iam';
 import { SigningProfile, Platform } from 'aws-cdk-lib/aws-signer';
 import { Secret } from 'aws-cdk-lib/aws-secretsmanager';
@@ -12,6 +17,7 @@ import { Zift } from './payment-gateways/zift';
 import { AgentAssistedPaymentIVR, SelfServicePaymentIVR } from './features';
 import {
 	associateLambdaFunctionsWithConnect,
+	commonLambdaLayerProps,
 	commonLambdaProps,
 } from './helpers/lambda';
 import { SubjectLookup } from './features/subject-lookup';
@@ -46,10 +52,12 @@ export class C3AmazonConnectStack extends Stack {
 	private codeSigningConfig: CodeSigningConfig;
 	private c3ApiKeySecret: Secret;
 	private privateKeySecret: Secret;
+	private utilsLayer: LayerVersion;
 	private createPaymentRequestFunction: Function;
+	private validateEntryFunction: Function;
 	private tokenizeTransactionFunction: Function;
 	private submitPaymentFunction: Function;
-	private emailReceiptFunction: Function;
+	private sendReceiptFunction: Function;
 
 	private agentAssistedIVRResources: AgentAssistedPaymentIVR;
 
@@ -70,15 +78,18 @@ export class C3AmazonConnectStack extends Stack {
 			this.featuresContext.agentAssistedIVR
 		) {
 			this.createPrivateKeySecret();
+			this.createUtilsLayer();
 			this.createCreatePaymentRequestFunction();
+			this.createValidateEntryFunction();
 			this.createTokenizeTransactionFunction();
 			this.createSubmitPaymentFunction();
-			this.createEmailReceiptFunction();
+			this.createSendReceiptFunction();
 			associateLambdaFunctionsWithConnect(this, [
 				this.createPaymentRequestFunction,
+				this.validateEntryFunction,
 				this.tokenizeTransactionFunction,
 				this.submitPaymentFunction,
-				this.emailReceiptFunction,
+				this.sendReceiptFunction,
 			]);
 		}
 
@@ -91,7 +102,7 @@ export class C3AmazonConnectStack extends Stack {
 				this.createPaymentRequestFunction,
 				this.tokenizeTransactionFunction,
 				this.submitPaymentFunction,
-				this.emailReceiptFunction,
+				this.sendReceiptFunction,
 			);
 		}
 		if (this.featuresContext.agentAssistedIVR) {
@@ -102,10 +113,11 @@ export class C3AmazonConnectStack extends Stack {
 				this.codeSigningConfig,
 				this.c3BaseUrl,
 				this.c3ApiKeySecret,
+				this.utilsLayer,
 				this.createPaymentRequestFunction,
 				this.tokenizeTransactionFunction,
 				this.submitPaymentFunction,
-				this.emailReceiptFunction,
+				this.sendReceiptFunction,
 			);
 		}
 		if (this.featuresContext.subjectLookup) {
@@ -248,6 +260,20 @@ export class C3AmazonConnectStack extends Stack {
 	}
 
 	/**
+	 * Creates a Lambda layer for utility functions.
+	 *
+	 * This layer is necessary for the Lambda functions to access utility functions that are shared across multiple functions.
+	 */
+	private createUtilsLayer(): void {
+		console.log('Creating layer for utility functions...');
+		this.utilsLayer = new LayerVersion(this, 'C3UtilsLayer', {
+			...commonLambdaLayerProps,
+			description: 'Utility functions for C3 payment processing.',
+			code: Code.fromAsset(join(__dirname, 'lambda/c3-utils-layer/lib')),
+		});
+	}
+
+	/**
 	 * Creates a Lambda function for creating a payment request.
 	 *
 	 * This function is necessary for your payment flow to create a payment request through the C3 API.
@@ -274,6 +300,7 @@ export class C3AmazonConnectStack extends Stack {
 				codeSigningConfig: this.optionsContext.codeSigning
 					? this.codeSigningConfig
 					: undefined,
+				layers: [this.utilsLayer],
 			},
 		);
 
@@ -283,6 +310,41 @@ export class C3AmazonConnectStack extends Stack {
 			resources: [this.c3ApiKeySecret.secretArn],
 		});
 		this.createPaymentRequestFunction.addToRolePolicy(getSecretValuePolicy);
+	}
+
+	/**
+	 * Creates a Lambda function for validating the customer's entry in the IVR.
+	 *
+	 * This function is necessary to validate credit card and bank account information entered by the customer.
+	 */
+	private createValidateEntryFunction(): void {
+		console.log('Creating function C3ValidateEntry...');
+		this.validateEntryFunction = new Function(this, 'C3ValidateEntry', {
+			...commonLambdaProps,
+			description: "Validates a customer's entry in the C3 payment IVR(s).",
+			code: Code.fromAsset(join(__dirname, 'lambda/c3-validate-entry')),
+			environment: {
+				C3_PRIVATE_KEY_SECRET_ID: this.privateKeySecret.secretName,
+				CONNECT_SECURITY_KEY_ID: this.amazonConnectContext.securityKeyId,
+			},
+			codeSigningConfig: this.optionsContext.codeSigning
+				? this.codeSigningConfig
+				: undefined,
+			layers: [this.utilsLayer],
+		});
+
+		// Create policies for decrypting payment information.
+		const decryptPolicy = new PolicyStatement({
+			actions: ['kms:Decrypt'],
+			resources: ['*'],
+		});
+		this.validateEntryFunction.addToRolePolicy(decryptPolicy);
+
+		const getSecretValuePolicy = new PolicyStatement({
+			actions: ['secretsmanager:GetSecretValue'],
+			resources: [this.privateKeySecret.secretArn],
+		});
+		this.validateEntryFunction.addToRolePolicy(getSecretValuePolicy);
 	}
 
 	/**
@@ -308,6 +370,7 @@ export class C3AmazonConnectStack extends Stack {
 				codeSigningConfig: this.optionsContext.codeSigning
 					? this.codeSigningConfig
 					: undefined,
+				layers: [this.utilsLayer],
 			},
 		);
 
@@ -359,6 +422,7 @@ export class C3AmazonConnectStack extends Stack {
 			codeSigningConfig: this.optionsContext.codeSigning
 				? this.codeSigningConfig
 				: undefined,
+			layers: [this.utilsLayer],
 		});
 
 		// Create the policy for getting secret values.
@@ -370,16 +434,16 @@ export class C3AmazonConnectStack extends Stack {
 	}
 
 	/**
-	 * Creates a Lambda function for sending an email receipt.
+	 * Creates a Lambda function for sending a receipt.
 	 *
-	 * This function is necessary for your payment flow to send an email receipt to the customer using C3 after the payment has been processed.
+	 * This function is necessary for your payment flow to send a receipt to the customer using C3 after the payment has been processed.
 	 */
-	private createEmailReceiptFunction(): void {
-		console.log('Creating function C3EmailReceipt...');
-		this.emailReceiptFunction = new Function(this, 'C3EmailReceipt', {
+	private createSendReceiptFunction(): void {
+		console.log('Creating function C3SendReceipt...');
+		this.sendReceiptFunction = new Function(this, 'C3SendReceipt', {
 			...commonLambdaProps,
-			description: 'Creates a payment request through the C3 API.',
-			code: Code.fromAsset(join(__dirname, 'lambda/c3-email-receipt')),
+			description: 'Sends a payment receipt using the C3 API.',
+			code: Code.fromAsset(join(__dirname, 'lambda/c3-send-receipt')),
 			environment: {
 				C3_BASE_URL: this.c3BaseUrl,
 				C3_API_KEY_SECRET_ID: this.c3ApiKeySecret.secretName,
@@ -387,6 +451,7 @@ export class C3AmazonConnectStack extends Stack {
 			codeSigningConfig: this.optionsContext.codeSigning
 				? this.codeSigningConfig
 				: undefined,
+			layers: [this.utilsLayer],
 		});
 
 		// Create the policy for getting secret values.
@@ -394,7 +459,7 @@ export class C3AmazonConnectStack extends Stack {
 			actions: ['secretsmanager:GetSecretValue'],
 			resources: [this.c3ApiKeySecret.secretArn],
 		});
-		this.emailReceiptFunction.addToRolePolicy(getSecretValuePolicy);
+		this.sendReceiptFunction.addToRolePolicy(getSecretValuePolicy);
 	}
 
 	/**

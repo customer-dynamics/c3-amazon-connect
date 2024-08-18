@@ -1,5 +1,5 @@
 {
-	"name": "c3-email-receipt",
+	"name": "c3-send-receipt",
 	"author": "Customer Dynamics",
 	"main": "index.js",
 	"private": true,
@@ -7,8 +7,6 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
-	"dependencies": {
-		"@aws-sdk/client-secrets-manager": "^3.632.0"
-	},
+	"dependencies": {},
 	"devDependencies": {}
 }

@@ -1,0 +1,8 @@
+{
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"/opt/nodejs/*": ["../c3-utils-layer/lib/nodejs/*"]
+		}
+	}
+}

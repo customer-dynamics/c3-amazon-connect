@@ -1,0 +1,14 @@
+{
+	"name": "c3-utils-layer",
+	"author": "Customer Dynamics",
+	"main": "index.js",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"dependencies": {
+		"@aws-crypto/client-node": "^4.0.1",
+		"@aws-sdk/client-secrets-manager": "^3.624.0"
+	}
+}

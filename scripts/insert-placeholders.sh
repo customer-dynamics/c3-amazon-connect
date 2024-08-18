@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Replaces all referenced Lambda function ARNs, security key IDs, and certificate content values with placeholder values so
+# they can be used in different environments.
+
 AGENT_ASSISTED_PAYMENT_IVR_FLOW_FILE="lib/connect/flows/c3-agent-assisted-payment-ivr-flow.json"
 SUBJECT_LOOKUP_FLOW_FILE="lib/connect/flows/c3-subject-lookup-flow.json"
 PAYMENT_IVR_FLOW_MODULE_FILE="lib/connect/flows/modules/c3-payment-ivr-flow-module.json"
@@ -24,9 +27,9 @@ PLACEHOLDER="<<submitPaymentLambdaArn>>"
 sed -i '' "s|\(\"[^\"]*\": \)\".*${FUNCTION_NAME}.*\"|\1\"$PLACEHOLDER\"|g" "$AGENT_ASSISTED_PAYMENT_IVR_FLOW_FILE"
 sed -i '' "s|\(\"[^\"]*\": \)\".*${FUNCTION_NAME}.*\"|\1\"$PLACEHOLDER\"|g" "$PAYMENT_IVR_FLOW_MODULE_FILE"
 
-# Replace the ARN of the C3EmailReceipt Lambda function
-FUNCTION_NAME="C3EmailReceipt"
-PLACEHOLDER="<<emailReceiptLambdaArn>>"
+# Replace the ARN of the C3SendReceipt Lambda function
+FUNCTION_NAME="C3SendReceipt"
+PLACEHOLDER="<<sendReceiptLambdaArn>>"
 sed -i '' "s|\(\"[^\"]*\": \)\".*${FUNCTION_NAME}.*\"|\1\"$PLACEHOLDER\"|g" "$AGENT_ASSISTED_PAYMENT_IVR_FLOW_FILE"
 sed -i '' "s|\(\"[^\"]*\": \)\".*${FUNCTION_NAME}.*\"|\1\"$PLACEHOLDER\"|g" "$PAYMENT_IVR_FLOW_MODULE_FILE"
 
@@ -55,6 +58,14 @@ CERTIFICATE_PREFIX="-----BEGIN CERTIFICATE-----"
 PLACEHOLDER="<<amazonConnectSecurityKeyCertificateContent>>"
 sed -i '' "s|\(\"[^\"]*\": \)\".*${CERTIFICATE_PREFIX}.*\"|\1\"$PLACEHOLDER\"|g" "$AGENT_ASSISTED_PAYMENT_IVR_FLOW_FILE"
 sed -i '' "s|\(\"[^\"]*\": \)\".*${CERTIFICATE_PREFIX}.*\"|\1\"$PLACEHOLDER\"|g" "$PAYMENT_IVR_FLOW_MODULE_FILE"
+
+
+# ---- RECEIPT QUEUE ID ----
+
+# Replace the receipt queue ID
+QUEUE_ID_PREFIX="34f98ae7-73a8-496b-a1c0-392ae6de130d"
+PLACEHOLDER="<<receiptQueueId>>"
+sed -i '' "s|$QUEUE_ID_PREFIX|$PLACEHOLDER|g" "$PAYMENT_IVR_FLOW_MODULE_FILE"
 
 # Remove any instances of (Working Copy)
 sed -i '' "s| (Working Copy)||g" "$AGENT_ASSISTED_PAYMENT_IVR_FLOW_FILE"

@@ -16,9 +16,9 @@
 		"synth": "npm ci && npm run build && cdk synth && npm run display-url",
 		"deploy": "npm ci && npm run build && cdk deploy && npm run display-url",
 		"display-url": "echo \"$(<./exports/C3WorkspaceAppUrl.txt )\"",
-		"insert-placeholders": "npm run style:fix && ./scripts/insert-placeholders.sh",
-		"compress-files": "./scripts/compress-files.sh",
-		"postinstall": "npm --prefix ./lib/lambda/c3-create-payment-request ci && npm --prefix ./lib/lambda/c3-email-receipt ci && npm --prefix ./lib/lambda/c3-submit-payment ci && npm --prefix ./lib/lambda/c3-tokenize-transaction ci && npm --prefix ./lib/lambda/c3-subject-lookup ci && npm --prefix ./lib/lambda/c3-send-agent-message ci",
+		"insert-placeholders": "npm run style:fix && bash ./scripts/insert-placeholders.sh",
+		"compress-files": "bash ./scripts/compress-files.sh",
+		"postinstall": "npm --prefix ./lib/lambda/c3-utils-layer/lib/nodejs ci && npm --prefix ./lib/lambda/c3-create-payment-request ci && npm --prefix ./lib/lambda/c3-validate-entry ci && npm --prefix ./lib/lambda/c3-send-receipt ci && npm --prefix ./lib/lambda/c3-submit-payment ci && npm --prefix ./lib/lambda/c3-tokenize-transaction ci && npm --prefix ./lib/lambda/c3-subject-lookup ci && npm --prefix ./lib/lambda/c3-send-agent-message ci",
 		"prepare": "husky"
 	},
 	"devDependencies": {

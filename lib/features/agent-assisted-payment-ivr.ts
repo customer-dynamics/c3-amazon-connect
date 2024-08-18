@@ -12,7 +12,12 @@ import {
 	PolicyStatement,
 	Role,
 } from 'aws-cdk-lib/aws-iam';
-import { Code, CodeSigningConfig, Function } from 'aws-cdk-lib/aws-lambda';
+import {
+	Code,
+	CodeSigningConfig,
+	Function,
+	LayerVersion,
+} from 'aws-cdk-lib/aws-lambda';
 import { join } from 'path';
 
 import {
@@ -44,10 +49,11 @@ export class AgentAssistedPaymentIVR {
 		private codeSigningConfig: CodeSigningConfig,
 		private c3BaseUrl: string,
 		private c3ApiKeySecret: Secret,
+		private utilsLayer: LayerVersion,
 		private createPaymentRequestFunction: Function,
 		private tokenizeTransactionFunction: Function,
 		private submitPaymentFunction: Function,
-		private emailReceiptFunction: Function,
+		private sendReceiptFunction: Function,
 	) {
 		console.log('Creating resources for agent-assisted IVR payments...');
 		this.createSendAgentMessageFunction();
@@ -93,6 +99,7 @@ export class AgentAssistedPaymentIVR {
 				codeSigningConfig: optionsContext.codeSigning
 					? this.codeSigningConfig
 					: undefined,
+				layers: [this.utilsLayer],
 			},
 		);
 
@@ -116,7 +123,7 @@ export class AgentAssistedPaymentIVR {
 			this.createPaymentRequestFunction,
 			this.tokenizeTransactionFunction,
 			this.submitPaymentFunction,
-			this.emailReceiptFunction,
+			this.sendReceiptFunction,
 			this.amazonConnectContext.securityKeyId,
 			this.amazonConnectContext.securityKeyCertificateContent,
 		);
