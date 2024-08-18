@@ -1,5 +1,7 @@
 # C3 for Amazon Connect
 
+[![CodeQL](https://github.com/customer-dynamics/c3-amazon-connect/actions/workflows/codeql.yml/badge.svg?branch=main)](https://github.com/customer-dynamics/c3-amazon-connect/actions/workflows/codeql.yml)
+
 **💰 Contact Center Commerce. Simplified for Amazon Connect.**
 
 C3 for Amazon Connect is a collection of AWS resources to help you collect payments over the phone with Amazon Connect using [C3 Payment](https://www.customerdynamics.com/c3-payment).
