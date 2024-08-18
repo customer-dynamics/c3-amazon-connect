@@ -321,7 +321,7 @@ export class C3AmazonConnectStack extends Stack {
 		console.log('Creating function C3ValidateEntry...');
 		this.validateEntryFunction = new Function(this, 'C3ValidateEntry', {
 			...commonLambdaProps,
-			description: "Validates a customer's entry in the IVR.",
+			description: "Validates a customer's entry in the C3 payment IVR(s).",
 			code: Code.fromAsset(join(__dirname, 'lambda/c3-validate-entry')),
 			environment: {
 				C3_PRIVATE_KEY_SECRET_ID: this.privateKeySecret.secretName,
