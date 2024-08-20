@@ -20,6 +20,7 @@ export class SelfServicePaymentIVR {
 		private tokenizeTransactionFunction: Function,
 		private submitPaymentFunction: Function,
 		private sendReceiptFunction: Function,
+		private validateEntryFunction: Function,
 	) {
 		console.log('Creating resources for self-service IVR payments...');
 		this.createFlowModule();
@@ -41,6 +42,7 @@ export class SelfServicePaymentIVR {
 			this.tokenizeTransactionFunction,
 			this.submitPaymentFunction,
 			this.sendReceiptFunction,
+			this.validateEntryFunction,
 			this.amazonConnectContext.securityKeyId,
 			this.amazonConnectContext.securityKeyCertificateContent,
 			this.amazonConnectContext.receiptQueueArn,

@@ -11,6 +11,7 @@ import { IvrSpeakingContext } from '../models';
  * @param tokenizeTransactionLambdaArn The Lambda function that tokenizes a transaction.
  * @param submitPaymentLambdaArn The Lambda function that submits a payment.
  * @param sendReceiptLambdaArn The Lambda function that sends a receipt.
+ * @param validateEntryLambdaArn The Lambda function that validates the user's entry.
  * @param amazonConnectSecurityKeyId The security key ID for Amazon Connect.
  * @param amazonConnectSecurityKeyCertificateContent The security key certificate content for Amazon Connect.
  * @param amazonConnectReceiptQueueArn The ARN for the Amazon Connect receipt queue.
@@ -22,6 +23,7 @@ export function getPaymentIVRFlowModuleContent(
 	tokenizeTransactionLambdaFunction: Function,
 	submitPaymentLambdaFunction: Function,
 	sendReceiptLambdaFunction: Function,
+	validateEntryLambdaFunction: Function,
 	amazonConnectSecurityKeyId: string,
 	amazonConnectSecurityKeyCertificateContent: string,
 	amazonConnectReceiptQueueArn: string,
@@ -45,6 +47,10 @@ export function getPaymentIVRFlowModuleContent(
 	transformedContent = transformedContent.replace(
 		/<<sendReceiptLambdaArn>>/g,
 		sendReceiptLambdaFunction.functionArn,
+	);
+	transformedContent = transformedContent.replace(
+		/<<validateEntryLambdaArn>>/g,
+		validateEntryLambdaFunction.functionArn,
 	);
 
 	// Replace Amazon Connect security key placeholders with actual values.
@@ -90,6 +96,7 @@ export function getPaymentIVRFlowModuleContent(
  * @param tokenizeTransactionFunction The Lambda function that tokenizes a transaction.
  * @param submitPaymentLambdaFunction The Lambda function that submits a payment.
  * @param sendReceiptLambdaFunction The Lambda function that sends a receipt.
+ * @param validateEntryLambdaFunction The Lambda function that validates the user's entry.
  * @param amazonConnectSecurityKeyId The security key ID for Amazon Connect.
  * @param amazonConnectSecurityKeyCertificateContent The security key certificate content for Amazon Connect.
  * @param ivrSpeakingContext The speaking context for the IVR.
@@ -101,6 +108,7 @@ export function getSelfServicePaymentIVRFlowContent(
 	tokenizeTransactionFunction: Function,
 	submitPaymentLambdaFunction: Function,
 	sendReceiptLambdaFunction: Function,
+	validateEntryLambdaFunction: Function,
 	amazonConnectSecurityKeyId: string,
 	amazonConnectSecurityKeyCertificateContent: string,
 	ivrSpeakingContext: IvrSpeakingContext,
@@ -127,6 +135,10 @@ export function getSelfServicePaymentIVRFlowContent(
 	transformedContent = transformedContent.replace(
 		/<<sendReceiptLambdaArn>>/g,
 		sendReceiptLambdaFunction.functionArn,
+	);
+	transformedContent = transformedContent.replace(
+		/<<validateEntryLambdaArn>>/g,
+		validateEntryLambdaFunction.functionArn,
 	);
 
 	// Replace Amazon Connect security key placeholders with actual values.

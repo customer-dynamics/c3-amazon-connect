@@ -843,7 +843,7 @@
 				"isFriendlyName": true,
 				"parameters": {
 					"LambdaFunctionARN": {
-						"displayName": "C3AmazonConnectStack-C3ValidateEntry0579D515-hLF7slsKAxyI"
+						"displayName": "<<validateEntryLambdaArn>>"
 					},
 					"LambdaInvocationAttributes": {
 						"CustomerEntry": {
@@ -924,7 +924,7 @@
 				"isFriendlyName": true,
 				"parameters": {
 					"LambdaFunctionARN": {
-						"displayName": "C3AmazonConnectStack-C3ValidateEntry0579D515-hLF7slsKAxyI"
+						"displayName": "<<validateEntryLambdaArn>>"
 					},
 					"LambdaInvocationAttributes": {
 						"CustomerEntry": {
@@ -1005,7 +1005,7 @@
 				"isFriendlyName": true,
 				"parameters": {
 					"LambdaFunctionARN": {
-						"displayName": "C3AmazonConnectStack-C3ValidateEntry0579D515-hLF7slsKAxyI"
+						"displayName": "<<validateEntryLambdaArn>>"
 					},
 					"LambdaInvocationAttributes": {
 						"CustomerEntry": {
@@ -1102,7 +1102,7 @@
 				"isFriendlyName": true,
 				"parameters": {
 					"LambdaFunctionARN": {
-						"displayName": "C3AmazonConnectStack-C3ValidateEntry0579D515-hLF7slsKAxyI"
+						"displayName": "<<validateEntryLambdaArn>>"
 					},
 					"LambdaInvocationAttributes": {
 						"CustomerEntry": {
@@ -2684,7 +2684,7 @@
 		},
 		{
 			"Parameters": {
-				"LambdaFunctionARN": "arn:aws:lambda:us-west-2:815407490078:function:C3AmazonConnectStack-C3ValidateEntry0579D515-hLF7slsKAxyI",
+				"LambdaFunctionARN": "<<validateEntryLambdaArn>>",
 				"InvocationTimeLimitSeconds": "8",
 				"LambdaInvocationAttributes": {
 					"ValidationType": "CardNumber",
@@ -2793,7 +2793,7 @@
 		},
 		{
 			"Parameters": {
-				"LambdaFunctionARN": "arn:aws:lambda:us-west-2:815407490078:function:C3AmazonConnectStack-C3ValidateEntry0579D515-hLF7slsKAxyI",
+				"LambdaFunctionARN": "<<validateEntryLambdaArn>>",
 				"InvocationTimeLimitSeconds": "8",
 				"LambdaInvocationAttributes": {
 					"ValidationType": "AccountNumber",
@@ -2902,7 +2902,7 @@
 		},
 		{
 			"Parameters": {
-				"LambdaFunctionARN": "arn:aws:lambda:us-west-2:815407490078:function:C3AmazonConnectStack-C3ValidateEntry0579D515-hLF7slsKAxyI",
+				"LambdaFunctionARN": "<<validateEntryLambdaArn>>",
 				"InvocationTimeLimitSeconds": "8",
 				"LambdaInvocationAttributes": {
 					"ValidationType": "RoutingNumber",
@@ -3054,7 +3054,7 @@
 		},
 		{
 			"Parameters": {
-				"LambdaFunctionARN": "arn:aws:lambda:us-west-2:815407490078:function:C3AmazonConnectStack-C3ValidateEntry0579D515-hLF7slsKAxyI",
+				"LambdaFunctionARN": "<<validateEntryLambdaArn>>",
 				"InvocationTimeLimitSeconds": "8",
 				"LambdaInvocationAttributes": {
 					"ValidationType": "ExpirationDate",

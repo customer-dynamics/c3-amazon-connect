@@ -54,6 +54,7 @@ export class AgentAssistedPaymentIVR {
 		private tokenizeTransactionFunction: Function,
 		private submitPaymentFunction: Function,
 		private sendReceiptFunction: Function,
+		private validateEntryFunction: Function,
 	) {
 		console.log('Creating resources for agent-assisted IVR payments...');
 		this.createSendAgentMessageFunction();
@@ -127,6 +128,7 @@ export class AgentAssistedPaymentIVR {
 			this.tokenizeTransactionFunction,
 			this.submitPaymentFunction,
 			this.sendReceiptFunction,
+			this.validateEntryFunction,
 			this.amazonConnectContext.securityKeyId,
 			this.amazonConnectContext.securityKeyCertificateContent,
 			optionsContext.ivrSpeaking,

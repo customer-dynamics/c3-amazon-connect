@@ -44,6 +44,12 @@ FUNCTION_NAME="C3SubjectLookup"
 PLACEHOLDER="<<subjectLookupLambdaArn>>"
 sed -i '' "s|\(\"[^\"]*\": \)\".*${FUNCTION_NAME}.*\"|\1\"$PLACEHOLDER\"|g" "$SUBJECT_LOOKUP_FLOW_FILE"
 
+# Replace the ARN of the C3ValidateEntry Lambda function
+FUNCTION_NAME="C3ValidateEntry"
+PLACEHOLDER="<<validateEntryLambdaArn>>"
+sed -i '' "s|\(\"[^\"]*\": \)\".*${FUNCTION_NAME}.*\"|\1\"$PLACEHOLDER\"|g" "$AGENT_ASSISTED_PAYMENT_IVR_FLOW_FILE"
+sed -i '' "s|\(\"[^\"]*\": \)\".*${FUNCTION_NAME}.*\"|\1\"$PLACEHOLDER\"|g" "$PAYMENT_IVR_FLOW_MODULE_FILE"
+
 # ---- SECURITY KEY ----
 
 # Replace the security key ID
