@@ -64,7 +64,7 @@ sed -i '' "s|\(\"[^\"]*\": \)\".*${CERTIFICATE_PREFIX}.*\"|\1\"$PLACEHOLDER\"|g"
 
 # Replace the prosody tag with placeholders for speaking volume and rate
 PROSODY_TAG='<prosody volume=\\"medium\\" rate=\\"medium\\">'
-REPLACEMENT='<prosody volume=\\"<<speakingVolume>>\\" rate=\\"<<speakingRate>>\\"'
+REPLACEMENT='<prosody volume=\\"<<speakingVolume>>\\" rate=\\"<<speakingRate>>\\">'
 sed -i '' "s|$PROSODY_TAG|$REPLACEMENT|g" "$AGENT_ASSISTED_PAYMENT_IVR_FLOW_FILE"
 sed -i '' "s|$PROSODY_TAG|$REPLACEMENT|g" "$PAYMENT_IVR_FLOW_MODULE_FILE"
 

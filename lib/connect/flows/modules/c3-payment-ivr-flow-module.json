@@ -1248,7 +1248,7 @@
 		},
 		{
 			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\"\nThere was an error creating the payment request.\n</prosody>\n</speak>"
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nThere was an error creating the payment request.\n</prosody>\n</speak>"
 			},
 			"Identifier": "Payment Request Error",
 			"Type": "MessageParticipant",
@@ -1283,7 +1283,7 @@
 		},
 		{
 			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\"\nA payment has been requested for the amount of $$.Attributes.PaymentAmountDue.\n</prosody>\n</speak>"
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nA payment has been requested for the amount of $$.Attributes.PaymentAmountDue.\n</prosody>\n</speak>"
 			},
 			"Identifier": "Speak Amount",
 			"Type": "MessageParticipant",
@@ -1299,7 +1299,7 @@
 		},
 		{
 			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\"\nAre you still there?\n</prosody>\n</speak>"
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nAre you still there?\n</prosody>\n</speak>"
 			},
 			"Identifier": "Payment Amount Timeout",
 			"Type": "MessageParticipant",
@@ -1315,7 +1315,7 @@
 		},
 		{
 			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\"\nThe entered amount of $$.StoredCustomerInput exceeds the total amount due of $$.Attributes.PaymentAmountDue. Please try again with a smaller amount.\n</prosody>\n</speak>"
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nThe entered amount of $$.StoredCustomerInput exceeds the total amount due of $$.Attributes.PaymentAmountDue. Please try again with a smaller amount.\n</prosody>\n</speak>"
 			},
 			"Identifier": "Payment Too Large",
 			"Type": "MessageParticipant",
@@ -1331,7 +1331,7 @@
 		},
 		{
 			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\"\nThe entered amount of $$.StoredCustomerInput is less than the minimum payment of $$.Attributes.PaymentMinimumPayment. Please try again with a larger amount.\n</prosody>\n</speak>"
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nThe entered amount of $$.StoredCustomerInput is less than the minimum payment of $$.Attributes.PaymentMinimumPayment. Please try again with a larger amount.\n</prosody>\n</speak>"
 			},
 			"Identifier": "Payment Too Small",
 			"Type": "MessageParticipant",
@@ -1347,7 +1347,7 @@
 		},
 		{
 			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\"\nAre you still there?\n</prosody>\n</speak>"
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nAre you still there?\n</prosody>\n</speak>"
 			},
 			"Identifier": "Payment Method Timeout",
 			"Type": "MessageParticipant",
@@ -1363,7 +1363,7 @@
 		},
 		{
 			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\"\nYour entry was not recognized. Please try again.\n</prosody>\n</speak>"
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nYour entry was not recognized. Please try again.\n</prosody>\n</speak>"
 			},
 			"Identifier": "Method Input Not Recognized",
 			"Type": "MessageParticipant",
@@ -1508,7 +1508,7 @@
 			"Parameters": {
 				"StoreInput": "True",
 				"InputTimeLimitSeconds": "5",
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\"\nPlease enter the amount you would like to pay in whole dollars, followed by the pound key.\n</prosody>\n</speak>",
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nPlease enter the amount you would like to pay in whole dollars, followed by the pound key.\n</prosody>\n</speak>",
 				"DTMFConfiguration": {
 					"DisableCancelKey": "False",
 					"InputTerminationSequence": "#"
@@ -1535,7 +1535,7 @@
 			"Parameters": {
 				"StoreInput": "False",
 				"InputTimeLimitSeconds": "5",
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\"\nYou previously paid with a credit or debit card ending in <say-as interpret-as=\"digits\">$.Attributes.PaymentMethodEndingDigits</say-as>.\n\nIf you would like to use this card again for this payment, press 1.\nTo use a different payment method, press 2.\n</prosody>\n</speak>"
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nYou previously paid with a credit or debit card ending in <say-as interpret-as=\"digits\">$.Attributes.PaymentMethodEndingDigits</say-as>.\n\nIf you would like to use this card again for this payment, press 1.\nTo use a different payment method, press 2.\n</prosody>\n</speak>"
 			},
 			"Identifier": "Use Card Again?",
 			"Type": "GetParticipantInput",
@@ -1594,7 +1594,7 @@
 		},
 		{
 			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\"\nAre you still there?\n</prosody>\n</speak>"
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nAre you still there?\n</prosody>\n</speak>"
 			},
 			"Identifier": "Use Payment Method Again Timeout",
 			"Type": "MessageParticipant",
@@ -1612,7 +1612,7 @@
 			"Parameters": {
 				"StoreInput": "False",
 				"InputTimeLimitSeconds": "5",
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\"\nTo pay with a credit or debit card, press 1.\nTo pay directly with your bank account, press 2.\n</prosody>\n</speak>"
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nTo pay with a credit or debit card, press 1.\nTo pay directly with your bank account, press 2.\n</prosody>\n</speak>"
 			},
 			"Identifier": "Ask for Payment Method",
 			"Type": "GetParticipantInput",
@@ -1654,7 +1654,7 @@
 			"Parameters": {
 				"StoreInput": "False",
 				"InputTimeLimitSeconds": "5",
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\"\nYou previously paid with a bank account ending in <say-as interpret-as=\"digits\">$.Attributes.PaymentMethodEndingDigits</say-as>.\n\nIf you would like to use this account again for this payment, press 1.\nTo use a different payment method, press 2.\n</prosody>\n</speak>"
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nYou previously paid with a bank account ending in <say-as interpret-as=\"digits\">$.Attributes.PaymentMethodEndingDigits</say-as>.\n\nIf you would like to use this account again for this payment, press 1.\nTo use a different payment method, press 2.\n</prosody>\n</speak>"
 			},
 			"Identifier": "Use Bank Account Again?",
 			"Type": "GetParticipantInput",
@@ -1726,7 +1726,7 @@
 		},
 		{
 			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\"\nAre you still there?\n</prosody>\n</speak>"
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nAre you still there?\n</prosody>\n</speak>"
 			},
 			"Identifier": "Amount Choice Timeout",
 			"Type": "MessageParticipant",
@@ -1742,7 +1742,7 @@
 		},
 		{
 			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\"\nYour entry was not recognized. Please try again.\n</prosody>\n</speak>"
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nYour entry was not recognized. Please try again.\n</prosody>\n</speak>"
 			},
 			"Identifier": "Amount Choice Input Not Recognized",
 			"Type": "MessageParticipant",
@@ -1790,7 +1790,7 @@
 		},
 		{
 			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\"\nYou are permitted to make a partial payment of at least $$.Attributes.PaymentMinimumPayment.\n</prosody>\n</speak>"
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nYou are permitted to make a partial payment of at least $$.Attributes.PaymentMinimumPayment.\n</prosody>\n</speak>"
 			},
 			"Identifier": "Speak Minimum Payment",
 			"Type": "MessageParticipant",
@@ -1827,7 +1827,7 @@
 			"Parameters": {
 				"StoreInput": "False",
 				"InputTimeLimitSeconds": "5",
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\"\nTo pay the amount in full, press 1.\nTo pay a partial amount, press 2.\n</prosody>\n</speak>"
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nTo pay the amount in full, press 1.\nTo pay a partial amount, press 2.\n</prosody>\n</speak>"
 			},
 			"Identifier": "Prompt for Payment Amount Choice",
 			"Type": "GetParticipantInput",
@@ -1911,7 +1911,7 @@
 		},
 		{
 			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\"\nAre you still there?\n</prosody>\n</speak>"
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nAre you still there?\n</prosody>\n</speak>"
 			},
 			"Identifier": "Account Number Timeout",
 			"Type": "MessageParticipant",
@@ -1927,7 +1927,7 @@
 		},
 		{
 			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\"\n$.External.ValidationError\n\nPlease check your entry and try again.\n</prosody>\n</speak>"
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\n$.External.ValidationError\n\nPlease check your entry and try again.\n</prosody>\n</speak>"
 			},
 			"Identifier": "Account Number Validation Error",
 			"Type": "MessageParticipant",
@@ -1945,7 +1945,7 @@
 			"Parameters": {
 				"StoreInput": "True",
 				"InputTimeLimitSeconds": "10",
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\"\nPlease enter your bank account number followed by the pound key when complete.\n</prosody>\n</speak>",
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nPlease enter your bank account number followed by the pound key when complete.\n</prosody>\n</speak>",
 				"DTMFConfiguration": {
 					"DisableCancelKey": "False",
 					"InputTerminationSequence": "#"
@@ -2018,7 +2018,7 @@
 		},
 		{
 			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\"\nAre you still there?\n</prosody>\n</speak>"
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nAre you still there?\n</prosody>\n</speak>"
 			},
 			"Identifier": "Card Number Timeout",
 			"Type": "MessageParticipant",
@@ -2034,7 +2034,7 @@
 		},
 		{
 			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\"\n$.External.ValidationError\n\nPlease check your entry and try again.\n</prosody>\n</speak>"
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\n$.External.ValidationError\n\nPlease check your entry and try again.\n</prosody>\n</speak>"
 			},
 			"Identifier": "Card Number Validation Error",
 			"Type": "MessageParticipant",
@@ -2050,7 +2050,7 @@
 		},
 		{
 			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\"\nWe're sorry, an error has occurred that prevents us from collecting the payment.\n</prosody>\n</speak>"
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nWe're sorry, an error has occurred that prevents us from collecting the payment.\n</prosody>\n</speak>"
 			},
 			"Identifier": "Internal Error",
 			"Type": "MessageParticipant",
@@ -2068,7 +2068,7 @@
 			"Parameters": {
 				"StoreInput": "True",
 				"InputTimeLimitSeconds": "10",
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\"\nPlease enter your card number followed by the pound key when complete.\n</prosody>\n</speak>",
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nPlease enter your card number followed by the pound key when complete.\n</prosody>\n</speak>",
 				"DTMFConfiguration": {
 					"DisableCancelKey": "False",
 					"InputTerminationSequence": "#"
@@ -2166,7 +2166,7 @@
 		},
 		{
 			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\"\nAre you still there?\n</prosody>\n</speak>"
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nAre you still there?\n</prosody>\n</speak>"
 			},
 			"Identifier": "Routing Number Timeout",
 			"Type": "MessageParticipant",
@@ -2182,7 +2182,7 @@
 		},
 		{
 			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\"\nThere was a problem with your bank routing number. Please check your entry and try again.\n</prosody>\n</speak>"
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nThere was a problem with your bank routing number. Please check your entry and try again.\n</prosody>\n</speak>"
 			},
 			"Identifier": "Try Routing Number Again",
 			"Type": "MessageParticipant",
@@ -2225,7 +2225,7 @@
 			"Parameters": {
 				"StoreInput": "True",
 				"InputTimeLimitSeconds": "10",
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\"\nPlease enter your bank's routing number, followed by the pound key when complete.\n</prosody>\n</speak>",
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nPlease enter your bank's routing number, followed by the pound key when complete.\n</prosody>\n</speak>",
 				"DTMFConfiguration": {
 					"DisableCancelKey": "False",
 					"InputTerminationSequence": "#"
@@ -2250,7 +2250,7 @@
 		},
 		{
 			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\"\n$.External.ValidationError\n\nPlease check your entry and try again.\n</prosody>\n</speak>"
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\n$.External.ValidationError\n\nPlease check your entry and try again.\n</prosody>\n</speak>"
 			},
 			"Identifier": "Routing Number Validation Error",
 			"Type": "MessageParticipant",
@@ -2310,7 +2310,7 @@
 		},
 		{
 			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\"\nAre you still there?\n</prosody>\n</speak>"
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nAre you still there?\n</prosody>\n</speak>"
 			},
 			"Identifier": "Expiration Date Timeout",
 			"Type": "MessageParticipant",
@@ -2326,7 +2326,7 @@
 		},
 		{
 			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\"\n$.External.ValidationError\n\nPlease check your entry and try again.\n</prosody>\n</speak>"
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\n$.External.ValidationError\n\nPlease check your entry and try again.\n</prosody>\n</speak>"
 			},
 			"Identifier": "Expiration Date Validation Error",
 			"Type": "MessageParticipant",
@@ -2342,7 +2342,7 @@
 		},
 		{
 			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\"\nThere was a problem with your expiration date. Please check your entry and try again.\n</prosody>\n</speak>"
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nThere was a problem with your expiration date. Please check your entry and try again.\n</prosody>\n</speak>"
 			},
 			"Identifier": "Try Expiration Date Again",
 			"Type": "MessageParticipant",
@@ -2360,7 +2360,7 @@
 			"Parameters": {
 				"StoreInput": "True",
 				"InputTimeLimitSeconds": "5",
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\"\nPlease enter your card's expiration date in the format month-month-year-year, followed by the pound key when complete.\n</prosody>\n</speak>",
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nPlease enter your card's expiration date in the format month-month-year-year, followed by the pound key when complete.\n</prosody>\n</speak>",
 				"DTMFConfiguration": {
 					"DisableCancelKey": "False",
 					"InputTerminationSequence": "#"
@@ -2410,7 +2410,7 @@
 		},
 		{
 			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\"\nThe payment failed because of the following error:\n\n$.External.Error\n</prosody>\n</speak>"
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nThe payment failed because of the following error:\n\n$.External.Error\n</prosody>\n</speak>"
 			},
 			"Identifier": "Speak Validation Error",
 			"Type": "MessageParticipant",
@@ -2446,7 +2446,7 @@
 		},
 		{
 			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\"\nThere was a problem validating your $.Attributes.PaymentMethod information.\n</prosody>\n</speak>"
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nThere was a problem validating your $.Attributes.PaymentMethod information.\n</prosody>\n</speak>"
 			},
 			"Identifier": "Payment Validation Error",
 			"Type": "MessageParticipant",
@@ -2502,7 +2502,7 @@
 		},
 		{
 			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\"\nWe're sorry, an error has occured preventing us from submitting your payment. You have not been charged.\n</prosody>\n</speak>"
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nWe're sorry, an error has occured preventing us from submitting your payment. You have not been charged.\n</prosody>\n</speak>"
 			},
 			"Identifier": "Payment Submission Error",
 			"Type": "MessageParticipant",
@@ -2563,7 +2563,7 @@
 		},
 		{
 			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\"\nYour payment was processed successfully.\n</prosody>\n</speak>"
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nYour payment was processed successfully.\n</prosody>\n</speak>"
 			},
 			"Identifier": "Payment Success",
 			"Type": "MessageParticipant",
@@ -2625,7 +2625,7 @@
 		},
 		{
 			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\"\nAre you still there?\n</prosody>\n</speak>"
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nAre you still there?\n</prosody>\n</speak>"
 			},
 			"Identifier": "Receipt Timeout",
 			"Type": "MessageParticipant",
@@ -2641,7 +2641,7 @@
 		},
 		{
 			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\"\nYour entry was not recognized. Please try again.\n</prosody>\n</speak>"
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nYour entry was not recognized. Please try again.\n</prosody>\n</speak>"
 			},
 			"Identifier": "Receipt Entry Not Recognized",
 			"Type": "MessageParticipant",
@@ -2659,7 +2659,7 @@
 			"Parameters": {
 				"StoreInput": "False",
 				"InputTimeLimitSeconds": "5",
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\"\nTo transfer to a representative and receive a receipt for your payment, press 1.\nTo continue without a receipt, press 2.\n</prosody>\n</speak>"
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nTo transfer to a representative and receive a receipt for your payment, press 1.\nTo continue without a receipt, press 2.\n</prosody>\n</speak>"
 			},
 			"Identifier": "Ask to Transfer for Receipt",
 			"Type": "GetParticipantInput",
@@ -2699,7 +2699,7 @@
 		},
 		{
 			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\"\nA receipt has been sent to your email address, $.Attributes.['Email'].\n</prosody>\n</speak>"
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nA receipt has been sent to your email address, $.Attributes.['Email'].\n</prosody>\n</speak>"
 			},
 			"Identifier": "Receipt Success",
 			"Type": "MessageParticipant",
@@ -2756,7 +2756,7 @@
 		},
 		{
 			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\"\nThere was an error sending the receipt to your email address, $.Attributes.['Email']. Please contact customer support to receive a receipt for this transaction.\n</prosody>\n</speak>"
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nThere was an error sending the receipt to your email address, $.Attributes.['Email']. Please contact customer support to receive a receipt for this transaction.\n</prosody>\n</speak>"
 			},
 			"Identifier": "Receipt Error",
 			"Type": "MessageParticipant",
@@ -2812,7 +2812,7 @@
 		},
 		{
 			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\"\nAn error prevented us from connecting you to a representative. Please try calling the customer service number directly in order to receive a receipt.\n</prosody>\n</speak>"
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nAn error prevented us from connecting you to a representative. Please try calling the customer service number directly in order to receive a receipt.\n</prosody>\n</speak>"
 			},
 			"Identifier": "Transfer Error",
 			"Type": "MessageParticipant",
