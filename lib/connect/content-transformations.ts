@@ -58,9 +58,12 @@ export function getPaymentIVRFlowModuleContent(
 	);
 
 	// Replace the receipt queue ID placeholder with the actual value.
-	const queueId = amazonConnectReceiptQueueArn.split('/queue/').pop();
-	if (!queueId) {
-		throw new Error('Invalid ARN for the receipt queue.');
+	let queueId = 'NULL';
+	if (amazonConnectReceiptQueueArn) {
+		queueId = amazonConnectReceiptQueueArn.split('/queue/').pop() ?? 'NULL';
+		if (!queueId) {
+			throw new Error('Invalid ARN for the receipt queue.');
+		}
 	}
 	transformedContent = transformedContent.replace(
 		/<<receiptQueueId>>/g,
