@@ -2,6 +2,7 @@ import { Function } from 'aws-cdk-lib/aws-lambda';
 import * as flowModuleJson from './flows/modules/c3-payment-ivr-flow-module.json';
 import * as agentAssistedPaymentIVRFlowJson from './flows/c3-agent-assisted-payment-ivr-flow.json';
 import * as subjectLookupFlow from './flows/c3-subject-lookup-flow.json';
+import { IvrSpeakingContext } from '../models';
 
 /**
  * Gets the content for the payment IVR flow module.
@@ -10,9 +11,11 @@ import * as subjectLookupFlow from './flows/c3-subject-lookup-flow.json';
  * @param tokenizeTransactionLambdaArn The Lambda function that tokenizes a transaction.
  * @param submitPaymentLambdaArn The Lambda function that submits a payment.
  * @param sendReceiptLambdaArn The Lambda function that sends a receipt.
+ * @param validateEntryLambdaArn The Lambda function that validates the user's entry.
  * @param amazonConnectSecurityKeyId The security key ID for Amazon Connect.
  * @param amazonConnectSecurityKeyCertificateContent The security key certificate content for Amazon Connect.
  * @param amazonConnectReceiptQueueArn The ARN for the Amazon Connect receipt queue.
+ * @param ivrSpeakingContext The speaking context for the IVR.
  * @returns A string representing the content for the base IVR payment flow module.
  */
 export function getPaymentIVRFlowModuleContent(
@@ -20,9 +23,11 @@ export function getPaymentIVRFlowModuleContent(
 	tokenizeTransactionLambdaFunction: Function,
 	submitPaymentLambdaFunction: Function,
 	sendReceiptLambdaFunction: Function,
+	validateEntryLambdaFunction: Function,
 	amazonConnectSecurityKeyId: string,
 	amazonConnectSecurityKeyCertificateContent: string,
 	amazonConnectReceiptQueueArn: string,
+	ivrSpeakingContext: IvrSpeakingContext,
 ) {
 	let transformedContent = JSON.stringify(flowModuleJson);
 
@@ -43,6 +48,10 @@ export function getPaymentIVRFlowModuleContent(
 		/<<sendReceiptLambdaArn>>/g,
 		sendReceiptLambdaFunction.functionArn,
 	);
+	transformedContent = transformedContent.replace(
+		/<<validateEntryLambdaArn>>/g,
+		validateEntryLambdaFunction.functionArn,
+	);
 
 	// Replace Amazon Connect security key placeholders with actual values.
 	transformedContent = transformedContent.replace(
@@ -55,13 +64,25 @@ export function getPaymentIVRFlowModuleContent(
 	);
 
 	// Replace the receipt queue ID placeholder with the actual value.
-	const queueId = amazonConnectReceiptQueueArn.split('/queue/').pop();
-	if (!queueId) {
-		throw new Error('Invalid ARN for the receipt queue.');
+	let queueId = 'NULL';
+	if (amazonConnectReceiptQueueArn) {
+		queueId = amazonConnectReceiptQueueArn.split('/queue/').pop() ?? 'NULL';
+		if (!queueId) {
+			throw new Error('Invalid ARN for the receipt queue.');
+		}
 	}
 	transformedContent = transformedContent.replace(
 		/<<receiptQueueId>>/g,
 		queueId,
+	);
+
+	transformedContent = transformedContent.replace(
+		/<<speakingRate>>/g,
+		ivrSpeakingContext.rate,
+	);
+	transformedContent = transformedContent.replace(
+		/<<speakingVolume>>/g,
+		ivrSpeakingContext.volume,
 	);
 
 	return transformedContent;
@@ -75,8 +96,10 @@ export function getPaymentIVRFlowModuleContent(
  * @param tokenizeTransactionFunction The Lambda function that tokenizes a transaction.
  * @param submitPaymentLambdaFunction The Lambda function that submits a payment.
  * @param sendReceiptLambdaFunction The Lambda function that sends a receipt.
+ * @param validateEntryLambdaFunction The Lambda function that validates the user's entry.
  * @param amazonConnectSecurityKeyId The security key ID for Amazon Connect.
  * @param amazonConnectSecurityKeyCertificateContent The security key certificate content for Amazon Connect.
+ * @param ivrSpeakingContext The speaking context for the IVR.
  * @returns A string representing the content for the base IVR payment flow.
  */
 export function getSelfServicePaymentIVRFlowContent(
@@ -85,8 +108,10 @@ export function getSelfServicePaymentIVRFlowContent(
 	tokenizeTransactionFunction: Function,
 	submitPaymentLambdaFunction: Function,
 	sendReceiptLambdaFunction: Function,
+	validateEntryLambdaFunction: Function,
 	amazonConnectSecurityKeyId: string,
 	amazonConnectSecurityKeyCertificateContent: string,
+	ivrSpeakingContext: IvrSpeakingContext,
 ) {
 	let transformedContent = JSON.stringify(agentAssistedPaymentIVRFlowJson);
 
@@ -111,6 +136,10 @@ export function getSelfServicePaymentIVRFlowContent(
 		/<<sendReceiptLambdaArn>>/g,
 		sendReceiptLambdaFunction.functionArn,
 	);
+	transformedContent = transformedContent.replace(
+		/<<validateEntryLambdaArn>>/g,
+		validateEntryLambdaFunction.functionArn,
+	);
 
 	// Replace Amazon Connect security key placeholders with actual values.
 	transformedContent = transformedContent.replace(
@@ -120,6 +149,15 @@ export function getSelfServicePaymentIVRFlowContent(
 	transformedContent = transformedContent.replace(
 		/<<amazonConnectSecurityKeyCertificateContent>>/g,
 		amazonConnectSecurityKeyCertificateContent,
+	);
+
+	transformedContent = transformedContent.replace(
+		/<<speakingRate>>/g,
+		ivrSpeakingContext.rate,
+	);
+	transformedContent = transformedContent.replace(
+		/<<speakingVolume>>/g,
+		ivrSpeakingContext.volume,
 	);
 	return transformedContent;
 }

@@ -5,6 +5,8 @@ import {
 	C3Environment,
 	C3PaymentGateway,
 	Context,
+	SpeakingRate,
+	SpeakingVolume,
 	SubjectLookupMode,
 } from '../lib/models';
 
@@ -31,6 +33,10 @@ const mockContext: Context = {
 	},
 	options: {
 		codeSigning: true,
+		ivrSpeaking: {
+			rate: SpeakingRate.Medium,
+			volume: SpeakingVolume.Medium,
+		},
 	},
 	logoUrl: 'placeholder',
 	supportPhone: 'placeholder',

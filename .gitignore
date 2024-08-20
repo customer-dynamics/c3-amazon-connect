@@ -6,6 +6,7 @@ lib/lambda/subject-lookup-policy.js
 *.d.ts
 node_modules
 .context-values.json
+.*.context-values.json
 exports
 .DS_Store
 

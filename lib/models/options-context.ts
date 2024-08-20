@@ -1,5 +1,11 @@
+import {
+	IvrSpeakingContext,
+	validateIvrSpeakingContext,
+} from './ivr-speaking-context';
+
 export interface OptionsContext {
 	codeSigning: boolean;
+	ivrSpeaking: IvrSpeakingContext;
 }
 
 /**
@@ -11,4 +17,5 @@ export function validateOptionsContext(optionsContext: OptionsContext): void {
 	if (!optionsContext) {
 		throw new Error('Option context variables are required.');
 	}
+	validateIvrSpeakingContext(optionsContext.ivrSpeaking);
 }

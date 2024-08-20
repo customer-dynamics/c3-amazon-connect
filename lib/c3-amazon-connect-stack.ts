@@ -103,6 +103,7 @@ export class C3AmazonConnectStack extends Stack {
 				this.tokenizeTransactionFunction,
 				this.submitPaymentFunction,
 				this.sendReceiptFunction,
+				this.validateEntryFunction,
 			);
 		}
 		if (this.featuresContext.agentAssistedIVR) {
@@ -118,6 +119,7 @@ export class C3AmazonConnectStack extends Stack {
 				this.tokenizeTransactionFunction,
 				this.submitPaymentFunction,
 				this.sendReceiptFunction,
+				this.validateEntryFunction,
 			);
 		}
 		if (this.featuresContext.subjectLookup) {

@@ -75,9 +75,11 @@ In order to facilitate this process, you will need to provide some values to the
 
 ##### Options
 
-| Value         | Description                                                                                                                        |
-| ------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| `codeSigning` | Whether to support code signing for Lambda resources. This is recommended for security purposes, but may be disabled if necessary. |
+| Value                | Description                                                                                                                        |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `codeSigning`        | Whether to support code signing for Lambda resources. This is recommended for security purposes, but may be disabled if necessary. |
+| `ivrSpeaking.rate`   | The speed at which the IVR voice speaks. Valid options are `"x-slow"`, `"slow"`, `"medium"`, `"fast"`, and `"x-fast"`.             |
+| `ivrSpeaking.volume` | The volume at which the IVR voice speaks. Valid options are `"x-soft"`, `"soft"`, `"medium"`, `"loud"` and `"x-loud"`.             |
 
 ##### Other
 

@@ -54,6 +54,7 @@ export class AgentAssistedPaymentIVR {
 		private tokenizeTransactionFunction: Function,
 		private submitPaymentFunction: Function,
 		private sendReceiptFunction: Function,
+		private validateEntryFunction: Function,
 	) {
 		console.log('Creating resources for agent-assisted IVR payments...');
 		this.createSendAgentMessageFunction();
@@ -118,14 +119,19 @@ export class AgentAssistedPaymentIVR {
 	 */
 	private createIVRFlow(): void {
 		console.log('Creating flow C3AgentAssistedPaymentIVRFlow...');
+		const optionsContext = this.stack.node.tryGetContext(
+			'options',
+		) as OptionsContext;
 		const c3PaymentFlowContent = getSelfServicePaymentIVRFlowContent(
 			this.sendAgentMessageFunction,
 			this.createPaymentRequestFunction,
 			this.tokenizeTransactionFunction,
 			this.submitPaymentFunction,
 			this.sendReceiptFunction,
+			this.validateEntryFunction,
 			this.amazonConnectContext.securityKeyId,
 			this.amazonConnectContext.securityKeyCertificateContent,
+			optionsContext.ivrSpeaking,
 		);
 		writeFileToExports(
 			'C3AgentAssistedPaymentIVRFlow.json',

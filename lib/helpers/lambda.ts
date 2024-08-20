@@ -43,13 +43,19 @@ export function associateLambdaFunctionsWithConnect(
 	// Workaround to delete the existing associations. Necessary when the naming format changes.
 	const skipAssociations = stack.node.tryGetContext('options').skipAssociations;
 	if (skipAssociations) {
+		console.log('⚠️ Skipping Amazon Connect associations! ⚠️');
+		console.log(
+			'⚠️⚠️⚠️ Please remember to re-deploy with `skipAssociations` removed so that Amazon Connect can invoke your Lambda functions. ⚠️⚠️⚠️',
+		);
 		return;
 	}
 
 	const instanceArn = stack.node.tryGetContext('amazonConnect').instanceArn;
 	for (const lambdaFunction of lambdaFunctions) {
 		// Allow Amazon Connect to invoke the Lambda functions.
-		console.log('Adding Amazon Connect permissions for function...');
+		console.log(
+			`Adding Amazon Connect permissions for function "${lambdaFunction.node.id}"...`,
+		);
 		lambdaFunction.addPermission('AllowAmazonConnectInvoke', {
 			principal: new ServicePrincipal('connect.amazonaws.com'),
 			sourceArn: instanceArn,
@@ -59,7 +65,7 @@ export function associateLambdaFunctionsWithConnect(
 
 		// Create an integration between the Lambda functions and Amazon Connect.
 		console.log(
-			'Creating Amazon Connect integration association for function...',
+			`Creating Amazon Connect integration association for function "${lambdaFunction.node.id}"...`,
 		);
 		new CfnIntegrationAssociation(
 			stack,

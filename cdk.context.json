@@ -19,7 +19,11 @@
 		"subjectLookup": ""
 	},
 	"options": {
-		"codeSigning": true
+		"codeSigning": true,
+		"ivrSpeaking": {
+			"rate": "medium",
+			"volume": "medium"
+		}
 	},
 	"logoUrl": "",
 	"supportPhone": "",
