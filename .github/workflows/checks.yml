@@ -51,7 +51,11 @@ jobs:
                 "subjectLookup": "required-editable"
               },
               "options": {
-                "codeSigning": true
+                "codeSigning": true,
+                "ivrSpeaking": {
+                  "rate": "medium",
+                  "volume": "medium" 
+                }
               },
               "logoUrl": "placeholder",
               "supportPhone": "placeholder",
