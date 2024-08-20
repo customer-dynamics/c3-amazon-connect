@@ -7,103 +7,6 @@
 			"y": 231.2
 		},
 		"ActionMetadata": {
-			"87859db2-400d-410b-8818-05c8ae4869aa": {
-				"position": {
-					"x": -1924,
-					"y": 356
-				}
-			},
-			"Set Receipt Queue ID": {
-				"position": {
-					"x": -1711.2,
-					"y": 214.4
-				},
-				"isFriendlyName": true
-			},
-			"Validate Card Number": {
-				"position": {
-					"x": 3139.2,
-					"y": -808
-				},
-				"isFriendlyName": true,
-				"parameters": {
-					"LambdaFunctionARN": {
-						"displayName": "C3AmazonConnectStack-C3ValidateEntry0579D515-hLF7slsKAxyI"
-					},
-					"LambdaInvocationAttributes": {
-						"CustomerEntry": {
-							"useDynamic": true
-						}
-					}
-				},
-				"dynamicMetadata": {
-					"ValidationType": false,
-					"CustomerEntry": true
-				}
-			},
-			"Validate Account Number": {
-				"position": {
-					"x": 3138.4,
-					"y": 99.2
-				},
-				"isFriendlyName": true,
-				"parameters": {
-					"LambdaFunctionARN": {
-						"displayName": "C3AmazonConnectStack-C3ValidateEntry0579D515-hLF7slsKAxyI"
-					},
-					"LambdaInvocationAttributes": {
-						"CustomerEntry": {
-							"useDynamic": true
-						}
-					}
-				},
-				"dynamicMetadata": {
-					"ValidationType": false,
-					"CustomerEntry": true
-				}
-			},
-			"Validate Routing Number": {
-				"position": {
-					"x": 4356,
-					"y": 87.2
-				},
-				"isFriendlyName": true,
-				"parameters": {
-					"LambdaFunctionARN": {
-						"displayName": "C3AmazonConnectStack-C3ValidateEntry0579D515-hLF7slsKAxyI"
-					},
-					"LambdaInvocationAttributes": {
-						"CustomerEntry": {
-							"useDynamic": true
-						}
-					}
-				},
-				"dynamicMetadata": {
-					"ValidationType": false,
-					"CustomerEntry": true
-				}
-			},
-			"Validate Expiration Date": {
-				"position": {
-					"x": 4398.4,
-					"y": -740
-				},
-				"isFriendlyName": true,
-				"parameters": {
-					"LambdaFunctionARN": {
-						"displayName": "C3AmazonConnectStack-C3ValidateEntry0579D515-hLF7slsKAxyI"
-					},
-					"LambdaInvocationAttributes": {
-						"CustomerEntry": {
-							"useDynamic": true
-						}
-					}
-				},
-				"dynamicMetadata": {
-					"ValidationType": false,
-					"CustomerEntry": true
-				}
-			},
 			"Record Token": {
 				"position": {
 					"x": 5877.6,
@@ -117,19 +20,6 @@
 					"x": -748.8,
 					"y": 534.4
 				}
-			},
-			"Create Payment Request": {
-				"position": {
-					"x": -1484,
-					"y": 224
-				},
-				"isFriendlyName": true,
-				"parameters": {
-					"LambdaFunctionARN": {
-						"displayName": "<<createPaymentRequestLambdaArn>>"
-					}
-				},
-				"dynamicMetadata": {}
 			},
 			"Payment Request Error": {
 				"position": {
@@ -188,74 +78,6 @@
 				},
 				"isFriendlyName": true
 			},
-			"Store Routing Number": {
-				"position": {
-					"x": 4786.4,
-					"y": 88
-				},
-				"isFriendlyName": true,
-				"parameters": {
-					"Attributes": {
-						"RoutingNumber": {
-							"useDynamic": true
-						}
-					}
-				},
-				"dynamicParams": ["RoutingNumber"]
-			},
-			"Store Expiration Date": {
-				"position": {
-					"x": 4842.4,
-					"y": -732.8
-				},
-				"isFriendlyName": true,
-				"parameters": {
-					"Attributes": {
-						"ExpirationDate": {
-							"useDynamic": true
-						}
-					}
-				},
-				"dynamicParams": ["ExpirationDate"]
-			},
-			"Check for Account Number Validation Error": {
-				"position": {
-					"x": 3356.8,
-					"y": 98.4
-				},
-				"isFriendlyName": true,
-				"conditions": [],
-				"conditionMetadata": [
-					{
-						"id": "1feb33bd-cf28-4e92-9e1c-1869e4d95137",
-						"operator": {
-							"name": "Equals",
-							"value": "Equals",
-							"shortDisplay": "="
-						},
-						"value": "NULL"
-					}
-				]
-			},
-			"Check for Card Number Validation Error": {
-				"position": {
-					"x": 3353.6,
-					"y": -812.8
-				},
-				"isFriendlyName": true,
-				"conditions": [],
-				"conditionMetadata": [
-					{
-						"id": "23c8e80e-9a2f-497f-a832-d189b44455fb",
-						"operator": {
-							"name": "Equals",
-							"value": "Equals",
-							"shortDisplay": "="
-						},
-						"value": "NULL"
-					}
-				]
-			},
 			"Check Payment Amount": {
 				"position": {
 					"x": 9.6,
@@ -265,7 +87,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "10fb3f2b-8700-4772-9b9c-6b3b19ccddbf",
+						"id": "fbb7b741-79e8-4bbf-80c6-f637db1187eb",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -274,7 +96,7 @@
 						"value": "Timeout"
 					},
 					{
-						"id": "17399f6b-3586-4cbb-9e6a-e04479f76649",
+						"id": "e800a29f-47a5-439c-a1ba-3518abca5dd6",
 						"operator": {
 							"name": "Is greater than",
 							"value": "GreaterThan",
@@ -283,7 +105,7 @@
 						"value": "$.Attributes.PaymentAmountDue"
 					},
 					{
-						"id": "17a4718b-59fa-4077-a5d4-2b267882a50e",
+						"id": "d5ba66bb-6326-4524-b61d-f6166be11a6c",
 						"operator": {
 							"name": "Is less than",
 							"value": "LessThan",
@@ -310,11 +132,11 @@
 				"isFriendlyName": true,
 				"conditionMetadata": [
 					{
-						"id": "99482a8d-23fd-4f5f-9b4f-c0832bc76f6f",
+						"id": "2672653b-67d6-4be2-8417-3ca598c7b68d",
 						"value": "1"
 					},
 					{
-						"id": "be2285b2-7811-4ea1-85d0-3267ed67e955",
+						"id": "e3075be3-bafa-4dd7-8015-61175164dde0",
 						"value": "2"
 					}
 				]
@@ -349,11 +171,11 @@
 				"isFriendlyName": true,
 				"conditionMetadata": [
 					{
-						"id": "c5538544-2a15-4ffa-bb80-a7de03b13761",
+						"id": "fc508a3c-975c-45dd-921f-ec913ac5559b",
 						"value": "1"
 					},
 					{
-						"id": "0436124e-eff2-4bd9-91b4-cfff4259d1ec",
+						"id": "a5c6ac9f-eaac-426e-bc19-c3603d63cc0c",
 						"value": "2"
 					}
 				]
@@ -366,11 +188,11 @@
 				"isFriendlyName": true,
 				"conditionMetadata": [
 					{
-						"id": "b4d0f60d-4c6e-468a-88c1-336be71a3aab",
+						"id": "19f7fe11-d51f-4898-a7bd-7840fc909cdf",
 						"value": "1"
 					},
 					{
-						"id": "7a0f1bee-5a97-479b-9434-5ef8b7d01305",
+						"id": "12db631d-2765-4086-a1c8-f64e27bac035",
 						"value": "2"
 					}
 				]
@@ -384,7 +206,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "007aea1d-8599-4a8b-8816-37ae3ddfebde",
+						"id": "91f6a266-31b3-4053-a7b5-7e89b96ae6a0",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -393,7 +215,7 @@
 						"value": "Card"
 					},
 					{
-						"id": "a6d77bfb-9675-4a06-b33e-8dd26a47511b",
+						"id": "7335bbf0-7873-4eb6-bf30-d6d2b502133a",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -426,7 +248,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "d1eacae6-53c1-4f35-b55a-c980e77caccf",
+						"id": "838f3cf4-de91-4a72-ae32-ce0062f6ca38",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -435,7 +257,7 @@
 						"value": "PaymentAmountDue"
 					},
 					{
-						"id": "0d37dd67-a4ad-47b7-95f1-ec0e75db84aa",
+						"id": "68ff0418-d7a7-4462-a6ca-57070b7b0f4f",
 						"operator": {
 							"name": "Is greater than",
 							"value": "GreaterThan",
@@ -475,11 +297,11 @@
 				"isFriendlyName": true,
 				"conditionMetadata": [
 					{
-						"id": "08439fe6-e11a-47a1-9b55-5a19660dbad9",
+						"id": "d310b2e2-b48f-45eb-8d91-f60e260cbe07",
 						"value": "1"
 					},
 					{
-						"id": "f4b35f87-9285-416b-81c4-b145bfc88caa",
+						"id": "4ce16c76-b545-43f7-9011-4e3c8427f18f",
 						"value": "2"
 					}
 				]
@@ -492,36 +314,10 @@
 				"isFriendlyName": true,
 				"dynamicParams": []
 			},
-			"Account Number Timeout Check": {
-				"position": {
-					"x": 3056,
-					"y": -96
-				},
-				"isFriendlyName": true,
-				"conditions": [],
-				"conditionMetadata": [
-					{
-						"id": "075a9050-13d9-4f35-bc7d-1ff58d75d7cc",
-						"operator": {
-							"name": "Equals",
-							"value": "Equals",
-							"shortDisplay": "="
-						},
-						"value": "Timeout"
-					}
-				]
-			},
 			"Account Number Timeout": {
 				"position": {
 					"x": 2841.6,
 					"y": -343.2
-				},
-				"isFriendlyName": true
-			},
-			"Account Number Validation Error": {
-				"position": {
-					"x": 3209.6,
-					"y": 318.4
 				},
 				"isFriendlyName": true
 			},
@@ -542,43 +338,10 @@
 				"isFriendlyName": true,
 				"dynamicParams": []
 			},
-			"Card Number Timeout Check": {
-				"position": {
-					"x": 3020,
-					"y": -1027.2
-				},
-				"isFriendlyName": true,
-				"conditions": [],
-				"conditionMetadata": [
-					{
-						"id": "c4259205-f8ad-4e2d-ac36-e859e812e684",
-						"operator": {
-							"name": "Equals",
-							"value": "Equals",
-							"shortDisplay": "="
-						},
-						"value": "Timeout"
-					}
-				]
-			},
 			"Card Number Timeout": {
 				"position": {
 					"x": 2823.2,
 					"y": -1230.4
-				},
-				"isFriendlyName": true
-			},
-			"Card Number Validation Error": {
-				"position": {
-					"x": 3257.6,
-					"y": -574.4
-				},
-				"isFriendlyName": true
-			},
-			"Internal Error": {
-				"position": {
-					"x": 2711.2,
-					"y": 773.6
 				},
 				"isFriendlyName": true
 			},
@@ -590,59 +353,6 @@
 				"isFriendlyName": true,
 				"conditionMetadata": [],
 				"countryCodePrefix": "+1"
-			},
-			"Check for Expiration Date Validation Error": {
-				"position": {
-					"x": 4616.8,
-					"y": -740.8
-				},
-				"isFriendlyName": true,
-				"conditions": [],
-				"conditionMetadata": [
-					{
-						"id": "aa9cb942-3eb3-40ee-a8c4-32fbeef1d008",
-						"operator": {
-							"name": "Equals",
-							"value": "Equals",
-							"shortDisplay": "="
-						},
-						"value": "NULL"
-					}
-				]
-			},
-			"Store Encrypted Account Number": {
-				"position": {
-					"x": 3567.2,
-					"y": 101.6
-				},
-				"isFriendlyName": true,
-				"parameters": {
-					"Attributes": {
-						"EncryptedAccountNumber": {
-							"useDynamic": true
-						}
-					}
-				},
-				"dynamicParams": ["EncryptedAccountNumber"]
-			},
-			"Routing Number Timeout Check": {
-				"position": {
-					"x": 4277.6,
-					"y": -175.2
-				},
-				"isFriendlyName": true,
-				"conditions": [],
-				"conditionMetadata": [
-					{
-						"id": "869827df-6b93-49a7-9d68-a34eb82af05e",
-						"operator": {
-							"name": "Equals",
-							"value": "Equals",
-							"shortDisplay": "="
-						},
-						"value": "Timeout"
-					}
-				]
 			},
 			"Routing Number Timeout": {
 				"position": {
@@ -658,86 +368,10 @@
 				},
 				"isFriendlyName": true
 			},
-			"Check for Routing Number Validation Error": {
-				"position": {
-					"x": 4572.8,
-					"y": 84
-				},
-				"isFriendlyName": true,
-				"conditions": [],
-				"conditionMetadata": [
-					{
-						"id": "01175b53-f82c-48c0-9e9e-52b31978aa04",
-						"operator": {
-							"name": "Equals",
-							"value": "Equals",
-							"shortDisplay": "="
-						},
-						"value": "NULL"
-					}
-				]
-			},
-			"Get Routing Number": {
-				"position": {
-					"x": 4123.2,
-					"y": 103.2
-				},
-				"isFriendlyName": true,
-				"conditionMetadata": [],
-				"countryCodePrefix": "+1"
-			},
-			"Routing Number Validation Error": {
-				"position": {
-					"x": 4427.2,
-					"y": 306.4
-				},
-				"isFriendlyName": true
-			},
-			"Store Encrypted Card Number": {
-				"position": {
-					"x": 3570.4,
-					"y": -817.6
-				},
-				"isFriendlyName": true,
-				"parameters": {
-					"Attributes": {
-						"EncryptedCardNumber": {
-							"useDynamic": true
-						}
-					}
-				},
-				"dynamicParams": ["EncryptedCardNumber"]
-			},
-			"Expiration Date Timeout Check": {
-				"position": {
-					"x": 4193.6,
-					"y": -932.8
-				},
-				"isFriendlyName": true,
-				"conditions": [],
-				"conditionMetadata": [
-					{
-						"id": "085ef520-f796-4e62-a4cd-4be0b67d69df",
-						"operator": {
-							"name": "Equals",
-							"value": "Equals",
-							"shortDisplay": "="
-						},
-						"value": "Timeout"
-					}
-				]
-			},
 			"Expiration Date Timeout": {
 				"position": {
 					"x": 4112.8,
 					"y": -1136
-				},
-				"isFriendlyName": true
-			},
-			"Expiration Date Validation Error": {
-				"position": {
-					"x": 4470.4,
-					"y": -520
 				},
 				"isFriendlyName": true
 			},
@@ -766,7 +400,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "6a109448-9974-4bf4-9bd2-6ff162afac13",
+						"id": "3549ffbd-5bb2-4c96-8538-133bb1f04a02",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -848,7 +482,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "414d4da2-ed38-4003-9d6f-3a64a529dac5",
+						"id": "ee2d8bda-581a-4f47-9f97-891b4c74f2b3",
 						"operator": {
 							"name": "Contains",
 							"value": "Contains",
@@ -882,7 +516,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "ae7f6842-e50d-4910-b8ae-dbd4f887ef17",
+						"id": "32d9fe15-7110-4fcb-864c-61cdddd67f7d",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -914,11 +548,11 @@
 				"isFriendlyName": true,
 				"conditionMetadata": [
 					{
-						"id": "23638a5b-843b-4bb8-b6e2-f53531f2832b",
+						"id": "9fb530c0-45f4-4b9c-8e4e-6a3ab0e7b3e3",
 						"value": "1"
 					},
 					{
-						"id": "00d23a57-cdb9-4f6d-976c-5ae5d5eedc2c",
+						"id": "b388dbec-8ef6-4090-a10f-9fec43d97016",
 						"value": "2"
 					}
 				]
@@ -990,6 +624,372 @@
 					"y": -158.4
 				},
 				"isFriendlyName": true
+			},
+			"87859db2-400d-410b-8818-05c8ae4869aa": {
+				"position": {
+					"x": -1924,
+					"y": 356
+				}
+			},
+			"Create Payment Request": {
+				"position": {
+					"x": -1484,
+					"y": 224
+				},
+				"isFriendlyName": true,
+				"parameters": {
+					"LambdaFunctionARN": {
+						"displayName": "<<createPaymentRequestLambdaArn>>"
+					}
+				},
+				"dynamicMetadata": {}
+			},
+			"Set Receipt Queue ID": {
+				"position": {
+					"x": -1711.2,
+					"y": 214.4
+				},
+				"isFriendlyName": true
+			},
+			"Card Number Timeout Check": {
+				"position": {
+					"x": 3020,
+					"y": -1027.2
+				},
+				"isFriendlyName": true,
+				"conditions": [],
+				"conditionMetadata": [
+					{
+						"id": "096a7918-993a-48ec-a206-95f2e325f217",
+						"operator": {
+							"name": "Equals",
+							"value": "Equals",
+							"shortDisplay": "="
+						},
+						"value": "Timeout"
+					}
+				]
+			},
+			"Card Number Validation Error": {
+				"position": {
+					"x": 3257.6,
+					"y": -574.4
+				},
+				"isFriendlyName": true
+			},
+			"Store Encrypted Card Number": {
+				"position": {
+					"x": 3570.4,
+					"y": -817.6
+				},
+				"isFriendlyName": true,
+				"parameters": {
+					"Attributes": {
+						"EncryptedCardNumber": {
+							"useDynamic": true
+						}
+					}
+				},
+				"dynamicParams": ["EncryptedCardNumber"]
+			},
+			"Validate Card Number": {
+				"position": {
+					"x": 3139.2,
+					"y": -808
+				},
+				"isFriendlyName": true,
+				"parameters": {
+					"LambdaFunctionARN": {
+						"displayName": "C3AmazonConnectStack-C3ValidateEntry0579D515-hLF7slsKAxyI"
+					},
+					"LambdaInvocationAttributes": {
+						"CustomerEntry": {
+							"useDynamic": true
+						}
+					}
+				},
+				"dynamicMetadata": {
+					"ValidationType": false,
+					"CustomerEntry": true
+				}
+			},
+			"Check for Card Number Validation Error": {
+				"position": {
+					"x": 3349.6,
+					"y": -880.8
+				},
+				"isFriendlyName": true,
+				"conditions": [],
+				"conditionMetadata": [
+					{
+						"id": "4079afa6-5af7-451c-b7de-21a6dcfec9cc",
+						"operator": {
+							"name": "Equals",
+							"value": "Equals",
+							"shortDisplay": "="
+						},
+						"value": "NULL"
+					}
+				]
+			},
+			"Account Number Timeout Check": {
+				"position": {
+					"x": 3056,
+					"y": -96
+				},
+				"isFriendlyName": true,
+				"conditions": [],
+				"conditionMetadata": [
+					{
+						"id": "835afd0a-3a9b-42f7-8da1-5c7b0217983b",
+						"operator": {
+							"name": "Equals",
+							"value": "Equals",
+							"shortDisplay": "="
+						},
+						"value": "Timeout"
+					}
+				]
+			},
+			"Account Number Validation Error": {
+				"position": {
+					"x": 3209.6,
+					"y": 318.4
+				},
+				"isFriendlyName": true
+			},
+			"Internal Error": {
+				"position": {
+					"x": 2711.2,
+					"y": 773.6
+				},
+				"isFriendlyName": true
+			},
+			"Get Routing Number": {
+				"position": {
+					"x": 4123.2,
+					"y": 103.2
+				},
+				"isFriendlyName": true,
+				"conditionMetadata": [],
+				"countryCodePrefix": "+1"
+			},
+			"Validate Account Number": {
+				"position": {
+					"x": 3138.4,
+					"y": 99.2
+				},
+				"isFriendlyName": true,
+				"parameters": {
+					"LambdaFunctionARN": {
+						"displayName": "C3AmazonConnectStack-C3ValidateEntry0579D515-hLF7slsKAxyI"
+					},
+					"LambdaInvocationAttributes": {
+						"CustomerEntry": {
+							"useDynamic": true
+						}
+					}
+				},
+				"dynamicMetadata": {
+					"ValidationType": false,
+					"CustomerEntry": true
+				}
+			},
+			"Check for Account Number Validation Error": {
+				"position": {
+					"x": 3349.6,
+					"y": 18.4
+				},
+				"isFriendlyName": true,
+				"conditions": [],
+				"conditionMetadata": [
+					{
+						"id": "caff22e3-dc17-46d8-8c9c-4fbc87bbf60f",
+						"operator": {
+							"name": "Equals",
+							"value": "Equals",
+							"shortDisplay": "="
+						},
+						"value": "NULL"
+					}
+				]
+			},
+			"Store Encrypted Account Number": {
+				"position": {
+					"x": 3565.6,
+					"y": 100.8
+				},
+				"isFriendlyName": true,
+				"parameters": {
+					"Attributes": {
+						"EncryptedAccountNumber": {
+							"useDynamic": true
+						}
+					}
+				},
+				"dynamicParams": ["EncryptedAccountNumber"]
+			},
+			"Store Routing Number": {
+				"position": {
+					"x": 4786.4,
+					"y": 88
+				},
+				"isFriendlyName": true,
+				"parameters": {
+					"Attributes": {
+						"RoutingNumber": {
+							"useDynamic": true
+						}
+					}
+				},
+				"dynamicParams": ["RoutingNumber"]
+			},
+			"Routing Number Validation Error": {
+				"position": {
+					"x": 4427.2,
+					"y": 306.4
+				},
+				"isFriendlyName": true
+			},
+			"Routing Number Timeout Check": {
+				"position": {
+					"x": 4277.6,
+					"y": -175.2
+				},
+				"isFriendlyName": true,
+				"conditions": [],
+				"conditionMetadata": [
+					{
+						"id": "63497af9-b1d6-4e68-8fdc-f52f1bbd423d",
+						"operator": {
+							"name": "Equals",
+							"value": "Equals",
+							"shortDisplay": "="
+						},
+						"value": "Timeout"
+					}
+				]
+			},
+			"Check for Routing Number Validation Error": {
+				"position": {
+					"x": 4576,
+					"y": 1.6
+				},
+				"isFriendlyName": true,
+				"conditions": [],
+				"conditionMetadata": [
+					{
+						"id": "dcea6e50-4c52-4a27-b07b-d8e05a25d9c1",
+						"operator": {
+							"name": "Equals",
+							"value": "Equals",
+							"shortDisplay": "="
+						},
+						"value": "NULL"
+					}
+				]
+			},
+			"Validate Routing Number": {
+				"position": {
+					"x": 4356,
+					"y": 87.2
+				},
+				"isFriendlyName": true,
+				"parameters": {
+					"LambdaFunctionARN": {
+						"displayName": "C3AmazonConnectStack-C3ValidateEntry0579D515-hLF7slsKAxyI"
+					},
+					"LambdaInvocationAttributes": {
+						"CustomerEntry": {
+							"useDynamic": true
+						}
+					}
+				},
+				"dynamicMetadata": {
+					"ValidationType": false,
+					"CustomerEntry": true
+				}
+			},
+			"Store Expiration Date": {
+				"position": {
+					"x": 4842.4,
+					"y": -732.8
+				},
+				"isFriendlyName": true,
+				"parameters": {
+					"Attributes": {
+						"ExpirationDate": {
+							"useDynamic": true
+						}
+					}
+				},
+				"dynamicParams": ["ExpirationDate"]
+			},
+			"Expiration Date Validation Error": {
+				"position": {
+					"x": 4470.4,
+					"y": -520
+				},
+				"isFriendlyName": true
+			},
+			"Expiration Date Timeout Check": {
+				"position": {
+					"x": 4193.6,
+					"y": -932.8
+				},
+				"isFriendlyName": true,
+				"conditions": [],
+				"conditionMetadata": [
+					{
+						"id": "2f922546-5cd7-405c-9a55-af3ed8b5957a",
+						"operator": {
+							"name": "Equals",
+							"value": "Equals",
+							"shortDisplay": "="
+						},
+						"value": "Timeout"
+					}
+				]
+			},
+			"Check for Expiration Date Validation Error": {
+				"position": {
+					"x": 4612,
+					"y": -796
+				},
+				"isFriendlyName": true,
+				"conditions": [],
+				"conditionMetadata": [
+					{
+						"id": "1c91b217-46a0-4ee6-be8e-f0418c4b9c6c",
+						"operator": {
+							"name": "Equals",
+							"value": "Equals",
+							"shortDisplay": "="
+						},
+						"value": "NULL"
+					}
+				]
+			},
+			"Validate Expiration Date": {
+				"position": {
+					"x": 4398.4,
+					"y": -740
+				},
+				"isFriendlyName": true,
+				"parameters": {
+					"LambdaFunctionARN": {
+						"displayName": "C3AmazonConnectStack-C3ValidateEntry0579D515-hLF7slsKAxyI"
+					},
+					"LambdaInvocationAttributes": {
+						"CustomerEntry": {
+							"useDynamic": true
+						}
+					}
+				},
+				"dynamicMetadata": {
+					"ValidationType": false,
+					"CustomerEntry": true
+				}
 			}
 		},
 		"Annotations": [
@@ -1077,132 +1077,6 @@
 	"Actions": [
 		{
 			"Parameters": {
-				"FlowLoggingBehavior": "Disabled"
-			},
-			"Identifier": "87859db2-400d-410b-8818-05c8ae4869aa",
-			"Type": "UpdateFlowLoggingBehavior",
-			"Transitions": {
-				"NextAction": "Set Receipt Queue ID"
-			}
-		},
-		{
-			"Parameters": {
-				"FlowAttributes": {
-					"ReceiptQueueId": {
-						"Value": "<<receiptQueueId>>"
-					}
-				}
-			},
-			"Identifier": "Set Receipt Queue ID",
-			"Type": "UpdateFlowAttributes",
-			"Transitions": {
-				"NextAction": "Create Payment Request",
-				"Errors": [
-					{
-						"NextAction": "Create Payment Request",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"LambdaFunctionARN": "arn:aws:lambda:us-west-2:815407490078:function:C3AmazonConnectStack-C3ValidateEntry0579D515-hLF7slsKAxyI",
-				"InvocationTimeLimitSeconds": "8",
-				"LambdaInvocationAttributes": {
-					"ValidationType": "CardNumber",
-					"CustomerEntry": "$.StoredCustomerInput"
-				},
-				"ResponseValidation": {
-					"ResponseType": "JSON"
-				}
-			},
-			"Identifier": "Validate Card Number",
-			"Type": "InvokeLambdaFunction",
-			"Transitions": {
-				"NextAction": "Check for Card Number Validation Error",
-				"Errors": [
-					{
-						"NextAction": "Check for Card Number Validation Error",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"LambdaFunctionARN": "arn:aws:lambda:us-west-2:815407490078:function:C3AmazonConnectStack-C3ValidateEntry0579D515-hLF7slsKAxyI",
-				"InvocationTimeLimitSeconds": "8",
-				"LambdaInvocationAttributes": {
-					"ValidationType": "AccountNumber",
-					"CustomerEntry": "$.StoredCustomerInput"
-				},
-				"ResponseValidation": {
-					"ResponseType": "JSON"
-				}
-			},
-			"Identifier": "Validate Account Number",
-			"Type": "InvokeLambdaFunction",
-			"Transitions": {
-				"NextAction": "Check for Account Number Validation Error",
-				"Errors": [
-					{
-						"NextAction": "Check for Account Number Validation Error",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"LambdaFunctionARN": "arn:aws:lambda:us-west-2:815407490078:function:C3AmazonConnectStack-C3ValidateEntry0579D515-hLF7slsKAxyI",
-				"InvocationTimeLimitSeconds": "8",
-				"LambdaInvocationAttributes": {
-					"ValidationType": "RoutingNumber",
-					"CustomerEntry": "$.StoredCustomerInput"
-				},
-				"ResponseValidation": {
-					"ResponseType": "JSON"
-				}
-			},
-			"Identifier": "Validate Routing Number",
-			"Type": "InvokeLambdaFunction",
-			"Transitions": {
-				"NextAction": "Check for Routing Number Validation Error",
-				"Errors": [
-					{
-						"NextAction": "Check for Routing Number Validation Error",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"LambdaFunctionARN": "arn:aws:lambda:us-west-2:815407490078:function:C3AmazonConnectStack-C3ValidateEntry0579D515-hLF7slsKAxyI",
-				"InvocationTimeLimitSeconds": "8",
-				"LambdaInvocationAttributes": {
-					"ValidationType": "ExpirationDate",
-					"CustomerEntry": "$.StoredCustomerInput"
-				},
-				"ResponseValidation": {
-					"ResponseType": "JSON"
-				}
-			},
-			"Identifier": "Validate Expiration Date",
-			"Type": "InvokeLambdaFunction",
-			"Transitions": {
-				"NextAction": "Check for Expiration Date Validation Error",
-				"Errors": [
-					{
-						"NextAction": "Check for Expiration Date Validation Error",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
 				"Attributes": {
 					"PaymentToken": "$.External.PaymentToken"
 				},
@@ -1225,26 +1099,6 @@
 			"Identifier": "b2786200-e897-45bd-b888-0f53246f72ed",
 			"Type": "EndFlowModuleExecution",
 			"Transitions": {}
-		},
-		{
-			"Parameters": {
-				"LambdaFunctionARN": "<<createPaymentRequestLambdaArn>>",
-				"InvocationTimeLimitSeconds": "8",
-				"ResponseValidation": {
-					"ResponseType": "JSON"
-				}
-			},
-			"Identifier": "Create Payment Request",
-			"Type": "InvokeLambdaFunction",
-			"Transitions": {
-				"NextAction": "Record Payment Request ID",
-				"Errors": [
-					{
-						"NextAction": "Payment Request Error",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
 		},
 		{
 			"Parameters": {
@@ -1373,94 +1227,6 @@
 					{
 						"NextAction": "Ask for Payment Method",
 						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Attributes": {
-					"RoutingNumber": "$.StoredCustomerInput"
-				},
-				"TargetContact": "Current"
-			},
-			"Identifier": "Store Routing Number",
-			"Type": "UpdateContactAttributes",
-			"Transitions": {
-				"NextAction": "Tokenize Transaction",
-				"Errors": [
-					{
-						"NextAction": "Internal Error",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Attributes": {
-					"ExpirationDate": "$.StoredCustomerInput"
-				},
-				"TargetContact": "Current"
-			},
-			"Identifier": "Store Expiration Date",
-			"Type": "UpdateContactAttributes",
-			"Transitions": {
-				"NextAction": "Tokenize Transaction",
-				"Errors": [
-					{
-						"NextAction": "Internal Error",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"ComparisonValue": "$.External.ValidationError"
-			},
-			"Identifier": "Check for Account Number Validation Error",
-			"Type": "Compare",
-			"Transitions": {
-				"NextAction": "Account Number Validation Error",
-				"Conditions": [
-					{
-						"NextAction": "Store Encrypted Account Number",
-						"Condition": {
-							"Operator": "Equals",
-							"Operands": ["NULL"]
-						}
-					}
-				],
-				"Errors": [
-					{
-						"NextAction": "Account Number Validation Error",
-						"ErrorType": "NoMatchingCondition"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"ComparisonValue": "$.External.ValidationError"
-			},
-			"Identifier": "Check for Card Number Validation Error",
-			"Type": "Compare",
-			"Transitions": {
-				"NextAction": "Card Number Validation Error",
-				"Conditions": [
-					{
-						"NextAction": "Store Encrypted Card Number",
-						"Condition": {
-							"Operator": "Equals",
-							"Operands": ["NULL"]
-						}
-					}
-				],
-				"Errors": [
-					{
-						"NextAction": "Card Number Validation Error",
-						"ErrorType": "NoMatchingCondition"
 					}
 				]
 			}
@@ -1886,50 +1652,9 @@
 		},
 		{
 			"Parameters": {
-				"ComparisonValue": "$.StoredCustomerInput"
-			},
-			"Identifier": "Account Number Timeout Check",
-			"Type": "Compare",
-			"Transitions": {
-				"NextAction": "Validate Account Number",
-				"Conditions": [
-					{
-						"NextAction": "Account Number Timeout",
-						"Condition": {
-							"Operator": "Equals",
-							"Operands": ["Timeout"]
-						}
-					}
-				],
-				"Errors": [
-					{
-						"NextAction": "Validate Account Number",
-						"ErrorType": "NoMatchingCondition"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
 				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nAre you still there?\n</prosody>\n</speak>"
 			},
 			"Identifier": "Account Number Timeout",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "Get & Encrypt Account Number",
-				"Errors": [
-					{
-						"NextAction": "Get & Encrypt Account Number",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\n$.External.ValidationError\n\nPlease check your entry and try again.\n</prosody>\n</speak>"
-			},
-			"Identifier": "Account Number Validation Error",
 			"Type": "MessageParticipant",
 			"Transitions": {
 				"NextAction": "Get & Encrypt Account Number",
@@ -1993,31 +1718,6 @@
 		},
 		{
 			"Parameters": {
-				"ComparisonValue": "$.StoredCustomerInput"
-			},
-			"Identifier": "Card Number Timeout Check",
-			"Type": "Compare",
-			"Transitions": {
-				"NextAction": "Validate Card Number",
-				"Conditions": [
-					{
-						"NextAction": "Card Number Timeout",
-						"Condition": {
-							"Operator": "Equals",
-							"Operands": ["Timeout"]
-						}
-					}
-				],
-				"Errors": [
-					{
-						"NextAction": "Validate Card Number",
-						"ErrorType": "NoMatchingCondition"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
 				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nAre you still there?\n</prosody>\n</speak>"
 			},
 			"Identifier": "Card Number Timeout",
@@ -2027,38 +1727,6 @@
 				"Errors": [
 					{
 						"NextAction": "Get & Encrypt Card Number",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\n$.External.ValidationError\n\nPlease check your entry and try again.\n</prosody>\n</speak>"
-			},
-			"Identifier": "Card Number Validation Error",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "Get & Encrypt Card Number",
-				"Errors": [
-					{
-						"NextAction": "Get & Encrypt Card Number",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nWe're sorry, an error has occurred that prevents us from collecting the payment.\n</prosody>\n</speak>"
-			},
-			"Identifier": "Internal Error",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "Redact Sensitive Contact Attributes",
-				"Errors": [
-					{
-						"NextAction": "Redact Sensitive Contact Attributes",
 						"ErrorType": "NoMatchingError"
 					}
 				]
@@ -2097,75 +1765,6 @@
 		},
 		{
 			"Parameters": {
-				"ComparisonValue": "$.External.ValidationError"
-			},
-			"Identifier": "Check for Expiration Date Validation Error",
-			"Type": "Compare",
-			"Transitions": {
-				"NextAction": "Expiration Date Validation Error",
-				"Conditions": [
-					{
-						"NextAction": "Store Expiration Date",
-						"Condition": {
-							"Operator": "Equals",
-							"Operands": ["NULL"]
-						}
-					}
-				],
-				"Errors": [
-					{
-						"NextAction": "Expiration Date Validation Error",
-						"ErrorType": "NoMatchingCondition"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Attributes": {
-					"EncryptedAccountNumber": "$.StoredCustomerInput"
-				},
-				"TargetContact": "Current"
-			},
-			"Identifier": "Store Encrypted Account Number",
-			"Type": "UpdateContactAttributes",
-			"Transitions": {
-				"NextAction": "Get Routing Number",
-				"Errors": [
-					{
-						"NextAction": "Internal Error",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"ComparisonValue": "$.StoredCustomerInput"
-			},
-			"Identifier": "Routing Number Timeout Check",
-			"Type": "Compare",
-			"Transitions": {
-				"NextAction": "Validate Routing Number",
-				"Conditions": [
-					{
-						"NextAction": "Routing Number Timeout",
-						"Condition": {
-							"Operator": "Equals",
-							"Operands": ["Timeout"]
-						}
-					}
-				],
-				"Errors": [
-					{
-						"NextAction": "Validate Routing Number",
-						"ErrorType": "NoMatchingCondition"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
 				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nAre you still there?\n</prosody>\n</speak>"
 			},
 			"Identifier": "Routing Number Timeout",
@@ -2198,137 +1797,9 @@
 		},
 		{
 			"Parameters": {
-				"ComparisonValue": "$.External.ValidationError"
-			},
-			"Identifier": "Check for Routing Number Validation Error",
-			"Type": "Compare",
-			"Transitions": {
-				"NextAction": "Routing Number Validation Error",
-				"Conditions": [
-					{
-						"NextAction": "Store Routing Number",
-						"Condition": {
-							"Operator": "Equals",
-							"Operands": ["NULL"]
-						}
-					}
-				],
-				"Errors": [
-					{
-						"NextAction": "Routing Number Validation Error",
-						"ErrorType": "NoMatchingCondition"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"StoreInput": "True",
-				"InputTimeLimitSeconds": "10",
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nPlease enter your bank's routing number, followed by the pound key when complete.\n</prosody>\n</speak>",
-				"DTMFConfiguration": {
-					"DisableCancelKey": "False",
-					"InputTerminationSequence": "#"
-				},
-				"InputValidation": {
-					"CustomValidation": {
-						"MaximumLength": "25"
-					}
-				}
-			},
-			"Identifier": "Get Routing Number",
-			"Type": "GetParticipantInput",
-			"Transitions": {
-				"NextAction": "Routing Number Timeout Check",
-				"Errors": [
-					{
-						"NextAction": "Try Routing Number Again",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\n$.External.ValidationError\n\nPlease check your entry and try again.\n</prosody>\n</speak>"
-			},
-			"Identifier": "Routing Number Validation Error",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "Get Routing Number",
-				"Errors": [
-					{
-						"NextAction": "Get Routing Number",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Attributes": {
-					"EncryptedCardNumber": "$.StoredCustomerInput"
-				},
-				"TargetContact": "Current"
-			},
-			"Identifier": "Store Encrypted Card Number",
-			"Type": "UpdateContactAttributes",
-			"Transitions": {
-				"NextAction": "Get Expiration Date",
-				"Errors": [
-					{
-						"NextAction": "Internal Error",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"ComparisonValue": "$.StoredCustomerInput"
-			},
-			"Identifier": "Expiration Date Timeout Check",
-			"Type": "Compare",
-			"Transitions": {
-				"NextAction": "Validate Expiration Date",
-				"Conditions": [
-					{
-						"NextAction": "Expiration Date Timeout",
-						"Condition": {
-							"Operator": "Equals",
-							"Operands": ["Timeout"]
-						}
-					}
-				],
-				"Errors": [
-					{
-						"NextAction": "Validate Expiration Date",
-						"ErrorType": "NoMatchingCondition"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
 				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nAre you still there?\n</prosody>\n</speak>"
 			},
 			"Identifier": "Expiration Date Timeout",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "Get Expiration Date",
-				"Errors": [
-					{
-						"NextAction": "Get Expiration Date",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\n$.External.ValidationError\n\nPlease check your entry and try again.\n</prosody>\n</speak>"
-			},
-			"Identifier": "Expiration Date Validation Error",
 			"Type": "MessageParticipant",
 			"Transitions": {
 				"NextAction": "Get Expiration Date",
@@ -2821,6 +2292,535 @@
 				"Errors": [
 					{
 						"NextAction": "a3ea896e-4f43-4677-8edd-159f677dc41e",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"FlowLoggingBehavior": "Disabled"
+			},
+			"Identifier": "87859db2-400d-410b-8818-05c8ae4869aa",
+			"Type": "UpdateFlowLoggingBehavior",
+			"Transitions": {
+				"NextAction": "Set Receipt Queue ID"
+			}
+		},
+		{
+			"Parameters": {
+				"LambdaFunctionARN": "<<createPaymentRequestLambdaArn>>",
+				"InvocationTimeLimitSeconds": "8",
+				"ResponseValidation": {
+					"ResponseType": "JSON"
+				}
+			},
+			"Identifier": "Create Payment Request",
+			"Type": "InvokeLambdaFunction",
+			"Transitions": {
+				"NextAction": "Record Payment Request ID",
+				"Errors": [
+					{
+						"NextAction": "Payment Request Error",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"FlowAttributes": {
+					"ReceiptQueueId": {
+						"Value": "<<receiptQueueId>>"
+					}
+				}
+			},
+			"Identifier": "Set Receipt Queue ID",
+			"Type": "UpdateFlowAttributes",
+			"Transitions": {
+				"NextAction": "Create Payment Request",
+				"Errors": [
+					{
+						"NextAction": "Create Payment Request",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"ComparisonValue": "$.StoredCustomerInput"
+			},
+			"Identifier": "Card Number Timeout Check",
+			"Type": "Compare",
+			"Transitions": {
+				"NextAction": "Validate Card Number",
+				"Conditions": [
+					{
+						"NextAction": "Card Number Timeout",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": ["Timeout"]
+						}
+					}
+				],
+				"Errors": [
+					{
+						"NextAction": "Validate Card Number",
+						"ErrorType": "NoMatchingCondition"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\n$.External.ValidationError\n\nPlease check your entry and try again.\n</prosody>\n</speak>"
+			},
+			"Identifier": "Card Number Validation Error",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "Get & Encrypt Card Number",
+				"Errors": [
+					{
+						"NextAction": "Get & Encrypt Card Number",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Attributes": {
+					"EncryptedCardNumber": "$.StoredCustomerInput"
+				},
+				"TargetContact": "Current"
+			},
+			"Identifier": "Store Encrypted Card Number",
+			"Type": "UpdateContactAttributes",
+			"Transitions": {
+				"NextAction": "Get Expiration Date",
+				"Errors": [
+					{
+						"NextAction": "Internal Error",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"LambdaFunctionARN": "arn:aws:lambda:us-west-2:815407490078:function:C3AmazonConnectStack-C3ValidateEntry0579D515-hLF7slsKAxyI",
+				"InvocationTimeLimitSeconds": "8",
+				"LambdaInvocationAttributes": {
+					"ValidationType": "CardNumber",
+					"CustomerEntry": "$.StoredCustomerInput"
+				},
+				"ResponseValidation": {
+					"ResponseType": "JSON"
+				}
+			},
+			"Identifier": "Validate Card Number",
+			"Type": "InvokeLambdaFunction",
+			"Transitions": {
+				"NextAction": "Check for Card Number Validation Error",
+				"Errors": [
+					{
+						"NextAction": "Store Encrypted Card Number",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"ComparisonValue": "$.External.ValidationError"
+			},
+			"Identifier": "Check for Card Number Validation Error",
+			"Type": "Compare",
+			"Transitions": {
+				"NextAction": "Card Number Validation Error",
+				"Conditions": [
+					{
+						"NextAction": "Store Encrypted Card Number",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": ["NULL"]
+						}
+					}
+				],
+				"Errors": [
+					{
+						"NextAction": "Card Number Validation Error",
+						"ErrorType": "NoMatchingCondition"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"ComparisonValue": "$.StoredCustomerInput"
+			},
+			"Identifier": "Account Number Timeout Check",
+			"Type": "Compare",
+			"Transitions": {
+				"NextAction": "Validate Account Number",
+				"Conditions": [
+					{
+						"NextAction": "Account Number Timeout",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": ["Timeout"]
+						}
+					}
+				],
+				"Errors": [
+					{
+						"NextAction": "Validate Account Number",
+						"ErrorType": "NoMatchingCondition"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\n$.External.ValidationError\n\nPlease check your entry and try again.\n</prosody>\n</speak>"
+			},
+			"Identifier": "Account Number Validation Error",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "Get & Encrypt Account Number",
+				"Errors": [
+					{
+						"NextAction": "Get & Encrypt Account Number",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nWe're sorry, an error has occurred that prevents us from collecting the payment.\n</prosody>\n</speak>"
+			},
+			"Identifier": "Internal Error",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "Redact Sensitive Contact Attributes",
+				"Errors": [
+					{
+						"NextAction": "Redact Sensitive Contact Attributes",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"StoreInput": "True",
+				"InputTimeLimitSeconds": "10",
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nPlease enter your bank's routing number, followed by the pound key when complete.\n</prosody>\n</speak>",
+				"DTMFConfiguration": {
+					"DisableCancelKey": "False",
+					"InputTerminationSequence": "#"
+				},
+				"InputValidation": {
+					"CustomValidation": {
+						"MaximumLength": "25"
+					}
+				}
+			},
+			"Identifier": "Get Routing Number",
+			"Type": "GetParticipantInput",
+			"Transitions": {
+				"NextAction": "Routing Number Timeout Check",
+				"Errors": [
+					{
+						"NextAction": "Try Routing Number Again",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"LambdaFunctionARN": "arn:aws:lambda:us-west-2:815407490078:function:C3AmazonConnectStack-C3ValidateEntry0579D515-hLF7slsKAxyI",
+				"InvocationTimeLimitSeconds": "8",
+				"LambdaInvocationAttributes": {
+					"ValidationType": "AccountNumber",
+					"CustomerEntry": "$.StoredCustomerInput"
+				},
+				"ResponseValidation": {
+					"ResponseType": "JSON"
+				}
+			},
+			"Identifier": "Validate Account Number",
+			"Type": "InvokeLambdaFunction",
+			"Transitions": {
+				"NextAction": "Check for Account Number Validation Error",
+				"Errors": [
+					{
+						"NextAction": "Store Encrypted Account Number",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"ComparisonValue": "$.External.ValidationError"
+			},
+			"Identifier": "Check for Account Number Validation Error",
+			"Type": "Compare",
+			"Transitions": {
+				"NextAction": "Account Number Validation Error",
+				"Conditions": [
+					{
+						"NextAction": "Store Encrypted Account Number",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": ["NULL"]
+						}
+					}
+				],
+				"Errors": [
+					{
+						"NextAction": "Account Number Validation Error",
+						"ErrorType": "NoMatchingCondition"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Attributes": {
+					"EncryptedAccountNumber": "$.StoredCustomerInput"
+				},
+				"TargetContact": "Current"
+			},
+			"Identifier": "Store Encrypted Account Number",
+			"Type": "UpdateContactAttributes",
+			"Transitions": {
+				"NextAction": "Get Routing Number",
+				"Errors": [
+					{
+						"NextAction": "Internal Error",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Attributes": {
+					"RoutingNumber": "$.StoredCustomerInput"
+				},
+				"TargetContact": "Current"
+			},
+			"Identifier": "Store Routing Number",
+			"Type": "UpdateContactAttributes",
+			"Transitions": {
+				"NextAction": "Tokenize Transaction",
+				"Errors": [
+					{
+						"NextAction": "Internal Error",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\n$.External.ValidationError\n\nPlease check your entry and try again.\n</prosody>\n</speak>"
+			},
+			"Identifier": "Routing Number Validation Error",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "Get Routing Number",
+				"Errors": [
+					{
+						"NextAction": "Get Routing Number",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"ComparisonValue": "$.StoredCustomerInput"
+			},
+			"Identifier": "Routing Number Timeout Check",
+			"Type": "Compare",
+			"Transitions": {
+				"NextAction": "Validate Routing Number",
+				"Conditions": [
+					{
+						"NextAction": "Routing Number Timeout",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": ["Timeout"]
+						}
+					}
+				],
+				"Errors": [
+					{
+						"NextAction": "Validate Routing Number",
+						"ErrorType": "NoMatchingCondition"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"ComparisonValue": "$.External.ValidationError"
+			},
+			"Identifier": "Check for Routing Number Validation Error",
+			"Type": "Compare",
+			"Transitions": {
+				"NextAction": "Routing Number Validation Error",
+				"Conditions": [
+					{
+						"NextAction": "Store Routing Number",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": ["NULL"]
+						}
+					}
+				],
+				"Errors": [
+					{
+						"NextAction": "Routing Number Validation Error",
+						"ErrorType": "NoMatchingCondition"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"LambdaFunctionARN": "arn:aws:lambda:us-west-2:815407490078:function:C3AmazonConnectStack-C3ValidateEntry0579D515-hLF7slsKAxyI",
+				"InvocationTimeLimitSeconds": "8",
+				"LambdaInvocationAttributes": {
+					"ValidationType": "RoutingNumber",
+					"CustomerEntry": "$.StoredCustomerInput"
+				},
+				"ResponseValidation": {
+					"ResponseType": "JSON"
+				}
+			},
+			"Identifier": "Validate Routing Number",
+			"Type": "InvokeLambdaFunction",
+			"Transitions": {
+				"NextAction": "Check for Routing Number Validation Error",
+				"Errors": [
+					{
+						"NextAction": "Store Routing Number",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Attributes": {
+					"ExpirationDate": "$.StoredCustomerInput"
+				},
+				"TargetContact": "Current"
+			},
+			"Identifier": "Store Expiration Date",
+			"Type": "UpdateContactAttributes",
+			"Transitions": {
+				"NextAction": "Tokenize Transaction",
+				"Errors": [
+					{
+						"NextAction": "Internal Error",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\n$.External.ValidationError\n\nPlease check your entry and try again.\n</prosody>\n</speak>"
+			},
+			"Identifier": "Expiration Date Validation Error",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "Get Expiration Date",
+				"Errors": [
+					{
+						"NextAction": "Get Expiration Date",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"ComparisonValue": "$.StoredCustomerInput"
+			},
+			"Identifier": "Expiration Date Timeout Check",
+			"Type": "Compare",
+			"Transitions": {
+				"NextAction": "Validate Expiration Date",
+				"Conditions": [
+					{
+						"NextAction": "Expiration Date Timeout",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": ["Timeout"]
+						}
+					}
+				],
+				"Errors": [
+					{
+						"NextAction": "Validate Expiration Date",
+						"ErrorType": "NoMatchingCondition"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"ComparisonValue": "$.External.ValidationError"
+			},
+			"Identifier": "Check for Expiration Date Validation Error",
+			"Type": "Compare",
+			"Transitions": {
+				"NextAction": "Expiration Date Validation Error",
+				"Conditions": [
+					{
+						"NextAction": "Store Expiration Date",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": ["NULL"]
+						}
+					}
+				],
+				"Errors": [
+					{
+						"NextAction": "Expiration Date Validation Error",
+						"ErrorType": "NoMatchingCondition"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"LambdaFunctionARN": "arn:aws:lambda:us-west-2:815407490078:function:C3AmazonConnectStack-C3ValidateEntry0579D515-hLF7slsKAxyI",
+				"InvocationTimeLimitSeconds": "8",
+				"LambdaInvocationAttributes": {
+					"ValidationType": "ExpirationDate",
+					"CustomerEntry": "$.StoredCustomerInput"
+				},
+				"ResponseValidation": {
+					"ResponseType": "JSON"
+				}
+			},
+			"Identifier": "Validate Expiration Date",
+			"Type": "InvokeLambdaFunction",
+			"Transitions": {
+				"NextAction": "Check for Expiration Date Validation Error",
+				"Errors": [
+					{
+						"NextAction": "Store Expiration Date",
 						"ErrorType": "NoMatchingError"
 					}
 				]
