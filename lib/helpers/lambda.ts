@@ -43,6 +43,10 @@ export function associateLambdaFunctionsWithConnect(
 	// Workaround to delete the existing associations. Necessary when the naming format changes.
 	const skipAssociations = stack.node.tryGetContext('options').skipAssociations;
 	if (skipAssociations) {
+		console.log('⚠️ Skipping Amazon Connect associations! ⚠️');
+		console.log(
+			'⚠️⚠️⚠️ Please remember to re-deploy with `skipAssociations` removed so that Amazon Connect can invoke your Lambda functions. ⚠️⚠️⚠️',
+		);
 		return;
 	}
 
