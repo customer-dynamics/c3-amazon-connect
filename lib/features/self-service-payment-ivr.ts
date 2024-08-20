@@ -2,7 +2,7 @@ import { Stack } from 'aws-cdk-lib';
 import { getPaymentIVRFlowModuleContent } from '../connect/content-transformations';
 import { CfnContactFlowModule } from 'aws-cdk-lib/aws-connect';
 import { Function } from 'aws-cdk-lib/aws-lambda';
-import { AmazonConnectContext } from '../models';
+import { AmazonConnectContext, OptionsContext } from '../models';
 import { writeFileToExports } from '../helpers/file';
 
 /**
@@ -33,6 +33,9 @@ export class SelfServicePaymentIVR {
 	 */
 	private createFlowModule(): void {
 		console.log('Creating flow module C3PaymentIVRFlowModule...');
+		const optionsContext = this.stack.node.tryGetContext(
+			'options',
+		) as OptionsContext;
 		const paymentIVRFlowModuleContent = getPaymentIVRFlowModuleContent(
 			this.createPaymentRequestFunction,
 			this.tokenizeTransactionFunction,
@@ -41,6 +44,7 @@ export class SelfServicePaymentIVR {
 			this.amazonConnectContext.securityKeyId,
 			this.amazonConnectContext.securityKeyCertificateContent,
 			this.amazonConnectContext.receiptQueueArn,
+			optionsContext.ivrSpeaking,
 		);
 		writeFileToExports(
 			'C3PaymentIVRFlowModule.json',

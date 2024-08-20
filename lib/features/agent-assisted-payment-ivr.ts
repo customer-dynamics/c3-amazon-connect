@@ -118,6 +118,9 @@ export class AgentAssistedPaymentIVR {
 	 */
 	private createIVRFlow(): void {
 		console.log('Creating flow C3AgentAssistedPaymentIVRFlow...');
+		const optionsContext = this.stack.node.tryGetContext(
+			'options',
+		) as OptionsContext;
 		const c3PaymentFlowContent = getSelfServicePaymentIVRFlowContent(
 			this.sendAgentMessageFunction,
 			this.createPaymentRequestFunction,
@@ -126,6 +129,7 @@ export class AgentAssistedPaymentIVR {
 			this.sendReceiptFunction,
 			this.amazonConnectContext.securityKeyId,
 			this.amazonConnectContext.securityKeyCertificateContent,
+			optionsContext.ivrSpeaking,
 		);
 		writeFileToExports(
 			'C3AgentAssistedPaymentIVRFlow.json',

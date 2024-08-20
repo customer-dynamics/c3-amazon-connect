@@ -4,3 +4,4 @@ export * from './c3-context';
 export * from './context';
 export * from './features-context';
 export * from './options-context';
+export * from './ivr-speaking-context';
