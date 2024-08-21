@@ -7,6 +7,8 @@ Before getting started with C3 for Amazon Connect, please ensure the following:
 - You have a current C3 vendor account
 - You have an AWS account
 - You have an Amazon Connect instance
+- You are able to run commands from a bash terminal
+  - If you are using Windows, you can use the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install) to run bash commands.
 - You have Node.js (v20+) and npm (v10+) installed on your machine
 - You have [installed and configured the AWS CDK](https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html#getting_started_auth) on your machine
 
