@@ -142,8 +142,10 @@ export class C3AmazonConnectStack extends Stack {
 			this.featuresContext.agentAssistedIVR ||
 			this.featuresContext.agentAssistedLink
 		) {
-			const appUrl = this.getAppUrl(!this.amazonConnectContext.workspaceApp);
-			if (this.amazonConnectContext.workspaceApp) {
+			const appUrl = this.getAppUrl(
+				!this.amazonConnectContext.addAppsToWorkspace,
+			);
+			if (this.amazonConnectContext.addAppsToWorkspace) {
 				this.create3rdPartyApp(appUrl);
 			}
 		}

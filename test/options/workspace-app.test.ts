@@ -17,7 +17,7 @@ const mockContext: Context = {
 		securityKeyId: 'placeholder',
 		securityKeyCertificateContent:
 			'-----BEGIN CERTIFICATE-----\\n-----END CERTIFICATE-----\\n',
-		workspaceApp: true,
+		addAppsToWorkspace: true,
 		receiptQueueArn: 'placeholder',
 	},
 	c3: {
@@ -64,7 +64,7 @@ describe('Workspace app', () => {
 		});
 
 		it('Has no 3rd party apps when flag is false', () => {
-			mockContext.amazonConnect.workspaceApp = false;
+			mockContext.amazonConnect.addAppsToWorkspace = false;
 			const app = new App({
 				context: mockContext,
 			});

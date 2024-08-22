@@ -4,7 +4,7 @@
 		"instanceArn": "",
 		"securityKeyId": "",
 		"securityKeyCertificateContent": "",
-		"workspaceApp": true,
+		"addAppsToWorkspace": true,
 		"receiptQueueArn": ""
 	},
 	"c3": {

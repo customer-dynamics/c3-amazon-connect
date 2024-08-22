@@ -11,7 +11,7 @@ It might be necessary to use the alternative import method in the following inst
   - This prevents even your _root_ user from having ECR permissions and they cannot be added.
 
 > [!TIP]
-> If you are using Salesforce Service Cloud Voice, ensure that the `amazonConnect.workspaceApp` and `options.codeSigning` values are set to `false` in your `cdk.context.json` file. Your account will not have the necessary permissions for these items.
+> If you are using Salesforce Service Cloud Voice, ensure that the `amazonConnect.addAppsToWorkspace` and `options.codeSigning` values are set to `false` in your `cdk.context.json` file. Your account will not have the necessary permissions for these items.
 
 ## Initial Deployment
 
