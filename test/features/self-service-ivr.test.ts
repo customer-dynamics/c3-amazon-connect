@@ -30,6 +30,7 @@ const mockContext: Context = {
 		agentAssistedLink: false,
 		selfServiceIVR: true,
 		subjectLookup: SubjectLookupMode.Disabled,
+		receiptApp: false,
 	},
 	options: {
 		codeSigning: true,

@@ -30,6 +30,7 @@ const mockContext: Context = {
 		agentAssistedLink: false,
 		selfServiceIVR: false,
 		subjectLookup: SubjectLookupMode.Disabled,
+		receiptApp: false,
 	},
 	options: {
 		codeSigning: true,
@@ -45,8 +46,8 @@ const mockContext: Context = {
 
 const NUMBER_OF_LAMBDAS = 6;
 
-// Verify created resources for agent-assisted IVR.
-describe('Workspace app', () => {
+// Verify created resources for payment request app
+describe('Payment Request App', () => {
 	// 3rd party apps
 	describe('3rd party apps', () => {
 		it('Has 1 3rd party app when flag is true', () => {
