@@ -48,7 +48,8 @@ jobs:
                 "agentAssistedIVR": true,
                 "agentAssistedLink": true,
                 "selfServiceIVR": true,
-                "subjectLookup": "required-editable"
+                "subjectLookup": "required-editable",
+                "receiptApp": true
               },
               "options": {
                 "codeSigning": true,
