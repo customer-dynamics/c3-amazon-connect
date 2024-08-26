@@ -19,13 +19,13 @@ C3 for Amazon connect can be used within Salesforce to provide agents with a sea
 When you deployed resources to your AWS account through this project, a unique URL was generated for your agent workspace. After running `npm run synth` or `npm run deploy`, you will see this URL output in the console. It will look something like:
 
 ```bash
-🌐 Your C3 Payment Request app URL is:
+💰 Your C3 Payment Request app URL is:
 
-https://some-vendor.call2action.link/agent-workspace?contactCenter=amazon&instanceId=some-guid&region=some-region&externalRoleArn=${Token[TOKEN.261]}&subjectLookup=required-editable&customEmbed=true
+🌐https://some-vendor.call2action.link/agent-workspace/payment-request?contactCenter=amazon&instanceId=some-guid&region=some-region&externalRoleArn=${Token[TOKEN.261]}&subjectLookup=required-editable&customEmbed=true
 ```
 
 > [!TIP]
-> You can also find this URL at any time by looking at the `exports/C3WorkspaceAppUrl.txt` file.
+> You can also find this URL at any time by looking at the `exports/C3PaymentRequestAppUrl.txt` file.
 
 Replace the `${Token[TOKEN.261]}` value with the ARN of the IAM role that was created when you deployed the stack. Look in IAM for a role named "AmazonConnectExternalRole", copy the ARN, and replace the placeholder in the URL.
 
@@ -72,6 +72,21 @@ On the "Lightning Experience" tab, select the lightning app that your agents wil
 Optionally, you can repeat the same steps on the "Mobile Navigation" tab to add the app page to the mobile app. Once satisfied, hit the save button.
 
 Your app page is now ready for use! Verify that your agents can see the new app page in their navigation items.
+
+### Create Receipt App
+
+If you enabled the receipt app feature, you will need to create a second Visualforce page and app page for the receipt app. Follow the same steps as above, but use the receipt app URL instead of the payment request app URL.
+
+```bash
+🧾 Your C3 Receipt app URL is:
+
+🌐https://some-vendor.call2action.link/agent-workspace/receipt?contactCenter=amazon&instanceId=some-guid&region=some-region&externalRoleArn=${Token[TOKEN.261]}&customEmbed=true
+```
+
+> [!TIP]
+> You can also find this URL at any time by looking at the `exports/C3ReceiptAppUrl.txt` file.
+
+Replace the `${Token[TOKEN.261]}` value with the ARN of the IAM role that was created when you deployed the stack. Look in IAM for a role named "AmazonConnectExternalRole", copy the ARN, and replace the placeholder in the URL.
 
 ### Configure Amazon Connect Integration
 
