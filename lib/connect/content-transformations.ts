@@ -2,6 +2,7 @@ import { Function } from 'aws-cdk-lib/aws-lambda';
 import * as flowModuleJson from './flows/modules/c3-payment-ivr-flow-module.json';
 import * as agentAssistedPaymentIVRFlowJson from './flows/c3-agent-assisted-payment-ivr-flow.json';
 import * as subjectLookupFlow from './flows/c3-subject-lookup-flow.json';
+import * as receiptFlow from './flows/c3-receipt-flow.json';
 import { IvrSpeakingContext } from '../models';
 
 /**
@@ -73,7 +74,7 @@ export function getPaymentIVRFlowModuleContent(
 	}
 	transformedContent = transformedContent.replace(
 		/<<receiptQueueId>>/g,
-		queueId,
+		queueId ?? '',
 	);
 
 	transformedContent = transformedContent.replace(
@@ -179,6 +180,31 @@ export function getSubjectLookupFlowContent(
 	transformedContent = transformedContent.replace(
 		/<<subjectLookupLambdaArn>>/g,
 		subjectLookupFunction.functionArn,
+	);
+	transformedContent = transformedContent.replace(
+		/<<sendAgentMessageLambdaArn>>/g,
+		sendAgentMessageFunction.functionArn,
+	);
+	return transformedContent;
+}
+
+/**
+ * Gets the content for the receipt flow.
+ *
+ * @param sendReceiptLambdaArn The Lambda function that sends a receipt.
+ * @param sendAgentMessageFunction The Lambda function that sends messages to the agent.
+ * @returns A string representing the content for the receipt flow.
+ */
+export function getReceiptFlowContent(
+	sendReceiptLambdaFunction: Function,
+	sendAgentMessageFunction: Function,
+): string {
+	let transformedContent = JSON.stringify(receiptFlow);
+
+	// Replace the placeholders with the actual values.
+	transformedContent = transformedContent.replace(
+		/<<sendReceiptLambdaArn>>/g,
+		sendReceiptLambdaFunction.functionArn,
 	);
 	transformedContent = transformedContent.replace(
 		/<<sendAgentMessageLambdaArn>>/g,

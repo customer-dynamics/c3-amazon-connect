@@ -16,7 +16,8 @@
 		"agentAssistedIVR": true,
 		"agentAssistedLink": true,
 		"selfServiceIVR": true,
-		"subjectLookup": ""
+		"subjectLookup": "",
+		"receiptApp": true
 	},
 	"options": {
 		"codeSigning": true,
