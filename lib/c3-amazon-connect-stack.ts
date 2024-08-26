@@ -33,6 +33,7 @@ import {
 	validateOptionsContext,
 } from './models';
 import { writeFileToExports } from './helpers/file';
+import { ReceiptApp } from './features/receipt-app';
 
 export class C3AmazonConnectStack extends Stack {
 	private c3BaseUrl: string;
@@ -142,9 +143,25 @@ export class C3AmazonConnectStack extends Stack {
 			this.featuresContext.agentAssistedIVR ||
 			this.featuresContext.agentAssistedLink
 		) {
-			const appUrl = this.getAppUrl(!this.amazonConnectContext.workspaceApp);
-			if (this.amazonConnectContext.workspaceApp) {
-				this.create3rdPartyApp(appUrl);
+			const paymentRequestAppUrl = this.getPaymentRequestAppUrl(
+				!this.amazonConnectContext.addAppsToWorkspace,
+			);
+			if (this.amazonConnectContext.addAppsToWorkspace) {
+				this.createPaymentRequestApp(paymentRequestAppUrl);
+			}
+
+			// Create resources needed for agent-assisted receipt app.
+			if (this.featuresContext.receiptApp) {
+				new ReceiptApp(
+					this,
+					this.stackLabel,
+					this.amazonConnectContext,
+					this.sendReceiptFunction,
+					this.agentAssistedIVRResources?.sendAgentMessageFunction,
+					this.agentAssistedIVRResources?.hoursOfOperation,
+					this.agentAssistedIVRResources?.iamRole?.roleArn,
+					this.c3AppUrlFragment,
+				);
 			}
 		}
 	}
@@ -471,8 +488,8 @@ export class C3AmazonConnectStack extends Stack {
 	 * This app is required in order for an agent to initiate a payment while on a call with a customer. Once created, it will show as
 	 * an app in the agent workspace. NOTE: You will also have to enable this app to viewed on the security profile for your agents.
 	 */
-	private create3rdPartyApp(appUrl: string): void {
-		console.log('Creating 3rd party application...');
+	private createPaymentRequestApp(appUrl: string): void {
+		console.log('Creating payment request application...');
 
 		// Create the app.
 		const stackLabelTitleCase =
@@ -480,7 +497,7 @@ export class C3AmazonConnectStack extends Stack {
 		const appLabel = this.stackLabel ? ` - ${stackLabelTitleCase}` : '';
 		const application = new CfnApplication(
 			this,
-			`C3ConnectApp${stackLabelTitleCase}`,
+			`C3ConnectPaymentRequestApp${stackLabelTitleCase}`,
 			{
 				name: 'Payment Request' + appLabel, // App name is unfortunately required to be unique to create.
 				namespace: `c3-payment-${this.stackLabel}`,
@@ -495,12 +512,24 @@ export class C3AmazonConnectStack extends Stack {
 			},
 		);
 
+		// Workaround to delete the existing associations. Necessary when the naming format changes.
+		const skipAssociations =
+			this.node.tryGetContext('options').skipAssociations;
+		if (skipAssociations) {
+			console.log('⚠️ Skipping Amazon Connect associations! ⚠️');
+			return;
+		}
+
 		// Associate the app with the Amazon Connect instance.
-		new CfnIntegrationAssociation(this, `C3ConnectIntegrationApp`, {
-			instanceId: this.amazonConnectContext.instanceArn,
-			integrationType: 'APPLICATION',
-			integrationArn: application.attrApplicationArn,
-		});
+		new CfnIntegrationAssociation(
+			this,
+			`C3ConnectPaymentRequestIntegrationApp`,
+			{
+				instanceId: this.amazonConnectContext.instanceArn,
+				integrationType: 'APPLICATION',
+				integrationArn: application.attrApplicationArn,
+			},
+		);
 	}
 
 	/**
@@ -509,7 +538,7 @@ export class C3AmazonConnectStack extends Stack {
 	 * @param customEmbed Whether to use a custom embed URL for the app.
 	 * @returns The URL for the app.
 	 */
-	private getAppUrl(customEmbed: boolean): string {
+	private getPaymentRequestAppUrl(customEmbed: boolean): string {
 		const instanceId = this.amazonConnectContext.instanceArn.split('/')[1];
 
 		// Set params for IVR features.
@@ -535,10 +564,10 @@ export class C3AmazonConnectStack extends Stack {
 			configuredFeatureParams += '&customEmbed=true';
 		}
 
-		const appUrl = `https://${this.c3Context.vendorId}.${this.c3AppUrlFragment}/agent-workspace?contactCenter=amazon&instanceId=${instanceId}&region=${region}${agentAssistedIVRParams}${configuredFeatureParams}`;
+		const appUrl = `https://${this.c3Context.vendorId}.${this.c3AppUrlFragment}/agent-workspace/payment-request?contactCenter=amazon&instanceId=${instanceId}&region=${region}${agentAssistedIVRParams}${configuredFeatureParams}`;
 		writeFileToExports(
-			'C3WorkspaceAppUrl.txt',
-			`🌐 Your C3 Payment Request app URL is:\n\n${appUrl}\n`,
+			'C3PaymentRequestAppUrl.txt',
+			`💰 Your C3 Payment Request app URL is:\n\n🌐 ${appUrl}\n`,
 		);
 		return appUrl;
 	}

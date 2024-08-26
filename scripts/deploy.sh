@@ -27,5 +27,5 @@ done
 # Run the CDK deploy command with the profile (if provided)
 cdk deploy $AWS_PROFILE
 
-# Display the URL of the deployed application
-npm run display-url
+# Display the URLs of the deployed applications
+npm run display-urls

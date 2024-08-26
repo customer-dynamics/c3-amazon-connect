@@ -36,7 +36,7 @@ jobs:
                 "instanceArn": "placeholder",
                 "securityKeyId": "placeholder",
                 "securityKeyCertificateContent": "-----BEGIN CERTIFICATE-----\\n-----END CERTIFICATE-----\\n",
-                "workspaceApp": true,
+                "addAppsToWorkspace": true,
                 "receiptQueueArn": "placeholder"
               },
               "c3": {
@@ -48,7 +48,8 @@ jobs:
                 "agentAssistedIVR": true,
                 "agentAssistedLink": true,
                 "selfServiceIVR": true,
-                "subjectLookup": "required-editable"
+                "subjectLookup": "required-editable",
+                "receiptApp": true
               },
               "options": {
                 "codeSigning": true,

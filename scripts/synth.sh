@@ -27,5 +27,5 @@ done
 # Run the CDK synth command with the profile (if provided)
 cdk synth $AWS_PROFILE
 
-# Display the URL of the application
-npm run display-url
+# Display the URLs of the applications
+npm run display-urls

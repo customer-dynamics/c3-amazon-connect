@@ -17,7 +17,7 @@ const mockContext: Context = {
 		securityKeyId: 'placeholder',
 		securityKeyCertificateContent:
 			'-----BEGIN CERTIFICATE-----\\n-----END CERTIFICATE-----\\n',
-		workspaceApp: true,
+		addAppsToWorkspace: true,
 		receiptQueueArn: 'placeholder',
 	},
 	c3: {
@@ -30,6 +30,7 @@ const mockContext: Context = {
 		agentAssistedLink: true,
 		selfServiceIVR: false,
 		subjectLookup: SubjectLookupMode.Disabled,
+		receiptApp: false,
 	},
 	options: {
 		codeSigning: true,

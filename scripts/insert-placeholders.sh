@@ -4,8 +4,9 @@
 # they can be used in different environments.
 
 AGENT_ASSISTED_PAYMENT_IVR_FLOW_FILE="lib/connect/flows/c3-agent-assisted-payment-ivr-flow.json"
-SUBJECT_LOOKUP_FLOW_FILE="lib/connect/flows/c3-subject-lookup-flow.json"
 PAYMENT_IVR_FLOW_MODULE_FILE="lib/connect/flows/modules/c3-payment-ivr-flow-module.json"
+SUBJECT_LOOKUP_FLOW_FILE="lib/connect/flows/c3-subject-lookup-flow.json"
+RECEIPT_FLOW_FILE="lib/connect/flows/c3-receipt-flow.json"
 
 # ---- LAMBDA FUNCTIONS ----
 
@@ -38,6 +39,7 @@ FUNCTION_NAME="C3SendAgentMessage"
 PLACEHOLDER="<<sendAgentMessageLambdaArn>>"
 sed -i '' "s|\(\"[^\"]*\": \)\".*${FUNCTION_NAME}.*\"|\1\"$PLACEHOLDER\"|g" "$AGENT_ASSISTED_PAYMENT_IVR_FLOW_FILE"
 sed -i '' "s|\(\"[^\"]*\": \)\".*${FUNCTION_NAME}.*\"|\1\"$PLACEHOLDER\"|g" "$SUBJECT_LOOKUP_FLOW_FILE"
+sed -i '' "s|\(\"[^\"]*\": \)\".*${FUNCTION_NAME}.*\"|\1\"$PLACEHOLDER\"|g" "$RECEIPT_FLOW_FILE"
 
 # Replace the ARN of the C3SubjectLookup Lambda function
 FUNCTION_NAME="C3SubjectLookup"
@@ -49,6 +51,11 @@ FUNCTION_NAME="C3ValidateEntry"
 PLACEHOLDER="<<validateEntryLambdaArn>>"
 sed -i '' "s|\(\"[^\"]*\": \)\".*${FUNCTION_NAME}.*\"|\1\"$PLACEHOLDER\"|g" "$AGENT_ASSISTED_PAYMENT_IVR_FLOW_FILE"
 sed -i '' "s|\(\"[^\"]*\": \)\".*${FUNCTION_NAME}.*\"|\1\"$PLACEHOLDER\"|g" "$PAYMENT_IVR_FLOW_MODULE_FILE"
+
+# Replace the ARN of the C3SendReceipt Lambda function
+FUNCTION_NAME="C3SendReceipt"
+PLACEHOLDER="<<sendReceiptLambdaArn>>"
+sed -i '' "s|\(\"[^\"]*\": \)\".*${FUNCTION_NAME}.*\"|\1\"$PLACEHOLDER\"|g" "$RECEIPT_FLOW_FILE"
 
 # ---- SECURITY KEY ----
 
@@ -73,6 +80,7 @@ PROSODY_TAG='<prosody volume=\\"medium\\" rate=\\"medium\\">'
 REPLACEMENT='<prosody volume=\\"<<speakingVolume>>\\" rate=\\"<<speakingRate>>\\">'
 sed -i '' "s|$PROSODY_TAG|$REPLACEMENT|g" "$AGENT_ASSISTED_PAYMENT_IVR_FLOW_FILE"
 sed -i '' "s|$PROSODY_TAG|$REPLACEMENT|g" "$PAYMENT_IVR_FLOW_MODULE_FILE"
+sed -i '' "s|$PROSODY_TAG|$REPLACEMENT|g" "$RECEIPT_FLOW_FILE"
 
 
 # ---- RECEIPT QUEUE ID ----
@@ -87,5 +95,6 @@ sed -i '' "s|$QUEUE_ID_PREFIX|$PLACEHOLDER|g" "$PAYMENT_IVR_FLOW_MODULE_FILE"
 sed -i '' "s| (Working Copy)||g" "$AGENT_ASSISTED_PAYMENT_IVR_FLOW_FILE"
 sed -i '' "s| (Working Copy)||g" "$PAYMENT_IVR_FLOW_MODULE_FILE"
 sed -i '' "s| (Working Copy)||g" "$SUBJECT_LOOKUP_FLOW_FILE"
+sed -i '' "s| (Working Copy)||g" "$RECEIPT_FLOW_FILE"
 
 echo "✅ Placeholders inserted!"

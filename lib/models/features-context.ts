@@ -5,6 +5,7 @@ export interface FeaturesContext {
 	agentAssistedLink: boolean;
 	selfServiceIVR: boolean;
 	subjectLookup: SubjectLookupMode;
+	receiptApp: boolean;
 }
 
 /**
@@ -29,6 +30,13 @@ export function validateFeaturesContext(
 	) {
 		throw new Error(
 			'features.subjectLookup requires features.agentAssistedIVR or features.agentAssistedLink to be enabled.',
+		);
+	} else if (
+		featuresContext.receiptApp &&
+		!(featuresContext.agentAssistedIVR || featuresContext.agentAssistedLink)
+	) {
+		throw new Error(
+			'features.receiptApp requires features.agentAssistedIVR or features.agentAssistedLink to be enabled.',
 		);
 	}
 }

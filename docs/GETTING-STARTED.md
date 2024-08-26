@@ -7,6 +7,8 @@ Before getting started with C3 for Amazon Connect, please ensure the following:
 - You have a current C3 vendor account
 - You have an AWS account
 - You have an Amazon Connect instance
+- You are able to run commands from a bash terminal
+  - If you are using Windows, you can use the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install) to run bash commands.
 - You have Node.js (v20+) and npm (v10+) installed on your machine
 - You have [installed and configured the AWS CDK](https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html#getting_started_auth) on your machine
 
@@ -53,7 +55,7 @@ In order to facilitate this process, you will need to provide some values to the
 | `instanceArn`                   | The full ARN of your Amazon Connect Instance. You can find this in the AWS console and it should look something like `"arn:aws:connect:us-west-2:815407490078:instance/5c1f1fba-d5f1-4155-9e09-496456e58912"`.                                                                                                    |
 | `securityKeyId`                 | The ID of the security key that you configured for your Amazon Connect instance. You can find this in the AWS console.                                                                                                                                                                                            |
 | `securityKeyCertificateContent` | The full content of the certificate associated with your Amazon Connect security key. Begins with `-----BEGIN CERTIFICATE-----` and ends with`-----END CERTIFICATE-----`. **Note**: This must be contained within a single string with newlines denoted with `\\n`.                                               |
-| `workspaceApp`                  | Whether to create the C3 Payment Request app for the Amazon Connect agent workspace. Defaults to `true`. You may want to set this to `false` if you plan to use the workspace through another interface, like Salesforce. **Note**: This option does nothing if no agent-assisted features are enabled.           |
+| `addAppsToWorkspace`            | Whether to add third-party apps to the Amazon Connect agent workspace. Defaults to `true`. You may want to set this to `false` if you plan to use the workspace apps through another interface, like Salesforce.                                                                                                  |
 | `receiptQueueArn`               | **Optional**. The full ARN of the Amazon Connect queue to transfer to when there is no email present for the customer and they would like a receipt. This is only valid for self-service payments. If not provided, the customer will not be asked to transfer to an agent and will simply not receive a receipt. |
 
 ##### C3
@@ -72,6 +74,7 @@ In order to facilitate this process, you will need to provide some values to the
 | `agentAssistedLink` | **Currently unsupported**. This feature will be coming soon.                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | `selfServiceIVR`    | Determines whether or not to deploy resources necessary to support a self-service payment IVR. Defaults to `true`. If set to `false`, some resources will not be deployed.<br><br>For more information, see the [self-service payment IVR](./features/SELF_SERVICE_PAYMENT_IVR.md) documentation.                                                                                                                                                                                       |
 | `subjectLookup`     | **Optional**. Additional feature for agent-assisted IVR payments. If set, this will allow the agent to pull details about the subject to pre-fill information in the payment request (contact name, contact email, and amount due). Valid options are `"required-fixed"`, `"required-editable"`, and `"optional-editable"`. Leave blank if you don't want to support subject lookup.<br><br>For more information, see the [subject lookup](./features/SUBJECT_LOOKUP.md) documentation. |
+| `receiptApp`        | Determines whether or not to deploy resources to allow agents to send a receipt. Defaults to `true`. If set to `false`, some resources will not be deployed, and agents will not be able to send a receipt to a customer if the email was not already provided.                                                                                                                                                                                                                         |
 
 ##### Options
 
