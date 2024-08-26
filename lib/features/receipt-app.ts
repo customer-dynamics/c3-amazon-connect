@@ -8,7 +8,7 @@ import {
 } from 'aws-cdk-lib/aws-connect';
 import { Function } from 'aws-cdk-lib/aws-lambda';
 import { getReceiptFlowContent } from '../connect/content-transformations';
-import { AmazonConnectContext, C3Context } from '../models';
+import { AmazonConnectContext, C3Context, OptionsContext } from '../models';
 import { writeFileToExports } from '../helpers/file';
 import { CfnApplication } from 'aws-cdk-lib/aws-appintegrations';
 
@@ -66,9 +66,13 @@ export class ReceiptApp {
 	 */
 	private createReceiptFlow(): void {
 		console.log('Creating flow C3ReceiptFlow...');
+		const optionsContext = this.stack.node.tryGetContext(
+			'options',
+		) as OptionsContext;
 		const receiptFlowContent = getReceiptFlowContent(
 			this.sendReceiptFunction,
 			this.sendAgentMessageFunction,
+			optionsContext.ivrSpeaking,
 		);
 		writeFileToExports('C3ReceiptFlow.json', receiptFlowContent);
 		this.receiptFlow = new CfnContactFlow(this.stack, 'C3ReceiptFlow', {

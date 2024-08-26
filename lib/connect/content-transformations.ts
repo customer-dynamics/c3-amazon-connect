@@ -193,11 +193,13 @@ export function getSubjectLookupFlowContent(
  *
  * @param sendReceiptLambdaArn The Lambda function that sends a receipt.
  * @param sendAgentMessageFunction The Lambda function that sends messages to the agent.
+ * @param ivrSpeakingContext The speaking context for the IVR.
  * @returns A string representing the content for the receipt flow.
  */
 export function getReceiptFlowContent(
 	sendReceiptLambdaFunction: Function,
 	sendAgentMessageFunction: Function,
+	ivrSpeakingContext: IvrSpeakingContext,
 ): string {
 	let transformedContent = JSON.stringify(receiptFlow);
 
@@ -209,6 +211,15 @@ export function getReceiptFlowContent(
 	transformedContent = transformedContent.replace(
 		/<<sendAgentMessageLambdaArn>>/g,
 		sendAgentMessageFunction.functionArn,
+	);
+
+	transformedContent = transformedContent.replace(
+		/<<speakingRate>>/g,
+		ivrSpeakingContext.rate,
+	);
+	transformedContent = transformedContent.replace(
+		/<<speakingVolume>>/g,
+		ivrSpeakingContext.volume,
 	);
 	return transformedContent;
 }
