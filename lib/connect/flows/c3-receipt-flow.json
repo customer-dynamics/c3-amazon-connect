@@ -185,7 +185,7 @@
 			}
 		},
 		"Annotations": [],
-		"name": "C3 Receipt Flow (Working Copy)",
+		"name": "C3 Receipt Flow",
 		"description": "Flow to send payment receipts in the agent workspace.",
 		"type": "queueTransfer",
 		"status": "PUBLISHED",

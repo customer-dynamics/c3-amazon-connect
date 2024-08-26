@@ -95,5 +95,6 @@ sed -i '' "s|$QUEUE_ID_PREFIX|$PLACEHOLDER|g" "$PAYMENT_IVR_FLOW_MODULE_FILE"
 sed -i '' "s| (Working Copy)||g" "$AGENT_ASSISTED_PAYMENT_IVR_FLOW_FILE"
 sed -i '' "s| (Working Copy)||g" "$PAYMENT_IVR_FLOW_MODULE_FILE"
 sed -i '' "s| (Working Copy)||g" "$SUBJECT_LOOKUP_FLOW_FILE"
+sed -i '' "s| (Working Copy)||g" "$RECEIPT_FLOW_FILE"
 
 echo "✅ Placeholders inserted!"
