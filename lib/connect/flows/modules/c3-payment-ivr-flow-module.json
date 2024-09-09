@@ -79,7 +79,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "b3c87725-e30d-4f80-b5c5-b7787691a94b",
+						"id": "fd85ae0c-761e-477a-a903-c60be59f19b2",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -88,7 +88,7 @@
 						"value": "Timeout"
 					},
 					{
-						"id": "0fb4b498-807b-4071-ab9f-21c90348b3a7",
+						"id": "dda339a4-3e72-41dd-b23a-0e81c79e2c02",
 						"operator": {
 							"name": "Is greater than",
 							"value": "GreaterThan",
@@ -97,7 +97,7 @@
 						"value": "$.Attributes.PaymentAmountDue"
 					},
 					{
-						"id": "0832b707-bc38-4d83-bf93-f81c3a5ac86b",
+						"id": "b8e601b8-ef37-4622-834f-9c33d6ec3431",
 						"operator": {
 							"name": "Is less than",
 							"value": "LessThan",
@@ -122,11 +122,11 @@
 				"isFriendlyName": true,
 				"conditionMetadata": [
 					{
-						"id": "ad270a42-6cd6-45d8-b2c8-fc8025488f8d",
+						"id": "a1b44467-8dc3-41ae-a076-b7573266dd9e",
 						"value": "1"
 					},
 					{
-						"id": "113d4f98-c51b-45a5-9d10-b856d88c64da",
+						"id": "7ae762e7-4c10-4df9-8bc9-b03a0848d9be",
 						"value": "2"
 					}
 				]
@@ -140,7 +140,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "c43f713d-ec23-4ea5-b604-141384782cb6",
+						"id": "9d2ed26f-65bd-4a09-b62e-b560dbe80470",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -149,7 +149,7 @@
 						"value": "Card"
 					},
 					{
-						"id": "35e1e947-808f-42a0-9972-900aad9c0608",
+						"id": "d78e50db-b98a-4f3a-852b-f317815dbae7",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -182,7 +182,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "ce83234a-df4c-4018-b71d-3d0cdc4589eb",
+						"id": "7b75863f-d40e-4950-b8f9-8df26b7fd194",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -191,7 +191,7 @@
 						"value": "PaymentAmountDue"
 					},
 					{
-						"id": "89538b6b-474a-4194-bbaa-70a37deeb71e",
+						"id": "9540321b-d370-4dfe-b4c2-0acb9c9a8519",
 						"operator": {
 							"name": "Is greater than",
 							"value": "GreaterThan",
@@ -216,11 +216,11 @@
 				"isFriendlyName": true,
 				"conditionMetadata": [
 					{
-						"id": "f30e307e-1d61-4425-b90b-886c1074c059",
+						"id": "ae86370c-0191-47ef-ae97-842c5178bffd",
 						"value": "1"
 					},
 					{
-						"id": "378c3ae5-b61a-4d75-81bb-9e976bbf307d",
+						"id": "d39f581a-1695-4a03-9c72-65c6a0cc969a",
 						"value": "2"
 					}
 				]
@@ -301,7 +301,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "8fe0b2de-1f8a-4b03-9ca5-144b94f7360a",
+						"id": "2639bb5c-9e77-44cf-b60c-fde92ef0bfa1",
 						"operator": {
 							"name": "Contains",
 							"value": "Contains",
@@ -328,7 +328,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "9d9bdb40-a7e8-4266-92c7-612e75cf47c4",
+						"id": "955629e2-84e7-4971-8623-38f2283b4575",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -360,11 +360,11 @@
 				"isFriendlyName": true,
 				"conditionMetadata": [
 					{
-						"id": "879c99ba-1774-4fef-b530-d0c81c7b4ba9",
+						"id": "15559498-1c12-407c-bfc0-a2848f8af90a",
 						"value": "1"
 					},
 					{
-						"id": "d1b69330-c104-4fed-85d9-324d9559e1a4",
+						"id": "fbac5968-af64-4f19-85ca-bc16114be4f5",
 						"value": "2"
 					}
 				]
@@ -464,7 +464,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "3240b95a-17f3-4030-a58d-75701333329b",
+						"id": "2a0aa3bc-36be-4551-9263-3ef8be766e48",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -511,7 +511,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "388108e8-644a-4969-9ebc-37ddeb457bbc",
+						"id": "e31074b1-ad7c-49d4-8f31-f3375934803e",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -530,7 +530,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "dddf5257-9e8f-4019-9b75-50ded0538188",
+						"id": "cb18b702-554a-4931-8188-613002fe9512",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -586,7 +586,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "a5d93225-0213-41a9-b347-80f11dd4b5d3",
+						"id": "1bbed8cc-0825-47ce-a01e-359bcd7bafe4",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -612,7 +612,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "6eeffb2a-60a1-430a-8de7-ced59432d3ac",
+						"id": "866bfece-4fbb-4b40-9ada-ae2cefe4adef",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -631,7 +631,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "d1e1810c-e9aa-45cd-a4e9-03c007955350",
+						"id": "626cd832-5cab-4d1b-a95a-525ddc7f005f",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -678,7 +678,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "db6441c0-f2b2-4cde-b0f8-27559c14b33a",
+						"id": "19360143-9684-4ced-9236-b7f21348ea80",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -697,7 +697,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "9016c485-d4d3-47a2-8d36-88fd710631fa",
+						"id": "35a74577-c32c-4f43-8e5a-71f6d417b409",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -876,7 +876,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "cf1b4038-9fdf-4271-8bb4-8b086887722d",
+						"id": "53fc169a-3e46-4423-8ac5-ed28a91d5e07",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -913,6 +913,21 @@
 				},
 				"isFriendlyName": true
 			},
+			"Record Transaction Attributes": {
+				"position": {
+					"x": 6752,
+					"y": -297.6
+				},
+				"isFriendlyName": true,
+				"dynamicParams": []
+			},
+			"Speak Payment Submission Error": {
+				"position": {
+					"x": 6681.6,
+					"y": 228
+				},
+				"isFriendlyName": true
+			},
 			"Use Card Again?": {
 				"position": {
 					"x": 1289.6,
@@ -921,11 +936,11 @@
 				"isFriendlyName": true,
 				"conditionMetadata": [
 					{
-						"id": "d3dc0c90-0eff-4056-95c9-0b1825d94e2f",
+						"id": "b7084099-987d-4302-b3dd-49b40896d542",
 						"value": "1"
 					},
 					{
-						"id": "ab6bf500-8ca4-4a98-b8dc-3ac9801e4cdf",
+						"id": "ddcc2892-4532-4a41-8b81-d90a405cc4b4",
 						"value": "2"
 					}
 				]
@@ -938,11 +953,11 @@
 				"isFriendlyName": true,
 				"conditionMetadata": [
 					{
-						"id": "f7d270e1-4380-42e4-8790-4b9ed943c0f5",
+						"id": "eb9e0008-c722-4f4b-9a8d-5cafcc856677",
 						"value": "1"
 					},
 					{
-						"id": "8d691fe2-8388-49f0-8262-df69cca9a5d4",
+						"id": "cfd9f4a0-3bab-4801-a989-0a12a65de35f",
 						"value": "2"
 					}
 				]
@@ -955,10 +970,29 @@
 				"isFriendlyName": true,
 				"dynamicParams": []
 			},
-			"Record Transaction Attributes": {
+			"Check for Submit Payment Error": {
 				"position": {
-					"x": 6752,
-					"y": -297.6
+					"x": 6531.2,
+					"y": -299.2
+				},
+				"isFriendlyName": true,
+				"conditions": [],
+				"conditionMetadata": [
+					{
+						"id": "d0791a3b-a82c-496b-9c87-35c929119af1",
+						"operator": {
+							"name": "Equals",
+							"value": "Equals",
+							"shortDisplay": "="
+						},
+						"value": "NULL"
+					}
+				]
+			},
+			"Remove Failed Payment Token and Method": {
+				"position": {
+					"x": 6968.8,
+					"y": 382.4
 				},
 				"isFriendlyName": true,
 				"dynamicParams": []
@@ -980,39 +1014,6 @@
 				"position": {
 					"x": 6431.2,
 					"y": 13.6
-				},
-				"isFriendlyName": true
-			},
-			"Check for Submit Payment Error": {
-				"position": {
-					"x": 6531.2,
-					"y": -299.2
-				},
-				"isFriendlyName": true,
-				"conditionMetadata": [
-					{
-						"id": "c958368f-9f65-4dcc-9415-c4ddb97042ce",
-						"operator": {
-							"name": "Equals",
-							"value": "Equals",
-							"shortDisplay": "="
-						},
-						"value": "NULL"
-					}
-				]
-			},
-			"Remove Failed Payment Token and Method": {
-				"position": {
-					"x": 6968.8,
-					"y": 382.4
-				},
-				"isFriendlyName": true,
-				"dynamicParams": []
-			},
-			"Speak Payment Submission Error": {
-				"position": {
-					"x": 6681.6,
-					"y": 228
 				},
 				"isFriendlyName": true
 			}
@@ -2674,6 +2675,43 @@
 		},
 		{
 			"Parameters": {
+				"Attributes": {
+					"TransactionId": "$.External.TransactionId",
+					"PaymentMethodEndingDigits": "$.External.PaymentMethodEndingDigits",
+					"TransactionIds": "$.External.TransactionIds"
+				},
+				"TargetContact": "Current"
+			},
+			"Identifier": "Record Transaction Attributes",
+			"Type": "UpdateContactAttributes",
+			"Transitions": {
+				"NextAction": "Payment Success",
+				"Errors": [
+					{
+						"NextAction": "Payment Success",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nThe payment failed to submit because of the following error:\n\n$.External.Error\n\nYou have not been charged.\n</prosody>\n</speak>"
+			},
+			"Identifier": "Speak Payment Submission Error",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "Remove Failed Payment Token and Method",
+				"Errors": [
+					{
+						"NextAction": "Remove Failed Payment Token and Method",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
 				"StoreInput": "False",
 				"InputTimeLimitSeconds": "5",
 				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nYou previously paid with a credit or debit card ending in <say-as interpret-as=\"digits\">$.Attributes.PaymentMethodEndingDigits</say-as>.\n\nIf you would like to use this card again for this payment, press 1.\nTo use a different payment method, press 2.\n</prosody>\n</speak>"
@@ -2777,63 +2815,6 @@
 		},
 		{
 			"Parameters": {
-				"Attributes": {
-					"TransactionId": "$.External.TransactionId",
-					"PaymentMethodEndingDigits": "$.External.PaymentMethodEndingDigits",
-					"TransactionIds": "$.External.TransactionIds"
-				},
-				"TargetContact": "Current"
-			},
-			"Identifier": "Record Transaction Attributes",
-			"Type": "UpdateContactAttributes",
-			"Transitions": {
-				"NextAction": "Payment Success",
-				"Errors": [
-					{
-						"NextAction": "Payment Success",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"LambdaFunctionARN": "<<submitPaymentLambdaArn>>",
-				"InvocationTimeLimitSeconds": "8",
-				"ResponseValidation": {
-					"ResponseType": "JSON"
-				}
-			},
-			"Identifier": "Submit Payment",
-			"Type": "InvokeLambdaFunction",
-			"Transitions": {
-				"NextAction": "Check for Submit Payment Error",
-				"Errors": [
-					{
-						"NextAction": "Speak Payment Submission Unknown Error",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nThe payment failed to submit because of an unknown error. You have not been charged.\n</prosody>\n</speak>"
-			},
-			"Identifier": "Speak Payment Submission Unknown Error",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "Remove Failed Payment Token and Method",
-				"Errors": [
-					{
-						"NextAction": "Remove Failed Payment Token and Method",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
 				"ComparisonValue": "$.External.Error"
 			},
 			"Identifier": "Check for Submit Payment Error",
@@ -2879,9 +2860,29 @@
 		},
 		{
 			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nThe payment failed to submit because of the following error:\n\n$.External.Error\n\nYou have not been charged.\n</prosody>\n</speak>"
+				"LambdaFunctionARN": "<<submitPaymentLambdaArn>>",
+				"InvocationTimeLimitSeconds": "8",
+				"ResponseValidation": {
+					"ResponseType": "JSON"
+				}
 			},
-			"Identifier": "Speak Payment Submission Error",
+			"Identifier": "Submit Payment",
+			"Type": "InvokeLambdaFunction",
+			"Transitions": {
+				"NextAction": "Check for Submit Payment Error",
+				"Errors": [
+					{
+						"NextAction": "Speak Payment Submission Unknown Error",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nThe payment failed to submit because of an unknown error.\n</prosody>\n</speak>"
+			},
+			"Identifier": "Speak Payment Submission Unknown Error",
 			"Type": "MessageParticipant",
 			"Transitions": {
 				"NextAction": "Remove Failed Payment Token and Method",
