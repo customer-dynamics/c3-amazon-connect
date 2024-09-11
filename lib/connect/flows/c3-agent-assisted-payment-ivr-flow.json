@@ -16,7 +16,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "7ffc92e4-bf2d-4c43-9f14-ff976b256a02",
+						"id": "ea4c9580-fa54-46dd-a3f7-52d45efa43ba",
 						"operator": {
 							"name": "Is greater than",
 							"value": "GreaterThan",
@@ -214,11 +214,11 @@
 				"isFriendlyName": true,
 				"conditionMetadata": [
 					{
-						"id": "1ec96e90-63ad-42fc-a1c1-075545a3a062",
+						"id": "443e516c-0e0c-4ca1-a97b-e52e703b8321",
 						"value": "1"
 					},
 					{
-						"id": "73994a8b-9e01-4a9c-9edf-038801b335e4",
+						"id": "efa3ed18-9985-48b0-b3f7-3331460d3925",
 						"value": "2"
 					}
 				]
@@ -232,7 +232,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "57d6877b-1309-45ed-90fe-f7e33e66705c",
+						"id": "ff1b9733-2cf9-428f-8d4b-50044e9eb5fd",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -241,7 +241,7 @@
 						"value": "Card"
 					},
 					{
-						"id": "9c8ce9ba-498f-4203-aeaa-3afdabfc4cee",
+						"id": "42c7f6d3-def9-43ca-96da-415c90c350c0",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -259,11 +259,11 @@
 				"isFriendlyName": true,
 				"conditionMetadata": [
 					{
-						"id": "f61a29ff-add3-4d53-aca8-b9b9c155c8d9",
+						"id": "b964e085-a66e-412d-8504-90b992edd69f",
 						"value": "1"
 					},
 					{
-						"id": "ee00e071-7600-429c-abe2-98b2cb79d5f0",
+						"id": "c0b6d24f-0890-41de-9d1f-01cafa5f9966",
 						"value": "2"
 					}
 				]
@@ -283,11 +283,11 @@
 				"isFriendlyName": true,
 				"conditionMetadata": [
 					{
-						"id": "1576cfd5-c481-4434-b648-86f7c541a685",
+						"id": "11d85fe2-8e07-4f3d-b01e-b3ce47ce9909",
 						"value": "1"
 					},
 					{
-						"id": "193656e9-da6b-4b2f-bc27-3a95ae675d49",
+						"id": "db2252e8-e381-4a86-aa53-319559904d6b",
 						"value": "2"
 					}
 				]
@@ -512,7 +512,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "cf3666cd-767c-4f34-a7b1-562ac3a67f78",
+						"id": "d1134c96-e7f7-44db-8c3f-157da1559f78",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -531,7 +531,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "55f9ad3f-2e9a-4106-8314-77d67ced9894",
+						"id": "052e2566-0d86-4e80-9c34-46d787e2cff5",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -593,7 +593,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "e7375e80-9c49-4259-8996-f35dce512f9f",
+						"id": "5828da8d-1aef-47ff-88ce-4c95aa95c11c",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -612,7 +612,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "4aea7b1e-03bd-4392-a938-9e1e9233059a",
+						"id": "1b2cb04d-78ec-4f6c-9ecb-ba142ef0acce",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -674,7 +674,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "7ee43dab-3b23-42a2-8072-26c589759e71",
+						"id": "97c72f73-97dd-4621-883b-1cc1811bcabc",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -693,7 +693,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "e95e0d09-93c0-434d-8008-4608a9eae310",
+						"id": "4e82c90d-a656-46a8-bead-1397b34f4e41",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -771,7 +771,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "5cc6632e-cadf-46d4-8588-9caa4e370ac1",
+						"id": "cd201398-354d-4a21-8819-e107f5043742",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -790,7 +790,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "d76eab61-96a5-4687-be6f-6f436df68194",
+						"id": "7569b0fa-c303-4e2f-a705-95502dfef65f",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -830,7 +830,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "e8760123-9028-4a12-b382-c65fadedda66",
+						"id": "42c66fe7-819e-467e-aecd-8d71b5d0d0a8",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -924,7 +924,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "5a3d64b8-1067-42ac-ba5a-aab03795dd40",
+						"id": "5629b931-9afb-431c-a0f7-b800b10d3bd5",
 						"operator": {
 							"name": "Contains",
 							"value": "Contains",
@@ -1058,7 +1058,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "f9463fc3-3d69-41aa-acb5-9e51a54bc7d7",
+						"id": "01f7cfa3-5078-449b-bcb6-943ec2227678",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -3173,7 +3173,7 @@
 		},
 		{
 			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nThe payment failed to submit because of an unknown error.\n</prosody>\n</speak>"
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nWe’re unable to confirm if your payment was processed. Please check your $.Attributes.PaymentMethod statement to verify.\n</prosody>\n</speak>"
 			},
 			"Identifier": "Speak Paymen Submission Unknown Error",
 			"Type": "MessageParticipant",

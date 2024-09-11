@@ -79,7 +79,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "fd85ae0c-761e-477a-a903-c60be59f19b2",
+						"id": "02c70aa1-421f-49dd-95aa-5344d8f45c4c",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -88,7 +88,7 @@
 						"value": "Timeout"
 					},
 					{
-						"id": "dda339a4-3e72-41dd-b23a-0e81c79e2c02",
+						"id": "031ff78f-a2ab-4ea5-becc-befde3149bea",
 						"operator": {
 							"name": "Is greater than",
 							"value": "GreaterThan",
@@ -97,7 +97,7 @@
 						"value": "$.Attributes.PaymentAmountDue"
 					},
 					{
-						"id": "b8e601b8-ef37-4622-834f-9c33d6ec3431",
+						"id": "1e50fd67-d1e0-48e2-ab08-3f13761f639b",
 						"operator": {
 							"name": "Is less than",
 							"value": "LessThan",
@@ -114,23 +114,6 @@
 				},
 				"isFriendlyName": true
 			},
-			"Ask for Payment Method": {
-				"position": {
-					"x": 2230.4,
-					"y": -29.6
-				},
-				"isFriendlyName": true,
-				"conditionMetadata": [
-					{
-						"id": "a1b44467-8dc3-41ae-a076-b7573266dd9e",
-						"value": "1"
-					},
-					{
-						"id": "7ae762e7-4c10-4df9-8bc9-b03a0848d9be",
-						"value": "2"
-					}
-				]
-			},
 			"Check Last Payment Method": {
 				"position": {
 					"x": 1000,
@@ -140,7 +123,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "9d2ed26f-65bd-4a09-b62e-b560dbe80470",
+						"id": "17bbc5da-0752-40b4-956a-21c1fe99763b",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -149,7 +132,7 @@
 						"value": "Card"
 					},
 					{
-						"id": "d78e50db-b98a-4f3a-852b-f317815dbae7",
+						"id": "a2c2237e-42d9-4c50-b09f-7d6cdf7a6bc1",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -182,7 +165,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "7b75863f-d40e-4950-b8f9-8df26b7fd194",
+						"id": "dbe1320a-9710-41b2-b639-8a9e27a8b5cd",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -191,7 +174,7 @@
 						"value": "PaymentAmountDue"
 					},
 					{
-						"id": "9540321b-d370-4dfe-b4c2-0acb9c9a8519",
+						"id": "222dfa0f-fefe-4170-a94e-72b8e196741e",
 						"operator": {
 							"name": "Is greater than",
 							"value": "GreaterThan",
@@ -216,11 +199,11 @@
 				"isFriendlyName": true,
 				"conditionMetadata": [
 					{
-						"id": "ae86370c-0191-47ef-ae97-842c5178bffd",
+						"id": "2200b30c-7728-44c3-99c8-306d225e92e5",
 						"value": "1"
 					},
 					{
-						"id": "d39f581a-1695-4a03-9c72-65c6a0cc969a",
+						"id": "3a4796ac-3dce-4876-8d5a-0d22667a6ee5",
 						"value": "2"
 					}
 				]
@@ -239,14 +222,6 @@
 					"y": -343.2
 				},
 				"isFriendlyName": true
-			},
-			"Set Payment Method to Card": {
-				"position": {
-					"x": 2685.6,
-					"y": -802.4
-				},
-				"isFriendlyName": true,
-				"dynamicParams": []
 			},
 			"Card Number Timeout": {
 				"position": {
@@ -301,7 +276,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "2639bb5c-9e77-44cf-b60c-fde92ef0bfa1",
+						"id": "45d1deee-afdb-4a93-9f1b-f6ef648d7684",
 						"operator": {
 							"name": "Contains",
 							"value": "Contains",
@@ -328,7 +303,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "955629e2-84e7-4971-8623-38f2283b4575",
+						"id": "c9e0dbf6-d3d7-4a54-a038-b5b496db4e4c",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -360,11 +335,11 @@
 				"isFriendlyName": true,
 				"conditionMetadata": [
 					{
-						"id": "15559498-1c12-407c-bfc0-a2848f8af90a",
+						"id": "fd928968-eb23-40d8-8ce7-55423b2bab55",
 						"value": "1"
 					},
 					{
-						"id": "fbac5968-af64-4f19-85ca-bc16114be4f5",
+						"id": "def351cd-53b4-4143-ac19-4356fe32b75e",
 						"value": "2"
 					}
 				]
@@ -464,7 +439,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "2a0aa3bc-36be-4551-9263-3ef8be766e48",
+						"id": "b0f94a57-e4d1-4f10-adc5-388010e9e508",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -511,7 +486,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "e31074b1-ad7c-49d4-8f31-f3375934803e",
+						"id": "5bd6524b-be50-4ff1-a260-124b0062500f",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -530,7 +505,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "cb18b702-554a-4931-8188-613002fe9512",
+						"id": "6fbf51a1-074b-4811-80fd-f3c696ad2431",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -586,7 +561,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "1bbed8cc-0825-47ce-a01e-359bcd7bafe4",
+						"id": "62301a0b-0a08-4b23-9cbe-13080d6fc25c",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -612,7 +587,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "866bfece-4fbb-4b40-9ada-ae2cefe4adef",
+						"id": "ec78ec3b-6f2e-4065-bc3f-a990aeb222e9",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -631,7 +606,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "626cd832-5cab-4d1b-a95a-525ddc7f005f",
+						"id": "6a8785d7-e576-4024-83c7-07869ca6c2e5",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -678,7 +653,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "19360143-9684-4ced-9236-b7f21348ea80",
+						"id": "6dd7e3a5-ee78-40a5-bab9-97c4be70ee62",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -697,7 +672,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "35a74577-c32c-4f43-8e5a-71f6d417b409",
+						"id": "5b654b48-bf6a-43a7-86f5-a9fcedb5c389",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -771,15 +746,6 @@
 				"position": {
 					"x": 2915.2,
 					"y": 106.4
-				},
-				"isFriendlyName": true,
-				"conditionMetadata": [],
-				"countryCodePrefix": "+1"
-			},
-			"Get & Encrypt Card Number": {
-				"position": {
-					"x": 2907.2,
-					"y": -807.2
 				},
 				"isFriendlyName": true,
 				"conditionMetadata": [],
@@ -860,32 +826,6 @@
 				},
 				"isFriendlyName": true
 			},
-			"Speak Validation Error": {
-				"position": {
-					"x": 5846.4,
-					"y": 234.4
-				},
-				"isFriendlyName": true
-			},
-			"Check for Tokenize Error": {
-				"position": {
-					"x": 5646.4,
-					"y": -300
-				},
-				"isFriendlyName": true,
-				"conditions": [],
-				"conditionMetadata": [
-					{
-						"id": "53fc169a-3e46-4423-8ac5-ed28a91d5e07",
-						"operator": {
-							"name": "Equals",
-							"value": "Equals",
-							"shortDisplay": "="
-						},
-						"value": "NULL"
-					}
-				]
-			},
 			"Payment Success": {
 				"position": {
 					"x": 7044,
@@ -928,6 +868,32 @@
 				},
 				"isFriendlyName": true
 			},
+			"Check for Tokenize Error": {
+				"position": {
+					"x": 5646.4,
+					"y": -300
+				},
+				"isFriendlyName": true,
+				"conditions": [],
+				"conditionMetadata": [
+					{
+						"id": "163bcc2c-62f8-4399-8348-d4f1f96d12bb",
+						"operator": {
+							"name": "Equals",
+							"value": "Equals",
+							"shortDisplay": "="
+						},
+						"value": "NULL"
+					}
+				]
+			},
+			"Speak Validation Error": {
+				"position": {
+					"x": 5846.4,
+					"y": 234.4
+				},
+				"isFriendlyName": true
+			},
 			"Use Card Again?": {
 				"position": {
 					"x": 1289.6,
@@ -936,11 +902,11 @@
 				"isFriendlyName": true,
 				"conditionMetadata": [
 					{
-						"id": "b7084099-987d-4302-b3dd-49b40896d542",
+						"id": "48cc9623-9466-4974-91b1-b9de5f5a19fc",
 						"value": "1"
 					},
 					{
-						"id": "ddcc2892-4532-4a41-8b81-d90a405cc4b4",
+						"id": "f7d2e099-a0e4-4d65-a745-a9a00437473d",
 						"value": "2"
 					}
 				]
@@ -953,11 +919,11 @@
 				"isFriendlyName": true,
 				"conditionMetadata": [
 					{
-						"id": "eb9e0008-c722-4f4b-9a8d-5cafcc856677",
+						"id": "51686917-048d-41b3-8b2d-181283fb409d",
 						"value": "1"
 					},
 					{
-						"id": "cfd9f4a0-3bab-4801-a989-0a12a65de35f",
+						"id": "40173065-0660-4c92-88f1-bb65fb3f4bc0",
 						"value": "2"
 					}
 				]
@@ -979,7 +945,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "d0791a3b-a82c-496b-9c87-35c929119af1",
+						"id": "258397d2-e62a-4fc0-80e9-0377488cbb81",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -988,6 +954,40 @@
 						"value": "NULL"
 					}
 				]
+			},
+			"Ask for Payment Method": {
+				"position": {
+					"x": 2230.4,
+					"y": -29.6
+				},
+				"isFriendlyName": true,
+				"conditionMetadata": [
+					{
+						"id": "6165f794-e83a-48e7-95f9-d939d4fa7601",
+						"value": "1"
+					},
+					{
+						"id": "670e6c41-3649-456f-b871-cda012476df5",
+						"value": "2"
+					}
+				]
+			},
+			"Get & Encrypt Card Number": {
+				"position": {
+					"x": 2907.2,
+					"y": -807.2
+				},
+				"isFriendlyName": true,
+				"conditionMetadata": [],
+				"countryCodePrefix": "+1"
+			},
+			"Set Payment Method to Card": {
+				"position": {
+					"x": 2685.6,
+					"y": -802.4
+				},
+				"isFriendlyName": true,
+				"dynamicParams": []
 			},
 			"Remove Failed Payment Token and Method": {
 				"position": {
@@ -1295,48 +1295,6 @@
 		},
 		{
 			"Parameters": {
-				"StoreInput": "False",
-				"InputTimeLimitSeconds": "5",
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nTo pay with a credit or debit card, press 1.\nTo pay directly with your bank account, press 2.\n</prosody>\n</speak>"
-			},
-			"Identifier": "Ask for Payment Method",
-			"Type": "GetParticipantInput",
-			"Transitions": {
-				"NextAction": "Method Input Not Recognized",
-				"Conditions": [
-					{
-						"NextAction": "Set Payment Method to Card",
-						"Condition": {
-							"Operator": "Equals",
-							"Operands": ["1"]
-						}
-					},
-					{
-						"NextAction": "Set Payment Method to Bank",
-						"Condition": {
-							"Operator": "Equals",
-							"Operands": ["2"]
-						}
-					}
-				],
-				"Errors": [
-					{
-						"NextAction": "Payment Method Timeout",
-						"ErrorType": "InputTimeLimitExceeded"
-					},
-					{
-						"NextAction": "Method Input Not Recognized",
-						"ErrorType": "NoMatchingCondition"
-					},
-					{
-						"NextAction": "Method Input Not Recognized",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
 				"ComparisonValue": "$.Attributes.PaymentMethod"
 			},
 			"Identifier": "Check Last Payment Method",
@@ -1519,25 +1477,6 @@
 				"Errors": [
 					{
 						"NextAction": "Get & Encrypt Account Number",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Attributes": {
-					"PaymentMethod": "Card"
-				},
-				"TargetContact": "Current"
-			},
-			"Identifier": "Set Payment Method to Card",
-			"Type": "UpdateContactAttributes",
-			"Transitions": {
-				"NextAction": "Get & Encrypt Card Number",
-				"Errors": [
-					{
-						"NextAction": "Get & Encrypt Card Number",
 						"ErrorType": "NoMatchingError"
 					}
 				]
@@ -2438,37 +2377,6 @@
 		},
 		{
 			"Parameters": {
-				"StoreInput": "True",
-				"InputTimeLimitSeconds": "10",
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nPlease enter your card number followed by the pound key when complete.\n</prosody>\n</speak>",
-				"DTMFConfiguration": {
-					"DisableCancelKey": "False",
-					"InputTerminationSequence": "#"
-				},
-				"InputValidation": {
-					"CustomValidation": {
-						"MaximumLength": "25"
-					}
-				},
-				"InputEncryption": {
-					"EncryptionKeyId": "<<amazonConnectSecurityKeyId>>",
-					"Key": "<<amazonConnectSecurityKeyCertificateContent>>"
-				}
-			},
-			"Identifier": "Get & Encrypt Card Number",
-			"Type": "GetParticipantInput",
-			"Transitions": {
-				"NextAction": "Card Number Timeout Check",
-				"Errors": [
-					{
-						"NextAction": "Internal Error",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
 				"Attributes": {
 					"EncryptedCardNumber": "REDACTED",
 					"EncryptedAccountNumber": "REDACTED",
@@ -2582,47 +2490,6 @@
 		},
 		{
 			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nThe payment failed because of the following error:\n\n$.External.Error\n</prosody>\n</speak>"
-			},
-			"Identifier": "Speak Validation Error",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "Remove Failed Payment Token and Method",
-				"Errors": [
-					{
-						"NextAction": "Remove Failed Payment Token and Method",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"ComparisonValue": "$.External.Error"
-			},
-			"Identifier": "Check for Tokenize Error",
-			"Type": "Compare",
-			"Transitions": {
-				"NextAction": "Speak Validation Error",
-				"Conditions": [
-					{
-						"NextAction": "Record Token",
-						"Condition": {
-							"Operator": "Equals",
-							"Operands": ["NULL"]
-						}
-					}
-				],
-				"Errors": [
-					{
-						"NextAction": "Speak Validation Error",
-						"ErrorType": "NoMatchingCondition"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
 				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nYour payment was processed successfully.\n</prosody>\n</speak>"
 			},
 			"Identifier": "Payment Success",
@@ -2699,6 +2566,47 @@
 				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nThe payment failed to submit because of the following error:\n\n$.External.Error\n\nYou have not been charged.\n</prosody>\n</speak>"
 			},
 			"Identifier": "Speak Payment Submission Error",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "Remove Failed Payment Token and Method",
+				"Errors": [
+					{
+						"NextAction": "Remove Failed Payment Token and Method",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"ComparisonValue": "$.External.Error"
+			},
+			"Identifier": "Check for Tokenize Error",
+			"Type": "Compare",
+			"Transitions": {
+				"NextAction": "Speak Validation Error",
+				"Conditions": [
+					{
+						"NextAction": "Record Token",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": ["NULL"]
+						}
+					}
+				],
+				"Errors": [
+					{
+						"NextAction": "Speak Validation Error",
+						"ErrorType": "NoMatchingCondition"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nThe payment failed because of the following error:\n\n$.External.Error\n</prosody>\n</speak>"
+			},
+			"Identifier": "Speak Validation Error",
 			"Type": "MessageParticipant",
 			"Transitions": {
 				"NextAction": "Remove Failed Payment Token and Method",
@@ -2840,6 +2748,98 @@
 		},
 		{
 			"Parameters": {
+				"StoreInput": "False",
+				"InputTimeLimitSeconds": "5",
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nTo pay with a credit or debit card, press 1.\nTo pay directly with your bank account, press 2.\n</prosody>\n</speak>"
+			},
+			"Identifier": "Ask for Payment Method",
+			"Type": "GetParticipantInput",
+			"Transitions": {
+				"NextAction": "Method Input Not Recognized",
+				"Conditions": [
+					{
+						"NextAction": "Set Payment Method to Card",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": ["1"]
+						}
+					},
+					{
+						"NextAction": "Set Payment Method to Bank",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": ["2"]
+						}
+					}
+				],
+				"Errors": [
+					{
+						"NextAction": "Payment Method Timeout",
+						"ErrorType": "InputTimeLimitExceeded"
+					},
+					{
+						"NextAction": "Method Input Not Recognized",
+						"ErrorType": "NoMatchingCondition"
+					},
+					{
+						"NextAction": "Method Input Not Recognized",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"StoreInput": "True",
+				"InputTimeLimitSeconds": "10",
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nPlease enter your card number followed by the pound key when complete.\n</prosody>\n</speak>",
+				"DTMFConfiguration": {
+					"DisableCancelKey": "False",
+					"InputTerminationSequence": "#"
+				},
+				"InputValidation": {
+					"CustomValidation": {
+						"MaximumLength": "25"
+					}
+				},
+				"InputEncryption": {
+					"EncryptionKeyId": "<<amazonConnectSecurityKeyId>>",
+					"Key": "<<amazonConnectSecurityKeyCertificateContent>>"
+				}
+			},
+			"Identifier": "Get & Encrypt Card Number",
+			"Type": "GetParticipantInput",
+			"Transitions": {
+				"NextAction": "Card Number Timeout Check",
+				"Errors": [
+					{
+						"NextAction": "Internal Error",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Attributes": {
+					"PaymentMethod": "Card"
+				},
+				"TargetContact": "Current"
+			},
+			"Identifier": "Set Payment Method to Card",
+			"Type": "UpdateContactAttributes",
+			"Transitions": {
+				"NextAction": "Get & Encrypt Card Number",
+				"Errors": [
+					{
+						"NextAction": "Get & Encrypt Card Number",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
 				"Attributes": {
 					"PaymentToken": "NULL",
 					"PaymentMethod": "NULL"
@@ -2880,7 +2880,7 @@
 		},
 		{
 			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nThe payment failed to submit because of an unknown error.\n</prosody>\n</speak>"
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nWe’re unable to confirm if your payment was processed. Please check your $.Attributes.PaymentMethod statement to verify.\n</prosody>\n</speak>"
 			},
 			"Identifier": "Speak Payment Submission Unknown Error",
 			"Type": "MessageParticipant",
