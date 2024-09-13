@@ -24,7 +24,7 @@
 	"devDependencies": {
 		"@semantic-release/github": "^10.3.3",
 		"@semantic-release/release-notes-generator": "^14.0.1",
-		"@types/jest": "^29.5.12",
+		"@types/jest": "^29.5.13",
 		"@types/node": "20.16.5",
 		"aws-cdk": "2.158.0",
 		"conventional-changelog-conventionalcommits": "^8.0.0",
