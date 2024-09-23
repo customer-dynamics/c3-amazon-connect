@@ -22,7 +22,7 @@
 		"prepare": "husky"
 	},
 	"devDependencies": {
-		"@semantic-release/github": "^10.3.4",
+		"@semantic-release/github": "^10.3.5",
 		"@semantic-release/release-notes-generator": "^14.0.1",
 		"@types/jest": "^29.5.13",
 		"@types/node": "20.16.5",
