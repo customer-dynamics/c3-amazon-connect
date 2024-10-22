@@ -8,7 +8,7 @@
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"dependencies": {
-		"@aws-crypto/client-node": "^4.0.1",
+		"@aws-crypto/client-node": "^4.0.2",
 		"@aws-sdk/client-secrets-manager": "^3.675.0"
 	}
 }
