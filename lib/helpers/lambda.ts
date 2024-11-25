@@ -11,7 +11,7 @@ import {
 } from 'aws-cdk-lib/aws-lambda';
 
 const TARGET_ARCHITECTURE = Architecture.ARM_64;
-const TARGET_RUNTIME = Runtime.NODEJS_20_X;
+const TARGET_RUNTIME = Runtime.NODEJS_22_X;
 
 export const commonLambdaLayerProps: LayerVersionProps = {
 	code: Code.fromInline('// Not empty'), // Placeholder code. The actual code will be set elsewhere.
