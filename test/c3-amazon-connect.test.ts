@@ -61,7 +61,7 @@ describe('C3AmazonConnectStack', () => {
 
 		it('Using latest Node', () => {
 			template.hasResourceProperties('AWS::Lambda::Function', {
-				Runtime: 'nodejs20.x',
+				Runtime: 'nodejs22.x',
 			});
 		});
 
