@@ -1,20 +1,44 @@
 name: Dependabot Auto Merge
+on: pull_request
 
-on:
-  # This must be `pull_request_target` for Dependabot-triggered PRs:
-  # https://github.blog/changelog/2021-02-19-github-actions-workflows-triggered-by-dependabot-prs-will-run-with-read-only-permissions/
-  pull_request_target:
-    types: [opened, reopened]
-    branches: [main]
+permissions:
+  pull-requests: write
 
 jobs:
   auto-merge:
     name: Auto merge
     runs-on: ubuntu-latest
+    if: github.event.pull_request.user.login == 'dependabot[bot]'
     steps:
-      - uses: actions/checkout@v4
-      - uses: ahmadnassri/action-dependabot-auto-merge@v2
+      # Fetch the Dependabot metadata
+      - name: Download Dependabot metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@v2
         with:
-          target: minor
-          github-token: ${{ secrets.DEPENDABOT_PAT }}
-          command: squash and merge
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      # Check the semantic version update type
+      - name: Check for auto merge
+        id: check-auto-merge
+        run: |
+          echo "Version update type: ${{ steps.metadata.outputs.update-type }}"
+          if [[ "${{ steps.metadata.outputs.update-type }}" == "version-update:semver-minor" ]] || [[ "${{ steps.metadata.outputs.update-type }}" == "version-update:semver-patch" ]]; then
+            echo "approveAndMerge=true" >> $GITHUB_ENV
+          else
+            echo "approveAndMerge=false" >> $GITHUB_ENV
+          fi
+
+      # Approve the pull request
+      - name: Approve pull request
+        if: env.approveAndMerge == 'true'
+        run: gh pr review --approve "$PR_URL"
+        env:
+          PR_URL: ${{github.event.pull_request.html_url}}
+          GH_TOKEN: ${{ secrets.DEPENDABOT_PAT }}
+
+      # Add a comment to have Dependabot squash and merge the PR
+      - name: Dependabot squash and merge
+        if: env.approveAndMerge == 'true'
+        run: gh pr comment ${{ github.event.pull_request.html_url }} --body "@dependabot squash and merge"
+        env:
+          GH_TOKEN: ${{ secrets.DEPENDABOT_PAT }}
