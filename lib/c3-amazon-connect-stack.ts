@@ -45,16 +45,12 @@ export class C3AmazonConnectStack extends Stack {
 	private c3Context: C3Context;
 	private featuresContext: FeaturesContext;
 	private optionsContext: OptionsContext;
-	private logoUrl: string;
-	private supportPhone: string;
-	private supportEmail: string;
 
 	// Resource references.
 	private codeSigningConfig: CodeSigningConfig;
 	private c3ApiKeySecret: Secret;
 	private privateKeySecret: Secret;
 	private utilsLayer: LayerVersion;
-	private createPaymentRequestFunction: Function;
 	private validateEntryFunction: Function;
 	private tokenizeTransactionFunction: Function;
 	private submitPaymentFunction: Function;
@@ -80,13 +76,11 @@ export class C3AmazonConnectStack extends Stack {
 		) {
 			this.createPrivateKeySecret();
 			this.createUtilsLayer();
-			this.createCreatePaymentRequestFunction();
 			this.createValidateEntryFunction();
 			this.createTokenizeTransactionFunction();
 			this.createSubmitPaymentFunction();
 			this.createSendReceiptFunction();
 			associateLambdaFunctionsWithConnect(this, [
-				this.createPaymentRequestFunction,
 				this.validateEntryFunction,
 				this.tokenizeTransactionFunction,
 				this.submitPaymentFunction,
@@ -100,7 +94,10 @@ export class C3AmazonConnectStack extends Stack {
 				this,
 				this.amazonConnectContext.instanceArn,
 				this.amazonConnectContext,
-				this.createPaymentRequestFunction,
+				this.codeSigningConfig,
+				this.c3BaseUrl,
+				this.c3ApiKeySecret,
+				this.utilsLayer,
 				this.tokenizeTransactionFunction,
 				this.submitPaymentFunction,
 				this.sendReceiptFunction,
@@ -182,19 +179,6 @@ export class C3AmazonConnectStack extends Stack {
 
 		this.optionsContext = this.node.tryGetContext('options');
 		validateOptionsContext(this.optionsContext);
-
-		this.logoUrl = this.node.tryGetContext('logoUrl');
-		this.supportPhone = this.node.tryGetContext('supportPhone');
-		this.supportEmail = this.node.tryGetContext('supportEmail');
-		if (!this.logoUrl) {
-			throw new Error('logoUrl context variable is required.');
-		}
-		if (!this.supportPhone) {
-			throw new Error('supportPhone context variable is required.');
-		}
-		if (!this.supportEmail) {
-			throw new Error('supportEmail context variable is required.');
-		}
 	}
 
 	/**
@@ -289,45 +273,6 @@ export class C3AmazonConnectStack extends Stack {
 			description: 'Utility functions for C3 payment processing.',
 			code: Code.fromAsset(join(__dirname, 'lambda/c3-utils-layer/lib')),
 		});
-	}
-
-	/**
-	 * Creates a Lambda function for creating a payment request.
-	 *
-	 * This function is necessary for your payment flow to create a payment request through the C3 API.
-	 */
-	private createCreatePaymentRequestFunction(): void {
-		console.log('Creating function C3CreatePaymentRequest...');
-		this.createPaymentRequestFunction = new Function(
-			this,
-			'C3CreatePaymentRequest',
-			{
-				...commonLambdaProps,
-				description: 'Creates a payment request through the C3 API.',
-				code: Code.fromAsset(
-					join(__dirname, 'lambda/c3-create-payment-request'),
-				),
-				environment: {
-					C3_BASE_URL: this.c3BaseUrl,
-					C3_VENDOR_ID: this.c3Context.vendorId,
-					C3_API_KEY_SECRET_ID: this.c3ApiKeySecret.secretName,
-					LOGO_URL: this.logoUrl,
-					SUPPORT_PHONE: this.supportPhone,
-					SUPPORT_EMAIL: this.supportEmail,
-				},
-				codeSigningConfig: this.optionsContext.codeSigning
-					? this.codeSigningConfig
-					: undefined,
-				layers: [this.utilsLayer],
-			},
-		);
-
-		// Create the policy for getting secret values.
-		const getSecretValuePolicy = new PolicyStatement({
-			actions: ['secretsmanager:GetSecretValue'],
-			resources: [this.c3ApiKeySecret.secretArn],
-		});
-		this.createPaymentRequestFunction.addToRolePolicy(getSecretValuePolicy);
 	}
 
 	/**
