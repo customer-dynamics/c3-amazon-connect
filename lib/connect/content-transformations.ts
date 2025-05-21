@@ -90,7 +90,7 @@ export function getPaymentIVRFlowModuleContent(
 }
 
 /**
- * Gets the content for the self-service payment IVR flow.
+ * Gets the content for the agent-assisted payment IVR flow.
  *
  * @param sendAgentMessageFunction The Lambda function that sends messages to the agent.
  * @param createPaymentRequestFunction The Lambda function that creates a payment request.
@@ -103,7 +103,7 @@ export function getPaymentIVRFlowModuleContent(
  * @param ivrSpeakingContext The speaking context for the IVR.
  * @returns A string representing the content for the base IVR payment flow.
  */
-export function getSelfServicePaymentIVRFlowContent(
+export function getAgentAssistedPaymentIVRFlowContent(
 	sendAgentMessageFunction: Function,
 	createPaymentRequestFunction: Function,
 	tokenizeTransactionFunction: Function,
