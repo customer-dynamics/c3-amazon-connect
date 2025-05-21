@@ -93,7 +93,6 @@ export function getPaymentIVRFlowModuleContent(
  * Gets the content for the agent-assisted payment IVR flow.
  *
  * @param sendAgentMessageFunction The Lambda function that sends messages to the agent.
- * @param createPaymentRequestFunction The Lambda function that creates a payment request.
  * @param tokenizeTransactionFunction The Lambda function that tokenizes a transaction.
  * @param submitPaymentLambdaFunction The Lambda function that submits a payment.
  * @param sendReceiptLambdaFunction The Lambda function that sends a receipt.
@@ -105,7 +104,6 @@ export function getPaymentIVRFlowModuleContent(
  */
 export function getAgentAssistedPaymentIVRFlowContent(
 	sendAgentMessageFunction: Function,
-	createPaymentRequestFunction: Function,
 	tokenizeTransactionFunction: Function,
 	submitPaymentLambdaFunction: Function,
 	sendReceiptLambdaFunction: Function,
@@ -120,10 +118,6 @@ export function getAgentAssistedPaymentIVRFlowContent(
 	transformedContent = transformedContent.replace(
 		/<<sendAgentMessageLambdaArn>>/g,
 		sendAgentMessageFunction.functionArn,
-	);
-	transformedContent = transformedContent.replace(
-		/<<createPaymentRequestLambdaArn>>/g,
-		createPaymentRequestFunction.functionArn,
 	);
 	transformedContent = transformedContent.replace(
 		/<<tokenizeTransactionLambdaArn>>/g,

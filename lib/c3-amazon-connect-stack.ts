@@ -116,7 +116,6 @@ export class C3AmazonConnectStack extends Stack {
 				this.c3BaseUrl,
 				this.c3ApiKeySecret,
 				this.utilsLayer,
-				this.createPaymentRequestFunction,
 				this.tokenizeTransactionFunction,
 				this.submitPaymentFunction,
 				this.sendReceiptFunction,

@@ -50,7 +50,6 @@ export class AgentAssistedPaymentIVR {
 		private c3BaseUrl: string,
 		private c3ApiKeySecret: Secret,
 		private utilsLayer: LayerVersion,
-		private createPaymentRequestFunction: Function,
 		private tokenizeTransactionFunction: Function,
 		private submitPaymentFunction: Function,
 		private sendReceiptFunction: Function,
@@ -124,7 +123,6 @@ export class AgentAssistedPaymentIVR {
 		) as OptionsContext;
 		const c3PaymentFlowContent = getAgentAssistedPaymentIVRFlowContent(
 			this.sendAgentMessageFunction,
-			this.createPaymentRequestFunction,
 			this.tokenizeTransactionFunction,
 			this.submitPaymentFunction,
 			this.sendReceiptFunction,
