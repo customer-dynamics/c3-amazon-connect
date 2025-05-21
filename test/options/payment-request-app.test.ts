@@ -44,7 +44,7 @@ const mockContext: Context = {
 	supportEmail: 'placeholder',
 };
 
-const NUMBER_OF_LAMBDAS = 6;
+const NUMBER_OF_LAMBDAS = 5;
 
 // Verify created resources for payment request app
 describe('Payment Request App', () => {
