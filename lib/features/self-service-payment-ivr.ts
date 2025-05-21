@@ -84,7 +84,7 @@ export class SelfServicePaymentIVR {
 				...commonLambdaProps,
 				description: 'Creates a payment request through the C3 API.',
 				code: Code.fromAsset(
-					join(__dirname, 'lambda/c3-create-payment-request'),
+					join(__dirname, '../lambda/c3-create-payment-request'),
 				),
 				environment: {
 					C3_BASE_URL: this.c3BaseUrl,
