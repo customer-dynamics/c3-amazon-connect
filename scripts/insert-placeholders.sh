@@ -13,7 +13,6 @@ RECEIPT_FLOW_FILE="lib/connect/flows/c3-receipt-flow.json"
 # Replace the ARN of the C3CreatePaymentRequest Lambda function
 FUNCTION_NAME="C3CreatePaymentRequest"
 PLACEHOLDER="<<createPaymentRequestLambdaArn>>"
-sed -i '' "s|\(\"[^\"]*\": \)\".*${FUNCTION_NAME}.*\"|\1\"$PLACEHOLDER\"|g" "$AGENT_ASSISTED_PAYMENT_IVR_FLOW_FILE"
 sed -i '' "s|\(\"[^\"]*\": \)\".*${FUNCTION_NAME}.*\"|\1\"$PLACEHOLDER\"|g" "$PAYMENT_IVR_FLOW_MODULE_FILE"
 
 # Replace the ARN of the C3TokenizeTransaction Lambda function
