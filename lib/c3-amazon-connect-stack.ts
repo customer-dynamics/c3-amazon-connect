@@ -188,17 +188,17 @@ export class C3AmazonConnectStack extends Stack {
 		switch (this.c3Context.env) {
 			case 'prod':
 				this.c3BaseUrl = 'https://api.call2action.link';
-				this.c3AppUrlFragment = 'call2action.link';
+				this.c3AppUrlFragment = 'agent-apps.call2action.link';
 				break;
 			case 'staging':
 				this.c3BaseUrl =
 					'https://mstp8ccw53.execute-api.us-west-2.amazonaws.com/staging';
-				this.c3AppUrlFragment = 'staging.c2a.link';
+				this.c3AppUrlFragment = 'agent-apps.staging.c2a.link';
 				break;
 			case 'dev':
 				this.c3BaseUrl =
 					'https://xr1n4f5p34.execute-api.us-west-2.amazonaws.com/dev';
-				this.c3AppUrlFragment = 'dev.c2a.link';
+				this.c3AppUrlFragment = 'agent-apps.dev.c2a.link';
 				break;
 			default:
 				throw new Error(`Invalid environment: ${this.c3Context.env}`);
@@ -508,7 +508,7 @@ export class C3AmazonConnectStack extends Stack {
 			configuredFeatureParams += '&customEmbed=true';
 		}
 
-		const appUrl = `https://${this.c3Context.vendorId}.${this.c3AppUrlFragment}/agent-workspace/payment-request?contactCenter=amazon&instanceId=${instanceId}&region=${region}${agentAssistedIVRParams}${configuredFeatureParams}`;
+		const appUrl = `https://${this.c3AppUrlFragment}/agent-workspace/payment-request?contactCenter=amazon&instanceId=${instanceId}&region=${region}${agentAssistedIVRParams}${configuredFeatureParams}`;
 		writeFileToExports(
 			'C3PaymentRequestAppUrl.txt',
 			`💰 Your C3 Payment Request app URL is:\n\n🌐 ${appUrl}\n`,
