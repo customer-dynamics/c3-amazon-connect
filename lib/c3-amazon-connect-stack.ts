@@ -508,7 +508,7 @@ export class C3AmazonConnectStack extends Stack {
 			configuredFeatureParams += '&customEmbed=true';
 		}
 
-		const appUrl = `https://${this.c3AppUrlFragment}/agent-workspace/payment-request?contactCenter=amazon&instanceId=${instanceId}&region=${region}${agentAssistedIVRParams}${configuredFeatureParams}`;
+		const appUrl = `https://${this.c3AppUrlFragment}/payment-request?contactCenter=amazon&instanceId=${instanceId}&region=${region}${agentAssistedIVRParams}${configuredFeatureParams}`;
 		writeFileToExports(
 			'C3PaymentRequestAppUrl.txt',
 			`💰 Your C3 Payment Request app URL is:\n\n🌐 ${appUrl}\n`,
