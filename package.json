@@ -26,7 +26,7 @@
 		"@semantic-release/release-notes-generator": "^14.0.3",
 		"@types/jest": "^30.0.0",
 		"@types/node": "22.15.32",
-		"aws-cdk": "2.1018.1",
+		"aws-cdk": "2.1019.1",
 		"conventional-changelog-conventionalcommits": "^9.0.0",
 		"husky": "^9.1.7",
 		"jest": "^30.0.1",
