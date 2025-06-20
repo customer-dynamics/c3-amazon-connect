@@ -24,7 +24,7 @@ import {
 	associateLambdaFunctionsWithConnect,
 	commonLambdaProps,
 } from '../helpers/lambda';
-import { getSelfServicePaymentIVRFlowContent } from '../connect/content-transformations';
+import { getAgentAssistedPaymentIVRFlowContent } from '../connect/content-transformations';
 import { Secret } from 'aws-cdk-lib/aws-secretsmanager';
 import { AmazonConnectContext, C3Context, OptionsContext } from '../models';
 import { writeFileToExports } from '../helpers/file';
@@ -50,7 +50,6 @@ export class AgentAssistedPaymentIVR {
 		private c3BaseUrl: string,
 		private c3ApiKeySecret: Secret,
 		private utilsLayer: LayerVersion,
-		private createPaymentRequestFunction: Function,
 		private tokenizeTransactionFunction: Function,
 		private submitPaymentFunction: Function,
 		private sendReceiptFunction: Function,
@@ -122,9 +121,8 @@ export class AgentAssistedPaymentIVR {
 		const optionsContext = this.stack.node.tryGetContext(
 			'options',
 		) as OptionsContext;
-		const c3PaymentFlowContent = getSelfServicePaymentIVRFlowContent(
+		const c3PaymentFlowContent = getAgentAssistedPaymentIVRFlowContent(
 			this.sendAgentMessageFunction,
-			this.createPaymentRequestFunction,
 			this.tokenizeTransactionFunction,
 			this.submitPaymentFunction,
 			this.sendReceiptFunction,
