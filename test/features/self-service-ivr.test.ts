@@ -24,6 +24,7 @@ const mockContext: Context = {
 		env: C3Environment.Prod,
 		vendorId: 'placeholder',
 		paymentGateway: C3PaymentGateway.Zift,
+		apiKey: 'placeholder',
 	},
 	features: {
 		agentAssistedIVR: false,
