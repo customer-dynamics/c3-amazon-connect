@@ -48,7 +48,6 @@ export class C3AmazonConnectStack extends Stack {
 
 	// Resource references.
 	private codeSigningConfig: CodeSigningConfig;
-	private c3ApiKeySecret: Secret;
 	private privateKeySecret: Secret;
 	private utilsLayer: LayerVersion;
 	private validateEntryFunction: Function;
@@ -67,7 +66,6 @@ export class C3AmazonConnectStack extends Stack {
 		if (this.optionsContext.codeSigning) {
 			this.createCodeSigningConfig();
 		}
-		this.createC3ApiKeySecret();
 
 		// Create resources needed for IVR payments.
 		if (
@@ -96,7 +94,6 @@ export class C3AmazonConnectStack extends Stack {
 				this.amazonConnectContext,
 				this.codeSigningConfig,
 				this.c3BaseUrl,
-				this.c3ApiKeySecret,
 				this.utilsLayer,
 				this.tokenizeTransactionFunction,
 				this.submitPaymentFunction,
@@ -111,7 +108,6 @@ export class C3AmazonConnectStack extends Stack {
 				this.amazonConnectContext,
 				this.codeSigningConfig,
 				this.c3BaseUrl,
-				this.c3ApiKeySecret,
 				this.utilsLayer,
 				this.tokenizeTransactionFunction,
 				this.submitPaymentFunction,
@@ -222,23 +218,6 @@ export class C3AmazonConnectStack extends Stack {
 				signingProfiles: [signingProfile],
 			},
 		);
-	}
-
-	/**
-	 * Creates a secret for the API key assigned to your C3 vendor.
-	 *
-	 * This secret is required to securely provide the API key to the Lambda functions that interact with the C3 API.
-	 */
-	private createC3ApiKeySecret(): void {
-		console.log('Creating secret for C3 API key...');
-		const secretLabel = this.stackLabel
-			? `_${this.stackLabel.toUpperCase()}`
-			: '';
-		this.c3ApiKeySecret = new Secret(this, 'C3APIKey', {
-			secretName: 'C3_API_KEY' + secretLabel,
-			secretStringValue: SecretValue.unsafePlainText('<Your C3 API key>'),
-			description: 'The API key used for C3 Payment.',
-		});
 	}
 
 	/**
@@ -380,20 +359,13 @@ export class C3AmazonConnectStack extends Stack {
 			code: Code.fromAsset(join(__dirname, 'lambda/c3-submit-payment')),
 			environment: {
 				C3_BASE_URL: this.c3BaseUrl,
-				C3_API_KEY_SECRET_ID: this.c3ApiKeySecret.secretName,
+				C3_API_KEY: this.c3Context.apiKey,
 			},
 			codeSigningConfig: this.optionsContext.codeSigning
 				? this.codeSigningConfig
 				: undefined,
 			layers: [this.utilsLayer],
 		});
-
-		// Create the policy for getting secret values.
-		const getSecretValuePolicy = new PolicyStatement({
-			actions: ['secretsmanager:GetSecretValue'],
-			resources: [this.c3ApiKeySecret.secretArn],
-		});
-		this.submitPaymentFunction.addToRolePolicy(getSecretValuePolicy);
 	}
 
 	/**
@@ -409,20 +381,13 @@ export class C3AmazonConnectStack extends Stack {
 			code: Code.fromAsset(join(__dirname, 'lambda/c3-send-receipt')),
 			environment: {
 				C3_BASE_URL: this.c3BaseUrl,
-				C3_API_KEY_SECRET_ID: this.c3ApiKeySecret.secretName,
+				C3_API_KEY: this.c3Context.apiKey,
 			},
 			codeSigningConfig: this.optionsContext.codeSigning
 				? this.codeSigningConfig
 				: undefined,
 			layers: [this.utilsLayer],
 		});
-
-		// Create the policy for getting secret values.
-		const getSecretValuePolicy = new PolicyStatement({
-			actions: ['secretsmanager:GetSecretValue'],
-			resources: [this.c3ApiKeySecret.secretArn],
-		});
-		this.sendReceiptFunction.addToRolePolicy(getSecretValuePolicy);
 	}
 
 	/**

@@ -14,8 +14,6 @@ import {
 	commonLambdaProps,
 } from '../helpers/lambda';
 import { join } from 'path';
-import { Secret } from 'aws-cdk-lib/aws-secretsmanager';
-import { PolicyStatement } from 'aws-cdk-lib/aws-iam';
 
 /**
  * Class for creating the necessary resources to facilitate self-service payments collected through IVR.
@@ -35,7 +33,6 @@ export class SelfServicePaymentIVR {
 		private amazonConnectContext: AmazonConnectContext,
 		private codeSigningConfig: CodeSigningConfig,
 		private c3BaseUrl: string,
-		private c3ApiKeySecret: Secret,
 		private utilsLayer: LayerVersion,
 		private tokenizeTransactionFunction: Function,
 		private submitPaymentFunction: Function,
@@ -89,7 +86,7 @@ export class SelfServicePaymentIVR {
 				environment: {
 					C3_BASE_URL: this.c3BaseUrl,
 					C3_VENDOR_ID: c3Context.vendorId,
-					C3_API_KEY_SECRET_ID: this.c3ApiKeySecret.secretName,
+					C3_API_KEY: c3Context.apiKey,
 					LOGO_URL: this.logoUrl,
 					SUPPORT_PHONE: this.supportPhone,
 					SUPPORT_EMAIL: this.supportEmail,
@@ -100,13 +97,6 @@ export class SelfServicePaymentIVR {
 				layers: [this.utilsLayer],
 			},
 		);
-
-		// Create the policy for getting secret values.
-		const getSecretValuePolicy = new PolicyStatement({
-			actions: ['secretsmanager:GetSecretValue'],
-			resources: [this.c3ApiKeySecret.secretArn],
-		});
-		this.createPaymentRequestFunction.addToRolePolicy(getSecretValuePolicy);
 	}
 
 	/**
