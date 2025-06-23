@@ -42,7 +42,8 @@ jobs:
               "c3": {
                 "env": "dev",
                 "vendorId": "placeholder",
-                "paymentGateway": "Zift"
+                "paymentGateway": "Zift",
+                "apiKey": "placeholder"
               },
               "features": {
                 "agentAssistedIVR": true,
