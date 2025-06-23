@@ -4,6 +4,7 @@ import { C3PaymentGateway } from './enums/c3-payment-gateway';
 export interface C3Context {
 	env: C3Environment;
 	vendorId: string;
+	apiKey: string;
 	paymentGateway: C3PaymentGateway;
 }
 
@@ -23,6 +24,8 @@ export function validateC3Context(c3Context: C3Context): void {
 		);
 	} else if (!c3Context.vendorId) {
 		throw new Error('c3.vendorId context variable is required.');
+	} else if (!c3Context.apiKey) {
+		throw new Error('c3.apiKey context variable is required.');
 	} else if (!c3Context.paymentGateway) {
 		throw new Error('c3.paymentGateway context variable is required.');
 	} else if (

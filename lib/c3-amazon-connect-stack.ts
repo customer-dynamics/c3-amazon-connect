@@ -485,6 +485,9 @@ export class C3AmazonConnectStack extends Stack {
 	private getPaymentRequestAppUrl(customEmbed: boolean): string {
 		const instanceId = this.amazonConnectContext.instanceArn.split('/')[1];
 
+		// Set params for C3.
+		const c3Params = `&vendorId=${this.c3Context.vendorId}&apiKey=${this.c3Context.apiKey}`;
+
 		// Set params for IVR features.
 		const region = this.amazonConnectContext.instanceArn.split(':')[3];
 		const externalRoleArn =
@@ -508,7 +511,7 @@ export class C3AmazonConnectStack extends Stack {
 			configuredFeatureParams += '&customEmbed=true';
 		}
 
-		const appUrl = `https://${this.c3AppUrlFragment}/payment-request?contactCenter=amazon&instanceId=${instanceId}&region=${region}${agentAssistedIVRParams}${configuredFeatureParams}`;
+		const appUrl = `https://${this.c3AppUrlFragment}/payment-request?contactCenter=amazon&instanceId=${instanceId}&region=${region}${c3Params}${agentAssistedIVRParams}${configuredFeatureParams}`;
 		writeFileToExports(
 			'C3PaymentRequestAppUrl.txt',
 			`💰 Your C3 Payment Request app URL is:\n\n🌐 ${appUrl}\n`,
