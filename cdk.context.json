@@ -10,6 +10,7 @@
 	"c3": {
 		"env": "prod",
 		"vendorId": "",
+		"apiKey": "",
 		"paymentGateway": ""
 	},
 	"features": {
