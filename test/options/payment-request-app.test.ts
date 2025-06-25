@@ -25,6 +25,9 @@ const mockContext: Context = {
 		vendorId: 'placeholder',
 		paymentGateway: C3PaymentGateway.Zift,
 		apiKey: 'placeholder',
+		logoUrl: 'placeholder',
+		supportPhone: 'placeholder',
+		supportEmail: 'placeholder',
 	},
 	features: {
 		agentAssistedIVR: true,
@@ -40,9 +43,6 @@ const mockContext: Context = {
 			volume: SpeakingVolume.Medium,
 		},
 	},
-	logoUrl: 'placeholder',
-	supportPhone: 'placeholder',
-	supportEmail: 'placeholder',
 };
 
 const NUMBER_OF_LAMBDAS = 5;
