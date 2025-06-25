@@ -451,7 +451,7 @@ export class C3AmazonConnectStack extends Stack {
 		const instanceId = this.amazonConnectContext.instanceArn.split('/')[1];
 
 		// Set params for C3.
-		const c3Params = `&vendorId=${this.c3Context.vendorId}&apiKey=${this.c3Context.apiKey}`;
+		const c3Params = `&vendorId=${this.c3Context.vendorId}&apiKey=${this.c3Context.apiKey}&logoUrl=${this.c3Context.logoUrl}&supportPhone=${this.c3Context.supportPhone}&supportEmail=${this.c3Context.supportEmail}`;
 
 		// Set params for IVR features.
 		const region = this.amazonConnectContext.instanceArn.split(':')[3];
@@ -475,6 +475,7 @@ export class C3AmazonConnectStack extends Stack {
 		if (customEmbed) {
 			configuredFeatureParams += '&customEmbed=true';
 		}
+		configuredFeatureParams += '&noLink=true'; // TODO: Enable web links
 
 		const appUrl = `https://${this.c3AppUrlFragment}/payment-request?contactCenter=amazon&instanceId=${instanceId}&region=${region}${c3Params}${agentAssistedIVRParams}${configuredFeatureParams}`;
 		writeFileToExports(

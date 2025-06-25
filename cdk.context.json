@@ -11,7 +11,10 @@
 		"env": "prod",
 		"vendorId": "",
 		"apiKey": "",
-		"paymentGateway": ""
+		"paymentGateway": "",
+		"logoUrl": "",
+		"supportPhone": "",
+		"supportEmail": ""
 	},
 	"features": {
 		"agentAssistedIVR": true,
@@ -26,8 +29,5 @@
 			"rate": "medium",
 			"volume": "medium"
 		}
-	},
-	"logoUrl": "",
-	"supportPhone": "",
-	"supportEmail": ""
+	}
 }

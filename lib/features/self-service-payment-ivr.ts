@@ -56,24 +56,27 @@ export class SelfServicePaymentIVR {
 		console.log('Creating function C3CreatePaymentRequest...');
 
 		// Validate values.
-		const logoUrl = this.stack.node.tryGetContext('logoUrl');
-		const supportPhone = this.stack.node.tryGetContext('supportPhone');
-		const supportEmail = this.stack.node.tryGetContext('supportEmail');
-		if (!logoUrl) {
+		const c3Context = this.stack.node.tryGetContext('c3') as
+			| C3Context
+			| undefined;
+		const { vendorId, apiKey, logoUrl, supportPhone, supportEmail } =
+			c3Context ?? {};
+		if (!vendorId) {
+			throw new Error('vendorId context variable is required.');
+		} else if (!apiKey) {
+			throw new Error('apiKey context variable is required.');
+		} else if (!logoUrl) {
 			throw new Error('logoUrl context variable is required.');
-		}
-		if (!supportPhone) {
+		} else if (!supportPhone) {
 			throw new Error('supportPhone context variable is required.');
-		}
-		if (!supportEmail) {
+		} else if (!supportEmail) {
 			throw new Error('supportEmail context variable is required.');
 		}
 
 		// Create function.
-		const c3Context = this.stack.node.tryGetContext('c3') as C3Context;
-		const optionsContext = this.stack.node.tryGetContext(
-			'options',
-		) as OptionsContext;
+		const optionsContext = this.stack.node.tryGetContext('options') as
+			| OptionsContext
+			| undefined;
 		this.createPaymentRequestFunction = new Function(
 			this.stack,
 			'C3CreatePaymentRequest',
@@ -85,13 +88,13 @@ export class SelfServicePaymentIVR {
 				),
 				environment: {
 					C3_BASE_URL: this.c3BaseUrl,
-					C3_VENDOR_ID: c3Context.vendorId,
-					C3_API_KEY: c3Context.apiKey,
+					C3_VENDOR_ID: vendorId,
+					C3_API_KEY: apiKey,
 					LOGO_URL: this.logoUrl,
 					SUPPORT_PHONE: this.supportPhone,
 					SUPPORT_EMAIL: this.supportEmail,
 				},
-				codeSigningConfig: optionsContext.codeSigning
+				codeSigningConfig: optionsContext?.codeSigning
 					? this.codeSigningConfig
 					: undefined,
 				layers: [this.utilsLayer],

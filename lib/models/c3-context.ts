@@ -5,6 +5,9 @@ export interface C3Context {
 	env: C3Environment;
 	vendorId: string;
 	apiKey: string;
+	logoUrl: string;
+	supportPhone: string;
+	supportEmail: string;
 	paymentGateway: C3PaymentGateway;
 }
 
@@ -26,6 +29,12 @@ export function validateC3Context(c3Context: C3Context): void {
 		throw new Error('c3.vendorId context variable is required.');
 	} else if (!c3Context.apiKey) {
 		throw new Error('c3.apiKey context variable is required.');
+	} else if (!c3Context.logoUrl) {
+		throw new Error('c3.logoUrl context variable is required.');
+	} else if (!c3Context.supportPhone) {
+		throw new Error('c3.supportPhone context variable is required.');
+	} else if (!c3Context.supportEmail) {
+		throw new Error('c3.supportEmail context variable is required.');
 	} else if (!c3Context.paymentGateway) {
 		throw new Error('c3.paymentGateway context variable is required.');
 	} else if (
