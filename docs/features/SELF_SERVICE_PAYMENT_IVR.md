@@ -30,7 +30,8 @@ You'll need to create a _contact_ flow that will greet your customers and guide 
 3. **Set contact attributes**
 
    With the information retrieved, you will need to set the contact attributes that will be used by the self-service payment IVR flow module. Use a _Set contact attributes_ block to set the following contact attributes:
-   - `ContactName`: The name of the customer making the payment.
+   - `ContactFirstName`: The first name of the customer making the payment.
+   - `ContactLastName`: The last name of the customer making the payment.
    - `PaymentAmountDue`: The total amount due for this account, invoice, etc.
    - `PaymentMinimumPayment`: The minimum payment that is allowed for this account, invoice, etc. **Optional**: If left blank, the customer will be required to pay the full amount due.
    - `SubjectId`: The ID of the subject that the payment is being made for. This could be an account number, invoice number, etc.
