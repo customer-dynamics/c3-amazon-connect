@@ -10,6 +10,8 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
+    # Don't try to create a release if the commit was made by Dependabot
+    if: ${{ github.actor != 'dependabot[bot]' }}
 
     steps:
       - name: Checkout
