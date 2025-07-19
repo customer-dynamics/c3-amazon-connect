@@ -13,49 +13,6 @@
 					"y": 534.4
 				}
 			},
-			"Payment Request Error": {
-				"position": {
-					"x": -992,
-					"y": 535.2
-				},
-				"isFriendlyName": true
-			},
-			"Record Payment Request ID": {
-				"position": {
-					"x": -1256.8,
-					"y": 152.8
-				},
-				"isFriendlyName": true,
-				"dynamicParams": []
-			},
-			"Speak Amount": {
-				"position": {
-					"x": -960.8,
-					"y": 145.6
-				},
-				"isFriendlyName": true
-			},
-			"Payment Amount Timeout": {
-				"position": {
-					"x": -154.4,
-					"y": -654.4
-				},
-				"isFriendlyName": true
-			},
-			"Payment Too Large": {
-				"position": {
-					"x": 138.4,
-					"y": -688.8
-				},
-				"isFriendlyName": true
-			},
-			"Payment Too Small": {
-				"position": {
-					"x": 377.6,
-					"y": -692.8
-				},
-				"isFriendlyName": true
-			},
 			"Payment Method Timeout": {
 				"position": {
 					"x": 2208,
@@ -70,144 +27,6 @@
 				},
 				"isFriendlyName": true
 			},
-			"Check Payment Amount": {
-				"position": {
-					"x": 9.6,
-					"y": -431.2
-				},
-				"isFriendlyName": true,
-				"conditions": [],
-				"conditionMetadata": [
-					{
-						"id": "02c70aa1-421f-49dd-95aa-5344d8f45c4c",
-						"operator": {
-							"name": "Equals",
-							"value": "Equals",
-							"shortDisplay": "="
-						},
-						"value": "Timeout"
-					},
-					{
-						"id": "031ff78f-a2ab-4ea5-becc-befde3149bea",
-						"operator": {
-							"name": "Is greater than",
-							"value": "GreaterThan",
-							"shortDisplay": ">"
-						},
-						"value": "$.Attributes.PaymentAmountDue"
-					},
-					{
-						"id": "1e50fd67-d1e0-48e2-ab08-3f13761f639b",
-						"operator": {
-							"name": "Is less than",
-							"value": "LessThan",
-							"shortDisplay": "<"
-						},
-						"value": "$.Attributes.PaymentMinimumPayment"
-					}
-				]
-			},
-			"Use Payment Method Again Timeout": {
-				"position": {
-					"x": 1083.2,
-					"y": -928.8
-				},
-				"isFriendlyName": true
-			},
-			"Check Last Payment Method": {
-				"position": {
-					"x": 1000,
-					"y": -67.2
-				},
-				"isFriendlyName": true,
-				"conditions": [],
-				"conditionMetadata": [
-					{
-						"id": "17bbc5da-0752-40b4-956a-21c1fe99763b",
-						"operator": {
-							"name": "Equals",
-							"value": "Equals",
-							"shortDisplay": "="
-						},
-						"value": "Card"
-					},
-					{
-						"id": "a2c2237e-42d9-4c50-b09f-7d6cdf7a6bc1",
-						"operator": {
-							"name": "Equals",
-							"value": "Equals",
-							"shortDisplay": "="
-						},
-						"value": "Bank"
-					}
-				]
-			},
-			"Amount Choice Timeout": {
-				"position": {
-					"x": -682.4,
-					"y": -324.8
-				},
-				"isFriendlyName": true
-			},
-			"Amount Choice Input Not Recognized": {
-				"position": {
-					"x": -416,
-					"y": -337.6
-				},
-				"isFriendlyName": true
-			},
-			"Check for Minimum Payment": {
-				"position": {
-					"x": -723.2,
-					"y": 153.6
-				},
-				"isFriendlyName": true,
-				"conditions": [],
-				"conditionMetadata": [
-					{
-						"id": "dbe1320a-9710-41b2-b639-8a9e27a8b5cd",
-						"operator": {
-							"name": "Equals",
-							"value": "Equals",
-							"shortDisplay": "="
-						},
-						"value": "PaymentAmountDue"
-					},
-					{
-						"id": "222dfa0f-fefe-4170-a94e-72b8e196741e",
-						"operator": {
-							"name": "Is greater than",
-							"value": "GreaterThan",
-							"shortDisplay": ">"
-						},
-						"value": "0"
-					}
-				]
-			},
-			"Speak Minimum Payment": {
-				"position": {
-					"x": -171.2,
-					"y": -36
-				},
-				"isFriendlyName": true
-			},
-			"Prompt for Payment Amount Choice": {
-				"position": {
-					"x": -479.2,
-					"y": -38.4
-				},
-				"isFriendlyName": true,
-				"conditionMetadata": [
-					{
-						"id": "2200b30c-7728-44c3-99c8-306d225e92e5",
-						"value": "1"
-					},
-					{
-						"id": "3a4796ac-3dce-4876-8d5a-0d22667a6ee5",
-						"value": "2"
-					}
-				]
-			},
 			"Set Payment Method to Bank": {
 				"position": {
 					"x": 2692,
@@ -215,13 +34,6 @@
 				},
 				"isFriendlyName": true,
 				"dynamicParams": []
-			},
-			"Account Number Timeout": {
-				"position": {
-					"x": 2841.6,
-					"y": -343.2
-				},
-				"isFriendlyName": true
 			},
 			"Card Number Timeout": {
 				"position": {
@@ -267,169 +79,6 @@
 				"conditionMetadata": [],
 				"countryCodePrefix": "+1"
 			},
-			"Check for Customer Email": {
-				"position": {
-					"x": 7265.6,
-					"y": -209.6
-				},
-				"isFriendlyName": true,
-				"conditions": [],
-				"conditionMetadata": [
-					{
-						"id": "45d1deee-afdb-4a93-9f1b-f6ef648d7684",
-						"operator": {
-							"name": "Contains",
-							"value": "Contains",
-							"shortDisplay": "contains"
-						},
-						"value": "@"
-					}
-				]
-			},
-			"Redact Sensitive Contact Attributes Copy": {
-				"position": {
-					"x": 8241.6,
-					"y": -227.2
-				},
-				"isFriendlyName": true,
-				"dynamicParams": []
-			},
-			"Has Specified Receipt Queue": {
-				"position": {
-					"x": 7524,
-					"y": -194.4
-				},
-				"isFriendlyName": true,
-				"conditions": [],
-				"conditionMetadata": [
-					{
-						"id": "c9e0dbf6-d3d7-4a54-a038-b5b496db4e4c",
-						"operator": {
-							"name": "Equals",
-							"value": "Equals",
-							"shortDisplay": "="
-						},
-						"value": "NULL"
-					}
-				]
-			},
-			"Receipt Timeout": {
-				"position": {
-					"x": 7784,
-					"y": 239.2
-				},
-				"isFriendlyName": true
-			},
-			"Receipt Entry Not Recognized": {
-				"position": {
-					"x": 7696,
-					"y": 25.6
-				},
-				"isFriendlyName": true
-			},
-			"Ask to Transfer for Receipt": {
-				"position": {
-					"x": 7899.2,
-					"y": -73.6
-				},
-				"isFriendlyName": true,
-				"conditionMetadata": [
-					{
-						"id": "fd928968-eb23-40d8-8ce7-55423b2bab55",
-						"value": "1"
-					},
-					{
-						"id": "def351cd-53b4-4143-ac19-4356fe32b75e",
-						"value": "2"
-					}
-				]
-			},
-			"Receipt Success": {
-				"position": {
-					"x": 7772.8,
-					"y": -560.8
-				},
-				"isFriendlyName": true
-			},
-			"Send Receipt": {
-				"position": {
-					"x": 7528.8,
-					"y": -473.6
-				},
-				"isFriendlyName": true,
-				"parameters": {
-					"LambdaFunctionARN": {
-						"displayName": "<<sendReceiptLambdaArn>>"
-					}
-				},
-				"dynamicMetadata": {}
-			},
-			"Receipt Error": {
-				"position": {
-					"x": 7777.6,
-					"y": -360
-				},
-				"isFriendlyName": true
-			},
-			"a3ea896e-4f43-4677-8edd-159f677dc41e": {
-				"position": {
-					"x": 9224,
-					"y": 204.8
-				}
-			},
-			"Transfer to Representative": {
-				"position": {
-					"x": 8680.8,
-					"y": -400.8
-				},
-				"isFriendlyName": true
-			},
-			"Set Queue": {
-				"position": {
-					"x": 8464.8,
-					"y": -229.6
-				},
-				"isFriendlyName": true,
-				"parameters": {
-					"QueueId": {
-						"useDynamic": true
-					}
-				},
-				"useDynamic": true
-			},
-			"Transfer Error": {
-				"position": {
-					"x": 8868.8,
-					"y": -158.4
-				},
-				"isFriendlyName": true
-			},
-			"87859db2-400d-410b-8818-05c8ae4869aa": {
-				"position": {
-					"x": -1924,
-					"y": 356
-				}
-			},
-			"Create Payment Request": {
-				"position": {
-					"x": -1484,
-					"y": 224
-				},
-				"isFriendlyName": true,
-				"parameters": {
-					"LambdaFunctionARN": {
-						"displayName": "<<createPaymentRequestLambdaArn>>"
-					}
-				},
-				"dynamicMetadata": {}
-			},
-			"Set Receipt Queue ID": {
-				"position": {
-					"x": -1711.2,
-					"y": 214.4
-				},
-				"isFriendlyName": true
-			},
 			"Card Number Timeout Check": {
 				"position": {
 					"x": 3020,
@@ -439,7 +88,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "b0f94a57-e4d1-4f10-adc5-388010e9e508",
+						"id": "57c221e9-14ed-4a3e-af83-aa88cc6be8b9",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -486,32 +135,13 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "5bd6524b-be50-4ff1-a260-124b0062500f",
+						"id": "0e002e94-7705-429b-be2f-a043527354ee",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
 							"shortDisplay": "="
 						},
 						"value": "NULL"
-					}
-				]
-			},
-			"Account Number Timeout Check": {
-				"position": {
-					"x": 3056,
-					"y": -96
-				},
-				"isFriendlyName": true,
-				"conditions": [],
-				"conditionMetadata": [
-					{
-						"id": "6fbf51a1-074b-4811-80fd-f3c696ad2431",
-						"operator": {
-							"name": "Equals",
-							"value": "Equals",
-							"shortDisplay": "="
-						},
-						"value": "Timeout"
 					}
 				]
 			},
@@ -561,7 +191,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "62301a0b-0a08-4b23-9cbe-13080d6fc25c",
+						"id": "254f1db5-5eb9-4698-8444-6ba8e8eaa419",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -587,7 +217,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "ec78ec3b-6f2e-4065-bc3f-a990aeb222e9",
+						"id": "e12302da-ad5d-4f0a-b27f-1a1a0115a5af",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -606,7 +236,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "6a8785d7-e576-4024-83c7-07869ca6c2e5",
+						"id": "3f9eccb5-5f94-4c3d-992f-221b43f32e7c",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -653,7 +283,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "6dd7e3a5-ee78-40a5-bab9-97c4be70ee62",
+						"id": "32505f68-91d3-447b-9a2e-7c207dc02f31",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -672,7 +302,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "5b654b48-bf6a-43a7-86f5-a9fcedb5c389",
+						"id": "2cc49027-325c-4258-aa60-30e809eca309",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -702,62 +332,6 @@
 					"ValidationType": false,
 					"CustomerEntry": true
 				}
-			},
-			"Get Payment Amount": {
-				"position": {
-					"x": 60.8,
-					"y": -46.4
-				},
-				"isFriendlyName": true,
-				"conditionMetadata": [],
-				"countryCodePrefix": "+1"
-			},
-			"Set Payment Amount to Entered Amount": {
-				"position": {
-					"x": 452,
-					"y": -34.4
-				},
-				"isFriendlyName": true,
-				"parameters": {
-					"Attributes": {
-						"PaymentAmount": {
-							"useDynamic": true
-						}
-					}
-				},
-				"dynamicParams": ["PaymentAmount"]
-			},
-			"Set Payment Amount to Full Amount": {
-				"position": {
-					"x": 468,
-					"y": 447.2
-				},
-				"isFriendlyName": true,
-				"parameters": {
-					"Attributes": {
-						"PaymentAmount": {
-							"useDynamic": true
-						}
-					}
-				},
-				"dynamicParams": ["PaymentAmount"]
-			},
-			"Get & Encrypt Account Number": {
-				"position": {
-					"x": 2915.2,
-					"y": 106.4
-				},
-				"isFriendlyName": true,
-				"conditionMetadata": [],
-				"countryCodePrefix": "+1"
-			},
-			"Redact Sensitive Contact Attributes": {
-				"position": {
-					"x": 8200,
-					"y": 86.4
-				},
-				"isFriendlyName": true,
-				"dynamicParams": []
 			},
 			"Store Encrypted Card Number": {
 				"position": {
@@ -789,6 +363,360 @@
 				},
 				"dynamicParams": ["EncryptedAccountNumber"]
 			},
+			"Speak Payment Submission Error": {
+				"position": {
+					"x": 6681.6,
+					"y": 228
+				},
+				"isFriendlyName": true
+			},
+			"Get & Encrypt Card Number": {
+				"position": {
+					"x": 2907.2,
+					"y": -807.2
+				},
+				"isFriendlyName": true,
+				"conditionMetadata": [],
+				"countryCodePrefix": "+1"
+			},
+			"Set Payment Method to Card": {
+				"position": {
+					"x": 2685.6,
+					"y": -802.4
+				},
+				"isFriendlyName": true,
+				"dynamicParams": []
+			},
+			"87859db2-400d-410b-8818-05c8ae4869aa": {
+				"position": {
+					"x": -1924,
+					"y": 356
+				}
+			},
+			"Set Receipt Queue ID": {
+				"position": {
+					"x": -1711.2,
+					"y": 214.4
+				},
+				"isFriendlyName": true
+			},
+			"Payment Request Error": {
+				"position": {
+					"x": -992,
+					"y": 535.2
+				},
+				"isFriendlyName": true
+			},
+			"Create Payment Request": {
+				"position": {
+					"x": -1485.6,
+					"y": 224
+				},
+				"isFriendlyName": true,
+				"parameters": {
+					"LambdaFunctionARN": {
+						"displayName": "<<createPaymentRequestLambdaArn>>"
+					}
+				},
+				"dynamicMetadata": {}
+			},
+			"Record Payment Request ID": {
+				"position": {
+					"x": -1256.8,
+					"y": 152.8
+				},
+				"isFriendlyName": true,
+				"dynamicParams": []
+			},
+			"Amount Choice Timeout": {
+				"position": {
+					"x": -684.8,
+					"y": -326.4
+				},
+				"isFriendlyName": true
+			},
+			"Amount Choice Input Not Recognized": {
+				"position": {
+					"x": -416.8,
+					"y": -339.2
+				},
+				"isFriendlyName": true
+			},
+			"Speak Amount": {
+				"position": {
+					"x": -961.6,
+					"y": 144
+				},
+				"isFriendlyName": true
+			},
+			"Check for Minimum Payment": {
+				"position": {
+					"x": -723.2,
+					"y": 153.6
+				},
+				"isFriendlyName": true,
+				"conditionMetadata": [
+					{
+						"id": "fc87001a-fbb8-4788-a2d9-93ebf3873c2e",
+						"operator": {
+							"name": "Equals",
+							"value": "Equals",
+							"shortDisplay": "="
+						},
+						"value": "C3PaymentAmountDue"
+					},
+					{
+						"id": "cca0a044-8c75-4e9b-9e3b-e60f0de85b9e",
+						"operator": {
+							"name": "Is greater than",
+							"value": "GreaterThan",
+							"shortDisplay": ">"
+						},
+						"value": "0"
+					}
+				]
+			},
+			"Prompt for Payment Amount Choice": {
+				"position": {
+					"x": -479.2,
+					"y": -38.4
+				},
+				"isFriendlyName": true,
+				"conditionMetadata": [
+					{
+						"id": "a7aad018-6bea-48b2-b595-c31eb0ada3aa",
+						"value": "1"
+					},
+					{
+						"id": "45360ccd-372c-4fd3-b8e3-db8dfca2e62e",
+						"value": "2"
+					}
+				]
+			},
+			"Get Payment Amount": {
+				"position": {
+					"x": 60.8,
+					"y": -46.4
+				},
+				"isFriendlyName": true,
+				"conditionMetadata": [],
+				"countryCodePrefix": "+1"
+			},
+			"Payment Amount Timeout": {
+				"position": {
+					"x": -155.2,
+					"y": -656
+				},
+				"isFriendlyName": true
+			},
+			"Payment Too Large": {
+				"position": {
+					"x": 137.6,
+					"y": -689.6
+				},
+				"isFriendlyName": true
+			},
+			"Speak Minimum Payment": {
+				"position": {
+					"x": -171.2,
+					"y": -36
+				},
+				"isFriendlyName": true
+			},
+			"Payment Too Small": {
+				"position": {
+					"x": 377.6,
+					"y": -692.8
+				},
+				"isFriendlyName": true
+			},
+			"Check Payment Amount": {
+				"position": {
+					"x": 9.6,
+					"y": -431.2
+				},
+				"isFriendlyName": true,
+				"conditionMetadata": [
+					{
+						"id": "0ec60eb5-0c7a-44e3-b9cc-b2c582de9086",
+						"operator": {
+							"name": "Equals",
+							"value": "Equals",
+							"shortDisplay": "="
+						},
+						"value": "Timeout"
+					},
+					{
+						"id": "f2fb6a6d-f4c3-487b-91c4-27d2fc0aca9d",
+						"operator": {
+							"name": "Is greater than",
+							"value": "GreaterThan",
+							"shortDisplay": ">"
+						},
+						"value": "$.Attributes.C3PaymentAmountDue"
+					},
+					{
+						"id": "167b128d-e063-48c7-b904-3eb17328d8e1",
+						"operator": {
+							"name": "Is less than",
+							"value": "LessThan",
+							"shortDisplay": "<"
+						},
+						"value": "$.Attributes.C3PaymentMinimumPayment"
+					}
+				]
+			},
+			"Use Payment Method Again Timeout": {
+				"position": {
+					"x": 1083.2,
+					"y": -928.8
+				},
+				"isFriendlyName": true
+			},
+			"Use Card Again?": {
+				"position": {
+					"x": 1289.6,
+					"y": -720
+				},
+				"isFriendlyName": true,
+				"conditionMetadata": [
+					{
+						"id": "9ba55817-e035-4c3e-8224-a5882add1767",
+						"value": "1"
+					},
+					{
+						"id": "c08f5dfd-72b2-4c3c-b9e9-0659ab00f955",
+						"value": "2"
+					}
+				]
+			},
+			"Use Bank Account Again?": {
+				"position": {
+					"x": 1410.4,
+					"y": -397.6
+				},
+				"isFriendlyName": true,
+				"conditionMetadata": [
+					{
+						"id": "4c8af1e7-9494-4c7f-86a0-ec4944a181dd",
+						"value": "1"
+					},
+					{
+						"id": "27f4e990-ccb7-4aba-9e75-693830b3c683",
+						"value": "2"
+					}
+				]
+			},
+			"Ask for Payment Method": {
+				"position": {
+					"x": 2230.4,
+					"y": -29.6
+				},
+				"isFriendlyName": true,
+				"conditionMetadata": [
+					{
+						"id": "802bcef0-0f35-47c5-aee2-f34d02a9aef1",
+						"value": "1"
+					},
+					{
+						"id": "c427ae9b-4b3b-4b23-9789-f2abcd0ac010",
+						"value": "2"
+					}
+				]
+			},
+			"Set Payment Amount to Full Amount": {
+				"position": {
+					"x": 468,
+					"y": 447.2
+				},
+				"isFriendlyName": true,
+				"parameters": {
+					"Attributes": {
+						"C3PaymentAmount": {
+							"useDynamic": true
+						}
+					}
+				},
+				"dynamicParams": ["C3PaymentAmount"]
+			},
+			"Set Payment Amount to Entered Amount": {
+				"position": {
+					"x": 447.2,
+					"y": -34.4
+				},
+				"isFriendlyName": true,
+				"parameters": {
+					"Attributes": {
+						"C3PaymentAmount": {
+							"useDynamic": true
+						}
+					}
+				},
+				"dynamicParams": ["C3PaymentAmount"]
+			},
+			"Check Last Payment Method": {
+				"position": {
+					"x": 1000,
+					"y": -67.2
+				},
+				"isFriendlyName": true,
+				"conditions": [],
+				"conditionMetadata": [
+					{
+						"id": "20a4e7c8-0f75-4719-95a8-84224c8eb10e",
+						"operator": {
+							"name": "Equals",
+							"value": "Equals",
+							"shortDisplay": "="
+						},
+						"value": "Card"
+					},
+					{
+						"id": "9746d384-4fdb-4233-b97f-bb0617206f30",
+						"operator": {
+							"name": "Equals",
+							"value": "Equals",
+							"shortDisplay": "="
+						},
+						"value": "Bank"
+					}
+				]
+			},
+			"Account Number Timeout Check": {
+				"position": {
+					"x": 3056,
+					"y": -96
+				},
+				"isFriendlyName": true,
+				"conditions": [],
+				"conditionMetadata": [
+					{
+						"id": "e7a98810-f215-453f-bb65-a849cfab0f4c",
+						"operator": {
+							"name": "Equals",
+							"value": "Equals",
+							"shortDisplay": "="
+						},
+						"value": "Timeout"
+					}
+				]
+			},
+			"Get & Encrypt Account Number": {
+				"position": {
+					"x": 2915.2,
+					"y": 106.4
+				},
+				"isFriendlyName": true,
+				"conditionMetadata": [],
+				"countryCodePrefix": "+1"
+			},
+			"Account Number Timeout": {
+				"position": {
+					"x": 2841.6,
+					"y": -343.2
+				},
+				"isFriendlyName": true
+			},
 			"Store Routing Number": {
 				"position": {
 					"x": 4786.4,
@@ -819,24 +747,24 @@
 				},
 				"dynamicParams": ["ExpirationDate"]
 			},
-			"Internal Error": {
+			"Payment Validation Error": {
 				"position": {
-					"x": 2711.2,
-					"y": 773.6
+					"x": 6692.8,
+					"y": 472
 				},
 				"isFriendlyName": true
 			},
-			"Payment Success": {
+			"Speak Validation Error": {
 				"position": {
-					"x": 7044,
-					"y": -211.2
+					"x": 5846.4,
+					"y": 234.4
 				},
 				"isFriendlyName": true
 			},
 			"Tokenize Transaction": {
 				"position": {
-					"x": 5397.6,
-					"y": -304.8
+					"x": 5396.8,
+					"y": -306.4
 				},
 				"isFriendlyName": true,
 				"parameters": {
@@ -845,28 +773,6 @@
 					}
 				},
 				"dynamicMetadata": {}
-			},
-			"Payment Validation Error": {
-				"position": {
-					"x": 6692.8,
-					"y": 472
-				},
-				"isFriendlyName": true
-			},
-			"Record Transaction Attributes": {
-				"position": {
-					"x": 6752,
-					"y": -297.6
-				},
-				"isFriendlyName": true,
-				"dynamicParams": []
-			},
-			"Speak Payment Submission Error": {
-				"position": {
-					"x": 6681.6,
-					"y": 228
-				},
-				"isFriendlyName": true
 			},
 			"Check for Tokenize Error": {
 				"position": {
@@ -877,54 +783,13 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "163bcc2c-62f8-4399-8348-d4f1f96d12bb",
+						"id": "8c4b077e-a4cf-479c-9120-c3d55417931d",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
 							"shortDisplay": "="
 						},
 						"value": "NULL"
-					}
-				]
-			},
-			"Speak Validation Error": {
-				"position": {
-					"x": 5846.4,
-					"y": 234.4
-				},
-				"isFriendlyName": true
-			},
-			"Use Card Again?": {
-				"position": {
-					"x": 1289.6,
-					"y": -720
-				},
-				"isFriendlyName": true,
-				"conditionMetadata": [
-					{
-						"id": "48cc9623-9466-4974-91b1-b9de5f5a19fc",
-						"value": "1"
-					},
-					{
-						"id": "f7d2e099-a0e4-4d65-a745-a9a00437473d",
-						"value": "2"
-					}
-				]
-			},
-			"Use Bank Account Again?": {
-				"position": {
-					"x": 1410.4,
-					"y": -397.6
-				},
-				"isFriendlyName": true,
-				"conditionMetadata": [
-					{
-						"id": "51686917-048d-41b3-8b2d-181283fb409d",
-						"value": "1"
-					},
-					{
-						"id": "40173065-0660-4c92-88f1-bb65fb3f4bc0",
-						"value": "2"
 					}
 				]
 			},
@@ -945,7 +810,7 @@
 				"conditions": [],
 				"conditionMetadata": [
 					{
-						"id": "258397d2-e62a-4fc0-80e9-0377488cbb81",
+						"id": "58a4ffcc-52d2-4a70-80a3-968388b6b80e",
 						"operator": {
 							"name": "Equals",
 							"value": "Equals",
@@ -955,44 +820,10 @@
 					}
 				]
 			},
-			"Ask for Payment Method": {
+			"Record Transaction Attributes": {
 				"position": {
-					"x": 2230.4,
-					"y": -29.6
-				},
-				"isFriendlyName": true,
-				"conditionMetadata": [
-					{
-						"id": "6165f794-e83a-48e7-95f9-d939d4fa7601",
-						"value": "1"
-					},
-					{
-						"id": "670e6c41-3649-456f-b871-cda012476df5",
-						"value": "2"
-					}
-				]
-			},
-			"Get & Encrypt Card Number": {
-				"position": {
-					"x": 2907.2,
-					"y": -807.2
-				},
-				"isFriendlyName": true,
-				"conditionMetadata": [],
-				"countryCodePrefix": "+1"
-			},
-			"Set Payment Method to Card": {
-				"position": {
-					"x": 2685.6,
-					"y": -802.4
-				},
-				"isFriendlyName": true,
-				"dynamicParams": []
-			},
-			"Remove Failed Payment Token and Method": {
-				"position": {
-					"x": 6968.8,
-					"y": 382.4
+					"x": 6751.2,
+					"y": -298.4
 				},
 				"isFriendlyName": true,
 				"dynamicParams": []
@@ -1016,6 +847,172 @@
 					"y": 13.6
 				},
 				"isFriendlyName": true
+			},
+			"Payment Success": {
+				"position": {
+					"x": 7044,
+					"y": -211.2
+				},
+				"isFriendlyName": true
+			},
+			"Check for Customer Email": {
+				"position": {
+					"x": 7264,
+					"y": -212.8
+				},
+				"isFriendlyName": true,
+				"conditionMetadata": [
+					{
+						"id": "b3c1d0bf-a0c0-4680-8d93-c3b7ef362e11",
+						"operator": {
+							"name": "Contains",
+							"value": "Contains",
+							"shortDisplay": "contains"
+						},
+						"value": "@"
+					}
+				]
+			},
+			"Send Receipt": {
+				"position": {
+					"x": 7528,
+					"y": -475.2
+				},
+				"isFriendlyName": true,
+				"parameters": {
+					"LambdaFunctionARN": {
+						"displayName": "<<sendReceiptLambdaArn>>"
+					}
+				},
+				"dynamicMetadata": {}
+			},
+			"Receipt Timeout": {
+				"position": {
+					"x": 7784,
+					"y": 239.2
+				},
+				"isFriendlyName": true
+			},
+			"Receipt Entry Not Recognized": {
+				"position": {
+					"x": 7696,
+					"y": 25.6
+				},
+				"isFriendlyName": true
+			},
+			"a3ea896e-4f43-4677-8edd-159f677dc41e": {
+				"position": {
+					"x": 9224,
+					"y": 204.8
+				}
+			},
+			"Internal Error": {
+				"position": {
+					"x": 2711.2,
+					"y": 773.6
+				},
+				"isFriendlyName": true
+			},
+			"Remove Failed Payment Token and Method": {
+				"position": {
+					"x": 6968.8,
+					"y": 382.4
+				},
+				"isFriendlyName": true,
+				"dynamicParams": []
+			},
+			"Receipt Success": {
+				"position": {
+					"x": 7772.8,
+					"y": -560.8
+				},
+				"isFriendlyName": true
+			},
+			"Receipt Error": {
+				"position": {
+					"x": 7777.6,
+					"y": -360
+				},
+				"isFriendlyName": true
+			},
+			"Has Specified Receipt Queue": {
+				"position": {
+					"x": 7524,
+					"y": -194.4
+				},
+				"isFriendlyName": true,
+				"conditions": [],
+				"conditionMetadata": [
+					{
+						"id": "e582d99d-3280-4afa-bb6d-a8037842cb37",
+						"operator": {
+							"name": "Equals",
+							"value": "Equals",
+							"shortDisplay": "="
+						},
+						"value": "NULL"
+					}
+				]
+			},
+			"Ask to Transfer for Receipt": {
+				"position": {
+					"x": 7899.2,
+					"y": -73.6
+				},
+				"isFriendlyName": true,
+				"conditionMetadata": [
+					{
+						"id": "78b32343-c9f5-4852-bac7-b1730612c6ff",
+						"value": "1"
+					},
+					{
+						"id": "8fd2ea35-2a40-42a6-8fb7-4419ee5f1acf",
+						"value": "2"
+					}
+				]
+			},
+			"Redact Sensitive Contact Attributes": {
+				"position": {
+					"x": 8200,
+					"y": 86.4
+				},
+				"isFriendlyName": true,
+				"dynamicParams": []
+			},
+			"Transfer to Representative": {
+				"position": {
+					"x": 8680.8,
+					"y": -400.8
+				},
+				"isFriendlyName": true
+			},
+			"Transfer Error": {
+				"position": {
+					"x": 8868.8,
+					"y": -158.4
+				},
+				"isFriendlyName": true
+			},
+			"Redact Sensitive Contact Attributes Copy": {
+				"position": {
+					"x": 8241.6,
+					"y": -227.2
+				},
+				"isFriendlyName": true,
+				"dynamicParams": []
+			},
+			"Set Queue": {
+				"position": {
+					"x": 8464.8,
+					"y": -229.6
+				},
+				"isFriendlyName": true,
+				"parameters": {
+					"QueueId": {
+						"useDynamic": true
+					}
+				},
+				"useDynamic": true
 			}
 		},
 		"Annotations": [
@@ -1109,105 +1106,6 @@
 		},
 		{
 			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nThere was an error creating the payment request.\n</prosody>\n</speak>"
-			},
-			"Identifier": "Payment Request Error",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "b2786200-e897-45bd-b888-0f53246f72ed",
-				"Errors": [
-					{
-						"NextAction": "b2786200-e897-45bd-b888-0f53246f72ed",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Attributes": {
-					"PaymentRequestId": "$.External.PaymentRequestId"
-				},
-				"TargetContact": "Current"
-			},
-			"Identifier": "Record Payment Request ID",
-			"Type": "UpdateContactAttributes",
-			"Transitions": {
-				"NextAction": "Speak Amount",
-				"Errors": [
-					{
-						"NextAction": "Payment Request Error",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nA payment has been requested for the amount of $$.Attributes.PaymentAmountDue.\n</prosody>\n</speak>"
-			},
-			"Identifier": "Speak Amount",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "Check for Minimum Payment",
-				"Errors": [
-					{
-						"NextAction": "Check for Minimum Payment",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nAre you still there?\n</prosody>\n</speak>"
-			},
-			"Identifier": "Payment Amount Timeout",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "Speak Minimum Payment",
-				"Errors": [
-					{
-						"NextAction": "Speak Minimum Payment",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nThe entered amount of $$.StoredCustomerInput exceeds the total amount due of $$.Attributes.PaymentAmountDue. Please try again with a smaller amount.\n</prosody>\n</speak>"
-			},
-			"Identifier": "Payment Too Large",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "Speak Minimum Payment",
-				"Errors": [
-					{
-						"NextAction": "Speak Minimum Payment",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nThe entered amount of $$.StoredCustomerInput is less than the minimum payment of $$.Attributes.PaymentMinimumPayment. Please try again with a larger amount.\n</prosody>\n</speak>"
-			},
-			"Identifier": "Payment Too Small",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "Speak Minimum Payment",
-				"Errors": [
-					{
-						"NextAction": "Speak Minimum Payment",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
 				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nAre you still there?\n</prosody>\n</speak>"
 			},
 			"Identifier": "Payment Method Timeout",
@@ -1240,215 +1138,6 @@
 		},
 		{
 			"Parameters": {
-				"ComparisonValue": "$.StoredCustomerInput"
-			},
-			"Identifier": "Check Payment Amount",
-			"Type": "Compare",
-			"Transitions": {
-				"NextAction": "Set Payment Amount to Entered Amount",
-				"Conditions": [
-					{
-						"NextAction": "Payment Amount Timeout",
-						"Condition": {
-							"Operator": "Equals",
-							"Operands": ["Timeout"]
-						}
-					},
-					{
-						"NextAction": "Payment Too Large",
-						"Condition": {
-							"Operator": "NumberGreaterThan",
-							"Operands": ["$.Attributes.PaymentAmountDue"]
-						}
-					},
-					{
-						"NextAction": "Payment Too Small",
-						"Condition": {
-							"Operator": "NumberLessThan",
-							"Operands": ["$.Attributes.PaymentMinimumPayment"]
-						}
-					}
-				],
-				"Errors": [
-					{
-						"NextAction": "Set Payment Amount to Entered Amount",
-						"ErrorType": "NoMatchingCondition"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nAre you still there?\n</prosody>\n</speak>"
-			},
-			"Identifier": "Use Payment Method Again Timeout",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "Check Last Payment Method",
-				"Errors": [
-					{
-						"NextAction": "Check Last Payment Method",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"ComparisonValue": "$.Attributes.PaymentMethod"
-			},
-			"Identifier": "Check Last Payment Method",
-			"Type": "Compare",
-			"Transitions": {
-				"NextAction": "Ask for Payment Method",
-				"Conditions": [
-					{
-						"NextAction": "Use Card Again?",
-						"Condition": {
-							"Operator": "Equals",
-							"Operands": ["Card"]
-						}
-					},
-					{
-						"NextAction": "Use Bank Account Again?",
-						"Condition": {
-							"Operator": "Equals",
-							"Operands": ["Bank"]
-						}
-					}
-				],
-				"Errors": [
-					{
-						"NextAction": "Ask for Payment Method",
-						"ErrorType": "NoMatchingCondition"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nAre you still there?\n</prosody>\n</speak>"
-			},
-			"Identifier": "Amount Choice Timeout",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "Prompt for Payment Amount Choice",
-				"Errors": [
-					{
-						"NextAction": "Prompt for Payment Amount Choice",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nYour entry was not recognized. Please try again.\n</prosody>\n</speak>"
-			},
-			"Identifier": "Amount Choice Input Not Recognized",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "Prompt for Payment Amount Choice",
-				"Errors": [
-					{
-						"NextAction": "Prompt for Payment Amount Choice",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"ComparisonValue": "$.Attributes.PaymentMinimumPayment"
-			},
-			"Identifier": "Check for Minimum Payment",
-			"Type": "Compare",
-			"Transitions": {
-				"NextAction": "Ask for Payment Method",
-				"Conditions": [
-					{
-						"NextAction": "Ask for Payment Method",
-						"Condition": {
-							"Operator": "Equals",
-							"Operands": ["PaymentAmountDue"]
-						}
-					},
-					{
-						"NextAction": "Prompt for Payment Amount Choice",
-						"Condition": {
-							"Operator": "NumberGreaterThan",
-							"Operands": ["0"]
-						}
-					}
-				],
-				"Errors": [
-					{
-						"NextAction": "Ask for Payment Method",
-						"ErrorType": "NoMatchingCondition"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nYou are permitted to make a partial payment of at least $$.Attributes.PaymentMinimumPayment.\n</prosody>\n</speak>"
-			},
-			"Identifier": "Speak Minimum Payment",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "Get Payment Amount",
-				"Errors": [
-					{
-						"NextAction": "Get Payment Amount",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"StoreInput": "False",
-				"InputTimeLimitSeconds": "5",
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nTo pay the amount in full, press 1.\nTo pay a partial amount, press 2.\n</prosody>\n</speak>"
-			},
-			"Identifier": "Prompt for Payment Amount Choice",
-			"Type": "GetParticipantInput",
-			"Transitions": {
-				"NextAction": "Amount Choice Input Not Recognized",
-				"Conditions": [
-					{
-						"NextAction": "Set Payment Amount to Full Amount",
-						"Condition": {
-							"Operator": "Equals",
-							"Operands": ["1"]
-						}
-					},
-					{
-						"NextAction": "Speak Minimum Payment",
-						"Condition": {
-							"Operator": "Equals",
-							"Operands": ["2"]
-						}
-					}
-				],
-				"Errors": [
-					{
-						"NextAction": "Amount Choice Timeout",
-						"ErrorType": "InputTimeLimitExceeded"
-					},
-					{
-						"NextAction": "Amount Choice Input Not Recognized",
-						"ErrorType": "NoMatchingCondition"
-					},
-					{
-						"NextAction": "Amount Choice Input Not Recognized",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
 				"Attributes": {
 					"PaymentMethod": "Bank"
 				},
@@ -1456,22 +1145,6 @@
 			},
 			"Identifier": "Set Payment Method to Bank",
 			"Type": "UpdateContactAttributes",
-			"Transitions": {
-				"NextAction": "Get & Encrypt Account Number",
-				"Errors": [
-					{
-						"NextAction": "Get & Encrypt Account Number",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nAre you still there?\n</prosody>\n</speak>"
-			},
-			"Identifier": "Account Number Timeout",
-			"Type": "MessageParticipant",
 			"Transitions": {
 				"NextAction": "Get & Encrypt Account Number",
 				"Errors": [
@@ -1591,309 +1264,6 @@
 		},
 		{
 			"Parameters": {
-				"ComparisonValue": "$.Attributes.Email"
-			},
-			"Identifier": "Check for Customer Email",
-			"Type": "Compare",
-			"Transitions": {
-				"NextAction": "Has Specified Receipt Queue",
-				"Conditions": [
-					{
-						"NextAction": "Send Receipt",
-						"Condition": {
-							"Operator": "TextContains",
-							"Operands": ["@"]
-						}
-					}
-				],
-				"Errors": [
-					{
-						"NextAction": "Has Specified Receipt Queue",
-						"ErrorType": "NoMatchingCondition"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Attributes": {
-					"EncryptedCardNumber": "REDACTED",
-					"EncryptedAccountNumber": "REDACTED",
-					"ExpirationDate": "REDACTED"
-				},
-				"TargetContact": "Current"
-			},
-			"Identifier": "Redact Sensitive Contact Attributes Copy",
-			"Type": "UpdateContactAttributes",
-			"Transitions": {
-				"NextAction": "Set Queue",
-				"Errors": [
-					{
-						"NextAction": "Set Queue",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"ComparisonValue": "$.FlowAttributes.ReceiptQueueId"
-			},
-			"Identifier": "Has Specified Receipt Queue",
-			"Type": "Compare",
-			"Transitions": {
-				"NextAction": "Ask to Transfer for Receipt",
-				"Conditions": [
-					{
-						"NextAction": "Redact Sensitive Contact Attributes",
-						"Condition": {
-							"Operator": "Equals",
-							"Operands": ["NULL"]
-						}
-					}
-				],
-				"Errors": [
-					{
-						"NextAction": "Ask to Transfer for Receipt",
-						"ErrorType": "NoMatchingCondition"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nAre you still there?\n</prosody>\n</speak>"
-			},
-			"Identifier": "Receipt Timeout",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "Ask to Transfer for Receipt",
-				"Errors": [
-					{
-						"NextAction": "Ask to Transfer for Receipt",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nYour entry was not recognized. Please try again.\n</prosody>\n</speak>"
-			},
-			"Identifier": "Receipt Entry Not Recognized",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "Ask to Transfer for Receipt",
-				"Errors": [
-					{
-						"NextAction": "Ask to Transfer for Receipt",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"StoreInput": "False",
-				"InputTimeLimitSeconds": "5",
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nTo transfer to a representative and receive a receipt for your payment, press 1.\nTo continue without a receipt, press 2.\n</prosody>\n</speak>"
-			},
-			"Identifier": "Ask to Transfer for Receipt",
-			"Type": "GetParticipantInput",
-			"Transitions": {
-				"NextAction": "Receipt Entry Not Recognized",
-				"Conditions": [
-					{
-						"NextAction": "Redact Sensitive Contact Attributes Copy",
-						"Condition": {
-							"Operator": "Equals",
-							"Operands": ["1"]
-						}
-					},
-					{
-						"NextAction": "Redact Sensitive Contact Attributes",
-						"Condition": {
-							"Operator": "Equals",
-							"Operands": ["2"]
-						}
-					}
-				],
-				"Errors": [
-					{
-						"NextAction": "Receipt Timeout",
-						"ErrorType": "InputTimeLimitExceeded"
-					},
-					{
-						"NextAction": "Receipt Entry Not Recognized",
-						"ErrorType": "NoMatchingCondition"
-					},
-					{
-						"NextAction": "Receipt Entry Not Recognized",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nA receipt has been sent to your email address, $.Attributes.['Email'].\n</prosody>\n</speak>"
-			},
-			"Identifier": "Receipt Success",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "Redact Sensitive Contact Attributes",
-				"Errors": [
-					{
-						"NextAction": "Redact Sensitive Contact Attributes",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"LambdaFunctionARN": "<<sendReceiptLambdaArn>>",
-				"InvocationTimeLimitSeconds": "8",
-				"ResponseValidation": {
-					"ResponseType": "JSON"
-				}
-			},
-			"Identifier": "Send Receipt",
-			"Type": "InvokeLambdaFunction",
-			"Transitions": {
-				"NextAction": "Receipt Success",
-				"Errors": [
-					{
-						"NextAction": "Receipt Error",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nThere was an error sending the receipt to your email address, $.Attributes.['Email']. Please contact customer support to receive a receipt for this transaction.\n</prosody>\n</speak>"
-			},
-			"Identifier": "Receipt Error",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "Redact Sensitive Contact Attributes",
-				"Errors": [
-					{
-						"NextAction": "Redact Sensitive Contact Attributes",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {},
-			"Identifier": "a3ea896e-4f43-4677-8edd-159f677dc41e",
-			"Type": "EndFlowModuleExecution",
-			"Transitions": {}
-		},
-		{
-			"Parameters": {},
-			"Identifier": "Transfer to Representative",
-			"Type": "TransferContactToQueue",
-			"Transitions": {
-				"NextAction": "Transfer Error",
-				"Errors": [
-					{
-						"NextAction": "Transfer Error",
-						"ErrorType": "QueueAtCapacity"
-					},
-					{
-						"NextAction": "Transfer Error",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"QueueId": "$.FlowAttributes.ReceiptQueueId"
-			},
-			"Identifier": "Set Queue",
-			"Type": "UpdateContactTargetQueue",
-			"Transitions": {
-				"NextAction": "Transfer to Representative",
-				"Errors": [
-					{
-						"NextAction": "Transfer Error",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nAn error prevented us from connecting you to a representative. Please try calling the customer service number directly in order to receive a receipt.\n</prosody>\n</speak>"
-			},
-			"Identifier": "Transfer Error",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "a3ea896e-4f43-4677-8edd-159f677dc41e",
-				"Errors": [
-					{
-						"NextAction": "a3ea896e-4f43-4677-8edd-159f677dc41e",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"FlowLoggingBehavior": "Disabled"
-			},
-			"Identifier": "87859db2-400d-410b-8818-05c8ae4869aa",
-			"Type": "UpdateFlowLoggingBehavior",
-			"Transitions": {
-				"NextAction": "Set Receipt Queue ID"
-			}
-		},
-		{
-			"Parameters": {
-				"LambdaFunctionARN": "<<createPaymentRequestLambdaArn>>",
-				"InvocationTimeLimitSeconds": "8",
-				"ResponseValidation": {
-					"ResponseType": "JSON"
-				}
-			},
-			"Identifier": "Create Payment Request",
-			"Type": "InvokeLambdaFunction",
-			"Transitions": {
-				"NextAction": "Record Payment Request ID",
-				"Errors": [
-					{
-						"NextAction": "Payment Request Error",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"FlowAttributes": {
-					"ReceiptQueueId": {
-						"Value": "<<receiptQueueId>>"
-					}
-				}
-			},
-			"Identifier": "Set Receipt Queue ID",
-			"Type": "UpdateFlowAttributes",
-			"Transitions": {
-				"NextAction": "Create Payment Request",
-				"Errors": [
-					{
-						"NextAction": "Create Payment Request",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
 				"ComparisonValue": "$.StoredCustomerInput"
 			},
 			"Identifier": "Card Number Timeout Check",
@@ -1977,31 +1347,6 @@
 				"Errors": [
 					{
 						"NextAction": "Card Number Validation Error",
-						"ErrorType": "NoMatchingCondition"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"ComparisonValue": "$.StoredCustomerInput"
-			},
-			"Identifier": "Account Number Timeout Check",
-			"Type": "Compare",
-			"Transitions": {
-				"NextAction": "Validate Account Number",
-				"Conditions": [
-					{
-						"NextAction": "Account Number Timeout",
-						"Condition": {
-							"Operator": "Equals",
-							"Operands": ["Timeout"]
-						}
-					}
-				],
-				"Errors": [
-					{
-						"NextAction": "Validate Account Number",
 						"ErrorType": "NoMatchingCondition"
 					}
 				]
@@ -2281,123 +1626,6 @@
 		},
 		{
 			"Parameters": {
-				"StoreInput": "True",
-				"InputTimeLimitSeconds": "5",
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nPlease enter the amount you would like to pay in whole dollars, followed by the pound key.\n</prosody>\n</speak>",
-				"DTMFConfiguration": {
-					"DisableCancelKey": "False",
-					"InputTerminationSequence": "#"
-				},
-				"InputValidation": {
-					"CustomValidation": {
-						"MaximumLength": "20"
-					}
-				}
-			},
-			"Identifier": "Get Payment Amount",
-			"Type": "GetParticipantInput",
-			"Transitions": {
-				"NextAction": "Check Payment Amount",
-				"Errors": [
-					{
-						"NextAction": "Internal Error",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Attributes": {
-					"PaymentAmount": "$.StoredCustomerInput"
-				},
-				"TargetContact": "Current"
-			},
-			"Identifier": "Set Payment Amount to Entered Amount",
-			"Type": "UpdateContactAttributes",
-			"Transitions": {
-				"NextAction": "Check Last Payment Method",
-				"Errors": [
-					{
-						"NextAction": "Internal Error",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Attributes": {
-					"PaymentAmount": "$.Customer.Attributes.PaymentAmountDue"
-				},
-				"TargetContact": "Current"
-			},
-			"Identifier": "Set Payment Amount to Full Amount",
-			"Type": "UpdateContactAttributes",
-			"Transitions": {
-				"NextAction": "Check Last Payment Method",
-				"Errors": [
-					{
-						"NextAction": "Internal Error",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"StoreInput": "True",
-				"InputTimeLimitSeconds": "10",
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nPlease enter your bank account number followed by the pound key when complete.\n</prosody>\n</speak>",
-				"DTMFConfiguration": {
-					"DisableCancelKey": "False",
-					"InputTerminationSequence": "#"
-				},
-				"InputValidation": {
-					"CustomValidation": {
-						"MaximumLength": "25"
-					}
-				},
-				"InputEncryption": {
-					"EncryptionKeyId": "<<amazonConnectSecurityKeyId>>",
-					"Key": "<<amazonConnectSecurityKeyCertificateContent>>"
-				}
-			},
-			"Identifier": "Get & Encrypt Account Number",
-			"Type": "GetParticipantInput",
-			"Transitions": {
-				"NextAction": "Account Number Timeout Check",
-				"Errors": [
-					{
-						"NextAction": "Internal Error",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Attributes": {
-					"EncryptedCardNumber": "REDACTED",
-					"EncryptedAccountNumber": "REDACTED",
-					"ExpirationDate": "REDACTED"
-				},
-				"TargetContact": "Current"
-			},
-			"Identifier": "Redact Sensitive Contact Attributes",
-			"Type": "UpdateContactAttributes",
-			"Transitions": {
-				"NextAction": "a3ea896e-4f43-4677-8edd-159f677dc41e",
-				"Errors": [
-					{
-						"NextAction": "a3ea896e-4f43-4677-8edd-159f677dc41e",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
 				"Attributes": {
 					"EncryptedCardNumber": "$.StoredCustomerInput"
 				},
@@ -2436,133 +1664,6 @@
 		},
 		{
 			"Parameters": {
-				"Attributes": {
-					"RoutingNumber": "$.StoredCustomerInput"
-				},
-				"TargetContact": "Current"
-			},
-			"Identifier": "Store Routing Number",
-			"Type": "UpdateContactAttributes",
-			"Transitions": {
-				"NextAction": "Tokenize Transaction",
-				"Errors": [
-					{
-						"NextAction": "Internal Error",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Attributes": {
-					"ExpirationDate": "$.StoredCustomerInput"
-				},
-				"TargetContact": "Current"
-			},
-			"Identifier": "Store Expiration Date",
-			"Type": "UpdateContactAttributes",
-			"Transitions": {
-				"NextAction": "Tokenize Transaction",
-				"Errors": [
-					{
-						"NextAction": "Internal Error",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nWe're sorry, an error has occurred that prevents us from collecting the payment.\n</prosody>\n</speak>"
-			},
-			"Identifier": "Internal Error",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "Redact Sensitive Contact Attributes",
-				"Errors": [
-					{
-						"NextAction": "Redact Sensitive Contact Attributes",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nYour payment was processed successfully.\n</prosody>\n</speak>"
-			},
-			"Identifier": "Payment Success",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "Check for Customer Email",
-				"Errors": [
-					{
-						"NextAction": "Check for Customer Email",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"LambdaFunctionARN": "<<tokenizeTransactionLambdaArn>>",
-				"InvocationTimeLimitSeconds": "8",
-				"ResponseValidation": {
-					"ResponseType": "JSON"
-				}
-			},
-			"Identifier": "Tokenize Transaction",
-			"Type": "InvokeLambdaFunction",
-			"Transitions": {
-				"NextAction": "Check for Tokenize Error",
-				"Errors": [
-					{
-						"NextAction": "Payment Validation Error",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nThere was a problem validating your $.Attributes.PaymentMethod information.\n</prosody>\n</speak>"
-			},
-			"Identifier": "Payment Validation Error",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "Remove Failed Payment Token and Method",
-				"Errors": [
-					{
-						"NextAction": "Remove Failed Payment Token and Method",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Attributes": {
-					"TransactionId": "$.External.TransactionId",
-					"PaymentMethodEndingDigits": "$.External.PaymentMethodEndingDigits",
-					"TransactionIds": "$.External.TransactionIds"
-				},
-				"TargetContact": "Current"
-			},
-			"Identifier": "Record Transaction Attributes",
-			"Type": "UpdateContactAttributes",
-			"Transitions": {
-				"NextAction": "Payment Success",
-				"Errors": [
-					{
-						"NextAction": "Payment Success",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
 				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nThe payment failed to submit because of the following error:\n\n$.External.Error\n\nYou have not been charged.\n</prosody>\n</speak>"
 			},
 			"Identifier": "Speak Payment Submission Error",
@@ -2579,24 +1680,214 @@
 		},
 		{
 			"Parameters": {
-				"ComparisonValue": "$.External.Error"
+				"StoreInput": "True",
+				"InputTimeLimitSeconds": "10",
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nPlease enter your card number followed by the pound key when complete.\n</prosody>\n</speak>",
+				"DTMFConfiguration": {
+					"DisableCancelKey": "False",
+					"InputTerminationSequence": "#"
+				},
+				"InputValidation": {
+					"CustomValidation": {
+						"MaximumLength": "25"
+					}
+				},
+				"InputEncryption": {
+					"EncryptionKeyId": "<<amazonConnectSecurityKeyId>>",
+					"Key": "<<amazonConnectSecurityKeyCertificateContent>>"
+				}
 			},
-			"Identifier": "Check for Tokenize Error",
+			"Identifier": "Get & Encrypt Card Number",
+			"Type": "GetParticipantInput",
+			"Transitions": {
+				"NextAction": "Card Number Timeout Check",
+				"Errors": [
+					{
+						"NextAction": "Internal Error",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Attributes": {
+					"PaymentMethod": "Card"
+				},
+				"TargetContact": "Current"
+			},
+			"Identifier": "Set Payment Method to Card",
+			"Type": "UpdateContactAttributes",
+			"Transitions": {
+				"NextAction": "Get & Encrypt Card Number",
+				"Errors": [
+					{
+						"NextAction": "Get & Encrypt Card Number",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"FlowLoggingBehavior": "Disabled"
+			},
+			"Identifier": "87859db2-400d-410b-8818-05c8ae4869aa",
+			"Type": "UpdateFlowLoggingBehavior",
+			"Transitions": {
+				"NextAction": "Set Receipt Queue ID"
+			}
+		},
+		{
+			"Parameters": {
+				"FlowAttributes": {
+					"ReceiptQueueId": {
+						"Value": "<<receiptQueueId>>"
+					}
+				}
+			},
+			"Identifier": "Set Receipt Queue ID",
+			"Type": "UpdateFlowAttributes",
+			"Transitions": {
+				"NextAction": "Create Payment Request",
+				"Errors": [
+					{
+						"NextAction": "Create Payment Request",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nThere was an error creating the payment request.\n</prosody>\n</speak>"
+			},
+			"Identifier": "Payment Request Error",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "b2786200-e897-45bd-b888-0f53246f72ed",
+				"Errors": [
+					{
+						"NextAction": "b2786200-e897-45bd-b888-0f53246f72ed",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"LambdaFunctionARN": "<<createPaymentRequestLambdaArn>>",
+				"InvocationTimeLimitSeconds": "8",
+				"ResponseValidation": {
+					"ResponseType": "JSON"
+				}
+			},
+			"Identifier": "Create Payment Request",
+			"Type": "InvokeLambdaFunction",
+			"Transitions": {
+				"NextAction": "Record Payment Request ID",
+				"Errors": [
+					{
+						"NextAction": "Payment Request Error",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Attributes": {
+					"C3PaymentRequestId": "$.External.C3PaymentRequestId"
+				},
+				"TargetContact": "Current"
+			},
+			"Identifier": "Record Payment Request ID",
+			"Type": "UpdateContactAttributes",
+			"Transitions": {
+				"NextAction": "Speak Amount",
+				"Errors": [
+					{
+						"NextAction": "Payment Request Error",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nAre you still there?\n</prosody>\n</speak>"
+			},
+			"Identifier": "Amount Choice Timeout",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "Prompt for Payment Amount Choice",
+				"Errors": [
+					{
+						"NextAction": "Prompt for Payment Amount Choice",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nYour entry was not recognized. Please try again.\n</prosody>\n</speak>"
+			},
+			"Identifier": "Amount Choice Input Not Recognized",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "Prompt for Payment Amount Choice",
+				"Errors": [
+					{
+						"NextAction": "Prompt for Payment Amount Choice",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nA payment has been requested for the amount of $$.Attributes.C3PaymentAmountDue.\n</prosody>\n</speak>"
+			},
+			"Identifier": "Speak Amount",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "Check for Minimum Payment",
+				"Errors": [
+					{
+						"NextAction": "Check for Minimum Payment",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"ComparisonValue": "$.Attributes.C3PaymentMinimumPayment"
+			},
+			"Identifier": "Check for Minimum Payment",
 			"Type": "Compare",
 			"Transitions": {
-				"NextAction": "Speak Validation Error",
+				"NextAction": "Ask for Payment Method",
 				"Conditions": [
 					{
-						"NextAction": "Record Token",
+						"NextAction": "Ask for Payment Method",
 						"Condition": {
 							"Operator": "Equals",
-							"Operands": ["NULL"]
+							"Operands": ["C3PaymentAmountDue"]
+						}
+					},
+					{
+						"NextAction": "Prompt for Payment Amount Choice",
+						"Condition": {
+							"Operator": "NumberGreaterThan",
+							"Operands": ["0"]
 						}
 					}
 				],
 				"Errors": [
 					{
-						"NextAction": "Speak Validation Error",
+						"NextAction": "Ask for Payment Method",
 						"ErrorType": "NoMatchingCondition"
 					}
 				]
@@ -2604,15 +1895,187 @@
 		},
 		{
 			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nThe payment failed because of the following error:\n\n$.External.Error\n</prosody>\n</speak>"
+				"StoreInput": "False",
+				"InputTimeLimitSeconds": "5",
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nTo pay the amount in full, press 1.\nTo pay a partial amount, press 2.\n</prosody>\n</speak>"
 			},
-			"Identifier": "Speak Validation Error",
-			"Type": "MessageParticipant",
+			"Identifier": "Prompt for Payment Amount Choice",
+			"Type": "GetParticipantInput",
 			"Transitions": {
-				"NextAction": "Remove Failed Payment Token and Method",
+				"NextAction": "Amount Choice Input Not Recognized",
+				"Conditions": [
+					{
+						"NextAction": "Set Payment Amount to Full Amount",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": ["1"]
+						}
+					},
+					{
+						"NextAction": "Speak Minimum Payment",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": ["2"]
+						}
+					}
+				],
 				"Errors": [
 					{
-						"NextAction": "Remove Failed Payment Token and Method",
+						"NextAction": "Amount Choice Timeout",
+						"ErrorType": "InputTimeLimitExceeded"
+					},
+					{
+						"NextAction": "Amount Choice Input Not Recognized",
+						"ErrorType": "NoMatchingCondition"
+					},
+					{
+						"NextAction": "Amount Choice Input Not Recognized",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"StoreInput": "True",
+				"InputTimeLimitSeconds": "5",
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nPlease enter the amount you would like to pay in whole dollars, followed by the pound key.\n</prosody>\n</speak>",
+				"DTMFConfiguration": {
+					"DisableCancelKey": "False",
+					"InputTerminationSequence": "#"
+				},
+				"InputValidation": {
+					"CustomValidation": {
+						"MaximumLength": "20"
+					}
+				}
+			},
+			"Identifier": "Get Payment Amount",
+			"Type": "GetParticipantInput",
+			"Transitions": {
+				"NextAction": "Check Payment Amount",
+				"Errors": [
+					{
+						"NextAction": "Internal Error",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nAre you still there?\n</prosody>\n</speak>"
+			},
+			"Identifier": "Payment Amount Timeout",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "Speak Minimum Payment",
+				"Errors": [
+					{
+						"NextAction": "Speak Minimum Payment",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nThe entered amount of $$.StoredCustomerInput exceeds the total amount due of $$.Attributes.C3PaymentAmountDue. Please try again with a smaller amount.\n</prosody>\n</speak>"
+			},
+			"Identifier": "Payment Too Large",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "Speak Minimum Payment",
+				"Errors": [
+					{
+						"NextAction": "Speak Minimum Payment",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nYou are permitted to make a partial payment of at least $$.Attributes.PaymentMinimumPayment.\n</prosody>\n</speak>"
+			},
+			"Identifier": "Speak Minimum Payment",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "Get Payment Amount",
+				"Errors": [
+					{
+						"NextAction": "Get Payment Amount",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nThe entered amount of $$.StoredCustomerInput is less than the minimum payment of $$.Attributes.C3PaymentMinimumPayment. Please try again with a larger amount.\n</prosody>\n</speak>"
+			},
+			"Identifier": "Payment Too Small",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "Speak Minimum Payment",
+				"Errors": [
+					{
+						"NextAction": "Speak Minimum Payment",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"ComparisonValue": "$.StoredCustomerInput"
+			},
+			"Identifier": "Check Payment Amount",
+			"Type": "Compare",
+			"Transitions": {
+				"NextAction": "Set Payment Amount to Entered Amount",
+				"Conditions": [
+					{
+						"NextAction": "Payment Amount Timeout",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": ["Timeout"]
+						}
+					},
+					{
+						"NextAction": "Payment Too Large",
+						"Condition": {
+							"Operator": "NumberGreaterThan",
+							"Operands": ["$.Attributes.C3PaymentAmountDue"]
+						}
+					},
+					{
+						"NextAction": "Payment Too Small",
+						"Condition": {
+							"Operator": "NumberLessThan",
+							"Operands": ["$.Attributes.C3PaymentMinimumPayment"]
+						}
+					}
+				],
+				"Errors": [
+					{
+						"NextAction": "Set Payment Amount to Entered Amount",
+						"ErrorType": "NoMatchingCondition"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nAre you still there?\n</prosody>\n</speak>"
+			},
+			"Identifier": "Use Payment Method Again Timeout",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "Check Last Payment Method",
+				"Errors": [
+					{
+						"NextAction": "Check Last Payment Method",
 						"ErrorType": "NoMatchingError"
 					}
 				]
@@ -2704,6 +2167,305 @@
 		},
 		{
 			"Parameters": {
+				"StoreInput": "False",
+				"InputTimeLimitSeconds": "5",
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nTo pay with a credit or debit card, press 1.\nTo pay directly with your bank account, press 2.\n</prosody>\n</speak>"
+			},
+			"Identifier": "Ask for Payment Method",
+			"Type": "GetParticipantInput",
+			"Transitions": {
+				"NextAction": "Method Input Not Recognized",
+				"Conditions": [
+					{
+						"NextAction": "Set Payment Method to Card",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": ["1"]
+						}
+					},
+					{
+						"NextAction": "Set Payment Method to Bank",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": ["2"]
+						}
+					}
+				],
+				"Errors": [
+					{
+						"NextAction": "Payment Method Timeout",
+						"ErrorType": "InputTimeLimitExceeded"
+					},
+					{
+						"NextAction": "Method Input Not Recognized",
+						"ErrorType": "NoMatchingCondition"
+					},
+					{
+						"NextAction": "Method Input Not Recognized",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Attributes": {
+					"C3PaymentAmount": "$.Customer.Attributes.C3PaymentAmountDue"
+				},
+				"TargetContact": "Current"
+			},
+			"Identifier": "Set Payment Amount to Full Amount",
+			"Type": "UpdateContactAttributes",
+			"Transitions": {
+				"NextAction": "Check Last Payment Method",
+				"Errors": [
+					{
+						"NextAction": "Internal Error",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Attributes": {
+					"C3PaymentAmount": "$.StoredCustomerInput"
+				},
+				"TargetContact": "Current"
+			},
+			"Identifier": "Set Payment Amount to Entered Amount",
+			"Type": "UpdateContactAttributes",
+			"Transitions": {
+				"NextAction": "Check Last Payment Method",
+				"Errors": [
+					{
+						"NextAction": "Internal Error",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"ComparisonValue": "$.Attributes.PaymentMethod"
+			},
+			"Identifier": "Check Last Payment Method",
+			"Type": "Compare",
+			"Transitions": {
+				"NextAction": "Ask for Payment Method",
+				"Conditions": [
+					{
+						"NextAction": "Use Card Again?",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": ["Card"]
+						}
+					},
+					{
+						"NextAction": "Use Bank Account Again?",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": ["Bank"]
+						}
+					}
+				],
+				"Errors": [
+					{
+						"NextAction": "Ask for Payment Method",
+						"ErrorType": "NoMatchingCondition"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"ComparisonValue": "$.StoredCustomerInput"
+			},
+			"Identifier": "Account Number Timeout Check",
+			"Type": "Compare",
+			"Transitions": {
+				"NextAction": "Validate Account Number",
+				"Conditions": [
+					{
+						"NextAction": "Account Number Timeout",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": ["Timeout"]
+						}
+					}
+				],
+				"Errors": [
+					{
+						"NextAction": "Validate Account Number",
+						"ErrorType": "NoMatchingCondition"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"StoreInput": "True",
+				"InputTimeLimitSeconds": "10",
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nPlease enter your bank account number followed by the pound key when complete.\n</prosody>\n</speak>",
+				"DTMFConfiguration": {
+					"DisableCancelKey": "False",
+					"InputTerminationSequence": "#"
+				},
+				"InputValidation": {
+					"CustomValidation": {
+						"MaximumLength": "25"
+					}
+				},
+				"InputEncryption": {
+					"EncryptionKeyId": "<<amazonConnectSecurityKeyId>>",
+					"Key": "<<amazonConnectSecurityKeyCertificateContent>>"
+				}
+			},
+			"Identifier": "Get & Encrypt Account Number",
+			"Type": "GetParticipantInput",
+			"Transitions": {
+				"NextAction": "Account Number Timeout Check",
+				"Errors": [
+					{
+						"NextAction": "Internal Error",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nAre you still there?\n</prosody>\n</speak>"
+			},
+			"Identifier": "Account Number Timeout",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "Get & Encrypt Account Number",
+				"Errors": [
+					{
+						"NextAction": "Get & Encrypt Account Number",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Attributes": {
+					"RoutingNumber": "$.StoredCustomerInput"
+				},
+				"TargetContact": "Current"
+			},
+			"Identifier": "Store Routing Number",
+			"Type": "UpdateContactAttributes",
+			"Transitions": {
+				"NextAction": "Tokenize Transaction",
+				"Errors": [
+					{
+						"NextAction": "Internal Error",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Attributes": {
+					"ExpirationDate": "$.StoredCustomerInput"
+				},
+				"TargetContact": "Current"
+			},
+			"Identifier": "Store Expiration Date",
+			"Type": "UpdateContactAttributes",
+			"Transitions": {
+				"NextAction": "Tokenize Transaction",
+				"Errors": [
+					{
+						"NextAction": "Internal Error",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nThere was a problem validating your $.Attributes.PaymentMethod information.\n</prosody>\n</speak>"
+			},
+			"Identifier": "Payment Validation Error",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "Remove Failed Payment Token and Method",
+				"Errors": [
+					{
+						"NextAction": "Remove Failed Payment Token and Method",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nThe payment failed because of the following error:\n\n$.External.Error\n</prosody>\n</speak>"
+			},
+			"Identifier": "Speak Validation Error",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "Remove Failed Payment Token and Method",
+				"Errors": [
+					{
+						"NextAction": "Remove Failed Payment Token and Method",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"LambdaFunctionARN": "<<tokenizeTransactionLambdaArn>>",
+				"InvocationTimeLimitSeconds": "8",
+				"ResponseValidation": {
+					"ResponseType": "JSON"
+				}
+			},
+			"Identifier": "Tokenize Transaction",
+			"Type": "InvokeLambdaFunction",
+			"Transitions": {
+				"NextAction": "Check for Tokenize Error",
+				"Errors": [
+					{
+						"NextAction": "Payment Validation Error",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"ComparisonValue": "$.External.Error"
+			},
+			"Identifier": "Check for Tokenize Error",
+			"Type": "Compare",
+			"Transitions": {
+				"NextAction": "Speak Validation Error",
+				"Conditions": [
+					{
+						"NextAction": "Record Token",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": ["NULL"]
+						}
+					}
+				],
+				"Errors": [
+					{
+						"NextAction": "Speak Validation Error",
+						"ErrorType": "NoMatchingCondition"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
 				"Attributes": {
 					"PaymentToken": "$.External.PaymentToken"
 				},
@@ -2748,111 +2510,20 @@
 		},
 		{
 			"Parameters": {
-				"StoreInput": "False",
-				"InputTimeLimitSeconds": "5",
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nTo pay with a credit or debit card, press 1.\nTo pay directly with your bank account, press 2.\n</prosody>\n</speak>"
-			},
-			"Identifier": "Ask for Payment Method",
-			"Type": "GetParticipantInput",
-			"Transitions": {
-				"NextAction": "Method Input Not Recognized",
-				"Conditions": [
-					{
-						"NextAction": "Set Payment Method to Card",
-						"Condition": {
-							"Operator": "Equals",
-							"Operands": ["1"]
-						}
-					},
-					{
-						"NextAction": "Set Payment Method to Bank",
-						"Condition": {
-							"Operator": "Equals",
-							"Operands": ["2"]
-						}
-					}
-				],
-				"Errors": [
-					{
-						"NextAction": "Payment Method Timeout",
-						"ErrorType": "InputTimeLimitExceeded"
-					},
-					{
-						"NextAction": "Method Input Not Recognized",
-						"ErrorType": "NoMatchingCondition"
-					},
-					{
-						"NextAction": "Method Input Not Recognized",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"StoreInput": "True",
-				"InputTimeLimitSeconds": "10",
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nPlease enter your card number followed by the pound key when complete.\n</prosody>\n</speak>",
-				"DTMFConfiguration": {
-					"DisableCancelKey": "False",
-					"InputTerminationSequence": "#"
-				},
-				"InputValidation": {
-					"CustomValidation": {
-						"MaximumLength": "25"
-					}
-				},
-				"InputEncryption": {
-					"EncryptionKeyId": "<<amazonConnectSecurityKeyId>>",
-					"Key": "<<amazonConnectSecurityKeyCertificateContent>>"
-				}
-			},
-			"Identifier": "Get & Encrypt Card Number",
-			"Type": "GetParticipantInput",
-			"Transitions": {
-				"NextAction": "Card Number Timeout Check",
-				"Errors": [
-					{
-						"NextAction": "Internal Error",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
 				"Attributes": {
-					"PaymentMethod": "Card"
+					"TransactionId": "$.External.TransactionId",
+					"PaymentMethodEndingDigits": "$.External.PaymentMethodEndingDigits",
+					"TransactionIds": "$.External.TransactionIds"
 				},
 				"TargetContact": "Current"
 			},
-			"Identifier": "Set Payment Method to Card",
+			"Identifier": "Record Transaction Attributes",
 			"Type": "UpdateContactAttributes",
 			"Transitions": {
-				"NextAction": "Get & Encrypt Card Number",
+				"NextAction": "Payment Success",
 				"Errors": [
 					{
-						"NextAction": "Get & Encrypt Card Number",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Attributes": {
-					"PaymentToken": "NULL",
-					"PaymentMethod": "NULL"
-				},
-				"TargetContact": "Current"
-			},
-			"Identifier": "Remove Failed Payment Token and Method",
-			"Type": "UpdateContactAttributes",
-			"Transitions": {
-				"NextAction": "Redact Sensitive Contact Attributes",
-				"Errors": [
-					{
-						"NextAction": "Redact Sensitive Contact Attributes",
+						"NextAction": "Payment Success",
 						"ErrorType": "NoMatchingError"
 					}
 				]
@@ -2889,6 +2560,332 @@
 				"Errors": [
 					{
 						"NextAction": "Remove Failed Payment Token and Method",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nYour payment was processed successfully.\n</prosody>\n</speak>"
+			},
+			"Identifier": "Payment Success",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "Check for Customer Email",
+				"Errors": [
+					{
+						"NextAction": "Check for Customer Email",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"ComparisonValue": "$.Attributes.C3ContactEmail"
+			},
+			"Identifier": "Check for Customer Email",
+			"Type": "Compare",
+			"Transitions": {
+				"NextAction": "Has Specified Receipt Queue",
+				"Conditions": [
+					{
+						"NextAction": "Send Receipt",
+						"Condition": {
+							"Operator": "TextContains",
+							"Operands": ["@"]
+						}
+					}
+				],
+				"Errors": [
+					{
+						"NextAction": "Has Specified Receipt Queue",
+						"ErrorType": "NoMatchingCondition"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"LambdaFunctionARN": "<<sendReceiptLambdaArn>>",
+				"InvocationTimeLimitSeconds": "8",
+				"ResponseValidation": {
+					"ResponseType": "JSON"
+				}
+			},
+			"Identifier": "Send Receipt",
+			"Type": "InvokeLambdaFunction",
+			"Transitions": {
+				"NextAction": "Receipt Success",
+				"Errors": [
+					{
+						"NextAction": "Receipt Error",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nAre you still there?\n</prosody>\n</speak>"
+			},
+			"Identifier": "Receipt Timeout",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "Ask to Transfer for Receipt",
+				"Errors": [
+					{
+						"NextAction": "Ask to Transfer for Receipt",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nYour entry was not recognized. Please try again.\n</prosody>\n</speak>"
+			},
+			"Identifier": "Receipt Entry Not Recognized",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "Ask to Transfer for Receipt",
+				"Errors": [
+					{
+						"NextAction": "Ask to Transfer for Receipt",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {},
+			"Identifier": "a3ea896e-4f43-4677-8edd-159f677dc41e",
+			"Type": "EndFlowModuleExecution",
+			"Transitions": {}
+		},
+		{
+			"Parameters": {
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nWe're sorry, an error has occurred that prevents us from collecting the payment.\n</prosody>\n</speak>"
+			},
+			"Identifier": "Internal Error",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "Redact Sensitive Contact Attributes",
+				"Errors": [
+					{
+						"NextAction": "Redact Sensitive Contact Attributes",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Attributes": {
+					"PaymentToken": "NULL",
+					"PaymentMethod": "NULL"
+				},
+				"TargetContact": "Current"
+			},
+			"Identifier": "Remove Failed Payment Token and Method",
+			"Type": "UpdateContactAttributes",
+			"Transitions": {
+				"NextAction": "Redact Sensitive Contact Attributes",
+				"Errors": [
+					{
+						"NextAction": "Redact Sensitive Contact Attributes",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nA receipt has been sent to your email address, $.Attributes.['C3ContactEmail'].\n</prosody>\n</speak>"
+			},
+			"Identifier": "Receipt Success",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "Redact Sensitive Contact Attributes",
+				"Errors": [
+					{
+						"NextAction": "Redact Sensitive Contact Attributes",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nThere was an error sending the receipt to your email address, $.Attributes.['C3ContactEmail']. Please contact customer support to receive a receipt for this transaction.\n</prosody>\n</speak>"
+			},
+			"Identifier": "Receipt Error",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "Redact Sensitive Contact Attributes",
+				"Errors": [
+					{
+						"NextAction": "Redact Sensitive Contact Attributes",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"ComparisonValue": "$.FlowAttributes.ReceiptQueueId"
+			},
+			"Identifier": "Has Specified Receipt Queue",
+			"Type": "Compare",
+			"Transitions": {
+				"NextAction": "Ask to Transfer for Receipt",
+				"Conditions": [
+					{
+						"NextAction": "Redact Sensitive Contact Attributes",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": ["NULL"]
+						}
+					}
+				],
+				"Errors": [
+					{
+						"NextAction": "Ask to Transfer for Receipt",
+						"ErrorType": "NoMatchingCondition"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"StoreInput": "False",
+				"InputTimeLimitSeconds": "5",
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nTo transfer to a representative and receive a receipt for your payment, press 1.\nTo continue without a receipt, press 2.\n</prosody>\n</speak>"
+			},
+			"Identifier": "Ask to Transfer for Receipt",
+			"Type": "GetParticipantInput",
+			"Transitions": {
+				"NextAction": "Receipt Entry Not Recognized",
+				"Conditions": [
+					{
+						"NextAction": "Redact Sensitive Contact Attributes Copy",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": ["1"]
+						}
+					},
+					{
+						"NextAction": "Redact Sensitive Contact Attributes",
+						"Condition": {
+							"Operator": "Equals",
+							"Operands": ["2"]
+						}
+					}
+				],
+				"Errors": [
+					{
+						"NextAction": "Receipt Timeout",
+						"ErrorType": "InputTimeLimitExceeded"
+					},
+					{
+						"NextAction": "Receipt Entry Not Recognized",
+						"ErrorType": "NoMatchingCondition"
+					},
+					{
+						"NextAction": "Receipt Entry Not Recognized",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Attributes": {
+					"EncryptedCardNumber": "REDACTED",
+					"EncryptedAccountNumber": "REDACTED",
+					"ExpirationDate": "REDACTED"
+				},
+				"TargetContact": "Current"
+			},
+			"Identifier": "Redact Sensitive Contact Attributes",
+			"Type": "UpdateContactAttributes",
+			"Transitions": {
+				"NextAction": "a3ea896e-4f43-4677-8edd-159f677dc41e",
+				"Errors": [
+					{
+						"NextAction": "a3ea896e-4f43-4677-8edd-159f677dc41e",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {},
+			"Identifier": "Transfer to Representative",
+			"Type": "TransferContactToQueue",
+			"Transitions": {
+				"NextAction": "Transfer Error",
+				"Errors": [
+					{
+						"NextAction": "Transfer Error",
+						"ErrorType": "QueueAtCapacity"
+					},
+					{
+						"NextAction": "Transfer Error",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nAn error prevented us from connecting you to a representative. Please try calling the customer service number directly in order to receive a receipt.\n</prosody>\n</speak>"
+			},
+			"Identifier": "Transfer Error",
+			"Type": "MessageParticipant",
+			"Transitions": {
+				"NextAction": "a3ea896e-4f43-4677-8edd-159f677dc41e",
+				"Errors": [
+					{
+						"NextAction": "a3ea896e-4f43-4677-8edd-159f677dc41e",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"Attributes": {
+					"EncryptedCardNumber": "REDACTED",
+					"EncryptedAccountNumber": "REDACTED",
+					"ExpirationDate": "REDACTED"
+				},
+				"TargetContact": "Current"
+			},
+			"Identifier": "Redact Sensitive Contact Attributes Copy",
+			"Type": "UpdateContactAttributes",
+			"Transitions": {
+				"NextAction": "Set Queue",
+				"Errors": [
+					{
+						"NextAction": "Set Queue",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"QueueId": "$.FlowAttributes.ReceiptQueueId"
+			},
+			"Identifier": "Set Queue",
+			"Type": "UpdateContactTargetQueue",
+			"Transitions": {
+				"NextAction": "Transfer to Representative",
+				"Errors": [
+					{
+						"NextAction": "Transfer Error",
 						"ErrorType": "NoMatchingError"
 					}
 				]
