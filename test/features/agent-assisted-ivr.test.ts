@@ -24,6 +24,10 @@ const mockContext: Context = {
 		env: C3Environment.Prod,
 		vendorId: 'placeholder',
 		paymentGateway: C3PaymentGateway.Zift,
+		apiKey: 'placeholder',
+		logoUrl: 'placeholder',
+		supportPhone: 'placeholder',
+		supportEmail: 'placeholder',
 	},
 	features: {
 		agentAssistedIVR: true,
@@ -39,12 +43,9 @@ const mockContext: Context = {
 			volume: SpeakingVolume.Medium,
 		},
 	},
-	logoUrl: 'placeholder',
-	supportPhone: 'placeholder',
-	supportEmail: 'placeholder',
 };
 
-const NUMBER_OF_LAMBDAS = 6;
+const NUMBER_OF_LAMBDAS = 5;
 
 // Verify created resources for agent-assisted IVR.
 describe('Agent Assisted IVR', () => {
@@ -107,9 +108,9 @@ describe('Agent Assisted IVR', () => {
 		it('Has a created role', () => {
 			template.resourceCountIs('AWS::IAM::Role', NUMBER_OF_LAMBDAS + 1);
 		});
-		it('Has 6 created policies', () => {
-			// Cross org policy, 3 secrets policies, and kms policy
-			template.resourceCountIs('AWS::IAM::Policy', NUMBER_OF_LAMBDAS);
+		it('Has 5 created policies', () => {
+			// Cross org policy and kms policy.
+			template.resourceCountIs('AWS::IAM::Policy', 2);
 		});
 	});
 });
