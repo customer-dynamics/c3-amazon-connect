@@ -42,7 +42,11 @@ jobs:
               "c3": {
                 "env": "dev",
                 "vendorId": "placeholder",
-                "paymentGateway": "Zift"
+                "paymentGateway": "Zift",
+                "apiKey": "placeholder",
+                "logoUrl": "placeholder",
+                "supportPhone": "placeholder",
+                "supportEmail": "placeholder"
               },
               "features": {
                 "agentAssistedIVR": true,
@@ -57,10 +61,7 @@ jobs:
                   "rate": "medium",
                   "volume": "medium" 
                 }
-              },
-              "logoUrl": "placeholder",
-              "supportPhone": "placeholder",
-              "supportEmail": "placeholder"
+              }
             }
 
       - name: Synthesize CloudFormation templates
