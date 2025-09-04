@@ -11,7 +11,7 @@ updates:
     schedule:
       interval: 'daily'
       time: '23:00'
-      timezone: 'US/Mountain'
+      timezone: 'America/Denver'
     groups:
       # Update all CDK dependencies together
       cdk:
@@ -28,7 +28,7 @@ updates:
     schedule:
       interval: 'daily'
       time: '23:00'
-      timezone: 'US/Mountain'
+      timezone: 'America/Denver'
 
   # Lambda functions
   - package-ecosystem: 'npm'
@@ -36,46 +36,46 @@ updates:
     schedule:
       interval: 'daily'
       time: '23:00'
-      timezone: 'US/Mountain'
+      timezone: 'America/Denver'
   - package-ecosystem: 'npm'
     directory: 'lib/lambda/c3-create-payment-request'
     schedule:
       interval: 'daily'
       time: '23:00'
-      timezone: 'US/Mountain'
+      timezone: 'America/Denver'
   - package-ecosystem: 'npm'
     directory: 'lib/lambda/c3-tokenize-transaction'
     schedule:
       interval: 'daily'
       time: '23:00'
-      timezone: 'US/Mountain'
+      timezone: 'America/Denver'
   - package-ecosystem: 'npm'
     directory: 'lib/lambda/c3-submit-payment'
     schedule:
       interval: 'daily'
       time: '23:00'
-      timezone: 'US/Mountain'
+      timezone: 'America/Denver'
   - package-ecosystem: 'npm'
     directory: 'lib/lambda/c3-send-receipt'
     schedule:
       interval: 'daily'
       time: '23:00'
-      timezone: 'US/Mountain'
+      timezone: 'America/Denver'
   - package-ecosystem: 'npm'
     directory: 'lib/lambda/c3-subject-lookup'
     schedule:
       interval: 'daily'
       time: '23:00'
-      timezone: 'US/Mountain'
+      timezone: 'America/Denver'
   - package-ecosystem: 'npm'
     directory: 'lib/lambda/c3-send-agent-message'
     schedule:
       interval: 'daily'
       time: '23:00'
-      timezone: 'US/Mountain'
+      timezone: 'America/Denver'
   - package-ecosystem: 'npm'
     directory: 'lib/lambda/c3-validate-entry'
     schedule:
       interval: 'daily'
       time: '23:00'
-      timezone: 'US/Mountain'
+      timezone: 'America/Denver'
