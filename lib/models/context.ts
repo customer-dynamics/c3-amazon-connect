@@ -7,9 +7,6 @@ export interface Context {
 	stackLabel: string;
 	amazonConnect: AmazonConnectContext;
 	c3: C3Context;
-	logoUrl: string;
-	supportPhone: string;
-	supportEmail: string;
 	features: FeaturesContext;
 	options: OptionsContext;
 }
