@@ -41,6 +41,21 @@
 					"y": 187.2
 				}
 			},
+			"Report Lookup Error": {
+				"position": {
+					"x": 977.6,
+					"y": 256
+				},
+				"isFriendlyName": true,
+				"parameters": {
+					"LambdaFunctionARN": {
+						"displayName": "<<sendAgentMessageLambdaArn>>"
+					}
+				},
+				"dynamicMetadata": {
+					"EventText": false
+				}
+			},
 			"Get Subject Info": {
 				"position": {
 					"x": 399.2,
@@ -61,25 +76,10 @@
 					"SubjectId": true
 				}
 			},
-			"Report Lookup Error": {
-				"position": {
-					"x": 977.6,
-					"y": 256
-				},
-				"isFriendlyName": true,
-				"parameters": {
-					"LambdaFunctionARN": {
-						"displayName": "<<sendAgentMessageLambdaArn>>"
-					}
-				},
-				"dynamicMetadata": {
-					"EventText": false
-				}
-			},
 			"Report Lookup Finished": {
 				"position": {
-					"x": 640,
-					"y": 26.4
+					"x": 639.2,
+					"y": 25.6
 				},
 				"isFriendlyName": true,
 				"parameters": {
@@ -88,11 +88,12 @@
 					}
 				},
 				"dynamicMetadata": {
-					"contactName": false,
+					"contactFirstName": false,
 					"contactEmail": false,
 					"amountDue": false,
 					"minimumPayment": false,
-					"EventText": false
+					"EventText": false,
+					"contactLastName": false
 				}
 			}
 		},
@@ -100,7 +101,7 @@
 		"name": "C3 Subject Lookup Flow",
 		"description": "Flow to look up subject information in the agent workspace.",
 		"type": "queueTransfer",
-		"status": "PUBLISHED",
+		"status": "published",
 		"hash": {}
 	},
 	"Actions": [
@@ -161,6 +162,29 @@
 		},
 		{
 			"Parameters": {
+				"LambdaFunctionARN": "<<sendAgentMessageLambdaArn>>",
+				"InvocationTimeLimitSeconds": "8",
+				"LambdaInvocationAttributes": {
+					"EventText": "LookupError"
+				},
+				"ResponseValidation": {
+					"ResponseType": "JSON"
+				}
+			},
+			"Identifier": "Report Lookup Error",
+			"Type": "InvokeLambdaFunction",
+			"Transitions": {
+				"NextAction": "ea14d135-cdbc-4836-9ada-0d795495f071",
+				"Errors": [
+					{
+						"NextAction": "ea14d135-cdbc-4836-9ada-0d795495f071",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
 				"LambdaFunctionARN": "<<subjectLookupLambdaArn>>",
 				"InvocationTimeLimitSeconds": "8",
 				"LambdaInvocationAttributes": {
@@ -187,34 +211,12 @@
 				"LambdaFunctionARN": "<<sendAgentMessageLambdaArn>>",
 				"InvocationTimeLimitSeconds": "8",
 				"LambdaInvocationAttributes": {
-					"EventText": "LookupError"
-				},
-				"ResponseValidation": {
-					"ResponseType": "JSON"
-				}
-			},
-			"Identifier": "Report Lookup Error",
-			"Type": "InvokeLambdaFunction",
-			"Transitions": {
-				"NextAction": "ea14d135-cdbc-4836-9ada-0d795495f071",
-				"Errors": [
-					{
-						"NextAction": "ea14d135-cdbc-4836-9ada-0d795495f071",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"LambdaFunctionARN": "<<sendAgentMessageLambdaArn>>",
-				"InvocationTimeLimitSeconds": "8",
-				"LambdaInvocationAttributes": {
-					"contactName": "$.External.ContactName",
+					"contactFirstName": "$.External.ContactFirstName",
 					"contactEmail": "$.External.Email",
 					"amountDue": "$.External.PaymentAmountDue",
 					"minimumPayment": "$.External.PaymentMinimumPayment",
-					"EventText": "LookupFinished"
+					"EventText": "LookupFinished",
+					"contactLastName": "$.External.ContactLastName"
 				},
 				"ResponseValidation": {
 					"ResponseType": "JSON"
