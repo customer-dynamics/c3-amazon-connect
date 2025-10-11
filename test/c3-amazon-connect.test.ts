@@ -24,6 +24,10 @@ const mockContext: Context = {
 		env: C3Environment.Prod,
 		vendorId: 'placeholder',
 		paymentGateway: C3PaymentGateway.Zift,
+		apiKey: 'placeholder',
+		logoUrl: 'placeholder',
+		supportPhone: 'placeholder',
+		supportEmail: 'placeholder',
 	},
 	features: {
 		agentAssistedIVR: true,
@@ -39,9 +43,6 @@ const mockContext: Context = {
 			volume: SpeakingVolume.Medium,
 		},
 	},
-	logoUrl: 'placeholder',
-	supportPhone: 'placeholder',
-	supportEmail: 'placeholder',
 };
 
 describe('C3AmazonConnectStack', () => {

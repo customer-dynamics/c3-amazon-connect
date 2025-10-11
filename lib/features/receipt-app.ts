@@ -123,7 +123,7 @@ export class ReceiptApp {
 			configuredFeatureParams += '&customEmbed=true';
 		}
 
-		const appUrl = `https://${c3Context.vendorId}.${this.c3AppUrlFragment}/agent-workspace/receipt?contactCenter=amazon&instanceId=${instanceId}&region=${region}&externalRoleArn=${this.externalRoleArn}${configuredFeatureParams}`;
+		const appUrl = `https://${this.c3AppUrlFragment}/receipt?contactCenter=amazon&instanceId=${instanceId}&region=${region}&externalRoleArn=${this.externalRoleArn}${configuredFeatureParams}`;
 		writeFileToExports(
 			'C3ReceiptAppUrl.txt',
 			`🧾 Your C3 Receipt app URL is:\n\n🌐 ${appUrl}\n`,

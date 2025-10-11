@@ -7,21 +7,6 @@
 			"y": -75.2
 		},
 		"ActionMetadata": {
-			"Report Transactions Found": {
-				"position": {
-					"x": -260,
-					"y": -80.8
-				},
-				"isFriendlyName": true,
-				"parameters": {
-					"LambdaFunctionARN": {
-						"displayName": "<<sendAgentMessageLambdaArn>>"
-					}
-				},
-				"dynamicMetadata": {
-					"EventText": false
-				}
-			},
 			"Report No Transactions Error": {
 				"position": {
 					"x": -259.2,
@@ -44,72 +29,6 @@
 				},
 				"isFriendlyName": true
 			},
-			"13e17aab-f89b-4dc8-8040-4b8e2e4555df": {
-				"position": {
-					"x": 937.6,
-					"y": 180
-				}
-			},
-			"Check for Email Address": {
-				"position": {
-					"x": -36,
-					"y": -83.2
-				},
-				"isFriendlyName": true,
-				"conditions": [],
-				"conditionMetadata": [
-					{
-						"id": "7c231476-858b-4909-b603-85f88b6cd074",
-						"operator": {
-							"name": "Contains",
-							"value": "Contains",
-							"shortDisplay": "contains"
-						},
-						"value": "@"
-					}
-				]
-			},
-			"No Email Address": {
-				"position": {
-					"x": 416.8,
-					"y": 27.2
-				},
-				"isFriendlyName": true
-			},
-			"Report No Email Address Error": {
-				"position": {
-					"x": 193.6,
-					"y": 28.8
-				},
-				"isFriendlyName": true,
-				"parameters": {
-					"LambdaFunctionARN": {
-						"displayName": "<<sendAgentMessageLambdaArn>>"
-					}
-				},
-				"dynamicMetadata": {
-					"EventText": false
-				}
-			},
-			"Check for Transactions": {
-				"position": {
-					"x": -492,
-					"y": -83.2
-				},
-				"isFriendlyName": true,
-				"conditions": [],
-				"conditionMetadata": [
-					{
-						"id": "aa288c83-76ec-4cfe-a5cd-b06e70578a93",
-						"operator": {
-							"name": "Contains",
-							"value": "Contains",
-							"shortDisplay": "contains"
-						},
-						"value": "\""
-					}
-				]
-			},
 			"Conference All": {
 				"position": {
 					"x": -724.8,
@@ -122,6 +41,38 @@
 					"x": -870.4,
 					"y": 105.6
 				}
+			},
+			"Check for Transactions": {
+				"position": {
+					"x": -492,
+					"y": -83.2
+				},
+				"isFriendlyName": true,
+				"conditions": [],
+				"conditionMetadata": [
+					{
+						"id": "01da87e9-0933-41a7-a70a-785822bcc8b8",
+						"operator": {
+							"name": "Contains",
+							"value": "Contains",
+							"shortDisplay": "contains"
+						},
+						"value": "\""
+					}
+				]
+			},
+			"13e17aab-f89b-4dc8-8040-4b8e2e4555df": {
+				"position": {
+					"x": 937.6,
+					"y": 180
+				}
+			},
+			"No Email Address": {
+				"position": {
+					"x": 416.8,
+					"y": 27.2
+				},
+				"isFriendlyName": true
 			},
 			"Report Receipt Error": {
 				"position": {
@@ -153,6 +104,51 @@
 					"EventText": false
 				}
 			},
+			"Send Receipts": {
+				"position": {
+					"x": 398.4,
+					"y": -224
+				},
+				"isFriendlyName": true,
+				"parameters": {
+					"LambdaFunctionARN": {
+						"displayName": "<<sendReceiptLambdaArn>>"
+					}
+				},
+				"dynamicMetadata": {
+					"SendAll": false
+				}
+			},
+			"Report Transactions Found": {
+				"position": {
+					"x": -260,
+					"y": -80.8
+				},
+				"isFriendlyName": true,
+				"parameters": {
+					"LambdaFunctionARN": {
+						"displayName": "<<sendAgentMessageLambdaArn>>"
+					}
+				},
+				"dynamicMetadata": {
+					"EventText": false
+				}
+			},
+			"Report No Email Address Error": {
+				"position": {
+					"x": 193.6,
+					"y": 28.8
+				},
+				"isFriendlyName": true,
+				"parameters": {
+					"LambdaFunctionARN": {
+						"displayName": "<<sendAgentMessageLambdaArn>>"
+					}
+				},
+				"dynamicMetadata": {
+					"EventText": false
+				}
+			},
 			"Report Sending Receipts": {
 				"position": {
 					"x": 178.4,
@@ -168,53 +164,33 @@
 					"EventText": false
 				}
 			},
-			"Send Receipts": {
+			"Check for Email Address": {
 				"position": {
-					"x": 400.8,
-					"y": -221.6
+					"x": -37.6,
+					"y": -85.6
 				},
 				"isFriendlyName": true,
-				"parameters": {
-					"LambdaFunctionARN": {
-						"displayName": "<<sendReceiptLambdaArn>>"
+				"conditionMetadata": [
+					{
+						"id": "1b039622-f713-4486-bfb8-ae06883b13f9",
+						"operator": {
+							"name": "Contains",
+							"value": "Contains",
+							"shortDisplay": "contains"
+						},
+						"value": "@"
 					}
-				},
-				"dynamicMetadata": {
-					"SendAll": false
-				}
+				]
 			}
 		},
 		"Annotations": [],
 		"name": "C3 Receipt Flow",
 		"description": "Flow to send payment receipts in the agent workspace.",
 		"type": "queueTransfer",
-		"status": "PUBLISHED",
+		"status": "published",
 		"hash": {}
 	},
 	"Actions": [
-		{
-			"Parameters": {
-				"LambdaFunctionARN": "<<sendAgentMessageLambdaArn>>",
-				"InvocationTimeLimitSeconds": "8",
-				"LambdaInvocationAttributes": {
-					"EventText": "TransactionsFound"
-				},
-				"ResponseValidation": {
-					"ResponseType": "JSON"
-				}
-			},
-			"Identifier": "Report Transactions Found",
-			"Type": "InvokeLambdaFunction",
-			"Transitions": {
-				"NextAction": "Check for Email Address",
-				"Errors": [
-					{
-						"NextAction": "Check for Email Address",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
-		},
 		{
 			"Parameters": {
 				"LambdaFunctionARN": "<<sendAgentMessageLambdaArn>>",
@@ -255,47 +231,16 @@
 			}
 		},
 		{
-			"Parameters": {},
-			"Identifier": "13e17aab-f89b-4dc8-8040-4b8e2e4555df",
-			"Type": "DisconnectParticipant",
-			"Transitions": {}
-		},
-		{
 			"Parameters": {
-				"ComparisonValue": "$.Attributes.Email"
+				"PreviousContactParticipantState": "OffHold"
 			},
-			"Identifier": "Check for Email Address",
-			"Type": "Compare",
+			"Identifier": "Conference All",
+			"Type": "UpdatePreviousContactParticipantState",
 			"Transitions": {
-				"NextAction": "Report No Email Address Error",
-				"Conditions": [
-					{
-						"NextAction": "Report Sending Receipts",
-						"Condition": {
-							"Operator": "TextContains",
-							"Operands": ["@"]
-						}
-					}
-				],
+				"NextAction": "Check for Transactions",
 				"Errors": [
 					{
-						"NextAction": "Report No Email Address Error",
-						"ErrorType": "NoMatchingCondition"
-					}
-				]
-			}
-		},
-		{
-			"Parameters": {
-				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nThere is no email address for this customer. Please provide one in the C3 Receipt app and try again.\n</prosody>\n</speak>"
-			},
-			"Identifier": "No Email Address",
-			"Type": "MessageParticipant",
-			"Transitions": {
-				"NextAction": "13e17aab-f89b-4dc8-8040-4b8e2e4555df",
-				"Errors": [
-					{
-						"NextAction": "13e17aab-f89b-4dc8-8040-4b8e2e4555df",
+						"NextAction": "Check for Transactions",
 						"ErrorType": "NoMatchingError"
 					}
 				]
@@ -303,25 +248,12 @@
 		},
 		{
 			"Parameters": {
-				"LambdaFunctionARN": "<<sendAgentMessageLambdaArn>>",
-				"InvocationTimeLimitSeconds": "8",
-				"LambdaInvocationAttributes": {
-					"EventText": "NoEmailAddressError"
-				},
-				"ResponseValidation": {
-					"ResponseType": "JSON"
-				}
+				"FlowLoggingBehavior": "Enabled"
 			},
-			"Identifier": "Report No Email Address Error",
-			"Type": "InvokeLambdaFunction",
+			"Identifier": "f50d211b-96c7-43f0-9f4f-2204e1301fad",
+			"Type": "UpdateFlowLoggingBehavior",
 			"Transitions": {
-				"NextAction": "No Email Address",
-				"Errors": [
-					{
-						"NextAction": "No Email Address",
-						"ErrorType": "NoMatchingError"
-					}
-				]
+				"NextAction": "Conference All"
 			}
 		},
 		{
@@ -350,29 +282,25 @@
 			}
 		},
 		{
-			"Parameters": {
-				"PreviousContactParticipantState": "OffHold"
-			},
-			"Identifier": "Conference All",
-			"Type": "UpdatePreviousContactParticipantState",
-			"Transitions": {
-				"NextAction": "Check for Transactions",
-				"Errors": [
-					{
-						"NextAction": "Check for Transactions",
-						"ErrorType": "NoMatchingError"
-					}
-				]
-			}
+			"Parameters": {},
+			"Identifier": "13e17aab-f89b-4dc8-8040-4b8e2e4555df",
+			"Type": "DisconnectParticipant",
+			"Transitions": {}
 		},
 		{
 			"Parameters": {
-				"FlowLoggingBehavior": "Enabled"
+				"Text": "<speak>\n<prosody volume=\"<<speakingVolume>>\" rate=\"<<speakingRate>>\">\nThere is no email address for this customer. Please provide one in the C3 Receipt app and try again.\n</prosody>\n</speak>"
 			},
-			"Identifier": "f50d211b-96c7-43f0-9f4f-2204e1301fad",
-			"Type": "UpdateFlowLoggingBehavior",
+			"Identifier": "No Email Address",
+			"Type": "MessageParticipant",
 			"Transitions": {
-				"NextAction": "Conference All"
+				"NextAction": "13e17aab-f89b-4dc8-8040-4b8e2e4555df",
+				"Errors": [
+					{
+						"NextAction": "13e17aab-f89b-4dc8-8040-4b8e2e4555df",
+						"ErrorType": "NoMatchingError"
+					}
+				]
 			}
 		},
 		{
@@ -423,6 +351,75 @@
 		},
 		{
 			"Parameters": {
+				"LambdaFunctionARN": "<<sendReceiptLambdaArn>>",
+				"InvocationTimeLimitSeconds": "8",
+				"LambdaInvocationAttributes": {
+					"SendAll": "true"
+				},
+				"ResponseValidation": {
+					"ResponseType": "JSON"
+				}
+			},
+			"Identifier": "Send Receipts",
+			"Type": "InvokeLambdaFunction",
+			"Transitions": {
+				"NextAction": "Report Receipts Sent",
+				"Errors": [
+					{
+						"NextAction": "Report Receipt Error",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"LambdaFunctionARN": "<<sendAgentMessageLambdaArn>>",
+				"InvocationTimeLimitSeconds": "8",
+				"LambdaInvocationAttributes": {
+					"EventText": "TransactionsFound"
+				},
+				"ResponseValidation": {
+					"ResponseType": "JSON"
+				}
+			},
+			"Identifier": "Report Transactions Found",
+			"Type": "InvokeLambdaFunction",
+			"Transitions": {
+				"NextAction": "Check for Email Address",
+				"Errors": [
+					{
+						"NextAction": "Check for Email Address",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
+				"LambdaFunctionARN": "<<sendAgentMessageLambdaArn>>",
+				"InvocationTimeLimitSeconds": "8",
+				"LambdaInvocationAttributes": {
+					"EventText": "NoEmailAddressError"
+				},
+				"ResponseValidation": {
+					"ResponseType": "JSON"
+				}
+			},
+			"Identifier": "Report No Email Address Error",
+			"Type": "InvokeLambdaFunction",
+			"Transitions": {
+				"NextAction": "No Email Address",
+				"Errors": [
+					{
+						"NextAction": "No Email Address",
+						"ErrorType": "NoMatchingError"
+					}
+				]
+			}
+		},
+		{
+			"Parameters": {
 				"LambdaFunctionARN": "<<sendAgentMessageLambdaArn>>",
 				"InvocationTimeLimitSeconds": "8",
 				"LambdaInvocationAttributes": {
@@ -446,23 +443,25 @@
 		},
 		{
 			"Parameters": {
-				"LambdaFunctionARN": "<<sendReceiptLambdaArn>>",
-				"InvocationTimeLimitSeconds": "8",
-				"LambdaInvocationAttributes": {
-					"SendAll": "true"
-				},
-				"ResponseValidation": {
-					"ResponseType": "JSON"
-				}
+				"ComparisonValue": "$.Attributes.C3ContactEmail"
 			},
-			"Identifier": "Send Receipts",
-			"Type": "InvokeLambdaFunction",
+			"Identifier": "Check for Email Address",
+			"Type": "Compare",
 			"Transitions": {
-				"NextAction": "Report Receipts Sent",
+				"NextAction": "Report No Email Address Error",
+				"Conditions": [
+					{
+						"NextAction": "Report Sending Receipts",
+						"Condition": {
+							"Operator": "TextContains",
+							"Operands": ["@"]
+						}
+					}
+				],
 				"Errors": [
 					{
-						"NextAction": "Report Receipt Error",
-						"ErrorType": "NoMatchingError"
+						"NextAction": "Report No Email Address Error",
+						"ErrorType": "NoMatchingCondition"
 					}
 				]
 			}
