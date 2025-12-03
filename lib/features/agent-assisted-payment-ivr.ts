@@ -24,8 +24,7 @@ import {
 	associateLambdaFunctionsWithConnect,
 	commonLambdaProps,
 } from '../helpers/lambda';
-import { getSelfServicePaymentIVRFlowContent } from '../connect/content-transformations';
-import { Secret } from 'aws-cdk-lib/aws-secretsmanager';
+import { getAgentAssistedPaymentIVRFlowContent } from '../connect/content-transformations';
 import { AmazonConnectContext, C3Context, OptionsContext } from '../models';
 import { writeFileToExports } from '../helpers/file';
 
@@ -48,9 +47,7 @@ export class AgentAssistedPaymentIVR {
 		private amazonConnectContext: AmazonConnectContext,
 		private codeSigningConfig: CodeSigningConfig,
 		private c3BaseUrl: string,
-		private c3ApiKeySecret: Secret,
 		private utilsLayer: LayerVersion,
-		private createPaymentRequestFunction: Function,
 		private tokenizeTransactionFunction: Function,
 		private submitPaymentFunction: Function,
 		private sendReceiptFunction: Function,
@@ -95,7 +92,7 @@ export class AgentAssistedPaymentIVR {
 				environment: {
 					C3_ENV: c3Context.env,
 					C3_BASE_URL: this.c3BaseUrl,
-					C3_API_KEY_SECRET_ID: this.c3ApiKeySecret.secretName,
+					C3_API_KEY: c3Context.apiKey,
 				},
 				codeSigningConfig: optionsContext.codeSigning
 					? this.codeSigningConfig
@@ -103,13 +100,6 @@ export class AgentAssistedPaymentIVR {
 				layers: [this.utilsLayer],
 			},
 		);
-
-		// Create the policies for getting secret values.
-		const getSecretValuePolicy = new PolicyStatement({
-			actions: ['secretsmanager:GetSecretValue'],
-			resources: [this.c3ApiKeySecret.secretArn],
-		});
-		this.sendAgentMessageFunction.addToRolePolicy(getSecretValuePolicy);
 	}
 
 	/**
@@ -122,9 +112,8 @@ export class AgentAssistedPaymentIVR {
 		const optionsContext = this.stack.node.tryGetContext(
 			'options',
 		) as OptionsContext;
-		const c3PaymentFlowContent = getSelfServicePaymentIVRFlowContent(
+		const c3PaymentFlowContent = getAgentAssistedPaymentIVRFlowContent(
 			this.sendAgentMessageFunction,
-			this.createPaymentRequestFunction,
 			this.tokenizeTransactionFunction,
 			this.submitPaymentFunction,
 			this.sendReceiptFunction,

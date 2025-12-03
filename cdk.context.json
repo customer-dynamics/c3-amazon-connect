@@ -10,7 +10,11 @@
 	"c3": {
 		"env": "prod",
 		"vendorId": "",
-		"paymentGateway": ""
+		"apiKey": "",
+		"paymentGateway": "",
+		"logoUrl": "",
+		"supportPhone": "",
+		"supportEmail": ""
 	},
 	"features": {
 		"agentAssistedIVR": true,
@@ -25,8 +29,5 @@
 			"rate": "medium",
 			"volume": "medium"
 		}
-	},
-	"logoUrl": "",
-	"supportPhone": "",
-	"supportEmail": ""
+	}
 }
