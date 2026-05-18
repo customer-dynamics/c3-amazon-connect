@@ -26,7 +26,7 @@
 		"@semantic-release/release-notes-generator": "^14.1.1",
 		"@types/jest": "^30.0.0",
 		"@types/node": "24.12.3",
-		"aws-cdk": "2.1121.0",
+		"aws-cdk": "2.1122.0",
 		"conventional-changelog-conventionalcommits": "^9.3.1",
 		"husky": "^9.1.7",
 		"jest": "^30.4.2",
@@ -36,7 +36,7 @@
 		"typescript": "~5.9.3"
 	},
 	"dependencies": {
-		"aws-cdk-lib": "2.253.1",
+		"aws-cdk-lib": "2.254.0",
 		"constructs": "^10.6.0",
 		"source-map-support": "^0.5.21"
 	}
