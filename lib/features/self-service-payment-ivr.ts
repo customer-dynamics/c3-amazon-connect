@@ -57,8 +57,7 @@ export class SelfServicePaymentIVR {
 
 		// Validate values.
 		const c3Context = this.stack.node.tryGetContext('c3') as
-			| C3Context
-			| undefined;
+			C3Context | undefined;
 		const { vendorId, apiKey, logoUrl, supportPhone, supportEmail } =
 			c3Context ?? {};
 		if (!vendorId) {
@@ -75,8 +74,7 @@ export class SelfServicePaymentIVR {
 
 		// Create function.
 		const optionsContext = this.stack.node.tryGetContext('options') as
-			| OptionsContext
-			| undefined;
+			OptionsContext | undefined;
 		this.createPaymentRequestFunction = new Function(
 			this.stack,
 			'C3CreatePaymentRequest',
