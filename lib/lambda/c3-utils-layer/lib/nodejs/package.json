@@ -9,6 +9,6 @@
 	},
 	"dependencies": {
 		"@aws-crypto/client-node": "^5.0.2",
-		"@aws-sdk/client-secrets-manager": "^3.1095.0"
+		"@aws-sdk/client-secrets-manager": "^3.1110.0"
 	}
 }
